@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "deploy": "vitepress build && gh-pages -d .vitepress/dist"
+  },
+  "name": "my_blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaacHuo/My_Blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsaacHuo/My_Blog/issues"
+  },
+  "homepage": "https://github.com/IsaacHuo/My_Blog#readme",
+  "description": "",
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "vitepress": "^1.6.3"
+  }
+}
