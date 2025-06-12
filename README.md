@@ -5,9 +5,6 @@
 [![Deploy](https://github.com/IsaacHuo/My_Blog/actions/workflows/deploy.yml/badge.svg)](https://github.com/IsaacHuo/My_Blog/actions/workflows/deploy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 🌐 在线访问
-
-**网站地址**: [https://isaachuo.github.io/My_Blog/](https://isaachuo.github.io/My_Blog/)
 
 ## ✨ 特性
 
