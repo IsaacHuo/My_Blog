@@ -1,0 +1,1 @@
+import{_ as a,c as r,o as t,ae as i}from"./chunks/framework.FjhtdT76.js";const p=JSON.parse('{"title":"博客文章","description":"","frontmatter":{},"headers":[],"relativePath":"blog/index.md","filePath":"blog/index.md"}'),o={name:"blog/index.md"};function l(s,e,h,n,d,c){return t(),r("div",null,e[0]||(e[0]=[i("",28)]))}const m=a(o,[["render",l]]);export{p as __pageData,m as default};
