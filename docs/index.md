@@ -43,29 +43,13 @@ features:
 </article>
 
 <article class="blog-card">
-  <h3><a href="/My_Blog/posts/blog-introduction">关于这个博客网站</a></h3>
-  <div class="meta">2024年1月18日</div>
-  <div class="description">
-    详细介绍这个基于 VitePress 构建的个人博客网站的特色、功能和设计理念，包括技术栈、用户体验和未来规划。
-  </div>
+  <h3><a href="/My_Blog/posts/mirror-sites-guide">镜像站搭建与管理指南</a></h3>
+  <div class="meta">2024年1月17日</div>
+  <div class="description">详细介绍如何搭建和管理镜像站点，包括技术选型、部署流程和运维管理。</div>
   <div>
-    <span class="tag">博客介绍</span>
-    <span class="tag">VitePress</span>
-    <span class="tag">个人网站</span>
-    <span class="tag">技术分享</span>
-  </div>
-</article>
-
-<article class="blog-card">
-  <h3><a href="/My_Blog/posts/mirror-sites-guide">国内可用的GPT镜像站推荐</a></h3>
-  <div class="meta">2024年1月15日</div>
-  <div class="description">
-    分享几个目前正常使用的AI聊天镜像站，帮助国内用户更好地使用AI服务，包含合法转接平台推荐。
-  </div>
-  <div>
-    <span class="tag">AI</span>
     <span class="tag">镜像站</span>
-    <span class="tag">ChatGPT</span>
+    <span class="tag">运维</span>
+    <span class="tag">部署</span>
   </div>
 </article>
 
@@ -98,5 +82,5 @@ features:
 
 <div class="stats-section">
   <p><strong>目标</strong>: 持续分享有价值的内容</p>
-  <p><strong>当前文章数</strong>: 5篇</p>
+  <p><strong>当前文章数</strong>: 4篇</p>
 </div>
