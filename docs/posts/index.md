@@ -12,6 +12,20 @@ description: 浏览所有博客文章
 <div class="posts-grid">
 
 <article class="blog-card">
+  <h3><a href="/My_Blog/posts/blog-introduction">关于这个博客网站</a></h3>
+  <div class="meta">2024年1月18日 · 网站介绍</div>
+  <div class="description">
+    详细介绍这个基于 VitePress 构建的个人博客网站的特色、功能和设计理念，包括技术栈、用户体验和未来规划。
+  </div>
+  <div>
+    <span class="tag">博客介绍</span>
+    <span class="tag">VitePress</span>
+    <span class="tag">个人网站</span>
+    <span class="tag">技术分享</span>
+  </div>
+</article>
+
+<article class="blog-card">
   <h3><a href="/My_Blog/posts/mirror-sites-guide">国内可用的GPT镜像站推荐</a></h3>
   <div class="meta">2024年1月15日 · 技术分享</div>
   <div class="description">
@@ -68,9 +82,9 @@ description: 浏览所有博客文章
 <div class="divider"></div>
 
 <div class="stats-section">
-  <p>总文章数: <strong>4篇</strong></p>
-  <p>标签数: <strong>11个</strong></p>
-  <p>最新更新: <strong>2024年1月17日</strong></p>
+  <p>总文章数: <strong>5篇</strong></p>
+  <p>标签数: <strong>15个</strong></p>
+  <p>最新更新: <strong>2024年1月18日</strong></p>
 </div>
 
 </div>
