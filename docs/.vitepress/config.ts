@@ -12,33 +12,33 @@ export default defineConfig({
     ['meta', { property: 'og:type', content: 'website' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
-    ['link', { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap', rel: 'stylesheet' }]
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=Goudy+Old+Style:wght@400;700&display=swap', rel: 'stylesheet' }]
   ],
 
   themeConfig: {
     nav: [
-      { text: '🏠 首页', link: '/' },
-      { text: '📝 文章', link: '/posts/' },
-      { text: '🏷️ 标签', link: '/tags/' },
-      { text: '👨‍💻 关于', link: '/about' }
+      { text: '首页', link: '/' },
+      { text: '文章', link: '/posts/' },
+      { text: '标签', link: '/tags/' },
+      { text: '关于', link: '/about' }
     ],
 
     sidebar: {
       '/posts/': [
         {
-          text: '📚 文章导航',
+          text: '文章导航',
           items: [
-            { text: '📝 所有文章', link: '/posts/' }
+            { text: '所有文章', link: '/posts/' }
           ]
         },
         {
-          text: '🔧 技术文章',
+          text: '技术文章',
           items: [
             { text: 'VitePress 搭建指南', link: '/posts/vitepress-guide' }
           ]
         },
         {
-          text: '📖 生活随笔',
+          text: '生活随笔',
           items: [
             { text: '我的第一篇博客', link: '/posts/first-post' }
           ]

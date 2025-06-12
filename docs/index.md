@@ -2,9 +2,9 @@
 layout: home
 
 hero:
-  name: "ISAAC HUO"
+  name: "Isaac Huo's Blog"
   text: "个人博客"
-  tagline: The Timeless Art of Thoughtful Writing
+  tagline: Learning in Doing
   actions:
     - theme: brand
       text: 开始阅读
@@ -29,6 +29,29 @@ features:
 ## 最新文章
 
 <div class="posts-grid">
+
+<article class="blog-card">
+  <h3><a href="/My_Blog/posts/backend-article-publishing-guide">后端发布文章详细教程</a></h3>
+  <div class="meta">2024年1月17日</div>
+  <div class="description">详细介绍如何在后端系统中实现文章发布功能，包括数据库设计、API开发、文件上传和部署流程。</div>
+  <div>
+    <span class="tag">后端开发</span>
+    <span class="tag">文章发布</span>
+    <span class="tag">教程</span>
+    <span class="tag">部署</span>
+  </div>
+</article>
+
+<article class="blog-card">
+  <h3><a href="/My_Blog/posts/mirror-sites-guide">镜像站搭建与管理指南</a></h3>
+  <div class="meta">2024年1月17日</div>
+  <div class="description">详细介绍如何搭建和管理镜像站点，包括技术选型、部署流程和运维管理。</div>
+  <div>
+    <span class="tag">镜像站</span>
+    <span class="tag">运维</span>
+    <span class="tag">部署</span>
+  </div>
+</article>
 
 <article class="blog-card">
   <h3><a href="/My_Blog/posts/vitepress-guide">VitePress 搭建个人博客指南</a></h3>
@@ -57,10 +80,7 @@ features:
 
 </div>
 
-<div class="divider"></div>
-
 <div class="stats-section">
   <p><strong>目标</strong>: 持续分享有价值的内容</p>
-  <p><strong>更新频率</strong>: 每周至少一篇</p>
-  <p><strong>当前文章数</strong>: 2篇</p>
+  <p><strong>当前文章数</strong>: 4篇</p>
 </div>

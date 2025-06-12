@@ -1,26 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --vp-font-family-base: 'Goudy Old Style', 'BiauKai TC', 'STKaiti', 'KaiTi', 'DFKai-SB', serif;
   --vp-font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
   
-  /* 极简色彩方案 */
+  /* 极简色彩方案 - 浅色模式 */
   --vp-c-brand-1: #2c2c2c;
   --vp-c-brand-2: #4a4a4a;
   --vp-c-brand-3: #6a6a6a;
   --vp-c-brand-soft: #f5f5f5;
   
-  /* 背景色 */
+  /* 背景色 - 浅色模式 */
   --vp-c-bg: #ffffff;
   --vp-c-bg-soft: #fafafa;
   --vp-c-bg-mute: #f5f5f5;
   
-  /* 文字色 */
+  /* 文字色 - 浅色模式 */
   --vp-c-text-1: #2c2c2c;
   --vp-c-text-2: #6a6a6a;
   --vp-c-text-3: #9a9a9a;
   
-  /* 边框 */
+  /* 边框 - 浅色模式 */
   --vp-c-border: #e5e5e5;
   --vp-c-divider: #e5e5e5;
   
@@ -30,6 +30,40 @@
   --space-xl: calc(var(--space-unit) * 3);
 }
 
+/* 隐藏 hr 标签 */
+hr {
+  display: none !important;
+}
+
+/* 隐藏 VitePress 导航栏分隔线 */
+.VPNav .divider,
+.VPNav .divider-line {
+  display: none !important;
+}
+
+/* 夜间模式颜色变量 */
+.dark {
+  /* 极简色彩方案 - 夜间模式 */
+  --vp-c-brand-1: #e5e5e5;
+  --vp-c-brand-2: #c5c5c5;
+  --vp-c-brand-3: #a5a5a5;
+  --vp-c-brand-soft: #2c2c2c;
+  
+  /* 背景色 - 夜间模式 */
+  --vp-c-bg: #1a1a1a;
+  --vp-c-bg-soft: #242424;
+  --vp-c-bg-mute: #2c2c2c;
+  
+  /* 文字色 - 夜间模式 */
+  --vp-c-text-1: #e5e5e5;
+  --vp-c-text-2: #c5c5c5;
+  --vp-c-text-3: #a5a5a5;
+  
+  /* 边框 - 夜间模式 */
+  --vp-c-border: #3a3a3a;
+  --vp-c-divider: #3a3a3a;
+}
+
 /* 重置和基础样式 */
 * {
   margin: 0;
@@ -37,11 +71,44 @@
   box-sizing: border-box;
 }
 
+/* 隐藏VitePress导航栏边框 */
+.VPNav,
+.vp-nav,
+.VPNavBar,
+.vp-nav-bar {
+  border-bottom: none !important;
+}
+
+.VPNavBarTitle,
+.vp-nav-bar-title {
+  border-bottom: none !important;
+}
+
 body {
   font-family: var(--vp-font-family-base);
   line-height: 1.7;
   color: var(--vp-c-text-1);
   background: var(--vp-c-bg);
+}
+
+/* 字体设置 */
+.vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6,
+.vp-doc p, .vp-doc li, .vp-doc blockquote {
+  font-family: 'Goudy Old Style', 'BiauKai TC', 'STKaiti', 'KaiTi', 'DFKai-SB', serif;
+}
+
+/* 中文字符专用字体 */
+.vp-doc :lang(zh),
+.vp-doc [lang="zh"],
+.vp-doc [lang="zh-CN"],
+.vp-doc [lang="zh-TW"] {
+  font-family: 'BiauKai TC', 'STKaiti', 'KaiTi', 'DFKai-SB', 'Goudy Old Style', serif;
+}
+
+/* 英文字符专用字体 */
+.vp-doc :lang(en),
+.vp-doc [lang="en"] {
+  font-family: 'Goudy Old Style', 'BiauKai TC', 'STKaiti', 'KaiTi', 'DFKai-SB', serif;
 }
 
 /* 主容器 */
@@ -249,8 +316,6 @@ body {
   text-align: center;
   margin: var(--space-xl) 0;
   padding: var(--space-lg) 0;
-  border-top: 1px solid var(--vp-c-border);
-  border-bottom: 1px solid var(--vp-c-border);
 }
 
 .stats-section p {

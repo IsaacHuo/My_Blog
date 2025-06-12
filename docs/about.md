@@ -9,17 +9,20 @@ description: 了解 Isaac Huo
 
 <div class="geometric-decoration"></div>
 
-你好！我是 Isaac Huo，欢迎来到我的个人博客。
+你好！我是霍玮放，欢迎来到我的个人博客。
 
 ## 👨‍💻 个人简介
 
-我是一名对技术充满热情的开发者，喜欢学习新技术、分享经验，用代码创造有趣的东西。
+我是一名在北京林业大学的学生，学了一年风景园林专业，目前转到电气工程及其自动化专业学习。
+
+爱好包括但远不限于编程、AI、古文古诗、书法、时政、股票、机器人和哲学，尤其钟爱读文学书。
+
+终生愿望是在老家村子里的竹子躺椅上安闲地翻书。
 
 ## 🔧 技能专长
 
-- **前端开发**: JavaScript, Vue.js, React
-- **后端开发**: Node.js, Python
-- **工具使用**: Git, Docker, VS Code
+- **前端开发**: Vue.js, vite, Tailwind CSS
+- **后端开发**: Python
 
 ## 📝 博客理念
 
@@ -32,7 +35,8 @@ description: 了解 Isaac Huo
 ## 📫 联系方式
 
 - GitHub: [IsaacHuo](https://github.com/IsaacHuo)
-- Email: isaac@example.com
+- Email: 2210286979@qq.com
+- QQ群: 105653726
 
 ## 🎯 近期目标
 

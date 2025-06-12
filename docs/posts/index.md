@@ -12,6 +12,33 @@ description: 浏览所有博客文章
 <div class="posts-grid">
 
 <article class="blog-card">
+  <h3><a href="/My_Blog/posts/mirror-sites-guide">国内可用的GPT镜像站推荐</a></h3>
+  <div class="meta">2024年1月15日 · 技术分享</div>
+  <div class="description">
+    分享几个目前正常使用的AI聊天镜像站，帮助国内用户更好地使用AI服务，包含合法转接平台推荐。
+  </div>
+  <div>
+    <span class="tag">AI</span>
+    <span class="tag">镜像站</span>
+    <span class="tag">ChatGPT</span>
+  </div>
+</article>
+
+<article class="blog-card">
+  <h3><a href="/My_Blog/posts/backend-article-publishing-guide">VitePress 博客发布文章教程</a></h3>
+  <div class="meta">2024年1月17日 · 技术教程</div>
+  <div class="description">
+    详细介绍如何在 VitePress 博客项目中发布新文章的完整流程，从创建文章到部署上线。
+  </div>
+  <div>
+    <span class="tag">VitePress</span>
+    <span class="tag">博客</span>
+    <span class="tag">文章发布</span>
+    <span class="tag">教程</span>
+  </div>
+</article>
+
+<article class="blog-card">
   <h3><a href="/My_Blog/posts/vitepress-guide">VitePress 搭建个人博客指南</a></h3>
   <div class="meta">2024年1月16日 · 技术文章</div>
   <div class="description">
@@ -41,9 +68,9 @@ description: 浏览所有博客文章
 <div class="divider"></div>
 
 <div class="stats-section">
-  <p>总文章数: <strong>2篇</strong></p>
-  <p>标签数: <strong>5个</strong></p>
-  <p>最新更新: <strong>2024年1月16日</strong></p>
+  <p>总文章数: <strong>4篇</strong></p>
+  <p>标签数: <strong>11个</strong></p>
+  <p>最新更新: <strong>2024年1月17日</strong></p>
 </div>
 
 </div>
