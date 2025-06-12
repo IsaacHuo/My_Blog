@@ -1,12 +1,12 @@
 {
   "name": "my_blog",
   "version": "1.0.0",
+  "type": "module",
   "description": "IsaacHuo's Blog built with VitePress",
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview",
-    "deploy": "vitepress build && gh-pages -d .vitepress/dist"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,6 @@
   "homepage": "https://github.com/IsaacHuo/My_Blog#readme",
   "license": "ISC",
   "devDependencies": {
-    "gh-pages": "^6.3.0",
     "vitepress": "^1.6.3"
   }
 }
