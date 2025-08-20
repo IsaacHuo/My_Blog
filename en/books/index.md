@@ -4,6 +4,132 @@ title: Book Recommendations
 ---
 
 <div class="books-page-container">
+  <!-- Mobile Sidebar Overlay -->
+  <div class="mobile-sidebar-overlay" id="sidebarOverlay">  </div>
+  
+<script>
+(function() {
+  // Only run on client side
+  if (typeof window === 'undefined') return;
+  
+  function initSidebar() {
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const toggleIcon = document.getElementById('toggleIcon');
+    
+    if (!sidebarToggle || !sidebar || !overlay || !toggleIcon) {
+      console.log('Sidebar elements not found, retrying...');
+      setTimeout(initSidebar, 100);
+      return;
+    }
+    
+    console.log('Sidebar elements found, initializing...');
+  
+    function toggleSidebar() {
+      const isActive = sidebar.classList.contains('active');
+      
+      if (isActive) {
+        // Close sidebar
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        sidebarToggle.classList.remove('active');
+        toggleIcon.textContent = '☰';
+        // Only disable body scroll on mobile, not on desktop
+        if (window.innerWidth <= 1024) {
+          document.body.style.overflow = '';
+        }
+      } else {
+        // Open sidebar
+        sidebar.classList.add('active');
+        overlay.classList.add('active');
+        sidebarToggle.classList.add('active');
+        toggleIcon.textContent = '✕';
+        // Only disable body scroll on mobile, not on desktop
+        if (window.innerWidth <= 1024) {
+          document.body.style.overflow = 'hidden';
+        }
+      }
+    }
+    
+    // Toggle button click
+    sidebarToggle.addEventListener('click', toggleSidebar);
+  
+    // Overlay click to close
+    overlay.addEventListener('click', function() {
+      if (sidebar.classList.contains('active')) {
+        toggleSidebar();
+      }
+    });
+    
+    // Close sidebar when clicking on links
+    sidebar.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A') {
+        setTimeout(toggleSidebar, 150);
+      }
+    });
+    
+    // Close sidebar on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+        toggleSidebar();
+      }
+    });
+    
+    // Close sidebar on window resize (desktop)
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 1024 && sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+        sidebarToggle.classList.remove('active');
+        toggleIcon.textContent = '☰';
+        document.body.style.overflow = '';
+      }
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSidebar);
+  } else {
+    initSidebar();
+  }
+})();
+</script>
+
+
+  <!-- Mobile Sidebar Toggle Button -->
+  <button class="mobile-sidebar-toggle" id="sidebarToggle" aria-label="Toggle Navigation Menu">
+    <span id="toggleIcon">☰</span>
+  </button>
+  
+  <!-- Sidebar -->
+  <aside class="books-sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+      <h3 class="sidebar-title">Categories</h3>
+      <ul class="category-list">
+        <li>
+          <a href="#technical-books" class="category-link">Technical Books</a>
+          <ul class="subcategory-list">
+            <li><a href="#frontend-dev">Frontend Development</a></li>
+            <li><a href="#software-eng">Software Engineering</a></li>
+            <li><a href="#system-design">System Design</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#personal-growth" class="category-link">Personal Growth</a>
+          <ul class="subcategory-list">
+            <li><a href="#thinking-methods">Thinking Methods</a></li>
+            <li><a href="#learning-methods">Learning Methods</a></li>
+          </ul>
+        </li>
+        <li><a href="#business-innovation" class="category-link">Business & Innovation</a></li>
+        <li><a href="#humanities" class="category-link">Humanities</a></li>
+      </ul>
+    </nav>
+  </aside>
+  
+  <!-- Main Content -->
   <main class="books-content">
     <h1>Book Recommendations</h1>
     <p class="books-intro">Here are some excellent books I've read and recommend, covering technology, personal growth, thinking methods, and other fields.</p>
