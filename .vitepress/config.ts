@@ -36,6 +36,7 @@ export default defineConfig({
   },
   
   head: [
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=yes' }],
     ['meta', { name: 'author', content: 'Isaac Huo' }],
     ['meta', { property: 'og:title', content: "Isaac Huo's Blog" }],
     ['meta', { property: 'og:description', content: 'Sharing thoughts on technology, life, and creativity' }],
