@@ -4,7 +4,7 @@
       <h1>{{ isZh ? '霍玮放' : 'Isaac Huo' }}</h1>
       <div class="about-avatar">
         <a href="https://www.xiaohongshu.com/user/profile/6767de890000000018017ac0" target="_blank" class="avatar-link">
-          <img src="/My_Blog/avatar.jpg" :alt="isZh ? '霍以撒' : 'Isaac Huo'" class="avatar-image" />
+          <img src="/avatar.jpg" :alt="isZh ? '霍以撒' : 'Isaac Huo'" class="avatar-image" />
         </a>
       </div>
       <p class="about-intro">

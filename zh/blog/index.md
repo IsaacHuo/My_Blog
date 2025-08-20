@@ -44,6 +44,9 @@ description: 我的中文博客文章
 
 <script>
 (function() {
+  // Only run on client side
+  if (typeof window === 'undefined') return;
+  
   function initSidebar() {
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');

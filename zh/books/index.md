@@ -108,6 +108,9 @@ title: 书籍推荐
 
 <script>
 (function() {
+  // Only run on client side
+  if (typeof window === 'undefined') return;
+  
   function initSidebar() {
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
