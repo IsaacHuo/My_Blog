@@ -5,6 +5,18 @@
 /* Global Scale to 110% */
 html {
   zoom: 110%;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  transform-origin: top left;
+  width: 90.91%; /* 100% / 1.1 to compensate for scaling */
+}
+
+/* 确保在缩放后body仍然占满视口 */
+body {
+  width: 100%;
+  min-height: 100vh;
 }
 
 /* 中文楷体字体全局设置 */
@@ -217,6 +229,26 @@ body {
   border-bottom: none !important;
   backdrop-filter: blur(8px);
   background: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* 导航栏菜单文字大小设置 */
+.VPNavBarMenu,
+.vp-nav-bar-menu,
+.VPNavBarMenu a,
+.vp-nav-bar-menu a,
+.VPNavBarMenuGroup,
+.vp-nav-bar-menu-group,
+.VPNavBarMenuLink,
+.vp-nav-bar-menu-link {
+  font-size: 20px !important;
+}
+
+/* 导航栏菜单项 */
+.VPNavBar .VPNavBarMenu .VPNavBarMenuGroup .VPNavBarMenuLink,
+.vp-nav-bar .vp-nav-bar-menu .vp-nav-bar-menu-group .vp-nav-bar-menu-link,
+nav .nav-item,
+.nav-link {
+  font-size: 20px !important;
 }
 
 .dark .VPNav,
@@ -962,6 +994,173 @@ body:has([href*="/zh/blog/"]) a,
   }
 }
 
+/* 博客文章正文居中布局 - 直接修改布局容器 */
+.vp-doc {
+  display: flex !important;
+  justify-content: center !important;
+  width: 100% !important;
+}
+
+.vp-doc .content {
+  max-width: 700px !important;
+  width: 700px !important;
+  margin: 0 !important;
+  padding: 0 var(--space-lg) !important;
+  flex: none !important;
+}
+
+/* 英文文章行宽紧凑设置 */
+.vp-doc p,
+.vp-doc li {
+  line-height: 1.5 !important;
+  margin-bottom: var(--space-sm) !important;
+}
+
+/* 英文页面特殊设置 */
+html[lang="en"] .vp-doc p,
+html[lang="en"] .vp-doc li,
+body[data-lang="en"] .vp-doc p,
+body[data-lang="en"] .vp-doc li,
+.vp-doc[data-page-lang="en"] p,
+.vp-doc[data-page-lang="en"] li {
+  line-height: 1.4 !important;
+  margin-bottom: calc(var(--space-sm) * 0.8) !important;
+}
+
+/* 确保所有文章内容都居中 - 使用通用选择器 */
+.content {
+  max-width: 700px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 针对具体的内容容器 */
+div[class="content"] {
+  max-width: 700px !important;
+  margin: 0 auto !important;
+  width: 700px !important;
+}
+
+/* 特别针对文章页面的内容区域 */
+.vp-doc div[class="content"],
+.VPDoc div[class="content"] {
+  max-width: 700px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: var(--space-lg) !important;
+  padding-right: var(--space-lg) !important;
+}
+
+/* 覆盖可能的全局样式 */
+.vp-doc > .container > .content,
+.VPDoc > .container > .content {
+  max-width: 700px !important;
+  margin: 0 auto !important;
+}
+
+/* 大屏幕上的特殊处理 - 直接设置宽度和居中 */
+@media (min-width: 769px) {
+  /* 强制整个文档容器居中布局 */
+  .vp-doc {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  
+  .content {
+    width: 700px !important;
+    max-width: 700px !important;
+    margin: 0 !important;
+    display: block !important;
+    flex: none !important;
+  }
+  
+  .vp-doc .content,
+  .VPDoc .content,
+  div.content,
+  div[class="content"] {
+    width: 700px !important;
+    max-width: 700px !important;
+    margin: 0 !important;
+    padding: 0 var(--space-lg) !important;
+    flex: none !important;
+  }
+  
+  /* 确保容器不干扰布局 */
+  .vp-doc .container {
+    display: contents !important;
+  }
+  
+  /* 确保侧边栏目录仍然可见 */
+  .vp-doc aside,
+  .vp-doc .aside {
+    position: fixed !important;
+    right: 2rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 200px !important;
+    z-index: 10 !important;
+  }
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .vp-doc .content,
+  .VPDoc .content,
+  div.content,
+  .content,
+  div[class="content"],
+  .vp-doc div[class="content"],
+  .VPDoc div[class="content"],
+  .vp-doc > .container > .content,
+  .VPDoc > .container > .content {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 var(--space-md) !important;
+  }
+  
+  /* 确保博客文章内容在小屏幕完全可见 */
+  .vp-doc {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  /* 修复小屏幕文字被遮住的问题 */
+  .vp-doc .content {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 var(--space-md) !important;
+    box-sizing: border-box !important;
+    flex: none !important;
+  }
+  
+  /* 确保页面容器在移动端正确显示 */
+  .page-container, .vp-doc > div:not(.outline) {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding-left: var(--space-sm) !important;
+    padding-right: var(--space-sm) !important;
+  }
+}
+
+/* 全局强制居中 - 最后的尝试 */
+* .content {
+  max-width: 700px !important;
+  margin: 0 auto !important;
+}
+
+*[class="content"] {
+  max-width: 700px !important;
+  margin: 0 auto !important;
+  width: 700px !important;
+}
+
 /* Hide VitePress Default Language Switch Button */
 .VPNavBarTranslations,
 .vp-nav-bar-translations,
@@ -1688,7 +1887,7 @@ html {
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   cursor: pointer;
-  z-index: 1000;
+  z-index: 100;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: white;
   font-size: 20px;
@@ -1719,20 +1918,23 @@ html {
 
 /* Mobile Sidebar Overlay */
 .mobile-sidebar-overlay {
-  display: none;
+  display: none !important;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  opacity: 0;
+  z-index: -1 !important;
+  opacity: 0 !important;
   transition: opacity 0.3s ease;
+  pointer-events: none !important;
 }
 
 .mobile-sidebar-overlay.active {
-  opacity: 1;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
 }
 
 /* Responsive Design for Books Page */
@@ -1753,7 +1955,7 @@ html {
     border-radius: 0;
     padding: var(--space-xl) var(--space-lg);
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 100;
     overflow-y: auto;
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     transform: none;
@@ -1853,6 +2055,440 @@ html {
   border-bottom-color: var(--vp-c-brand-1);
 }
 
+/* VitePress Mobile Navigation Fix */
+/* 确保 VitePress 默认的移动端导航菜单能够正常工作 */
+.VPNavBarHamburger,
+.vp-nav-bar-hamburger {
+  z-index: 2001 !important;
+}
+
+.VPNavScreen,
+.vp-nav-screen,
+.VPMenuGroup,
+.vp-menu-group {
+  z-index: 2000 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: auto !important;
+}
+
+/* 调整移动端导航菜单宽度和样式 */
+.VPNavScreen,
+.vp-nav-screen {
+  max-width: 280px !important;
+  width: 75vw !important;
+  right: 0 !important;
+  left: auto !important;
+  border-radius: 12px 0 0 12px !important;
+  margin-top: 80px !important;
+  height: auto !important;
+  max-height: none !important;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15) !important;
+  background: var(--vp-c-bg) !important;
+  border: 1px solid var(--vp-c-border) !important;
+  overflow: visible !important;
+}
+
+/* 调整移动端导航菜单内容 */
+.VPNavScreen .container,
+.vp-nav-screen .container {
+  padding: 16px !important;
+  max-width: none !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* 调整导航链接样式 - 小字体 */
+.VPNavScreenMenuLink,
+.vp-nav-screen-menu-link {
+  padding: 8px 12px !important;
+  margin-bottom: 4px !important;
+  border-radius: 6px !important;
+  transition: background-color 0.2s ease !important;
+  display: block !important;
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+}
+
+.VPNavScreenMenuLink:hover,
+.vp-nav-screen-menu-link:hover {
+  background-color: var(--vp-c-bg-mute) !important;
+}
+
+/* 桌面端在页面右下角添加 GitHub 悬浮按钮 */
+@media (min-width: 769px) {
+  /* 添加自定义 GitHub 悬浮按钮 */
+  .custom-github-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--vp-c-brand-1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white !important;
+    text-decoration: none;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 100;
+  }
+  
+  .custom-github-link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    background: var(--vp-c-brand-2);
+    color: white !important;
+  }
+  
+  .custom-github-link:visited {
+    color: white !important;
+  }
+}
+
+/* 移动端隐藏 GitHub 悬浮按钮 */
+@media (max-width: 768px) {
+  .custom-github-link {
+    display: none !important;
+  }
+}
+
+/* 调整导航菜单组 */
+.VPNavScreenMenu,
+.vp-nav-screen-menu {
+  padding: 0 !important;
+}
+
+.VPNavScreenMenu .group,
+.vp-nav-screen-menu .group {
+  margin-bottom: 12px !important;
+}
+
+/* 修复页面抖动问题 - 防止滚动条导致的布局位移 */
+html {
+  scrollbar-gutter: stable both-edges !important;
+}
+
+body {
+  overflow-y: scroll !important;
+}
+
+/* 当导航菜单打开时防止页面滚动和抖动 */
+body.vp-nav-screen-open,
+html.vp-nav-screen-open {
+  overflow: hidden !important;
+  width: 100% !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+/* 确保移动端导航菜单叠加层优先级正确 */
+.VPNavScreenBackdrop,
+.vp-nav-screen-backdrop {
+  z-index: 1999 !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: auto !important;
+}
+
+/* 强制显示移动端导航菜单 */
+.VPNavScreen.open,
+.vp-nav-screen.open,
+.VPNavScreen[data-open="true"],
+.vp-nav-screen[data-open="true"] {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* 修复可能的 pointer-events 问题 */
+.VPNavBarHamburger *,
+.vp-nav-bar-hamburger *,
+.VPNavScreen *,
+.vp-nav-screen *,
+.VPMenuGroup *,
+.vp-menu-group * {
+  pointer-events: auto !important;
+}
+
+/* 调整导航链接样式 */
+.VPNavScreenMenuLink,
+.vp-nav-screen-menu-link {
+  padding: 12px 16px !important;
+  margin-bottom: 8px !important;
+  border-radius: 8px !important;
+  transition: background-color 0.2s ease !important;
+  display: block !important;
+  font-size: 16px !important;
+}
+
+.VPNavScreenMenuLink:hover,
+.vp-nav-screen-menu-link:hover {
+  background-color: var(--vp-c-bg-mute) !important;
+}
+
+/* 调整翻译和外观切换区域 */
+.VPNavScreenTranslations,
+.vp-nav-screen-translations,
+.VPNavScreenAppearance,
+.vp-nav-screen-appearance {
+  padding: 16px 0 !important;
+  border-top: 1px solid var(--vp-c-border) !important;
+  margin-top: 16px !important;
+}
+
+/* 隐藏默认的语言切换按钮，因为我们已经在导航栏有自定义的语言切换 */
+.VPNavScreenTranslations,
+.vp-nav-screen-translations,
+.VPNavBarTranslations,
+.vp-nav-bar-translations {
+  display: none !important;
+}
+
+/* 隐藏外观切换按钮（深色/浅色模式切换） */
+.VPNavScreenAppearance,
+.vp-nav-screen-appearance,
+.VPNavBarAppearance,
+.vp-nav-bar-appearance {
+  display: none !important;
+}
+
+/* 统一 GitHub 图标布局 - 完全隐藏导航栏中的社交链接 */
+.VPNavBar .VPSocialLinks,
+.vp-nav-bar .vp-social-links,
+.VPNavBarSocialLinks,
+.vp-nav-bar-social-links,
+.VPNavScreen .VPSocialLinks,
+.vp-nav-screen .vp-social-links,
+.VPNavScreenSocialLinks,
+.vp-nav-screen-social-links {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* 调整导航菜单组 */
+.VPNavScreenMenu,
+.vp-nav-screen-menu {
+  padding: 0 !important;
+}
+
+.VPNavScreenMenu .group,
+.vp-nav-screen-menu .group {
+  margin-bottom: 24px !important;
+}
+
+/* 确保汉堡菜单按钮可点击 */
+.VPNavBarHamburger,
+.vp-nav-bar-hamburger,
+.VPNavBarHamburger button,
+.vp-nav-bar-hamburger button {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 1002 !important;
+}
+
+/* 移动端导航调试样式 */
+@media (max-width: 768px) {
+  /* 确保汉堡菜单始终可见且可交互 */
+  .VPNavBarHamburger,
+  .vp-nav-bar-hamburger {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    pointer-events: auto !important;
+    z-index: 2001 !important;
+    position: relative !important;
+  }
+  
+  /* 确保汉堡菜单内部按钮可交互 */
+  .VPNavBarHamburger button,
+  .vp-nav-bar-hamburger button,
+  .VPNavBarHamburger .button,
+  .vp-nav-bar-hamburger .button {
+    pointer-events: auto !important;
+    z-index: 2002 !important;
+    position: relative !important;
+    cursor: pointer !important;
+    user-select: none !important;
+  }
+
+  /* 强制覆盖任何可能阻止导航菜单显示的样式 */
+  .VPNavScreen,
+  .vp-nav-screen {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 280px !important;
+    max-width: 75vw !important;
+    height: auto !important;
+    max-height: none !important;
+    margin-top: 80px !important;
+    background: var(--vp-c-bg) !important;
+    background-color: var(--vp-c-bg) !important;
+    border: 1px solid var(--vp-c-border) !important;
+    z-index: 2000 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    transition: opacity 0.25s !important;
+    border-radius: 12px 0 0 12px !important;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15) !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+  }
+  
+  /* 强制设置导航菜单的背景色 - 针对所有可能的状态 */
+  .VPNavScreen *,
+  .vp-nav-screen * {
+    background-color: inherit !important;
+  }
+  
+  .VPNavScreen,
+  .vp-nav-screen,
+  .VPNavScreen.open,
+  .vp-nav-screen.open,
+  .VPNavScreen[aria-hidden="false"],
+  .vp-nav-screen[aria-hidden="false"],
+  .VPNavScreen[data-open="true"],
+  .vp-nav-screen[data-open="true"] {
+    background: var(--vp-c-bg) !important;
+    background-color: var(--vp-c-bg) !important;
+  }
+  
+  /* 备用背景色设置 - 如果CSS变量失效 */
+  .VPNavScreen,
+  .vp-nav-screen {
+    background: white !important;
+    background-color: white !important;
+  }
+  
+  .dark .VPNavScreen,
+  .dark .vp-nav-screen {
+    background: #1a1a1a !important;
+    background-color: #1a1a1a !important;
+  }
+  
+  /* 当菜单打开时确保显示 */
+  .VPNavScreen.open,
+  .vp-nav-screen.open,
+  .VPNavScreen[aria-hidden="false"],
+  .vp-nav-screen[aria-hidden="false"] {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  /* 移除任何可能影响的自定义样式 */
+  * {
+    pointer-events: auto;
+  }
+  
+  /* 确保没有元素阻挡点击事件 */
+  body * {
+    pointer-events: auto !important;
+  }
+}
+
+/* 确保移动端导航不被其他元素遮挡 */
+@media (max-width: 768px) {
+  .VPNav,
+  .vp-nav {
+    z-index: 2001 !important;
+  }
+  
+  .VPNavBar,
+  .vp-nav-bar {
+    z-index: 2001 !important;
+  }
+  
+  /* 重置可能影响导航的全局样式 */
+  html,
+  body {
+    touch-action: manipulation !important;
+  }
+  
+  /* 确保导航容器没有 transform 或其他可能影响的样式 */
+  .VPNav,
+  .vp-nav,
+  .VPNavBar,
+  .vp-nav-bar {
+    transform: none !important;
+    will-change: auto !important;
+  }
+  
+  /* 完全禁用自定义侧边栏功能在移动端 */
+  .books-sidebar,
+  .mobile-sidebar-toggle,
+  .mobile-sidebar-overlay,
+  .home-sidebar,
+  .article-sidebar {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    z-index: -1 !important;
+    position: absolute !important;
+    left: -9999px !important;
+  }
+  
+  /* 强制移除可能阻挡点击的元素 */
+  #sidebarOverlay,
+  [id="sidebarOverlay"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    z-index: -1 !important;
+    position: absolute !important;
+    left: -9999px !important;
+  }
+  
+  /* 重置任何可能阻止事件的全局样式 */
+  body,
+  html,
+  #app,
+  .Layout,
+  .VPApp {
+    pointer-events: auto !important;
+    position: relative !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* 确保所有链接在移动端都可点击 */
+  a,
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    pointer-events: auto !important;
+    z-index: 999 !important;
+    position: relative !important;
+  }
+  
+  /* 确保文章内容区域的链接可点击 */
+  .content a,
+  .vp-doc a,
+  .VPDoc a {
+    pointer-events: auto !important;
+    z-index: 1000 !important;
+    position: relative !important;
+    display: inline !important;
+  }
+}
+
 
 
 /* Shared page container for consistent alignment */
@@ -1867,5 +2503,60 @@ html {
   .page-container, .vp-doc > div:not(.outline) {
     padding-left: var(--space-md);
     padding-right: var(--space-md);
+  }
+}
+
+/* 移动端导航菜单响应式调整 */
+@media (max-width: 480px) {
+  .VPNavScreen,
+  .vp-nav-screen {
+    max-width: 240px !important;
+    width: 85vw !important;
+    margin-top: 70px !important;
+    max-height: none !important;
+  }
+  
+  .VPNavScreen .container,
+  .vp-nav-screen .container {
+    padding: 12px !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  .VPNavScreenMenuLink,
+  .vp-nav-screen-menu-link {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+  }
+  
+  .VPNavScreenMenu .group,
+  .vp-nav-screen-menu .group {
+    margin-bottom: 8px !important;
+  }
+}
+
+/* iPhone SE 和类似小屏幕设备 */
+@media (max-width: 375px) {
+  .VPNavScreen,
+  .vp-nav-screen {
+    max-width: 220px !important;
+    width: 90vw !important;
+    margin-top: 60px !important;
+    max-height: none !important;
+  }
+  
+  .VPNavScreen .container,
+  .vp-nav-screen .container {
+    padding: 10px !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  .VPNavScreenMenuLink,
+  .vp-nav-screen-menu-link {
+    padding: 5px 8px !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
   }
 }
