@@ -90,7 +90,7 @@ const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('
 .books-content h1 {
   font-size: var(--vp-font-size-2xl);
   font-weight: 700;
-  margin-bottom: var(--space-lg);
+  margin-bottom: 30px;
   margin-top: 0;
   color: var(--vp-c-text-1);
   text-align: center;

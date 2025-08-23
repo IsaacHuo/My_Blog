@@ -1,15 +1,18 @@
 <template>
   <div class="modern-blog-list">
-    <div class="blog-articles">
-      <article v-for="post in posts" :key="post.url" class="blog-article">
-        <div class="article-date">{{ formatDate(post.frontmatter.date) }}</div>
-        <h2 class="article-title">
-          <a :href="withBase(post.url)">{{ post.frontmatter.title }}</a>
-        </h2>
-        <div v-if="post.frontmatter.description" class="article-description">
-          {{ post.frontmatter.description }}
-        </div>
-      </article>
+    <div class="blog-content">
+      <h1>{{ isZh ? '博客' : 'Blog' }}</h1>
+      <div class="blog-articles">
+        <article v-for="post in posts" :key="post.url" class="blog-article">
+          <div class="article-date">{{ formatDate(post.frontmatter.date) }}</div>
+          <h2 class="article-title">
+            <a :href="withBase(post.url)">{{ post.frontmatter.title }}</a>
+          </h2>
+          <div v-if="post.frontmatter.description" class="article-description">
+            {{ post.frontmatter.description }}
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </template>
@@ -56,11 +59,22 @@ function formatDate(d?: string) {
 
 <style scoped>
 .modern-blog-list {
-  max-width: 800px;
+  display: block;
+  max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: var(--space-lg) var(--space-lg);
+  text-align: center;
   background: var(--vp-c-bg);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.blog-content h1 {
+  font-size: var(--vp-font-size-2xl);
+  font-weight: 700;
+  margin-bottom: 30px;
+  margin-top: 6.5px;
+  color: var(--vp-c-text-1);
+  text-align: center;
 }
 
 .blog-articles {

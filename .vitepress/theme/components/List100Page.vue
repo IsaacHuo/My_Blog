@@ -31,9 +31,9 @@ const list100Items = [
   { status: '✓', textEn: 'Learn Spanish', textZh: '学习西班牙语' },
   { status: '✓', textEn: 'Live in another country', textZh: '在另一个国家生活' },
   { status: '✓', textEn: '<a href="#" target="_blank">Start a nonprofit organization</a>', textZh: '<a href="#" target="_blank">创办非营利组织</a>' },
-  { status: '✗', textEn: 'See my book being sold at an airport outside Vietnam', textZh: '在越南以外的机场看到我的书被出售' },
+  { status: '✗', textEn: 'See my book being sold', textZh: '看到我的书被出售' },
   { status: '✓', textEn: 'Be in a movie/commercial', textZh: '参演电影/广告' },
-  { status: '✗', textEn: 'Become the first author of a paper at a top-tier conference', textZh: '成为顶级会议论文的第一作者' },
+  { status: '✗', textEn: 'Become the first author of a paper', textZh: '成为第一作者' },
   { status: '✗', textEn: 'Get published on the New Yorker', textZh: '在《纽约客》发表文章' },
   { status: '✗', textEn: 'Read 1000 books (<a href="#" target="_blank">~60% done</a>)', textZh: '阅读1000本书（<a href="#" target="_blank">~60% 完成</a>）' },
   { status: '✓', textEn: '<a href="#" target="_blank">Teach a graduate-level course</a>', textZh: '<a href="#" target="_blank">教授研究生课程</a>' },
@@ -66,8 +66,8 @@ const list100Items = [
 .list100-content h1 {
   font-size: var(--vp-font-size-2xl);
   font-weight: 700;
-  margin-bottom: var(--space-lg);
-  margin-top: 6px;
+  margin-bottom: 35px;
+  margin-top: 6.5px;
   color: var(--vp-c-text-1);
   text-align: center;
 }
