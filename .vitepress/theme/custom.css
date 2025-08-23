@@ -2275,19 +2275,7 @@ html.vp-nav-screen-open {
   display: none !important;
 }
 
-/* 统一 GitHub 图标布局 - 完全隐藏导航栏中的社交链接 */
-.VPNavBar .VPSocialLinks,
-.vp-nav-bar .vp-social-links,
-.VPNavBarSocialLinks,
-.vp-nav-bar-social-links,
-.VPNavScreen .VPSocialLinks,
-.vp-nav-screen .vp-social-links,
-.VPNavScreenSocialLinks,
-.vp-nav-screen-social-links {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
+/* GitHub 图标已显示在导航栏中 */
 
 /* 调整导航菜单组 */
 .VPNavScreenMenu,

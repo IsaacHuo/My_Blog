@@ -24,7 +24,7 @@ export default defineConfig({
           { text: 'EN', link: '/' }
         ],
         socialLinks: [
-          { icon: 'github', link: 'https://github.com/IsaacHuo/My_Blog' }
+          { icon: 'github', link: 'https://github.com/IsaacHuo' }
         ],
         footer: {
           message: '基于 MIT 许可证发布。',
@@ -58,7 +58,7 @@ export default defineConfig({
 
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/IsaacHuo/My_Blog' }
+      { icon: 'github', link: 'https://github.com/IsaacHuo' }
     ],
 
     footer: {

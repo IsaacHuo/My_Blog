@@ -133,22 +133,25 @@ onUnmounted(() => {
 .article-container {
   max-width: 1200px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 3rem;
   padding: 1.5rem;
   min-height: 100vh;
+  position: relative;
+  margin-left: auto;
+  margin-right: 0; /* 让整个容器向右靠 */
 }
 
 /* 左侧边栏 */
 .article-sidebar {
-  position: sticky;
-  top: 80px;
-  height: fit-content;
-  max-height: calc(100vh - 100px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 160px);
   overflow-y: auto;
   border-right: 1px solid var(--vp-c-border);
-  padding-right: 1.5rem;
+  padding: 0 1.5rem 0 0;
+  background: var(--vp-c-bg);
+  z-index: 10;
 }
 
 .toc-header {
@@ -260,6 +263,8 @@ onUnmounted(() => {
 .article-main {
   min-width: 0;
   flex: 1;
+  margin-left: 270px; /* 为侧边栏留出空间 */
+  width: calc(100% - 270px);
 }
 
 .article-layout {
@@ -270,17 +275,18 @@ onUnmounted(() => {
 
 /* 文章头部 */
 .article-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
   border-bottom: 1px solid var(--vp-c-border);
+  max-width: 600px; /* 限制文章头部最大宽度 */
 }
 
 .article-title {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.4rem 0;
   color: var(--vp-c-text-1);
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .article-meta {
@@ -295,100 +301,230 @@ onUnmounted(() => {
 
 /* 文章内容 */
 .article-content {
-  line-height: 1.7;
-  font-size: 16px;
+  line-height: 1.4;
+  font-size: 15px;
   color: var(--vp-c-text-1);
+  max-width: none;
+  padding: 0;
 }
 
-.article-content h1,
-.article-content h2,
-.article-content h3,
-.article-content h4,
-.article-content h5,
-.article-content h6 {
-  margin: 2rem 0 1rem 0;
+.article-content :deep(*) {
+  line-height: 1.4;
+}
+
+.article-content :deep(h1),
+.article-content :deep(h2),
+.article-content :deep(h3),
+.article-content :deep(h4),
+.article-content :deep(h5),
+.article-content :deep(h6) {
+  margin: 1.2rem 0 0.6rem 0;
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.2;
   color: var(--vp-c-text-1);
+  max-width: 600px; /* 限制标题最大宽度 */
 }
 
-.article-content h1 {
-  font-size: 2rem;
+.article-content :deep(h1) {
+  font-size: 1.8rem;
   border-bottom: 1px solid var(--vp-c-border);
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.3rem;
 }
 
-.article-content h2 {
-  font-size: 1.5rem;
+.article-content :deep(h2) {
+  font-size: 1.3rem;
 }
 
-.article-content h3 {
-  font-size: 1.25rem;
+.article-content :deep(h3) {
+  font-size: 1.1rem;
 }
 
-.article-content p {
-  margin: 1rem 0;
+.article-content :deep(h4) {
+  font-size: 1rem;
 }
 
-.article-content a {
+.article-content :deep(h5) {
+  font-size: 0.95rem;
+}
+
+.article-content :deep(h6) {
+  font-size: 0.9rem;
+}
+
+.article-content :deep(p) {
+  margin: 0.6rem 0;
+  font-size: 15px;
+  color: var(--vp-c-text-1);
+  max-width: 600px; /* 限制段落最大宽度 */
+}
+
+.article-content :deep(a) {
   color: var(--vp-c-brand-1);
   text-decoration: none;
 }
 
-.article-content a:hover {
+.article-content :deep(a:hover) {
   color: var(--vp-c-brand-2);
   text-decoration: underline;
 }
 
-.article-content ul,
-.article-content ol {
+.article-content :deep(ul),
+.article-content :deep(ol) {
+  margin: 0.6rem 0;
+  padding-left: 1.2rem;
+  max-width: 600px; /* 限制列表最大宽度 */
+}
+
+.article-content :deep(li) {
+  margin: 0.2rem 0;
+  color: var(--vp-c-text-1);
+}
+
+.article-content :deep(blockquote) {
   margin: 1rem 0;
-  padding-left: 1.5rem;
-}
-
-.article-content li {
-  margin: 0.5rem 0;
-}
-
-.article-content blockquote {
-  margin: 1.5rem 0;
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.2rem;
   background: var(--vp-c-bg-soft);
   border-left: 4px solid var(--vp-c-brand-1);
   font-style: italic;
+  color: var(--vp-c-text-2);
+  max-width: 600px; /* 限制引用块最大宽度 */
 }
 
-.article-content code {
+.article-content :deep(blockquote p) {
+  margin: 0.3rem 0;
+}
+
+.article-content :deep(code) {
   background: var(--vp-c-bg-soft);
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 0.85em;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  color: var(--vp-c-text-1);
+  word-break: break-word;
 }
 
-.article-content pre {
+.article-content :deep(pre) {
   background: var(--vp-c-bg-soft);
-  padding: 1rem;
-  border-radius: 8px;
+  padding: 0.8rem;
+  border-radius: 6px;
   overflow-x: auto;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
+  border: 1px solid var(--vp-c-border);
+  max-width: 600px; /* 固定最大宽度 */
+  white-space: pre; /* 保持代码原始格式 */
+  overflow-wrap: normal; /* 不强制换行 */
+  display: block; /* 确保块级显示 */
+  box-sizing: border-box; /* 包含边框和内边距 */
 }
 
-.article-content pre code {
+.article-content :deep(pre code) {
   background: none;
   padding: 0;
+  color: var(--vp-c-text-1);
+  white-space: pre; /* 保持代码原始格式 */
+  word-break: normal; /* 不强制断词 */
+  font-size: 14px;
+  line-height: 1.4;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 针对 VitePress 代码块的特殊处理 */
+.article-content :deep(.vp-code-group) {
+  max-width: 600px;
+}
+
+.article-content :deep(.shiki) {
+  max-width: 600px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.article-content :deep(.line-numbers-wrapper) {
+  display: none; /* 隐藏行号 */
+}
+
+.article-content :deep(.line-numbers) {
+  display: none; /* 隐藏行号 */
+}
+
+.article-content :deep(.line-number) {
+  display: none; /* 隐藏行号 */
+}
+
+/* 隐藏代码块语言标识 */
+.article-content :deep(.lang) {
+  display: none; /* 隐藏语言标识如 bash */
+}
+
+.article-content :deep([class*="language-"]:before) {
+  display: none; /* 隐藏语言标识伪元素 */
+}
+
+.article-content :deep(.vp-code-tab) {
+  display: none; /* 隐藏代码标签 */
+}
+
+.article-content :deep(img) {
+  max-width: 600px; /* 限制图片最大宽度 */
+  height: auto;
+  margin: 0.8rem 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.article-content :deep(table) {
+  width: 100%;
+  max-width: 600px; /* 限制表格最大宽度 */
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 14px;
+}
+
+.article-content :deep(th),
+.article-content :deep(td) {
+  border: 1px solid var(--vp-c-border);
+  padding: 0.4rem 0.8rem;
+  text-align: left;
+}
+
+.article-content :deep(th) {
+  background: var(--vp-c-bg-soft);
+  font-weight: 600;
+}
+
+.article-content :deep(hr) {
+  margin: 1.5rem 0;
+  border: none;
+  border-top: 1px solid var(--vp-c-border);
+  max-width: 400px; /* 限制分隔线最大宽度 */
+}
+
+.article-content :deep(strong) {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.article-content :deep(em) {
+  font-style: italic;
 }
 
 /* 响应式设计 */
 @media (max-width: 1024px) {
   .article-container {
-    grid-template-columns: 200px 1fr;
-    gap: 2rem;
     padding: 1rem;
+    margin: 0 auto; /* 小屏幕时恢复居中 */
   }
   
   .article-sidebar {
-    padding-right: 1rem;
+    width: 200px;
+  }
+  
+  .article-main {
+    margin-left: 230px;
+    width: calc(100% - 230px);
   }
   
   .article-title {
@@ -398,19 +534,25 @@ onUnmounted(() => {
 
 @media (max-width: 768px) {
   .article-container {
-    grid-template-columns: 1fr;
-    gap: 1rem;
     padding: 1rem;
+    margin: 0 auto; /* 移动端居中 */
   }
   
   .article-sidebar {
     position: static;
+    width: 100%;
+    height: auto;
     max-height: none;
     border-right: none;
     border-bottom: 1px solid var(--vp-c-border);
-    padding-right: 0;
-    padding-bottom: 1rem;
+    padding: 0 0 1rem 0;
     margin-bottom: 1rem;
+    background: transparent;
+  }
+  
+  .article-main {
+    margin-left: 0;
+    width: 100%;
   }
   
   .toc-nav {
