@@ -4,11 +4,11 @@
       <h1>{{ isZh ? '霍玮放' : 'Isaac Huo' }}</h1>
       <div class="about-avatar">
         <a href="https://www.xiaohongshu.com/user/profile/6767de890000000018017ac0" target="_blank" class="avatar-link">
-          <img src="/avatar.jpg" :alt="isZh ? '霍以撒' : 'Isaac Huo'" class="avatar-image" />
+          <img src="/avatar.jpg" :alt="isZh ? '霍玮放' : 'Isaac Huo'" class="avatar-image" />
         </a>
       </div>
       <p class="about-intro" v-html="isZh ? 
-          '你好👋，我是一名<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>的学生，最初学习风景园林专业，后转入电气工程及其自动化专业。我的兴趣涵盖编程、人工智能、古典文学诗词、书法、时事、金融、机器人技术和哲学。我特别喜欢阅读文学作品。' :
+          '你好👋，我是一名<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>的学生，最初学习风景园林专业，后转入电气工程及其自动化专业。我的兴趣涵盖编程、人工智能、古典文学诗词、书法、时事、金融。' :
           'Hello👋, I\'m a student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, initially studying Landscape Architecture before transferring to Electrical Engineering and Automation. My interests span programming, artificial intelligence, classical literature and poetry, calligraphy, current affairs, finance, robotics, and philosophy. I particularly enjoy reading literary works.'
         ">
       </p>
@@ -25,7 +25,7 @@
           <li>{{ isZh ? '前端开发：Vue.js、Vite、Tailwind CSS' : 'Frontend Development: Vue.js, Vite, Tailwind CSS' }}</li>
           <li>{{ isZh ? '后端开发：Python' : 'Backend Development: Python' }}</li>
           <li>{{ isZh ? '专注领域：人工智能/机器学习、Web技术、系统设计' : 'Focus Areas: AI/ML, Web Technologies, System Design' }}</li>
-          <li>{{ isZh ? '其他兴趣：古典文学、哲学、金融' : 'Other Interests: Classical Literature, Philosophy, Finance' }}</li>
+          <li>{{ isZh ? '其他兴趣：古典文学' : 'Other Interests: Classical Literature, Philosophy, Finance' }}</li>
         </ul>
       </div>
 
@@ -175,22 +175,24 @@ const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--vp-c-text-1) !important;
+  color: var(--vp-c-brand-1) !important;
+  text-decoration: none;
 }
 
 .github-link:hover {
-  color: var(--vp-c-text-2) !important;
+  color: var(--vp-c-brand-2) !important;
+  text-decoration: underline;
 }
 
 .github-icon {
   width: 16px;
   height: 16px;
-  color: #111111;
+  color: var(--vp-c-brand-1);
   flex-shrink: 0;
 }
 
 .dark .github-icon {
-  color: #fff;
+  color: var(--vp-c-brand-1);
 }
 
 @media (max-width: 768px) {

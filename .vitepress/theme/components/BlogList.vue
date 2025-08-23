@@ -55,14 +55,12 @@ function formatDate(d?: string) {
 </script>
 
 <style scoped>
-.blog-list {
+.modern-blog-list {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem 1rem;
   background: var(--vp-c-bg);
-  font-family: 'Lora', Georgia, 'Times New Roman', serif;
-  width: 100%;
-  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .blog-articles {
@@ -85,6 +83,7 @@ function formatDate(d?: string) {
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-align: center;
 }
 
 .article-title {
@@ -92,12 +91,15 @@ function formatDate(d?: string) {
   font-size: 1.5rem;
   font-weight: 400;
   line-height: 1.3;
+  text-align: center;
 }
 
 .article-title a {
   color: #4285f4;
   text-decoration: none;
   transition: color 0.2s ease;
+  display: block;
+  text-align: center;
 }
 
 .article-title a:hover {
@@ -110,6 +112,7 @@ function formatDate(d?: string) {
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0;
+  text-align: center;
 }
 
 /* Dark mode adjustments */
@@ -123,9 +126,8 @@ function formatDate(d?: string) {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
-  .blog-list {
+  .modern-blog-list {
     padding: 1.5rem 1rem;
-    width: 100%;
   }
   
   .blog-articles {
@@ -146,9 +148,8 @@ function formatDate(d?: string) {
 }
 
 @media (max-width: 480px) {
-  .blog-list {
+  .modern-blog-list {
     padding: 1rem 0.75rem;
-    width: 100%;
   }
   
   .article-title {

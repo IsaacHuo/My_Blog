@@ -88,3 +88,16 @@ function formatDate(d?: string) {
   }
 }
 </script>
+
+<style>
+.home-layout .post-title,
+.home-layout .post-date,
+.home-layout .post-desc {
+  text-align: center !important;
+}
+
+.home-layout .post-title a {
+  text-align: center !important;
+  display: block;
+}
+</style>
