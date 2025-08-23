@@ -155,7 +155,7 @@ onMounted(() => {
 .tooltip-header {
   font-weight: 600;
   font-size: 14px;
-  color: #374151;
+  color: #111111;
   margin-bottom: 8px;
   border-bottom: 1px solid #e5e7eb;
   padding-bottom: 6px;
@@ -163,7 +163,7 @@ onMounted(() => {
 
 .tooltip-text {
   font-size: 13px;
-  color: #6b7280;
+  color: #111111;
   line-height: 1.4;
   white-space: pre-wrap;
   word-break: break-word;
@@ -171,7 +171,7 @@ onMounted(() => {
 
 .tooltip-empty {
   font-size: 13px;
-  color: #9ca3af;
+  color: #111111;
   font-style: italic;
 }
 

@@ -1,11 +1,16 @@
 <template>
-  <div class="simple-blog-list">
-    <article v-for="post in posts" :key="post.url" class="blog-item">
-      <div class="blog-date">{{ formatDate(post.frontmatter.date) }}</div>
-      <div class="blog-title">
-        <a :href="withBase(post.url)">{{ post.frontmatter.title }}</a>
-      </div>
-    </article>
+  <div class="modern-blog-list">
+    <div class="blog-articles">
+      <article v-for="post in posts" :key="post.url" class="blog-article">
+        <div class="article-date">{{ formatDate(post.frontmatter.date) }}</div>
+        <h2 class="article-title">
+          <a :href="withBase(post.url)">{{ post.frontmatter.title }}</a>
+        </h2>
+        <div v-if="post.frontmatter.description" class="article-description">
+          {{ post.frontmatter.description }}
+        </div>
+      </article>
+    </div>
   </div>
 </template>
 
@@ -14,18 +19,12 @@ import { withBase, useData } from 'vitepress'
 import { computed } from 'vue'
 import { data as blogPosts } from '../data/blogPosts.data.js'
 
-interface Props {
-  category?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
-  category: 'all'
-})
+// 移除了Props接口和category相关的逻辑
 
 const { site, page } = useData()
 const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/'))
 
-// 根据语言和分类过滤文章
+// 根据语言过滤文章
 const posts = computed(() => {
   if (!blogPosts || !Array.isArray(blogPosts)) return []
   
@@ -38,40 +37,17 @@ const posts = computed(() => {
       }
     })
     .filter(post => post.frontmatter.title)
-    .filter(post => {
-      if (props.category === 'all') return true
-      
-      // 根据文章的category字段或tags字段进行分类
-      const postCategory = post.frontmatter.category || ''
-      const postTags = post.frontmatter.tags || []
-      
-      if (props.category === 'technical') {
-        return postCategory === 'technical' || 
-               postTags.some((tag: string) => {
-                 const lowerTag = tag.toLowerCase()
-                 return ['技术', '前端', '后端', '开发', 'frontend', 'backend', 'tech', 'development', 'vue', 'typescript', 'javascript', 'web'].includes(lowerTag) ||
-                        lowerTag.includes('development') || lowerTag.includes('tech')
-               })
-      }
-      
-      if (props.category === 'life') {
-        return postCategory === 'life' || 
-               postTags.some((tag: string) => {
-                 const lowerTag = tag.toLowerCase()
-                 return ['生活', '随笔', '思考', '读书', '旅行', 'life', 'thoughts', 'reading', 'travel', 'personal'].includes(lowerTag) ||
-                        lowerTag.includes('life') || lowerTag.includes('personal')
-               })
-      }
-      
-      return true
-    })
     .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
 })
 
 function formatDate(d?: string) {
   if (!d) return ''
   try {
-    return new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(d))
+    return new Intl.DateTimeFormat('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric' 
+    }).format(new Date(d))
   } catch {
     return d
   }
@@ -79,79 +55,104 @@ function formatDate(d?: string) {
 </script>
 
 <style scoped>
-.simple-blog-list {
-  width: 100%;
-  margin: 0;
-  padding: 2rem 0;
+.blog-list {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
   background: var(--vp-c-bg);
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.blog-item {
+.blog-articles {
   display: flex;
-  align-items: baseline;
-  padding: 0.75rem 0;
-  border-bottom: none;
-  margin-bottom: 0.5rem;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
-.blog-item:last-child {
-  border-bottom: none;
+.blog-article {
+  display: block;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
-.blog-date {
-  flex-shrink: 0;
-  width: 120px;
-  font-size: 14px;
+.article-date {
+  font-size: 0.875rem;
   color: var(--vp-c-text-2);
-  margin-right: 2rem;
+  margin-bottom: 0.5rem;
   font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.blog-title {
-  flex: 1;
+.article-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.3;
 }
 
-.blog-title a {
-  color: var(--vp-c-text-1);
+.article-title a {
+  color: #4285f4;
   text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 1.4;
   transition: color 0.2s ease;
 }
 
-/* 强制中文标题使用楷体 - 更高优先级 */
-.simple-blog-list .blog-title a:lang(zh),
-.simple-blog-list .blog-title a:lang(zh-CN),
-html[lang="zh-CN"] .simple-blog-list .blog-title a,
-html[lang="zh"] .simple-blog-list .blog-title a,
-[data-page-path*="/zh/"] .simple-blog-list .blog-title a,
-body:has([href*="/zh/"]) .simple-blog-list .blog-title a {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
-  font-size: 24px !important;
+.article-title a:hover {
+  color: #1a73e8;
+  text-decoration: none;
 }
 
-.blog-title a:hover {
-  text-decoration: underline;
+.article-description {
+  color: var(--vp-c-text-2);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Dark mode adjustments */
+.dark .article-title a {
+  color: #8ab4f8;
+}
+
+.dark .article-title a:hover {
+  color: #aecbfa;
 }
 
 /* 响应式设计 */
-@media (max-width: 640px) {
-  .blog-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
+@media (max-width: 768px) {
+  .blog-list {
+    padding: 1.5rem 1rem;
+    width: 100%;
   }
   
-  .blog-date {
-    width: auto;
-    margin-right: 0;
-    font-size: 12px;
+  .blog-articles {
+    gap: 2rem;
   }
   
-  .blog-title a {
-    font-size: 15px;
+  .article-title {
+    font-size: 1.25rem;
+  }
+  
+  .article-date {
+    font-size: 0.8rem;
+  }
+  
+  .article-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .blog-list {
+    padding: 1rem 0.75rem;
+    width: 100%;
+  }
+  
+  .article-title {
+    font-size: 1.125rem;
   }
 }
 </style>

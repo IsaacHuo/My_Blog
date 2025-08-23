@@ -19,6 +19,16 @@ body {
   min-height: 100vh;
 }
 
+/* ArticleLayout页面样式覆盖 */
+.vp-doc[data-layout="ArticleLayout"] .VPDoc .container .content .content-container {
+  display: none;
+}
+
+.vp-doc[data-layout="ArticleLayout"] .VPDoc {
+  padding: 0;
+  max-width: none;
+}
+
 /* 中文楷体字体全局设置 */
 * {
   font-family: 'Lora', Georgia, 'Times New Roman', serif;
@@ -73,9 +83,9 @@ body:has([href*="/zh/"]) *,
   --vp-font-size-3xl: 2.5rem;
   
   /* Minimalist Color Palette - Light Mode */
-  --vp-c-brand-1: #1a1a1a;
-  --vp-c-brand-2: #333333;
-  --vp-c-brand-3: #666666;
+  --vp-c-brand-1: #111111;
+  --vp-c-brand-2: #111111;
+  --vp-c-brand-3: #111111;
   --vp-c-brand-soft: #f8f9fa;
   
   /* Background Colors */
@@ -85,9 +95,9 @@ body:has([href*="/zh/"]) *,
   --vp-c-bg-alt: #ffffff;
   
   /* Text Colors */
-  --vp-c-text-1: #1a1a1a;
-  --vp-c-text-2: #4a4a4a;
-  --vp-c-text-3: #6a6a6a;
+  --vp-c-text-1: #111111;
+  --vp-c-text-2: #111111;
+  --vp-c-text-3: #111111;
   
   /* Border Colors */
   --vp-c-border: #e1e4e8;
