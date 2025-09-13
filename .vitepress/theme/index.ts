@@ -8,7 +8,6 @@ import BooksPage from './components/BooksPage.vue'
 import List100Page from './components/List100Page.vue'
 import BlogList from './components/BlogList.vue'
 import LanguageSwitch from './components/LanguageSwitch.vue'
-import ProgressTracker from './components/ProgressTracker.vue'
 import List100Item from './components/List100Item.vue'
 
 export default {
@@ -17,7 +16,8 @@ export default {
   enhanceApp(ctx) {
     // 保留默认主题的增强
     DefaultTheme.enhanceApp?.(ctx)
-    const { app } = ctx
+    const { app, router } = ctx
+    
     // 注册全局组件
     app.component('HomePage', HomePage)
     app.component('ArticleLayout', ArticleLayout)
@@ -26,7 +26,28 @@ export default {
     app.component('List100Page', List100Page)
     app.component('BlogList', BlogList)
     app.component('LanguageSwitch', LanguageSwitch)
-    app.component('ProgressTracker', ProgressTracker)
     app.component('List100Item', List100Item)
+    
+    // 字体检测和应用
+    if (typeof window !== 'undefined') {
+      const applyChineseFont = () => {
+        const isChinesePage = window.location.pathname.includes('/zh/')
+        const body = document.body
+        
+        if (isChinesePage) {
+          body.classList.add('chinese-page')
+          body.style.setProperty('--font-family-override', "'KaiTi', '楷体', 'STKaiti', '华文楷体', serif")
+        } else {
+          body.classList.remove('chinese-page')
+          body.style.removeProperty('--font-family-override')
+        }
+      }
+      
+      // 初始应用
+      router.onAfterRouteChanged = applyChineseFont
+      
+      // 页面加载时也应用
+      window.addEventListener('DOMContentLoaded', applyChineseFont)
+    }
   }
 }

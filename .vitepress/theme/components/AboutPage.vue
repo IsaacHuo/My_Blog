@@ -8,13 +8,13 @@
         </a>
       </div>
       <p class="about-intro" v-html="isZh ? 
-          '你好👋，我是一名<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>的学生，最初学习风景园林专业，后转入电气工程及其自动化专业。我的兴趣涵盖编程、人工智能、古典文学诗词、书法、时事、金融。' :
-          'Hello👋, I\'m a student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, initially studying Landscape Architecture before transferring to Electrical Engineering and Automation. My interests span programming, artificial intelligence, classical literature and poetry, calligraphy, current affairs, finance, robotics, and philosophy. I particularly enjoy reading literary works.'
+          '你好👋，我是一名<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>的学生，最初学习风景园林专业，后转入电气工程及其自动化专业。我的兴趣涵盖编程、人工智能、古典文学、书法、时事、金融。' :
+          'Hello👋, I\'m a student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, initially studying Landscape Architecture before transferring to Electrical Engineering and Automation. My interests span programming, artificial intelligence, classical literature, calligraphy, current affairs, and finance. A socialist who sympathizes with Buddhism and Taoism.'
         ">
       </p>
       <p class="about-description">
         {{ isZh ?
-          '通过这个博客，我希望记录自己的学习历程，分享有用的技术经验，与其他开发者交流想法，在技术与创意之间搭建桥梁。' :
+          '启动该博客，是用来记录自己比较曲折的学习历程，以及分享一些谈不上有用的技术经验。学习的路往往是孤独的，学习计算机尤为如此。你需要面对屏幕，一条条地写抽象的代码，了解各种看不到用处的原理。但孤独不是无聊，你会逐渐发现计算机的奇妙，钦佩前辈的创造，并且深深认同开源、平等和保护隐私的互联网精神。这样看来，学习计算机也是助益于人生的。' :
           'Through this blog, I hope to document my learning journey, share useful technical experiences, exchange ideas with other developers, and build bridges between technology and creativity.'
         }}
       </p>
@@ -22,10 +22,9 @@
       <div class="about-skills">
         <h3>{{ isZh ? '技能与兴趣 🚀' : 'Skills & Interests 🚀' }}</h3>
         <ul>
-          <li>{{ isZh ? '前端开发：Vue.js、Vite、Tailwind CSS' : 'Frontend Development: Vue.js, Vite, Tailwind CSS' }}</li>
-          <li>{{ isZh ? '后端开发：Python' : 'Backend Development: Python' }}</li>
-          <li>{{ isZh ? '专注领域：人工智能/机器学习、Web技术、系统设计' : 'Focus Areas: AI/ML, Web Technologies, System Design' }}</li>
-          <li>{{ isZh ? '其他兴趣：古典文学' : 'Other Interests: Classical Literature, Philosophy, Finance' }}</li>
+          <li>{{ isZh ? '前端：Vue.js、Vite、Tailwind CSS' : 'Frontend Development: Vue.js, Vite, Tailwind CSS' }}</li>
+          <li>{{ isZh ? '后端：C/C++，Python' : 'Backend Development: C/C++, Python' }}</li>
+          <li>{{ isZh ? '专注领域：人工智能/机器学习/深度学习、Web技术、系统设计' : 'Focus Areas: AI/ML, Web Technologies, System Design' }}</li>
         </ul>
       </div>
 

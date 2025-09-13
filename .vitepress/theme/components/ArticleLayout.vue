@@ -4,7 +4,7 @@
     <aside class="article-sidebar">
       <div class="sidebar-content">
         <div class="toc-header">
-          <h3 class="sidebar-title">Table of Contents</h3>
+          <h3 class="sidebar-title">{{isZh ?'目录导航':'Table of Contents'}}</h3>
           <button class="toc-toggle" @click="toggleToc">
             <span class="toggle-icon">{{ tocExpanded ? '▼' : '▶' }}</span>
           </button>
@@ -143,7 +143,7 @@ onUnmounted(() => {
 /* 左侧边栏 */
 .article-sidebar {
   position: absolute;
-  top: 0;
+  top: 25px;
   left: 0;
   width: 240px;
   height: calc(100vh - 160px);

@@ -4,7 +4,7 @@
       <h1>{{ isZh ? '清单 100' : 'List 100' }}</h1>
       <p class="list100-intro">
         {{ isZh ? 
-          '死前想做的事情。进度截至2023年12月31日。' :
+          '挂掉前想做的事情。进度截至2023年12月31日。' :
           'Things I want to do before I die. Progress as of Dec 31, 2023.'
         }}
       </p>
@@ -28,29 +28,13 @@ const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('
 
 // List 100 数据
 const list100Items = [
-  { status: '✓', textEn: 'Learn Spanish', textZh: '学习西班牙语' },
-  { status: '✓', textEn: 'Live in another country', textZh: '在另一个国家生活' },
-  { status: '✓', textEn: '<a href="#" target="_blank">Start a nonprofit organization</a>', textZh: '<a href="#" target="_blank">创办非营利组织</a>' },
+  { status: '✗', textEn: 'Learn Spanish', textZh: '学习一门不是英语的外语' },
+  { status: '✗', textEn: 'Live in another country', textZh: '在另一个国家生活一年' },
   { status: '✗', textEn: 'See my book being sold', textZh: '看到我的书被出售' },
-  { status: '✓', textEn: 'Be in a movie/commercial', textZh: '参演电影/广告' },
-  { status: '✗', textEn: 'Become the first author of a paper', textZh: '成为第一作者' },
-  { status: '✗', textEn: 'Get published on the New Yorker', textZh: '在《纽约客》发表文章' },
-  { status: '✗', textEn: 'Read 1000 books (<a href="#" target="_blank">~60% done</a>)', textZh: '阅读1000本书（<a href="#" target="_blank">~60% 完成</a>）' },
-  { status: '✓', textEn: '<a href="#" target="_blank">Teach a graduate-level course</a>', textZh: '<a href="#" target="_blank">教授研究生课程</a>' },
-  { status: '✓', textEn: 'Start a company', textZh: '创办公司' },
+  { status: '✗', textEn: 'Get published on the New Yorker', textZh: '在杂志发表文章' },
+  { status: '✗', textEn: 'Start a company', textZh: '创办公司' },
   { status: '✗', textEn: 'Author a patent', textZh: '申请专利' },
-  { status: '✗', textEn: 'Write for a TV show that I watch', textZh: '为我观看的电视节目写剧本' },
-  { status: '✗', textEn: 'Design and publish a game', textZh: '设计并发布游戏' },
-  { status: '✓', textEn: 'Build a home (a simple one, but it\'s mine)', textZh: '建造房屋（简单的，但是我的）' },
-  { status: '✗', textEn: 'Have a salad from my garden', textZh: '吃自己花园种的沙拉' },
-  { status: '✗', textEn: 'Become a parent', textZh: '成为父母' },
-  { status: '✗', textEn: 'Be a writer in Paris', textZh: '在巴黎当作家' },
-  { status: '✓', textEn: 'Go on a trip overseas with my whole family', textZh: '与全家人一起出国旅行' },
-  { status: '✗', textEn: 'Take a hot-air balloon ride', textZh: '乘坐热气球' },
-  { status: '✓', textEn: 'Be in a submarine', textZh: '乘坐潜水艇' },
-  { status: '✗', textEn: 'Swim a mile', textZh: '游泳一英里' },
-  { status: '✗', textEn: 'Run a half marathon', textZh: '跑半程马拉松' },
-  { status: '✗', textEn: 'Scuba dive', textZh: '水肺潜水' }
+  { status: '✗', textEn: 'Buy a Tesla eletricity car', textZh: '买一辆特斯拉' },
 ]
 </script>
 

@@ -4,14 +4,14 @@
       <h1>{{ isZh ? '书籍' : 'Books' }}</h1>
       <p class="books-intro">
         {{ isZh ? 
-          '我从事技术写作、创意非小说和小说——既有长篇形式，也有真正的长篇形式（书籍）。我发现创意写作中的叙事技巧让技术概念更易理解。' :
+          '尽管网上的学习资源越来越充裕，学习计算机似乎可以完全抛开纸质书，但是仍有一些书籍值得一读。' :
           'I do technical writing, creative nonfiction, and fiction—in both long form and really long form (books). I find that storytelling techniques from creative writing make technical concepts more accessible.'
         }}
       </p>
       
       <div class="book-section">
         <h2 class="book-title">
-          <a href="#" class="book-link">{{ isZh ? 'AI 工程' : 'AI Engineering' }}</a>
+          <a href="#" class="book-link">{{ isZh ? '页面仍待施工，客官请先看博客～' : 'Page under construction, please check out the blog first～' }}</a>
           <span class="book-publisher">(O'Reilly, 2025)</span>
         </h2>
         
