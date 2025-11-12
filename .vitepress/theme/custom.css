@@ -10,7 +10,7 @@
 /* 自定义字体声明 */
 @font-face {
   font-family: 'GoudyOldStyle';
-  src: url('/My_Blog/GoudyOldStyleT-Regular.ttf') format('truetype');
+  src: url('/GoudyOldStyleT-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: 'DFKai';
-  src: url('/My_Blog/DFKai-SB.ttf') format('truetype');
+  src: url('/DFKai-SB.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
