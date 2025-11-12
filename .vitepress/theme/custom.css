@@ -919,7 +919,6 @@ html[lang="zh"] .profile-content a {
 
 /* Home layout inspired by minimal blog */
 .home-layout { display: grid; grid-template-columns: 1fr 300px; gap: var(--space-2xl); max-width: var(--vp-layout-max-width); margin: 0 auto; padding: var(--space-2xl) var(--space-lg); }
-.home-main { }
 .home-sidebar { position: sticky; top: 96px; height: fit-content; }
 
 .categories-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xl); }
@@ -1744,7 +1743,6 @@ div[class="content"] {
 
 /* Home layout inspired by minimal blog */
 .home-layout { display: grid; grid-template-columns: 1fr 300px; gap: var(--space-2xl); max-width: var(--vp-layout-max-width); margin: 0 auto; padding: var(--space-2xl) var(--space-lg); }
-.home-main { }
 .home-sidebar { position: sticky; top: 96px; height: fit-content; }
 
 .categories-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xl); }
@@ -2438,7 +2436,7 @@ html.vp-nav-screen-open {
     pointer-events: auto !important;
     transform: none !important;
     transition: opacity 0.25s !important;
-    border-radius: 12px 0 0 12px !important;
+    border-radius: 12px !important;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15) !important;
     overflow: visible !important;
     opacity: 1 !important;
