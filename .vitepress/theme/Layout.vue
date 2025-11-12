@@ -6,6 +6,10 @@
     <template #doc-before v-if="frontmatter.layout === 'List100Page'">
       <List100Page />
     </template>
+    <!-- 回到顶部按钮 - 添加到所有页面 -->
+    <template #layout-bottom>
+      <BackToTop />
+    </template>
   </Layout>
 </template>
 
@@ -14,6 +18,7 @@ import DefaultTheme from 'vitepress/theme'
 import { useData } from 'vitepress'
 import ArticleLayout from './components/ArticleLayout.vue'
 import List100Page from './components/List100Page.vue'
+import BackToTop from './components/BackToTop.vue'
 
 const { Layout } = DefaultTheme
 const { frontmatter } = useData()
@@ -27,6 +32,16 @@ const { frontmatter } = useData()
 
 /* 确保ArticleLayout有正确的样式 */
 [data-frontmatter-layout="ArticleLayout"] .VPDoc {
+  padding: 0;
+}
+
+/* 对于BooksPage页面，隐藏默认的文档内容 */
+[data-frontmatter-layout="BooksPage"] .VPDoc .container .content .content-container {
+  display: none;
+}
+
+/* 确保BooksPage有正确的样式 */
+[data-frontmatter-layout="BooksPage"] .VPDoc {
   padding: 0;
 }
 

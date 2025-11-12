@@ -1,7 +1,7 @@
 <template>
   <div class="article-container">
     <!-- 左侧目录导航 -->
-    <aside class="article-sidebar">
+    <aside class="article-sidebar" :class="{ 'mobile-show': showMobileToc }">
       <div class="sidebar-content">
         <nav class="toc-nav">
           <ul class="toc-list">
@@ -15,6 +15,13 @@
         </nav>
       </div>
     </aside>
+
+    <!-- 移动端浮动目录按钮 -->
+    <button class="mobile-toc-fab" @click="toggleMobileToc" aria-label="目录">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="currentColor"/>
+      </svg>
+    </button>
 
     <!-- 右侧文章内容 -->
     <main class="article-main">
@@ -43,9 +50,14 @@ const { frontmatter } = useData()
 const headings = ref<Array<{ id: string; text: string; level: number }>>([])
 const activeHeading = ref('')
 const tocExpanded = ref(true)
+const showMobileToc = ref(false)
 
 function toggleToc() {
   tocExpanded.value = !tocExpanded.value
+}
+
+function toggleMobileToc() {
+  showMobileToc.value = !showMobileToc.value
 }
 
 function formatDate(d?: string) {
@@ -278,7 +290,7 @@ onUnmounted(() => {
 .article-content :deep(h4),
 .article-content :deep(h5),
 .article-content :deep(h6) {
-  margin: 1.2rem 0 0.6rem 0;
+  margin: 1rem 0 0 0;
   font-weight: 600;
   line-height: 1.2;
   color: var(--vp-c-text-1);
@@ -335,9 +347,18 @@ onUnmounted(() => {
   max-width: 600px; /* 限制列表最大宽度 */
 }
 
+.article-content :deep(ul) {
+  list-style-type: disc; /* 无序列表使用实心圆点 */
+}
+
+.article-content :deep(ol) {
+  list-style-type: decimal; /* 有序列表使用数字 */
+}
+
 .article-content :deep(li) {
-  margin: 0.2rem 0;
+  margin: 0.05rem 0;
   color: var(--vp-c-text-1);
+  display: list-item; /* 确保显示为列表项 */
 }
 
 .article-content :deep(blockquote) {
@@ -345,6 +366,7 @@ onUnmounted(() => {
   padding: 0.8rem 1.2rem;
   background: var(--vp-c-bg-soft);
   border-left: 4px solid var(--vp-c-brand-1);
+  border-radius: 8px;
   font-style: italic;
   color: var(--vp-c-text-2);
   max-width: 600px; /* 限制引用块最大宽度 */
@@ -366,16 +388,22 @@ onUnmounted(() => {
 
 .article-content :deep(pre) {
   background: var(--vp-c-bg-soft);
-  padding: 0.8rem;
+  padding: 0.4rem 0.6rem;
   border-radius: 6px;
   overflow-x: auto;
-  margin: 1rem 0;
+  margin: 0 0 0.8rem 0;
   border: 1px solid var(--vp-c-border);
   max-width: 600px; /* 固定最大宽度 */
   white-space: pre; /* 保持代码原始格式 */
   overflow-wrap: normal; /* 不强制换行 */
   display: block; /* 确保块级显示 */
   box-sizing: border-box; /* 包含边框和内边距 */
+}
+
+/* 列表项内的代码块需要更小的上边距 */
+.article-content :deep(li pre) {
+  margin-top: 0;
+  margin-bottom: 0.8rem;
 }
 
 .article-content :deep(pre code) {
@@ -471,6 +499,11 @@ onUnmounted(() => {
   font-style: italic;
 }
 
+/* 移动端浮动按钮 - 默认隐藏 */
+.mobile-toc-fab {
+  display: none;
+}
+
 /* 响应式设计 */
 @media (max-width: 1024px) {
   .article-container {
@@ -499,15 +532,26 @@ onUnmounted(() => {
   }
   
   .article-sidebar {
-    position: static;
-    width: 100%;
-    height: auto;
-    max-height: none;
-    border-right: none;
-    border-bottom: 1px solid var(--vp-c-border);
-    padding: 0 0 1rem 0;
-    margin-bottom: 1rem;
-    background: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    max-height: 100vh;
+    background: var(--vp-c-bg);
+    border-right: 1px solid var(--vp-c-border);
+    padding: 1rem;
+    margin: 0;
+    z-index: 1000;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .article-sidebar.mobile-show {
+    transform: translateX(0);
   }
   
   .article-main {
@@ -516,11 +560,40 @@ onUnmounted(() => {
   }
   
   .toc-nav {
-    max-height: 200px;
+    max-height: none;
   }
   
   .article-title {
     font-size: 1.75rem;
+  }
+
+  /* 显示移动端浮动按钮 */
+  .mobile-toc-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 56px;
+    height: 56px;
+    background: var(--vp-c-brand-1);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 999;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-toc-fab:hover {
+    background: var(--vp-c-brand-2);
+    transform: scale(1.1);
+  }
+
+  .mobile-toc-fab:active {
+    transform: scale(0.95);
   }
 }
 </style>

@@ -10,6 +10,7 @@ import BlogList from './components/BlogList.vue'
 import LanguageSwitch from './components/LanguageSwitch.vue'
 import ProgressTracker from './components/ProgressTracker.vue'
 import List100Item from './components/List100Item.vue'
+import BackToTop from './components/BackToTop.vue'
 import { EnhanceAppContext } from 'vitepress'
 
 export default {
@@ -29,5 +30,6 @@ export default {
     app.component('LanguageSwitch', LanguageSwitch)
     app.component('ProgressTracker', ProgressTracker)
     app.component('List100Item', List100Item)
+    app.component('BackToTop', BackToTop)
   }
 }
