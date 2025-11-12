@@ -1,3 +1,12 @@
+/* 隐藏 VitePress 默认的目录标题 "Table of Contents" */
+.VPDocAsideOutline .VPDocAsideOutlineTitle,
+.vp-doc .aside-outline-title,
+.aside-outline .outline-title,
+.VPDocOutlineTitle,
+.outline-title {
+  display: none !important;
+}
+
 /* 自定义字体声明 */
 @font-face {
   font-family: 'GoudyOldStyle';
@@ -5,7 +14,7 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -14,7 +23,8 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
+  /* 包含中文字符、中文标点符号和其他符号 */
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F, U+3000-303F, U+FF00-FFEF, U+2000-206F, U+2E80-2EFF, U+31C0-31EF, U+FE30-FE4F;
 }
 
 /* 全局字体设置 - 强制应用 */

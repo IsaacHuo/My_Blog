@@ -18,8 +18,8 @@ export default defineConfig({
       themeConfig: {
         siteTitle: 'Isaac Huo',
         nav: [
-          { text: '博客', link: '/zh/blog/' },
-          { text: '书籍', link: '/zh/books/' },
+          { text: '文章', link: '/zh/blog/' },
+          { text: '随想', link: '/zh/thoughts/' },
           { text: '清单100', link: '/zh/list100/' },
           { text: 'EN', link: '/' }
         ],
@@ -50,7 +50,7 @@ export default defineConfig({
     siteTitle: 'Isaac Huo',
     nav: [
       { text: 'Blog', link: '/en/blog/' },
-      { text: 'Books', link: '/en/books/' },
+      { text: 'Thoughts', link: '/en/thoughts/' },
       { text: 'List 100', link: '/en/list100/' },
       { text: '中文', link: '/zh/' }
     ],

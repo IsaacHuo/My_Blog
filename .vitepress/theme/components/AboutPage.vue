@@ -7,9 +7,15 @@
           <img src="/avatar.jpg" :alt="isZh ? '霍玮放' : 'Isaac Huo'" class="avatar-image" />
         </a>
       </div>
+      <p class="welcome-message">
+        {{ isZh ?
+          '你好👋，欢迎你来到我的博客！' :
+          'Hello👋, Welcome to my blog!'
+        }}
+      </p>
       <p class="about-intro" v-html="isZh ? 
-          '你好👋，我是一名<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>的学生，最初学习风景园林专业，后转入电气工程及其自动化专业。我的兴趣涵盖编程、人工智能、古典文学诗词、书法、时事、金融。' :
-          'Hello👋, I\'m a student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, initially studying Landscape Architecture before transferring to Electrical Engineering and Automation. My interests span programming, artificial intelligence, classical literature and poetry, calligraphy, current affairs, finance, robotics, and philosophy. I particularly enjoy reading literary works.'
+          '我来自广西梧州，目前本科就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，最初学习风景园林专业，后转入电气工程专业。我的兴趣涵盖编程、人工智能、古典文学与诗词、书法、时事、金融。<br>' :
+          'I\'m a student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, initially studying Landscape Architecture before transferring to Electrical Engineering and Automation. My interests span programming, artificial intelligence, classical literature and poetry, calligraphy, current affairs, finance, robotics, and philosophy. I particularly enjoy reading literary works.'
         ">
       </p>
       <p class="about-description">
@@ -107,6 +113,13 @@ const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('
 
 .about-avatar .avatar-link:hover img {
   border-color: var(--vp-c-brand-1);
+}
+
+.welcome-message {
+  font-size: var(--vp-font-size-lg);
+  line-height: 1.7;
+  color: var(--vp-c-text-1);
+  margin-bottom: var(--space-lg);
 }
 
 .about-intro {

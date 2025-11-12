@@ -1,7 +1,7 @@
 <template>
   <div class="modern-blog-list">
     <div class="blog-content">
-      <h1>{{ isZh ? '博客' : 'Blog' }}</h1>
+      <h1>{{ isZh ? '文章' : 'Blog' }}</h1>
       <div class="blog-articles">
         <article v-for="post in posts" :key="post.url" class="blog-article">
           <div class="article-date">{{ formatDate(post.frontmatter.date) }}</div>

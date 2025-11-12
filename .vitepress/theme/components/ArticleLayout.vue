@@ -3,13 +3,7 @@
     <!-- 左侧目录导航 -->
     <aside class="article-sidebar">
       <div class="sidebar-content">
-        <div class="toc-header">
-          <h3 class="sidebar-title">Table of Contents</h3>
-          <button class="toc-toggle" @click="toggleToc">
-            <span class="toggle-icon">{{ tocExpanded ? '▼' : '▶' }}</span>
-          </button>
-        </div>
-        <nav class="toc-nav" ref="tocNav" :class="{ expanded: tocExpanded }">
+        <nav class="toc-nav">
           <ul class="toc-list">
             <li v-for="heading in headings" :key="heading.id" 
                 :class="['toc-item', `toc-level-${heading.level}`, { active: activeHeading === heading.id }]">
@@ -65,7 +59,7 @@ function formatDate(d?: string) {
 
 function extractHeadings() {
   setTimeout(() => {
-    const headingElements = document.querySelectorAll('.article-content h1, .article-content h2, .article-content h3, .article-content h4')
+    const headingElements = document.querySelectorAll('.article-content h1, .article-content h2')
     headings.value = Array.from(headingElements).map((el, index) => {
       let id = el.id
       if (!id) {
@@ -143,10 +137,10 @@ onUnmounted(() => {
 /* 左侧边栏 */
 .article-sidebar {
   position: absolute;
-  top: 0;
+  top: 80px;
   left: 0;
   width: 240px;
-  height: calc(100vh - 160px);
+  max-height: calc(100vh - 240px);
   overflow-y: auto;
   border-right: 1px solid var(--vp-c-border);
   padding: 0 1.5rem 0 0;
@@ -154,44 +148,10 @@ onUnmounted(() => {
   z-index: 10;
 }
 
-.toc-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.sidebar-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0;
-  color: var(--vp-c-text-1);
-}
-
-.toc-toggle {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 2px;
-  color: var(--vp-c-text-2);
-  font-size: 12px;
-}
-
-.toc-toggle:hover {
-  color: var(--vp-c-text-1);
-}
-
 /* 目录导航 */
 .toc-nav {
   margin: 0;
-  max-height: 70vh;
   overflow-y: auto;
-  transition: all 0.3s ease;
-}
-
-.toc-nav:not(.expanded) {
-  max-height: 0;
-  overflow: hidden;
 }
 
 .toc-list {
