@@ -1,7 +1,6 @@
 <template>
   <div class="about-layout">
     <div class="about-content">
-      <h1>{{ isZh ? '霍玮放' : 'Isaac Huo' }}</h1>
       <div class="about-avatar">
         <a href="https://www.xiaohongshu.com/user/profile/6767de890000000018017ac0" target="_blank" class="avatar-link">
           <img src="/avatar.jpg" :alt="isZh ? '霍玮放' : 'Isaac Huo'" class="avatar-image" />
@@ -9,8 +8,8 @@
       </div>
       <p class="welcome-message">
         {{ isZh ?
-          '你好👋，欢迎你来到我的博客！' :
-          'Hello👋, Welcome to my blog!'
+          '你好👋，我是霍玮放，欢迎你来到我的博客！' :
+          'Hello👋, I\'m Isaac Huo. Welcome to my blog!'
         }}
       </p>
       <p class="about-intro" v-html="isZh ? 
@@ -26,9 +25,9 @@
       </p>
       
       <div class="about-skills">
-        <h3>{{ isZh ? '技能与兴趣 🚀' : 'Skills & Interests 🚀' }}</h3>
+        <h3>{{ isZh ? '技能与兴趣' : 'Skills & Interests' }}</h3>
         <ul>
-          <li>{{ isZh ? '前端开发：Vue.js、Vite、Tailwind CSS' : 'Frontend Development: Vue.js, Vite, Tailwind CSS' }}</li>
+          <li>{{ isZh ? '前端开发：Vue.js、Vite' : 'Frontend Development: Vue.js, Vite' }}</li>
           <li>{{ isZh ? '后端开发：Python' : 'Backend Development: Python' }}</li>
           <li>{{ isZh ? '专注领域：人工智能/机器学习、Web技术、系统设计' : 'Focus Areas: AI/ML, Web Technologies, System Design' }}</li>
           <li>{{ isZh ? '其他兴趣：古典文学' : 'Other Interests: Classical Literature, Philosophy, Finance' }}</li>
@@ -36,10 +35,22 @@
       </div>
 
       <div class="about-contact">
-        <h3>{{ isZh ? '联系方式 📫' : 'Get in Touch 📫' }}</h3>
+        <h3>{{ isZh ? '联系方式' : 'Get in Touch' }}</h3>
         <ul>
-          <li>{{ isZh ? '邮箱：' : 'Email: ' }}2210286979@qq.com</li>
-          <li>{{ isZh ? '微信：' : 'WeChat: ' }}hwfgxwzxysw</li>
+          <li>
+            {{ isZh ? '邮箱：' : 'Email: ' }}
+            <span class="copyable" @click="copyToClipboard('huoweifang@foxmail.com', 'email')" :title="isZh ? '点击复制' : 'Click to copy'">
+              huoweifang@foxmail.com
+            </span>
+            <span v-if="copiedField === 'email'" class="copied-tip">{{ isZh ? '已复制！' : 'Copied!' }}</span>
+          </li>
+          <li>
+            {{ isZh ? '微信：' : 'WeChat: ' }}
+            <span class="copyable" @click="copyToClipboard('hwfgxwzxysw', 'wechat')" :title="isZh ? '点击复制' : 'Click to copy'">
+              hwfgxwzxysw
+            </span>
+            <span v-if="copiedField === 'wechat'" class="copied-tip">{{ isZh ? '已复制！' : 'Copied!' }}</span>
+          </li>
         </ul>
       </div>
     </div>
@@ -48,9 +59,23 @@
 
 <script setup lang="ts">
 import { useData } from 'vitepress'
+import { ref } from 'vue'
 
 const { site, page } = useData()
 const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')
+const copiedField = ref<string | null>(null)
+
+const copyToClipboard = async (text: string, field: string) => {
+  try {
+    await navigator.clipboard.writeText(text)
+    copiedField.value = field
+    setTimeout(() => {
+      copiedField.value = null
+    }, 2000)
+  } catch (err) {
+    console.error('Failed to copy:', err)
+  }
+}
 </script>
 
 <style scoped>
@@ -184,6 +209,61 @@ const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('
 
 .about-contact a:hover {
   text-decoration: underline;
+}
+
+.copyable {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-brand-1);
+  font-family: 'DFKai', 'GoudyOldStyle', monospace, sans-serif !important;
+}
+
+.copyable:hover {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  transform: translateY(-1px);
+}
+
+.copyable:active {
+  transform: translateY(0);
+}
+
+.copy-icon {
+  font-size: 14px;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.copyable:hover .copy-icon {
+  opacity: 1;
+}
+
+.copied-tip {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  background: var(--vp-c-green-soft);
+  color: var(--vp-c-green-1);
+  border-radius: 4px;
+  font-size: 12px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .github-link {

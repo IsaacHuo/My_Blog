@@ -32,6 +32,11 @@
   font-family: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
+/* SVG 元素不应用字体样式 */
+svg, svg * {
+  font-family: inherit !important;
+}
+
 :root {
   --vp-font-family-base: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
   --vp-font-family-mono: 'GoudyOldStyle', 'DFKai', Menlo, Monaco, Consolas, monospace !important;
@@ -2347,7 +2352,15 @@ html.vp-nav-screen-open {
   display: none !important;
 }
 
-/* GitHub 图标已显示在导航栏中 */
+/* 隐藏移动端导航中的社交链接 */
+.VPNavScreen .VPSocialLinks,
+.vp-nav-screen .VPSocialLinks,
+.VPNavScreen .social-links,
+.vp-nav-screen .social-links,
+.VPNavScreenSocialLinks,
+.vp-nav-screen-social-links {
+  display: none !important;
+}
 
 /* 调整导航菜单组 */
 .VPNavScreenMenu,
@@ -2393,6 +2406,18 @@ html.vp-nav-screen-open {
     position: relative !important;
     cursor: pointer !important;
     user-select: none !important;
+  }
+  
+  /* 确保移动端导航中的社交链接隐藏 */
+  .VPNavScreen .VPSocialLinks,
+  .VPNavScreen [class*="SocialLinks"],
+  .VPNavScreenSocialLinks,
+  .VPNavScreen .VPSocialLink,
+  .vp-nav-screen .VPSocialLink,
+  .vp-nav-screen .VPSocialLinks {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
 
   /* 强制覆盖任何可能阻止导航菜单显示的样式 */

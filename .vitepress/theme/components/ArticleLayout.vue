@@ -1,7 +1,7 @@
 <template>
   <div class="article-container">
     <!-- 左侧目录导航 -->
-    <aside class="article-sidebar" :class="{ 'mobile-show': showMobileToc }">
+    <aside class="article-sidebar">
       <div class="sidebar-content">
         <nav class="toc-nav">
           <ul class="toc-list">
@@ -16,12 +16,19 @@
       </div>
     </aside>
 
-    <!-- 移动端浮动目录按钮 -->
-    <button class="mobile-toc-fab" @click="toggleMobileToc" aria-label="目录">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="currentColor"/>
-      </svg>
-    </button>
+    <!-- 移动端回到顶部按钮 -->
+    <Transition name="fade">
+      <button 
+        v-show="showBackToTop" 
+        class="mobile-back-to-top" 
+        @click="scrollToTop" 
+        aria-label="回到顶部"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 15l-6-6-6 6"/>
+        </svg>
+      </button>
+    </Transition>
 
     <!-- 右侧文章内容 -->
     <main class="article-main">
@@ -49,15 +56,19 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const { frontmatter } = useData()
 const headings = ref<Array<{ id: string; text: string; level: number }>>([])
 const activeHeading = ref('')
-const tocExpanded = ref(true)
-const showMobileToc = ref(false)
+const showBackToTop = ref(false)
 
-function toggleToc() {
-  tocExpanded.value = !tocExpanded.value
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
 }
 
-function toggleMobileToc() {
-  showMobileToc.value = !showMobileToc.value
+function handleScroll() {
+  // 滚动超过300px时显示回到顶部按钮
+  showBackToTop.value = window.scrollY > 300
+  updateActiveHeading()
 }
 
 function formatDate(d?: string) {
@@ -125,12 +136,12 @@ function updateActiveHeading() {
 
 onMounted(() => {
   extractHeadings()
-  window.addEventListener('scroll', updateActiveHeading)
+  window.addEventListener('scroll', handleScroll)
   setTimeout(updateActiveHeading, 300)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('scroll', updateActiveHeading)
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
@@ -499,9 +510,21 @@ onUnmounted(() => {
   font-style: italic;
 }
 
-/* 移动端浮动按钮 - 默认隐藏 */
-.mobile-toc-fab {
+/* 回到顶部按钮 - 默认隐藏 */
+.mobile-back-to-top {
   display: none;
+}
+
+/* 过渡动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
 }
 
 /* 响应式设计 */
@@ -532,26 +555,7 @@ onUnmounted(() => {
   }
   
   .article-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80%;
-    max-width: 300px;
-    height: 100vh;
-    max-height: 100vh;
-    background: var(--vp-c-bg);
-    border-right: 1px solid var(--vp-c-border);
-    padding: 1rem;
-    margin: 0;
-    z-index: 1000;
-    overflow-y: auto;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .article-sidebar.mobile-show {
-    transform: translateX(0);
+    display: none; /* 移动端隐藏左侧目录 */
   }
   
   .article-main {
@@ -559,24 +563,20 @@ onUnmounted(() => {
     width: 100%;
   }
   
-  .toc-nav {
-    max-height: none;
-  }
-  
   .article-title {
     font-size: 1.75rem;
   }
 
-  /* 显示移动端浮动按钮 */
-  .mobile-toc-fab {
+  /* 显示移动端回到顶部按钮 */
+  .mobile-back-to-top {
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
     right: 20px;
     bottom: 20px;
-    width: 56px;
-    height: 56px;
+    width: 50px;
+    height: 50px;
     background: var(--vp-c-brand-1);
     color: white;
     border: none;
@@ -585,15 +585,23 @@ onUnmounted(() => {
     cursor: pointer;
     z-index: 999;
     transition: all 0.3s ease;
+    outline: none;
   }
 
-  .mobile-toc-fab:hover {
+  .mobile-back-to-top:hover {
     background: var(--vp-c-brand-2);
-    transform: scale(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
   }
 
-  .mobile-toc-fab:active {
-    transform: scale(0.95);
+  .mobile-back-to-top:active {
+    transform: translateY(-1px);
+  }
+
+  .mobile-back-to-top svg {
+    width: 24px;
+    height: 24px;
+    display: block;
   }
 }
 </style>
