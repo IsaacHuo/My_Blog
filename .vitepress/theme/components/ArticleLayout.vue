@@ -16,6 +16,20 @@
       </div>
     </aside>
 
+    <!-- 桌面端回到顶部按钮 -->
+    <Transition name="fade">
+      <button 
+        v-show="showBackToTop" 
+        class="desktop-back-to-top" 
+        @click="scrollToTop" 
+        aria-label="回到顶部"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 15l-6-6-6 6"/>
+        </svg>
+      </button>
+    </Transition>
+
     <!-- 移动端回到顶部按钮 -->
     <Transition name="fade">
       <button 
@@ -115,20 +129,24 @@ function updateActiveHeading() {
   if (headings.value.length === 0) return
   
   const headingElements = headings.value.map(h => document.getElementById(h.id)).filter(Boolean)
-  const scrollTop = window.scrollY + 120
+  // 只有滚动超过100px后才开始检测，避免页面刚加载就选中
+  const scrollTop = window.scrollY
+  
+  // 如果页面滚动不足100px，不选中任何项
+  if (scrollTop < 100) {
+    activeHeading.value = ''
+    return
+  }
   
   let activeId = ''
+  const offset = 150 // 标题要在视口顶部下方150px才算激活
   
   for (let i = headingElements.length - 1; i >= 0; i--) {
     const element = headingElements[i]
-    if (element && element.offsetTop <= scrollTop) {
+    if (element && element.offsetTop <= scrollTop + offset) {
       activeId = element.id
       break
     }
-  }
-  
-  if (!activeId && headingElements.length > 0 && headingElements[0]) {
-    activeId = headingElements[0].id
   }
   
   activeHeading.value = activeId
@@ -137,7 +155,7 @@ function updateActiveHeading() {
 onMounted(() => {
   extractHeadings()
   window.addEventListener('scroll', handleScroll)
-  setTimeout(updateActiveHeading, 300)
+  // 移除自动调用 updateActiveHeading，只在滚动时才更新
 })
 
 onUnmounted(() => {
@@ -155,6 +173,7 @@ onUnmounted(() => {
   position: relative;
   margin-left: auto;
   margin-right: 0; /* 让整个容器向右靠 */
+  overflow-x: hidden; /* 禁止水平滚动 */
 }
 
 /* 左侧边栏 */
@@ -163,18 +182,19 @@ onUnmounted(() => {
   top: 80px;
   left: 0;
   width: 240px;
-  max-height: calc(100vh - 240px);
-  overflow-y: auto;
   border-right: 1px solid var(--vp-c-border);
   padding: 0 1.5rem 0 0;
   background: var(--vp-c-bg);
   z-index: 10;
+  overflow: visible; /* 允许内容完全显示，不产生滚动条 */
 }
+
+/* 移除滚动条样式，因为不再需要 */
 
 /* 目录导航 */
 .toc-nav {
   margin: 0;
-  overflow-y: auto;
+  overflow: visible; /* 允许内容完全显示 */
 }
 
 .toc-list {
@@ -190,23 +210,52 @@ onUnmounted(() => {
 
 .toc-link {
   display: block;
-  padding: 4px 0;
+  padding: 6px 12px;
   color: var(--vp-c-text-2);
   text-decoration: none;
   font-size: 14px;
-  transition: color 0.3s ease;
-  border-left: 2px solid transparent;
-  padding-left: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 3px solid transparent;
+  padding-left: 12px;
+  margin: 2px 0;
+  border-radius: 0 4px 4px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.toc-link::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--vp-c-brand-soft);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
 }
 
 .toc-link:hover {
   color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+  transform: translateX(4px);
+  border-left-color: var(--vp-c-brand-2);
+}
+
+.toc-link:hover::before {
+  width: 100%;
 }
 
 .toc-item.active .toc-link {
   color: var(--vp-c-brand-1);
   border-left-color: var(--vp-c-brand-1);
-  font-weight: 500;
+  font-weight: 600;
+  background: var(--vp-c-brand-soft);
+  transform: translateX(2px);
+}
+
+.toc-item.active .toc-link::before {
+  width: 100%;
 }
 
 /* 不同级别的标题缩进 */
@@ -215,31 +264,32 @@ onUnmounted(() => {
 }
 .toc-level-1 .toc-link {
   font-weight: 500;
-  padding-left: 8px;
+  padding-left: 12px;
+  font-size: 14px;
 }
 
 .toc-level-2 { 
-  padding-left: 16px; 
+  padding-left: 12px; 
 }
 .toc-level-2 .toc-link {
   font-size: 13px;
-  padding-left: 8px;
+  padding-left: 12px;
 }
 
 .toc-level-3 { 
-  padding-left: 32px; 
+  padding-left: 24px; 
 }
 .toc-level-3 .toc-link {
   font-size: 12px;
-  padding-left: 8px;
+  padding-left: 12px;
 }
 
 .toc-level-4 { 
-  padding-left: 48px; 
+  padding-left: 36px; 
 }
 .toc-level-4 .toc-link {
   font-size: 12px;
-  padding-left: 8px;
+  padding-left: 12px;
 }
 
 /* 右侧文章内容 */
@@ -248,12 +298,14 @@ onUnmounted(() => {
   flex: 1;
   margin-left: 270px; /* 为侧边栏留出空间 */
   width: calc(100% - 270px);
+  overflow-x: hidden; /* 禁止水平滚动 */
 }
 
 .article-layout {
   max-width: none;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* 禁止水平滚动 */
 }
 
 /* 文章头部 */
@@ -289,6 +341,9 @@ onUnmounted(() => {
   color: var(--vp-c-text-1);
   max-width: none;
   padding: 0;
+  overflow-x: hidden; /* 禁止水平滚动 */
+  word-wrap: break-word; /* 长单词自动换行 */
+  overflow-wrap: break-word; /* 长单词自动换行 */
 }
 
 .article-content :deep(*) {
@@ -510,7 +565,44 @@ onUnmounted(() => {
   font-style: italic;
 }
 
-/* 回到顶部按钮 - 默认隐藏 */
+/* 桌面端回到顶部按钮 */
+.desktop-back-to-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  background: var(--vp-c-brand-1);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  z-index: 999;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.desktop-back-to-top:hover {
+  background: var(--vp-c-brand-2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.desktop-back-to-top:active {
+  transform: translateY(-1px);
+}
+
+.desktop-back-to-top svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* 移动端回到顶部按钮 - 默认隐藏 */
 .mobile-back-to-top {
   display: none;
 }
@@ -565,6 +657,11 @@ onUnmounted(() => {
   
   .article-title {
     font-size: 1.75rem;
+  }
+
+  /* 隐藏桌面端回到顶部按钮 */
+  .desktop-back-to-top {
+    display: none;
   }
 
   /* 显示移动端回到顶部按钮 */
