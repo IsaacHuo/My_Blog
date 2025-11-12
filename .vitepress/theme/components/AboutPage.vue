@@ -13,12 +13,12 @@
         }}
       </p>
       <p class="about-intro" v-html="isZh ? 
-          '我来自广西梧州，目前就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，本科主修电气工程，辅修计算机科学。起初我学习风景园林专业，但后来我意识到自己更热爱技术与系统设计，于是转入电气工程，并开始深入探索人工智能的工程化落地。' :
+          '我来自广西梧州，目前就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，本科主修电气工程，辅修计算机科学。起初我选择了风景园林专业，但后来我意识到自己更热爱技术与工程，于是转入电气工程，并开始深入探索人工智能的工程化落地。' :
           'I grew up in a small city in southern China, and I\'m currently an undergraduate student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, majoring in Electrical Engineering and minoring in Computer Science. I originally studied Landscape Architecture but later discovered my passion for technology and intelligent systems, which led me to switch majors.'
         ">
       </p>
       <p class="about-description" v-html="isZh ?
-          '目前，我在<strong>大众汽车</strong>旗下的 CARIAD China 部门作为 Platform System & Integration <strong>实习生</strong>，专注于智能驾驶与车载系统的集成与验证。在这里，我体验到了汽车软件架构的复杂与优雅，也学会了如何在工程中平衡创新与稳定。' :
+          '目前，我在<strong>大众汽车</strong>旗下的 CARIAD China 部门作为 Platform System & Integration <strong>实习生</strong>，专注于智能驾驶与车载系统的集成与验证。' :
           'I\'m now an <strong>intern</strong> at CARIAD China (Volkswagen Group), working in Platform System & Integration, where I focus on intelligent driving systems and vehicle software integration. This experience has taught me how large-scale engineering balances innovation, safety, and precision.'
         ">
       </p>
