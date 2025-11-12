@@ -48,6 +48,14 @@ const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('
 </script>
 
 <style scoped>
+/* 强制整个页面使用 DFKai 字体 */
+.about-layout,
+.about-layout *,
+.about-layout a,
+.about-layout a * {
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+}
+
 .about-layout {
   /* 单列容器，和内容最大宽度保持一致 */
   display: block;
@@ -106,12 +114,14 @@ const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('
   line-height: 1.7;
   color: var(--vp-c-text-1);
   margin-bottom: var(--space-lg);
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
 .about-intro a {
   color: var(--vp-c-brand-1);
   text-decoration: none;
   transition: color 0.3s ease;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
 .about-intro a:hover {

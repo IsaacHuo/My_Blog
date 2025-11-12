@@ -1,6 +1,63 @@
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+/* 自定义字体声明 */
+@font-face {
+  font-family: 'GoudyOldStyle';
+  src: url('/My_Blog/GoudyOldStyleT-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
-/* Lora Font Import */
+@font-face {
+  font-family: 'DFKai';
+  src: url('/My_Blog/DFKai-SB.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F;
+}
+
+/* 全局字体设置 - 强制应用 */
+* {
+  font-family: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+:root {
+  --vp-font-family-base: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  --vp-font-family-mono: 'GoudyOldStyle', 'DFKai', Menlo, Monaco, Consolas, monospace !important;
+}
+
+body {
+  font-family: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* 所有链接强制使用自定义字体 */
+a, a:link, a:visited, a:hover, a:active {
+  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* 确保中文链接使用 DFKai 字体 - 超强优先级 */
+:lang(zh) a, :lang(zh-CN) a, :lang(zh-TW) a,
+html[lang="zh"] a, html[lang="zh-CN"] a, html[lang="zh-TW"] a,
+[lang="zh"] a, [lang="zh-CN"] a, [lang="zh-TW"] a,
+html[lang="zh-CN"] * a, html[lang="zh"] * a,
+body[lang="zh-CN"] a, body[lang="zh"] a,
+.zh a, [data-lang="zh"] a, [data-lang="zh-CN"] a {
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+}
+
+/* 确保中文使用 DFKai 字体 */
+:lang(zh), :lang(zh-CN), :lang(zh-TW),
+html[lang="zh"] *, html[lang="zh-CN"] *,
+body[lang="zh"] *, body[lang="zh-CN"] *,
+.zh *, [data-lang="zh"] *, [data-lang="zh-CN"] * {
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+}
+
+/* 确保英文使用 GoudyOldStyle 字体 */
+:lang(en) {
+  font-family: 'GoudyOldStyle', 'DFKai', sans-serif !important;
+}
 
 /* Global Scale to 110% */
 html {
@@ -29,12 +86,17 @@ body {
   max-width: none;
 }
 
-/* 中文楷体字体全局设置 */
+/* 中文楷体字体全局设置 - 使用自定义字体 */
 * {
-  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  font-family: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
-/* 中文内容使用楷体 */
+/* 所有文本元素应用自定义字体 */
+h1, h2, h3, h4, h5, h6, p, a, li, span, div, button, input, textarea {
+  font-family: inherit !important;
+}
+
+/* 中文内容使用 DFKai */
 *:lang(zh),
 *:lang(zh-CN),
 .zh *,
@@ -42,36 +104,36 @@ body {
 [lang="zh-CN"] *,
 body[data-lang="zh"] *,
 body[data-lang="zh-CN"] * {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
-/* 确保中文页面下所有元素都使用楷体 */
+/* 确保中文页面下所有元素都使用 DFKai */
 html[lang="zh-CN"] *,
 html[lang="zh"] *,
 .vp-doc[data-page-lang="zh"] *,
 .vp-doc[data-page-lang="zh-CN"] * {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
-/* 中文路径下的所有内容使用楷体 */
+/* 中文路径下的所有内容使用 DFKai */
 body:has([href*="/zh/"]) *,
 [href*="/zh/"] *,
 .content:has([href*="/zh/"]) * {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
 /* 特定中文内容区域 */
 .zh-content *,
 .chinese-text *,
 [data-chinese="true"] * {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
 /* CSS Variables for Minimalist Design */
 :root {
   /* Typography */
-  --vp-font-family-base: 'Lora', Georgia, 'Times New Roman', serif;
-  --vp-font-family-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  --vp-font-family-base: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif;
+  --vp-font-family-mono: 'GoudyOldStyle', 'DFKai', 'SF Mono', Monaco, monospace;
   
   /* Font Sizes - Larger for Better Readability */
   --vp-font-size-xs: 0.875rem;
@@ -396,22 +458,22 @@ hr {
   color: inherit;
   text-decoration: none;
   transition: color 0.2s ease;
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
 }
 
 .blog-card h3 a:hover {
   color: var(--vp-c-brand-1);
 }
 
-/* 中文博客卡片链接使用楷体 */
+/* 中文博客卡片链接使用 DFKai */
 .blog-card h3 a:lang(zh),
 .blog-card h3 a:lang(zh-CN),
 html[lang="zh-CN"] .blog-card h3 a,
 html[lang="zh"] .blog-card h3 a {
-  font-family: 'KaiTi', '楷体', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
-/* 中文博客列表标题链接使用楷体 */
+/* 中文博客列表标题链接使用 DFKai */
 .simple-blog-list .blog-title a:lang(zh),
 .simple-blog-list .blog-title a:lang(zh-CN),
 html[lang="zh-CN"] .simple-blog-list .blog-title a,
@@ -420,22 +482,22 @@ html[lang="zh"] .simple-blog-list .blog-title a,
 body:has([href*="/zh/"]) .simple-blog-list .blog-title a,
 [data-page-lang="zh"] .simple-blog-list .blog-title a,
 [data-page-lang="zh-CN"] .simple-blog-list .blog-title a,
-/* 更强的选择器确保中文博客标题为楷体 */
+/* 更强的选择器确保中文博客标题为 DFKai */
 body[data-page-lang="zh"] .simple-blog-list .blog-title a,
 body[data-page-lang="zh-CN"] .simple-blog-list .blog-title a,
 .vp-doc[data-page-lang="zh"] .simple-blog-list .blog-title a,
 .vp-doc[data-page-lang="zh-CN"] .simple-blog-list .blog-title a,
 /* 针对中文博客页面的特定选择器 */
 [href*="/zh/blog/"] {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
   font-weight: normal !important;
 }
 
-/* 确保所有中文页面的链接都使用楷体 */
+/* 确保所有中文页面的链接都使用 DFKai */
 html[lang*="zh"] a,
 body[lang*="zh"] a,
 [lang*="zh"] a {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
 .blog-card .meta {
@@ -798,7 +860,7 @@ body[lang*="zh"] a,
   font-weight: 500;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
 }
 
 /* 中文profile链接使用楷体 */
@@ -806,7 +868,7 @@ body[lang*="zh"] a,
 .profile-content a:lang(zh-CN),
 html[lang="zh-CN"] .profile-content a,
 html[lang="zh"] .profile-content a {
-  font-family: 'KaiTi', '楷体', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
 .profile-content a:hover {
@@ -857,7 +919,7 @@ html[lang="zh"] .profile-content a {
 .post-title a { 
   color: var(--vp-c-text-1); 
   text-decoration: none;
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
 }
 .post-title a:hover { text-decoration: underline; }
 
@@ -866,7 +928,7 @@ html[lang="zh"] .profile-content a {
 .post-title a:lang(zh-CN),
 html[lang="zh-CN"] .post-title a,
 html[lang="zh"] .post-title a {
-  font-family: 'KaiTi', '楷体', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 .post-desc { color: var(--vp-c-text-2); }
 
@@ -886,7 +948,7 @@ html[lang="zh"] .post-title a {
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: var(--space-2xl) var(--space-lg);
-  font-family: 'Lora', Georgia, serif;
+  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
   text-align: center;
 }
 
@@ -923,7 +985,7 @@ html[lang="zh"] .post-title a {
 .list100-page a {
   color: #1a73e8;
   text-decoration: none;
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
 }
 
 .list100-page a:hover {
@@ -935,7 +997,7 @@ html[lang="zh"] .post-title a {
 .list100-page a:lang(zh-CN),
 html[lang="zh-CN"] .list100-page a,
 html[lang="zh"] .list100-page a {
-  font-family: 'KaiTi', '楷体', serif !important;
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
 @media (max-width: 640px) {
@@ -2557,4 +2619,28 @@ html.vp-nav-screen-open {
     font-size: 12px !important;
     line-height: 1.2 !important;
   }
+}
+
+/* 终极字体规则 - 确保所有中文内容使用 DFKai */
+/* 中文页面所有元素 */
+html[lang="zh-CN"],
+html[lang="zh-CN"] *,
+html[lang="zh"],
+html[lang="zh"] * {
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+}
+
+/* 中文页面所有链接 */
+html[lang="zh-CN"] a,
+html[lang="zh-CN"] a *,
+html[lang="zh"] a,
+html[lang="zh"] a *,
+a[href*="/zh/"],
+a[href*="/zh/"] * {
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+}
+
+/* 所有包含中文字符的元素 */
+:not(:lang(en)):not(:lang(en-US)) {
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
