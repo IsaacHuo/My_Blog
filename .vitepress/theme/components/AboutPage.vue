@@ -8,34 +8,41 @@
       </div>
       <p class="welcome-message">
         {{ isZh ?
-          '你好👋，我是霍玮放，欢迎你来到我的博客！' :
-          'Hello👋, I\'m Isaac Huo. Welcome to my blog!'
+          '你好👋，我是霍玮放，欢迎来到我的博客！' :
+          'Hi there👋, I\'m Isaac Huo — welcome to my blog!'
         }}
       </p>
       <p class="about-intro" v-html="isZh ? 
-          '我来自广西梧州，目前本科就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，最初学习风景园林专业，后转入电气工程专业。我的兴趣涵盖编程、人工智能、古典文学与诗词、书法、时事、金融。<br>' :
-          'I\'m a student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, initially studying Landscape Architecture before transferring to Electrical Engineering and Automation. My interests span programming, artificial intelligence, classical literature and poetry, calligraphy, current affairs, finance, robotics, and philosophy. I particularly enjoy reading literary works.'
+          '我来自广西梧州，目前就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，本科主修电气工程，辅修计算机科学。起初我学习风景园林专业，但后来我意识到自己更热爱技术与系统设计，于是转入电气工程，并开始深入探索人工智能的工程化落地。' :
+          'I grew up in a small city in southern China, and I\'m currently an undergraduate student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, majoring in Electrical Engineering and minoring in Computer Science. I originally studied Landscape Architecture but later discovered my passion for technology and intelligent systems, which led me to switch majors.'
+        ">
+      </p>
+      <p class="about-description" v-html="isZh ?
+          '目前，我在<strong>大众汽车</strong>旗下的 CARIAD China 部门作为 Platform System & Integration <strong>实习生</strong>，专注于智能驾驶与车载系统的集成与验证。在这里，我体验到了汽车软件架构的复杂与优雅，也学会了如何在工程中平衡创新与稳定。' :
+          'I\'m now an <strong>intern</strong> at CARIAD China (Volkswagen Group), working in Platform System & Integration, where I focus on intelligent driving systems and vehicle software integration. This experience has taught me how large-scale engineering balances innovation, safety, and precision.'
+        ">
+      </p>
+      <p class="about-description" v-html="isZh ?
+          '我的<strong>兴趣</strong>涵盖编程、网络运维和AI，还对古典诗词与历史情有独钟。' :
+          'My <strong>interests</strong> span programming, DevOps, and AI, with a special love for classical poetry and history.'
         ">
       </p>
       <p class="about-description">
         {{ isZh ?
-          '通过这个博客，我希望记录自己的学习历程，分享有用的技术经验，与其他开发者交流想法，在技术与创意之间搭建桥梁。' :
-          'Through this blog, I hope to document my learning journey, share useful technical experiences, exchange ideas with other developers, and build bridges between technology and creativity.'
+          '未来，我希望能在 AI 与工程系统的交汇处继续探索，把想法变成可运行的现实。' :
+          'I\'m passionate about exploring the intersection of AI and engineering systems, and I\'m always looking for ways to turn ideas into reality.'
         }}
       </p>
       
-      <div class="about-skills">
-        <h3>{{ isZh ? '技能与兴趣' : 'Skills & Interests' }}</h3>
-        <ul>
-          <li>{{ isZh ? '前端开发：Vue.js、Vite' : 'Frontend Development: Vue.js, Vite' }}</li>
-          <li>{{ isZh ? '后端开发：Python' : 'Backend Development: Python' }}</li>
-          <li>{{ isZh ? '专注领域：人工智能/机器学习、Web技术、系统设计' : 'Focus Areas: AI/ML, Web Technologies, System Design' }}</li>
-          <li>{{ isZh ? '其他兴趣：古典文学' : 'Other Interests: Classical Literature, Philosophy, Finance' }}</li>
-        </ul>
-      </div>
+      <p class="about-description">
+        {{ isZh ?
+          '我的兴趣方向包括: Python、运维相关、ML/NLP/MLLM、Web技术。' :
+          'My focus areas include: Python, DevOps, ML/NLP/MLLM, and Web Technologies.'
+        }}
+      </p>
 
       <div class="about-contact">
-        <h3>{{ isZh ? '联系方式' : 'Contact me' }}</h3>
+        <h3>{{ isZh ? '联系我' : 'Contact me' }}</h3>
         <ul>
           <li>
             {{ isZh ? '邮箱：' : 'Email: ' }}
@@ -174,6 +181,20 @@ const copyToClipboard = async (text: string, field: string) => {
   margin-bottom: var(--space-lg);
 }
 
+.about-description strong {
+  font-weight: normal;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.about-description :deep(strong) {
+  font-weight: normal !important;
+  text-decoration: underline !important;
+  text-decoration-thickness:0.5px !important;
+  text-underline-offset: 3px !important;
+}
+
 .about-skills,
 .about-contact {
   margin-bottom: var(--space-xl);
@@ -182,10 +203,14 @@ const copyToClipboard = async (text: string, field: string) => {
 
 .about-skills h3,
 .about-contact h3 {
-  font-size: 24px;
-  font-weight: 1000; /* 更加粗 */
+  font-size: 20px;
+  font-weight: 700;
   margin-bottom: var(--space-md);
   color: var(--vp-c-text-1);
+  display: inline-block;
+  border: 2px solid var(--vp-c-text-1);
+  border-radius: 40px; /* 胶囊形状的大圆角 */
+  padding: 4px 10px;
 }
 
 .about-skills ul,
