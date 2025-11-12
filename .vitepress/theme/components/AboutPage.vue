@@ -35,13 +35,12 @@
       </div>
 
       <div class="about-contact">
-        <h3>{{ isZh ? '联系方式' : 'Get in Touch' }}</h3>
+        <h3>{{ isZh ? '联系方式' : 'Contact me' }}</h3>
         <ul>
           <li>
             {{ isZh ? '邮箱：' : 'Email: ' }}
             <span class="copyable" @click="copyToClipboard('huoweifang@foxmail.com', 'email')" :title="isZh ? '点击复制' : 'Click to copy'">
               huoweifang@foxmail.com
-              <span class="copy-icon">📋</span>
             </span>
             <span v-if="copiedField === 'email'" class="copied-tip">{{ isZh ? '已复制！' : 'Copied!' }}</span>
           </li>
@@ -49,7 +48,6 @@
             {{ isZh ? '微信：' : 'WeChat: ' }}
             <span class="copyable" @click="copyToClipboard('hwfgxwzxysw', 'wechat')" :title="isZh ? '点击复制' : 'Click to copy'">
               hwfgxwzxysw
-              <span class="copy-icon">📋</span>
             </span>
             <span v-if="copiedField === 'wechat'" class="copied-tip">{{ isZh ? '已复制！' : 'Copied!' }}</span>
           </li>

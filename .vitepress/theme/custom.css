@@ -1484,7 +1484,6 @@ div[class="content"] {
 
 /* Home layout inspired by minimal blog */
 .home-layout { display: grid; grid-template-columns: 1fr 300px; gap: var(--space-2xl); max-width: var(--vp-layout-max-width); margin: 0 auto; padding: var(--space-2xl) var(--space-lg); }
-.home-main { }
 .home-sidebar { position: sticky; top: 96px; height: fit-content; }
 
 .categories-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xl); }
