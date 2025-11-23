@@ -11,10 +11,6 @@ tags:
 description: A complete guide on how to create and publish blog posts on this VitePress-based website, including setup, writing, and deployment.
 ---
 
-# How to Publish a Blog Post on This Website
-
-This guide will walk you through the process of creating and publishing blog posts on this VitePress-based website.
-
 ## Prerequisites
 
 Before you start writing, make sure you have:

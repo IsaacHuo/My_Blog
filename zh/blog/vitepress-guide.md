@@ -7,9 +7,6 @@ tags: [VitePress, 博客搭建, 前端开发]
 description: 详细介绍如何使用 VitePress 搭建一个现代化的静态博客网站，包括配置、主题定制和部署。
 ---
 
-# VitePress 博客搭建完全指南
-
-VitePress 是一个基于 Vite 和 Vue 3 的静态站点生成器，专为技术文档和博客而设计。本文将详细介绍如何使用 VitePress 搭建一个功能完整的博客网站。
 
 ## 为什么选择 VitePress？
 

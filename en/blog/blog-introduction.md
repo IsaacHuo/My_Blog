@@ -11,9 +11,6 @@ tags:
 description: "A detailed overview of this VitePress-based personal blog: features, functionality, and design philosophy."
 ---
 
-# About This Blog
-
-Welcome to my personal blog! This site is built with VitePress and is dedicated to sharing technical knowledge, learning notes, and reflections on life.
 
 ## 🌟 Highlights
 
