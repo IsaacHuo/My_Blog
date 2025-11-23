@@ -1,8 +1,9 @@
 ---
 layout: ThoughtsPage
-title: Thoughts
+title: Projects
 thoughts:
-  - title: Sample Thought
-    url: /My_Blog/en/thoughts/sample-thought
+  - title: Sample Project
+    url: /My_Blog/public/projects_pdf/sample-project.pdf
     image: /My_Blog/thoughts-images/a.jpeg
 ---
+

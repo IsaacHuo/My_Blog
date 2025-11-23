@@ -2,7 +2,15 @@
   <div class="thoughts-layout">
     <div class="thoughts-content">
       <div class="thoughts-list">
-        <a v-for="thought in thoughts" :key="thought.url" :href="thought.url" class="thought-item">
+        <a 
+          v-for="thought in thoughts" 
+          :key="thought.url" 
+          :href="thought.url" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="thought-item"
+          @click.prevent="openPDF(thought.url)"
+        >
           <div class="thought-image">
             <img :src="thought.image || '/My_Blog/avatar.jpg'" :alt="thought.title" />
           </div>
@@ -15,7 +23,7 @@
       </div>
       
       <div v-if="thoughts.length === 0" class="empty-state">
-        <p>{{ isZh ? '脑袋空空，暂无随想...' : 'No thoughts yet...' }}</p>
+        <p>{{ isZh ? '暂无项目...' : 'No projects yet...' }}</p>
       </div>
     </div>
   </div>
@@ -28,12 +36,17 @@ import { computed } from 'vue'
 const { site, page, frontmatter } = useData()
 const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/'))
 
-// 这里可以根据实际需要从文件系统或数据源获取随想列表
-// 目前先用示例数据
+// 从 frontmatter 获取项目列表
 const thoughts = computed(() => {
-  // 示例数据 - 实际使用时可以从 frontmatter 或其他数据源获取
   return frontmatter.value.thoughts || []
 })
+
+// 打开PDF文件的函数
+const openPDF = (url: string) => {
+  // 检查URL是否已经是完整的PDF路径
+  const pdfUrl = url.endsWith('.pdf') ? url : `${url}.pdf`
+  window.open(pdfUrl, '_blank', 'noopener,noreferrer')
+}
 </script>
 
 <style scoped>

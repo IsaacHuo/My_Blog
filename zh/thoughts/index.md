@@ -1,9 +1,9 @@
 ---
 layout: ThoughtsPage
-title: 随想
+title: 项目
 thoughts:
-  - title: 示例随想
-    url: /My_Blog/zh/thoughts/sample-thought
+  - title: 示例项目
+    url: /My_Blog/public/projects_pdf/sample-project.pdf
     image: /My_Blog/thoughts-images/a.jpeg
 ---
 
