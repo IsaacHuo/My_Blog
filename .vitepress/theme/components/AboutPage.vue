@@ -18,19 +18,19 @@
         ">
       </p>
       <p class="about-description" v-html="isZh ?
-          '目前，我在<strong>大众汽车</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a>部门作为 Platform System & Integration <strong>实习生</strong>，专注于智能驾驶与车载系统的集成与验证。' :
+          '目前，我在<strong>大众汽车</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> 部门作为 Platform System & Integration <strong>实习生</strong>，专注于智能驾驶与车载系统的集成与验证。' :
           'I\'m now an <strong>intern</strong> at <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD of Volkswagen Group China</a>, working in Platform System & Integration, where I focus on intelligent driving systems and vehicle software integration. This experience has taught me how large-scale engineering balances innovation, safety, and precision.'
         ">
       </p>
       <p class="about-description" v-html="isZh ?
-          '我的<strong>兴趣</strong>涵盖编程、网络运维和AI，还对古典诗词与历史情有独钟。' :
+          '我的<strong>兴趣</strong>涵盖网络运维和AI，还对古典诗词与历史情有独钟。' :
           'My <strong>interests</strong> span programming, DevOps, and AI, with a special love for classical poetry and history.'
         ">
       </p>
       <p class="about-description">
         {{ isZh ?
-          '未来，我希望能在 AI 与工程系统的交汇处继续探索，把想法变成可运行的现实。' :
-          'I\'m passionate about exploring the intersection of AI and engineering systems, and I\'m always looking for ways to turn ideas into reality.'
+          '未来，我希望能在 AI 与工程的交汇处继续探索，推动AI技术在工业场景中的规模化应用，实现更快、更安全、更智能的工程解决方案。' :
+          'I\'m passionate about exploring the intersection of AI and engineering systems, and I\'m always looking for ways to turn cutting-edge ideas into reality.'
         }}
       </p>
 
