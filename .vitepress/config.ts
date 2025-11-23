@@ -21,7 +21,7 @@ export default defineConfig({
         siteTitle: 'Isaac Huo',
         nav: [
           { text: '文章', link: '/zh/blog/' },
-          { text: '随想', link: '/zh/thoughts/' },
+          { text: '项目', link: '/zh/projects/' },
           { text: '清单100', link: '/zh/list100/' },
           { text: 'EN', link: '/' }
         ],
@@ -52,7 +52,7 @@ export default defineConfig({
     siteTitle: 'Isaac Huo',
     nav: [
       { text: 'Blog', link: '/en/blog/' },
-      { text: 'Thoughts', link: '/en/thoughts/' },
+      { text: 'Projects', link: '/en/projects/' },
       { text: 'List 100', link: '/en/list100/' },
       { text: '中文', link: '/zh/' }
     ],
