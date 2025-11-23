@@ -5,7 +5,6 @@ export default defineConfig({
   description: "Sharing thoughts on technology, life, and creativity",
   // Cloudflare Pages 使用根路径
   base: '/',
-  publicDir: '../projects_pdf',
   
   locales: {
     root: {
