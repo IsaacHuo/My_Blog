@@ -5,7 +5,7 @@ export default defineConfig({
   description: "Sharing thoughts on technology, life, and creativity",
   // 对于 Cloudflare Pages，使用根路径
   // 对于 GitHub Pages，使用 '/My_Blog/'
-  base: '/',
+  base: '/My_Blog/',
   
   locales: {
     root: {
