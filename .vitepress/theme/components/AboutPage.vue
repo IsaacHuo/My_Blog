@@ -18,8 +18,8 @@
         ">
       </p>
       <p class="about-description" v-html="isZh ?
-          '目前，我在<strong>大众汽车</strong>旗下的 CARIAD China 部门作为 Platform System & Integration <strong>实习生</strong>，专注于智能驾驶与车载系统的集成与验证。' :
-          'I\'m now an <strong>intern</strong> at CARIAD China (Volkswagen Group), working in Platform System & Integration, where I focus on intelligent driving systems and vehicle software integration. This experience has taught me how large-scale engineering balances innovation, safety, and precision.'
+          '目前，我在<strong>大众汽车</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a>部门作为 Platform System & Integration <strong>实习生</strong>，专注于智能驾驶与车载系统的集成与验证。' :
+          'I\'m now an <strong>intern</strong> at <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD of Volkswagen Group China</a>, working in Platform System & Integration, where I focus on intelligent driving systems and vehicle software integration. This experience has taught me how large-scale engineering balances innovation, safety, and precision.'
         ">
       </p>
       <p class="about-description" v-html="isZh ?
