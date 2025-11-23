@@ -2,14 +2,11 @@
   <div class="thoughts-layout">
     <div class="thoughts-content">
       <div class="thoughts-list">
-        <a 
+        <div
           v-for="thought in thoughts" 
           :key="thought.url" 
-          :href="thought.url" 
-          target="_blank"
-          rel="noopener noreferrer"
           class="thought-item"
-          @click.prevent="openPDF(thought.url)"
+          @click="openPDF(thought.url)"
         >
           <div class="thought-image">
             <img :src="thought.image || '/My_Blog/avatar.jpg'" :alt="thought.title" />
@@ -19,7 +16,7 @@
               {{ thought.title }}
             </span>
           </div>
-        </a>
+        </div>
       </div>
       
       <div v-if="thoughts.length === 0" class="empty-state">
@@ -43,9 +40,20 @@ const thoughts = computed(() => {
 
 // 打开PDF文件的函数
 const openPDF = (url: string) => {
-  // 检查URL是否已经是完整的PDF路径
-  const pdfUrl = url.endsWith('.pdf') ? url : `${url}.pdf`
-  window.open(pdfUrl, '_blank', 'noopener,noreferrer')
+  // 确保 URL 是绝对路径或者能被浏览器正确解析
+  let pdfUrl = url
+  
+  // 如果 URL 不以 / 开头且不是完整 http/https URL，则添加 /
+  if (!pdfUrl.startsWith('/') && !pdfUrl.startsWith('http')) {
+    pdfUrl = '/' + pdfUrl
+  }
+  
+  // 如果没有 .pdf 扩展名，添加
+  if (!pdfUrl.endsWith('.pdf')) {
+    pdfUrl = pdfUrl + '.pdf'
+  }
+  
+  window.open(pdfUrl, '_blank')
 }
 </script>
 
