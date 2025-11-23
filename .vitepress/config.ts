@@ -3,9 +3,8 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Isaac Huo's Blog",
   description: "Sharing thoughts on technology, life, and creativity",
-  // 对于 Cloudflare Pages，使用根路径
-  // 对于 GitHub Pages，使用 '/My_Blog/'
-  base: '/My_Blog/',
+  // Cloudflare Pages 使用根路径
+  base: '/',
   
   locales: {
     root: {

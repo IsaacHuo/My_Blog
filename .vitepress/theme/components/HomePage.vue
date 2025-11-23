@@ -51,7 +51,7 @@ const zhModules = (import.meta as any).glob('../../../zh/blog/**/*.md', { eager:
 
 // Determine current locale
 const isChineseLocale = computed(() => {
-  return typeof window !== 'undefined' && (window.location.pathname.startsWith('/My_Blog/zh/') || window.location.pathname.startsWith('/zh/'))
+  return typeof window !== 'undefined' && window.location.pathname.startsWith('/zh/')
 })
 
 // Process posts based on current locale

@@ -32,54 +32,39 @@ const toggleLanguage = () => {
   console.log('Current path:', currentPath)
   console.log('isZh.value:', isZh.value)
   
-  // 清理和规范化路径，移除重复的路径段
+  // 清理和规范化路径
   const cleanPath = (path) => {
-    // 移除重复的 /My_Blog/ 段
-    let cleaned = path.replace(/(\/My_Blog)+/g, '/My_Blog')
-    // 移除重复的 /Blog/ 段
-    cleaned = cleaned.replace(/(\/Blog)+/g, '/Blog')
     // 确保路径以 / 结尾（如果不是文件）
-    if (!cleaned.includes('.') && !cleaned.endsWith('/')) {
-      cleaned += '/'
+    if (!path.includes('.') && !path.endsWith('/')) {
+      path += '/'
     }
-    return cleaned
+    return path
   }
   
   // 提取路径的基础部分和语言部分
   const extractPathParts = (path) => {
     const cleanedPath = cleanPath(path)
     
-    // 匹配 /My_Blog/[lang]/[page]/ 格式
-    const match = cleanedPath.match(/^\/My_Blog\/(zh|en)\/(.*?)\/?$/)
+    // 匹配 /[lang]/[page]/ 格式
+    const match = cleanedPath.match(/^\/(zh|en)\/(.*?)\/?$/)
     if (match) {
       return {
-        base: '/My_Blog/',
         lang: match[1],
         page: match[2] || ''
       }
     }
     
-    // 匹配 /My_Blog/[lang]/ 格式
-    const langMatch = cleanedPath.match(/^\/My_Blog\/(zh|en)\/?$/)
+    // 匹配 /[lang]/ 格式
+    const langMatch = cleanedPath.match(/^\/(zh|en)\/?$/)
     if (langMatch) {
       return {
-        base: '/My_Blog/',
         lang: langMatch[1],
         page: ''
       }
     }
     
-    // 匹配 /My_Blog/ 格式
-    if (cleanedPath.startsWith('/My_Blog/')) {
-      return {
-        base: '/My_Blog/',
-        lang: null,
-        page: cleanedPath.replace('/My_Blog/', '').replace(/\/$/, '')
-      }
-    }
-    
+    // 其他路径格式
     return {
-      base: '',
       lang: null,
       page: cleanedPath
     }
@@ -103,9 +88,9 @@ const toggleLanguage = () => {
   let newPath
   if (pathParts.base === '/My_Blog/') {
     if (pathParts.page) {
-      newPath = `/My_Blog/${targetLang}/${pathParts.page}/`
+      newPath = `/${targetLang}/${pathParts.page}/`
     } else {
-      newPath = `/My_Blog/${targetLang}/`
+      newPath = `/${targetLang}/`
     }
   } else {
     newPath = `/${targetLang}${pathParts.page}`
