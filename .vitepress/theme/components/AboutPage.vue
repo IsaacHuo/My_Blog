@@ -33,13 +33,6 @@
           'I\'m passionate about exploring the intersection of AI and engineering systems, and I\'m always looking for ways to turn ideas into reality.'
         }}
       </p>
-      
-      <p class="about-description">
-        {{ isZh ?
-          '我的兴趣方向包括: Python、运维相关、ML/NLP/MLLM、Web技术。' :
-          'My focus areas include: Python, DevOps, ML/NLP/MLLM, and Web Technologies.'
-        }}
-      </p>
 
       <div class="about-contact">
         <h3>{{ isZh ? '联系我' : 'Contact me' }}</h3>
