@@ -4,7 +4,7 @@ import Layout from './Layout.vue'
 import HomePage from './components/HomePage.vue'
 import ArticleLayout from './components/ArticleLayout.vue'
 import AboutPage from './components/AboutPage.vue'
-import ThoughtsPage from './components/ThoughtsPage.vue'
+import ProjectsPage from './components/ProjectsPage.vue'
 import List100Page from './components/List100Page.vue'
 import BlogList from './components/BlogList.vue'
 import LanguageSwitch from './components/LanguageSwitch.vue'
@@ -24,7 +24,7 @@ export default {
     app.component('HomePage', HomePage)
     app.component('ArticleLayout', ArticleLayout)
     app.component('AboutPage', AboutPage)
-    app.component('ThoughtsPage', ThoughtsPage)
+    app.component('ProjectsPage', ProjectsPage)
     app.component('List100Page', List100Page)
     app.component('BlogList', BlogList)
     app.component('LanguageSwitch', LanguageSwitch)
