@@ -5,6 +5,14 @@ import vueParser from 'vue-eslint-parser'
 
 export default [
   {
+    ignores: [
+      'node_modules/**',
+      '.vitepress/cache/**',
+      '.vitepress/dist/**',
+      'dist/**'
+    ]
+  },
+  {
     files: ["**/*.js", "**/*.ts", "**/*.vue"],
     languageOptions: {
       parser: vueParser,
