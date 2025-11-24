@@ -1,3 +1,4 @@
+import { EnhanceAppContext } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './custom.css'
 import Layout from './Layout.vue'
@@ -11,7 +12,6 @@ import LanguageSwitch from './components/LanguageSwitch.vue'
 import ProgressTracker from './components/ProgressTracker.vue'
 import List100Item from './components/List100Item.vue'
 import BackToTop from './components/BackToTop.vue'
-import { EnhanceAppContext } from 'vitepress'
 
 export default {
   ...DefaultTheme,
