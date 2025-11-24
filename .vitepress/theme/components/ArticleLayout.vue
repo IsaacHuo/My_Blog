@@ -58,6 +58,9 @@
         <div class="article-content">
           <Content />
         </div>
+
+        <!-- 评论区 -->
+        <Comments />
       </article>
     </main>
   </div>
@@ -66,6 +69,7 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
 import { ref, onMounted, onUnmounted } from 'vue'
+import Comments from './Comments.vue'
 
 const { frontmatter } = useData()
 const headings = ref<Array<{ id: string; text: string; level: number }>>([])
