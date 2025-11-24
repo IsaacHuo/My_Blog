@@ -48,8 +48,8 @@ npm run preview
 
 ### Deployment
 - Optimized for Cloudflare Pages deployment
-- Automated building and deployment pipeline
-- Static asset optimization
+- Automatic building and deployment on git push
+- Zero-configuration deployment
 
 ## Project Structure
 
@@ -114,7 +114,7 @@ thoughts:
 
 ## Comments System
 
-This blog uses Giscus for commenting, which stores comments as GitHub Discussions. For configuration details, see [GISCUS_SETUP.md](./GISCUS_SETUP.md).
+This blog uses Giscus for commenting, which stores comments as GitHub Discussions.
 
 ## Technology Stack
 
