@@ -76,13 +76,11 @@ body[lang="zh"] *, body[lang="zh-CN"] *,
 
 /* Global Scale to 110% */
 html {
-  zoom: 110%;
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  -o-transform: scale(1.1);
-  transform: scale(1.1);
-  transform-origin: top left;
-  width: 90.91%; /* 100% / 1.1 to compensate for scaling */
+  /* 取消全局缩放与 transform，避免影响布局居中 */
+  zoom: 100%;
+  transform: none;
+  transform-origin: initial;
+  width: 100%;
 }
 
 /* 确保在缩放后body仍然占满视口 */
@@ -2526,8 +2524,7 @@ html.vp-nav-screen-open {
   .books-sidebar,
   .mobile-sidebar-toggle,
   .mobile-sidebar-overlay,
-  .home-sidebar,
-  .article-sidebar {
+  .home-sidebar {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
