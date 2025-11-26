@@ -170,25 +170,26 @@ onUnmounted(() => {
 <style scoped>
 /* 主容器布局 */
 .article-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 1.5rem;
   min-height: 100vh;
   position: relative;
-  margin-left: auto;
-  margin-right: 0; /* 让整个容器向右靠 */
+  display: flex;
+  gap: 2rem;
   overflow-x: hidden; /* 禁止水平滚动 */
 }
 
 /* 左侧边栏 */
 .article-sidebar {
-  position: absolute;
+  position: sticky;
   top: 80px;
-  left: 0;
   width: 240px;
+  height: fit-content;
+  flex-shrink: 0;
   border-right: 1px solid var(--vp-c-border);
-  padding: 0 1.5rem 0 0;
-  background: var(--vp-c-bg);
+  padding-right: 1.5rem;
+  background: transparent;
   z-index: 10;
   overflow: visible; /* 允许内容完全显示，不产生滚动条 */
 }
@@ -215,10 +216,10 @@ onUnmounted(() => {
 .toc-link {
   display: block;
   padding: 6px 12px;
-  color: var(--vp-c-text-2);
+  color: #000;
   text-decoration: none;
   font-size: 14px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 0.3s ease;
   border-left: 3px solid transparent;
   padding-left: 12px;
   margin: 2px 0;
@@ -234,32 +235,32 @@ onUnmounted(() => {
   top: 0;
   bottom: 0;
   width: 0;
-  background: var(--vp-c-brand-soft);
+  background: transparent;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: -1;
 }
 
 .toc-link:hover {
-  color: var(--vp-c-brand-1);
-  background: var(--vp-c-bg-soft);
-  transform: translateX(4px);
-  border-left-color: var(--vp-c-brand-2);
+  color: #0066cc;
+  background: transparent;
+  transform: translateX(0);
+  border-left-color: transparent;
 }
 
 .toc-link:hover::before {
-  width: 100%;
+  width: 0;
 }
 
 .toc-item.active .toc-link {
-  color: var(--vp-c-brand-1);
-  border-left-color: var(--vp-c-brand-1);
+  color: #0066cc;
+  border-left-color: transparent;
   font-weight: 600;
-  background: var(--vp-c-brand-soft);
-  transform: translateX(2px);
+  background: transparent;
+  transform: translateX(0);
 }
 
 .toc-item.active .toc-link::before {
-  width: 100%;
+  width: 0;
 }
 
 /* 不同级别的标题缩进 */
@@ -298,15 +299,16 @@ onUnmounted(() => {
 
 /* 右侧文章内容 */
 .article-main {
-  min-width: 0;
   flex: 1;
-  margin-left: 270px; /* 为侧边栏留出空间 */
-  width: calc(100% - 270px);
+  min-width: 0;
   overflow-x: hidden; /* 禁止水平滚动 */
+  display: flex;
+  justify-content: center;
 }
 
 .article-layout {
-  max-width: none;
+  width: 100%;
+  max-width: 700px;
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* 禁止水平滚动 */
@@ -317,7 +319,7 @@ onUnmounted(() => {
   margin-bottom: 1.5rem;
   padding-bottom: 0.8rem;
   border-bottom: 1px solid var(--vp-c-border);
-  max-width: 600px; /* 限制文章头部最大宽度 */
+  width: 100%;
 }
 
 .article-title {
@@ -364,7 +366,7 @@ onUnmounted(() => {
   font-weight: 600;
   line-height: 1.2;
   color: var(--vp-c-text-1);
-  max-width: 600px; /* 限制标题最大宽度 */
+  width: 100%;
 }
 
 .article-content :deep(h1) {
@@ -397,7 +399,7 @@ onUnmounted(() => {
   margin: 0.6rem 0;
   font-size: 15px;
   color: var(--vp-c-text-1);
-  max-width: 600px; /* 限制段落最大宽度 */
+  width: 100%;
 }
 
 .article-content :deep(a) {
@@ -414,7 +416,7 @@ onUnmounted(() => {
 .article-content :deep(ol) {
   margin: 0.6rem 0;
   padding-left: 1.2rem;
-  max-width: 600px; /* 限制列表最大宽度 */
+  width: 100%;
 }
 
 .article-content :deep(ul) {
@@ -439,7 +441,7 @@ onUnmounted(() => {
   border-radius: 8px;
   font-style: italic;
   color: var(--vp-c-text-2);
-  max-width: 600px; /* 限制引用块最大宽度 */
+  width: 100%;
 }
 
 .article-content :deep(blockquote p) {
@@ -463,7 +465,7 @@ onUnmounted(() => {
   overflow-x: auto;
   margin: 0 0 0.8rem 0;
   border: 1px solid var(--vp-c-border);
-  max-width: 600px; /* 固定最大宽度 */
+  width: 100%;
   white-space: pre; /* 保持代码原始格式 */
   overflow-wrap: normal; /* 不强制换行 */
   display: block; /* 确保块级显示 */
@@ -491,11 +493,11 @@ onUnmounted(() => {
 
 /* 针对 VitePress 代码块的特殊处理 */
 .article-content :deep(.vp-code-group) {
-  max-width: 600px;
+  width: 100%;
 }
 
 .article-content :deep(.shiki) {
-  max-width: 600px;
+  width: 100%;
   overflow-x: auto;
   white-space: pre;
 }
@@ -526,7 +528,7 @@ onUnmounted(() => {
 }
 
 .article-content :deep(img) {
-  max-width: 600px; /* 限制图片最大宽度 */
+  max-width: 100%;
   height: auto;
   margin: 0.8rem 0;
   border-radius: 6px;
@@ -535,7 +537,6 @@ onUnmounted(() => {
 
 .article-content :deep(table) {
   width: 100%;
-  max-width: 600px; /* 限制表格最大宽度 */
   border-collapse: collapse;
   margin: 1rem 0;
   font-size: 14px;
@@ -557,7 +558,7 @@ onUnmounted(() => {
   margin: 1.5rem 0;
   border: none;
   border-top: 1px solid var(--vp-c-border);
-  max-width: 400px; /* 限制分隔线最大宽度 */
+  width: 100%;
 }
 
 .article-content :deep(strong) {
@@ -627,16 +628,11 @@ onUnmounted(() => {
 @media (max-width: 1024px) {
   .article-container {
     padding: 1rem;
-    margin: 0 auto; /* 小屏幕时恢复居中 */
+    gap: 1.5rem;
   }
   
   .article-sidebar {
     width: 200px;
-  }
-  
-  .article-main {
-    margin-left: 230px;
-    width: calc(100% - 230px);
   }
   
   .article-title {
@@ -647,16 +643,20 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .article-container {
     padding: 1rem;
-    margin: 0 auto; /* 移动端居中 */
+    flex-direction: column;
+    gap: 1rem;
   }
   
   .article-sidebar {
     display: none; /* 移动端隐藏左侧目录 */
+    width: 100%;
+    position: static;
+    border-right: none;
+    padding-right: 0;
   }
   
   .article-main {
-    margin-left: 0;
-    width: 100%;
+    flex: 1;
   }
   
   .article-title {
