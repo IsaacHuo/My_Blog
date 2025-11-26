@@ -170,26 +170,23 @@ onUnmounted(() => {
 <style scoped>
 /* 主容器布局 */
 .article-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
   min-height: 100vh;
   position: relative;
-  display: flex;
-  gap: 2rem;
   overflow-x: hidden; /* 禁止水平滚动 */
 }
 
 /* 左侧边栏 */
 .article-sidebar {
-  position: sticky;
+  position: absolute;
   top: 80px;
+  left: 0;
   width: 240px;
-  height: fit-content;
-  flex-shrink: 0;
   border-right: 1px solid var(--vp-c-border);
-  padding-right: 1.5rem;
-  background: transparent;
+  padding: 0 1.5rem 0 0;
+  background: var(--vp-c-bg);
   z-index: 10;
   overflow: visible; /* 允许内容完全显示，不产生滚动条 */
 }
@@ -299,17 +296,16 @@ onUnmounted(() => {
 
 /* 右侧文章内容 */
 .article-main {
-  flex: 1;
   min-width: 0;
+  flex: 1;
+  margin-left: 270px; /* 为侧边栏留出空间 */
+  width: calc(100% - 270px);
   overflow-x: hidden; /* 禁止水平滚动 */
-  display: flex;
-  justify-content: center;
 }
 
 .article-layout {
-  width: 100%;
-  max-width: 700px;
-  margin: 0;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 0;
   overflow-x: hidden; /* 禁止水平滚动 */
 }
@@ -628,11 +624,16 @@ onUnmounted(() => {
 @media (max-width: 1024px) {
   .article-container {
     padding: 1rem;
-    gap: 1.5rem;
+    margin: 0 auto; /* 小屏幕时恢复居中 */
   }
   
   .article-sidebar {
     width: 200px;
+  }
+  
+  .article-main {
+    margin-left: 230px;
+    width: calc(100% - 230px);
   }
   
   .article-title {
@@ -643,20 +644,16 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .article-container {
     padding: 1rem;
-    flex-direction: column;
-    gap: 1rem;
+    margin: 0 auto; /* 移动端居中 */
   }
   
   .article-sidebar {
     display: none; /* 移动端隐藏左侧目录 */
-    width: 100%;
-    position: static;
-    border-right: none;
-    padding-right: 0;
   }
   
   .article-main {
-    flex: 1;
+    margin-left: 0;
+    width: 100%;
   }
   
   .article-title {
