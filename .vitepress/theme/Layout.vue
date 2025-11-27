@@ -59,6 +59,5 @@ const isArticlePage = computed(() => {
 .article-comments-section {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--vp-c-border);
 }
 </style>
