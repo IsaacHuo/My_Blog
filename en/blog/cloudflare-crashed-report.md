@@ -5,7 +5,7 @@ author: Isaac Huo
 description: Cloudflare Global Outage Analysis - Complete Review of Permission Change to System Collapse
 ---
 
-# A Simple Database Permission Change That Caused Half the Internet's Heart to Stop
+# A Simple Database Permission Change That Caused the Internet's Heart to Stop
 
 ## Introduction
 
