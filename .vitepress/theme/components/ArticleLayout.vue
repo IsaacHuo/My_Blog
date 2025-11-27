@@ -627,6 +627,15 @@ onUnmounted(() => {
   transform: scale(0.8);
 }
 
+/* 覆盖 VitePress 默认主题的左侧 padding，避免整页被挤到右边 */
+:global(.VPDoc) {
+  padding-left: 0 !important;
+}
+
+:global(.VPContent) {
+  padding-left: 0 !important;
+}
+
 /* 响应式设计 */
 @media (max-width: 1024px) {
   .article-sidebar {

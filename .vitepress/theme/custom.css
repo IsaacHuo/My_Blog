@@ -7,6 +7,49 @@
   display: none !important;
 }
 
+/* 隐藏移动端下拉菜单中的 "Return to top" 链接 */
+.VPDocAsideOutline a[href="#"],
+.outline-link[href="#"] {
+  display: none !important;
+}
+
+/* 目录导航栏样式调整 */
+/* 1. 目录文字改为黑色 */
+.VPDocAsideOutline .outline-link {
+  color: #000 !important;
+}
+
+.VPDocAsideOutline .outline-link:hover {
+  color: #0066cc !important;
+}
+
+.VPDocAsideOutline .outline-link.active {
+  color: #0066cc !important;
+  font-weight: 600;
+}
+
+/* 2. 缩小正文与右侧目录的距离 */
+.VPDoc .container {
+  max-width: 750px !important;
+}
+
+.VPDoc .content {
+  padding-right: 1rem !important;
+}
+
+.VPDoc .aside {
+  padding-left: 1rem !important;
+}
+
+/* 3. 正文距离页眉更近 */
+.VPDoc {
+  padding-top: 0.1rem !important;
+}
+
+.vp-doc {
+  padding-top: 0.1rem !important;
+}
+
 /* 自定义字体声明 */
 @font-face {
   font-family: 'GoudyOldStyle';
@@ -2674,3 +2717,29 @@ a[href*="/zh/"] * {
 :not(:lang(en)):not(:lang(en-US)) {
   font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
+
+/* Giscus 评论组件字体样式 */
+.giscus,
+.giscus-frame {
+  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Giscus 内部所有文本 */
+.giscus * {
+  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Giscus 中文内容 */
+.giscus-content,
+.giscus-comment,
+.giscus-reply {
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+}
+
+/* Giscus 按钮和输入框 */
+.giscus button,
+.giscus input,
+.giscus textarea {
+  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
