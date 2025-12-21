@@ -52,6 +52,7 @@
           <div class="article-meta">
             <time v-if="frontmatter.date" :datetime="frontmatter.date">{{ formatDate(frontmatter.date) }}</time>
             <span v-if="frontmatter.author" class="author">• {{ frontmatter.author }}</span>
+            <span v-if="viewCount" class="view-count">• 阅读量：{{ viewCount }} 次</span>
           </div>
         </header>
 
@@ -67,11 +68,13 @@
 </template>
 
 <script setup lang="ts">
-import { useData } from 'vitepress'
-import { ref, onMounted, onUnmounted } from 'vue'
+import { useData, useRoute } from 'vitepress'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import Comments from './Comments.vue'
 
 const { frontmatter } = useData()
+const route = useRoute()
+const viewCount = ref<number | string>('...')
 const headings = ref<Array<{ id: string; text: string; level: number }>>([])
 const activeHeading = ref('')
 const showBackToTop = ref(false)
@@ -156,9 +159,34 @@ function updateActiveHeading() {
   activeHeading.value = activeId
 }
 
+async function fetchViewCount() {
+  try {
+    const pageId = route.path.replace(/^\/|\/$/g, '');
+    // 如果是首页，可能不需要计数，或者根据需求调整
+    if (!pageId) return;
+
+    // TODO: 请将下面的 URL 替换为你实际的 Worker 地址
+    // 例如: https://blog-counter.isaachuo.workers.dev/?id=${pageId}
+    const workerUrl = `https://blog-counter.2210286979.workers.dev/?id=${pageId}`;
+
+    const res = await fetch(workerUrl);
+    const data = await res.json();
+    viewCount.value = data.count;
+  } catch (e) {
+    console.error('获取阅读量失败', e);
+    viewCount.value = 'N/A';
+  }
+}
+
+watch(() => route.path, () => {
+  viewCount.value = '...';
+  fetchViewCount();
+});
+
 onMounted(() => {
   extractHeadings()
   window.addEventListener('scroll', handleScroll)
+  fetchViewCount()
   // 移除自动调用 updateActiveHeading，只在滚动时才更新
 })
 
@@ -340,6 +368,10 @@ onUnmounted(() => {
 }
 
 .article-meta .author {
+  margin-left: 0.5rem;
+}
+
+.article-meta .view-count {
   margin-left: 0.5rem;
 }
 
