@@ -35,8 +35,30 @@
       </p>
 
       <div class="about-contact">
-        <h3>{{ isZh ? '联系我' : 'Contact me' }}</h3>
+        <h3>{{ isZh ? '联系我(求职ing)' : 'Contact me (I need a job, seriously)' }}</h3>
         <ul>
+          <li>
+            {{ isZh ? '简历：' : 'Resume: ' }}
+            <a 
+              :href="isZh ? '/my-cv/resume_cn.pdf' : '/my-cv/resume_en.pdf'" 
+              target="_blank" 
+              class="copyable"
+              :title="isZh ? '点击查看简历' : 'Click to view resume'"
+            >
+              {{ isZh ? '点击查看' : 'view pdf' }}
+            </a>
+          </li>
+          <li v-if="!isZh">
+            LinkedIn: 
+            <a 
+              href="https://www.linkedin.com/in/weifang-huo-293237386/" 
+              target="_blank" 
+              class="copyable"
+              title="Click to view LinkedIn profile"
+            >
+              view my profile
+            </a>
+          </li>
           <li>
             {{ isZh ? '邮箱：' : 'Email: ' }}
             <span class="copyable" @click="copyToClipboard('huoweifang@foxmail.com', 'email')" :title="isZh ? '点击复制' : 'Click to copy'">
