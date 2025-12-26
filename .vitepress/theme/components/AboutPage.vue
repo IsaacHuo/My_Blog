@@ -82,6 +82,7 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
 import { ref } from 'vue'
+import ViewCounter from './ViewCounter.vue'
 
 const { site, page } = useData()
 const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')
@@ -116,6 +117,7 @@ const copyToClipboard = async (text: string, field: string) => {
   margin: 0 auto;
   padding: var(--space-3xl) var(--space-lg);
 }
+
 
 .about-content h1 {
   font-size: var(--vp-font-size-3xl);

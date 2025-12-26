@@ -2743,3 +2743,26 @@ a[href*="/zh/"] * {
   font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
 
+
+/* Stats Card and Sidebar Spacing */
+.stats-card {
+  border: 1px solid var(--vp-c-border);
+  padding: var(--space-lg);
+  background: var(--vp-c-bg);
+}
+
+.stats-card h3 {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  font-size: var(--vp-font-size-lg);
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.home-sidebar section {
+  margin-bottom: var(--space-xl);
+}
+
+.home-sidebar section:last-child {
+  margin-bottom: 0;
+}

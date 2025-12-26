@@ -2,7 +2,6 @@ import { EnhanceAppContext } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import './custom.css'
 import Layout from './Layout.vue'
-import HomePage from './components/HomePage.vue'
 import AboutPage from './components/AboutPage.vue'
 import ProjectsPage from './components/ProjectsPage.vue'
 import List100Page from './components/List100Page.vue'
@@ -20,7 +19,6 @@ export default {
     DefaultTheme.enhanceApp?.(ctx)
     const { app } = ctx
     // 注册全局组件
-    app.component('HomePage', HomePage)
     app.component('AboutPage', AboutPage)
     app.component('ProjectsPage', ProjectsPage)
     app.component('List100Page', List100Page)

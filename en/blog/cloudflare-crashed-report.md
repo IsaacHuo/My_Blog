@@ -1,11 +1,11 @@
 ---
-title: A Simple Database Permission Change That Caused Half the Internet's Heart to Stop
+title: The DB Permission Outage on Cloudflare
 date: 2025-11-18
 author: Isaac Huo
 description: Cloudflare Global Outage Analysis - Complete Review of Permission Change to System Collapse
 ---
 
-# A Simple Database Permission Change That Caused the Internet's Heart to Stop
+# The DB Permission Outage on Cloudflare
 
 ## Introduction
 
