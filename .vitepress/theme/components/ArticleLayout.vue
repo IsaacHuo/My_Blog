@@ -5,9 +5,16 @@
       <div class="sidebar-content">
         <nav class="toc-nav">
           <ul class="toc-list">
-            <li v-for="heading in headings" :key="heading.id" 
-                :class="['toc-item', `toc-level-${heading.level}`, { active: activeHeading === heading.id }]">
-              <a :href="`#${heading.id}`" @click="scrollToHeading(heading.id)" class="toc-link">
+            <li
+              v-for="heading in headings"
+              :key="heading.id" 
+              :class="['toc-item', `toc-level-${heading.level}`, { active: activeHeading === heading.id }]"
+            >
+              <a
+                :href="`#${heading.id}`"
+                class="toc-link"
+                @click="scrollToHeading(heading.id)"
+              >
                 {{ heading.text }}
               </a>
             </li>
@@ -21,11 +28,21 @@
       <button 
         v-show="showBackToTop" 
         class="desktop-back-to-top" 
-        @click="scrollToTop" 
-        aria-label="回到顶部"
+        aria-label="回到顶部" 
+        @click="scrollToTop"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 15l-6-6-6 6"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 15l-6-6-6 6" />
         </svg>
       </button>
     </Transition>
@@ -35,11 +52,21 @@
       <button 
         v-show="showBackToTop" 
         class="mobile-back-to-top" 
-        @click="scrollToTop" 
-        aria-label="回到顶部"
+        aria-label="回到顶部" 
+        @click="scrollToTop"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 15l-6-6-6 6"/>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 15l-6-6-6 6" />
         </svg>
       </button>
     </Transition>
@@ -48,11 +75,22 @@
     <main class="article-main">
       <article class="article-layout">
         <header class="article-header">
-          <h1 class="article-title">{{ frontmatter.title }}</h1>
+          <h1 class="article-title">
+            {{ frontmatter.title }}
+          </h1>
           <div class="article-meta">
-            <time v-if="frontmatter.date" :datetime="frontmatter.date">{{ formatDate(frontmatter.date) }}</time>
-            <span v-if="frontmatter.author" class="author">• {{ frontmatter.author }}</span>
-            <span v-if="viewCount" class="view-count">• 阅读量：{{ viewCount }} 次</span>
+            <time
+              v-if="frontmatter.date"
+              :datetime="frontmatter.date"
+            >{{ formatDate(frontmatter.date) }}</time>
+            <span
+              v-if="frontmatter.author"
+              class="author"
+            >• {{ frontmatter.author }}</span>
+            <span
+              v-if="viewCount"
+              class="view-count"
+            >• 阅读量：{{ viewCount }} 次</span>
           </div>
         </header>
 

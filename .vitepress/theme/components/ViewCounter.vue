@@ -1,13 +1,26 @@
 <template>
-  <span class="view-count" :class="{ 'with-label': showLabel }">
-    <span v-if="loading" class="count-loading">...</span>
-    <span v-else-if="error" class="count-error" :title="error">
+  <span
+    class="view-count"
+    :class="{ 'with-label': showLabel }"
+  >
+    <span
+      v-if="loading"
+      class="count-loading"
+    >...</span>
+    <span
+      v-else-if="error"
+      class="count-error"
+      :title="error"
+    >
       {{ isZh ? '(配置错误)' : '(Config Error)' }}
     </span>
     <template v-else>
       <span v-if="showLabel">{{ isZh ? '总阅读量: ' : 'Total Views: ' }}</span>
       <span class="count-number">{{ formattedCount }}</span>
-      <span v-if="!showLabel" class="count-suffix"> {{ isZh ? '阅读量' : ' views' }}</span>
+      <span
+        v-if="!showLabel"
+        class="count-suffix"
+      > {{ isZh ? '阅读量' : ' views' }}</span>
     </template>
   </span>
 </template>

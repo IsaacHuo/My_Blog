@@ -2,8 +2,8 @@
   <div class="custom-language-switch">
     <button 
       class="lang-toggle-btn" 
-      @click="toggleLanguage"
       :title="currentLang === 'zh' ? 'Switch to English' : '切换到中文'"
+      @click="toggleLanguage"
     >
       <span class="lang-icon">🌐</span>
       <span class="lang-text">{{ currentLang === 'zh' ? 'EN' : '中' }}</span>

@@ -2,8 +2,16 @@
   <div class="about-layout">
     <div class="about-content">
       <div class="about-avatar">
-        <a href="https://www.xiaohongshu.com/user/profile/6767de890000000018017ac0" target="_blank" class="avatar-link">
-          <img src="/avatar.jpg" :alt="isZh ? '霍玮放' : 'Isaac Huo'" class="avatar-image" />
+        <a
+          href="https://www.xiaohongshu.com/user/profile/6767de890000000018017ac0"
+          target="_blank"
+          class="avatar-link"
+        >
+          <img
+            src="/avatar.jpg"
+            :alt="isZh ? '霍玮放' : 'Isaac Huo'"
+            class="avatar-image"
+          >
         </a>
       </div>
       <p class="welcome-message">
@@ -12,21 +20,27 @@
           'Hi there👋, I\'m Isaac Huo — welcome to my blog!'
         }}
       </p>
-      <p class="about-intro" v-html="isZh ? 
+      <p
+        class="about-intro"
+        v-html="isZh ? 
           '我来自广西梧州，目前就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，本科主修电气工程，辅修计算机科学。起初我选择了风景园林专业，但后来我意识到自己更热爱技术与工程，于是转入电气工程，并开始深入探索人工智能的工程化落地。' :
           'I grew up in a small city in southern China, and I\'m currently an undergraduate student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, majoring in Electrical Engineering and minoring in Computer Science. I originally studied Landscape Architecture but later discovered my passion for technology and intelligent systems, which led me to switch majors.'
-        ">
-      </p>
-      <p class="about-description" v-html="isZh ?
+        "
+      />
+      <p
+        class="about-description"
+        v-html="isZh ?
           '目前，我在<strong>大众汽车</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> 部门作为 Platform System & Integration <strong>实习生</strong>，专注于智能驾驶与车载系统的集成与验证。' :
           'I\'m now an <strong>intern</strong> at <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD of Volkswagen Group China</a>, working in Platform System & Integration, where I focus on intelligent driving systems and vehicle software integration. This experience has taught me how large-scale engineering balances innovation, safety, and precision.'
-        ">
-      </p>
-      <p class="about-description" v-html="isZh ?
+        "
+      />
+      <p
+        class="about-description"
+        v-html="isZh ?
           '我的<strong>兴趣</strong>涵盖网络运维和AI，还对古典诗词与历史情有独钟。' :
           'My <strong>interests</strong> span programming, DevOps, and AI, with a special love for classical poetry and history.'
-        ">
-      </p>
+        "
+      />
       <p class="about-description">
         {{ isZh ?
           '未来，我希望能在 AI 与工程的交汇处继续探索，推动AI技术在工业场景中的规模化应用，实现更快、更安全、更智能的工程解决方案。' :
@@ -61,17 +75,31 @@
           </li>
           <li>
             {{ isZh ? '邮箱：' : 'Email: ' }}
-            <span class="copyable" @click="copyToClipboard('huoweifang@foxmail.com', 'email')" :title="isZh ? '点击复制' : 'Click to copy'">
+            <span
+              class="copyable"
+              :title="isZh ? '点击复制' : 'Click to copy'"
+              @click="copyToClipboard('huoweifang@foxmail.com', 'email')"
+            >
               huoweifang@foxmail.com
             </span>
-            <span v-if="copiedField === 'email'" class="copied-tip">{{ isZh ? '已复制！' : 'Copied!' }}</span>
+            <span
+              v-if="copiedField === 'email'"
+              class="copied-tip"
+            >{{ isZh ? '已复制！' : 'Copied!' }}</span>
           </li>
           <li>
             {{ isZh ? '微信：' : 'WeChat: ' }}
-            <span class="copyable" @click="copyToClipboard('hwfgxwzxysw', 'wechat')" :title="isZh ? '点击复制' : 'Click to copy'">
+            <span
+              class="copyable"
+              :title="isZh ? '点击复制' : 'Click to copy'"
+              @click="copyToClipboard('hwfgxwzxysw', 'wechat')"
+            >
               hwfgxwzxysw
             </span>
-            <span v-if="copiedField === 'wechat'" class="copied-tip">{{ isZh ? '已复制！' : 'Copied!' }}</span>
+            <span
+              v-if="copiedField === 'wechat'"
+              class="copied-tip"
+            >{{ isZh ? '已复制！' : 'Copied!' }}</span>
           </li>
         </ul>
       </div>
@@ -82,7 +110,6 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
 import { ref } from 'vue'
-import ViewCounter from './ViewCounter.vue'
 
 const { site, page } = useData()
 const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')

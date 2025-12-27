@@ -10,10 +10,17 @@
       </p>
       
       <div class="list100-items">
-        <div v-for="(item, index) in list100Items" :key="index" class="list100-item">
+        <div
+          v-for="(item, index) in list100Items"
+          :key="index"
+          class="list100-item"
+        >
           <span class="item-number">{{ index + 1 }}.</span>
           <span class="item-status">{{ item.status }}</span>
-          <span class="item-text" v-html="isZh ? item.textZh : item.textEn"></span>
+          <span
+            class="item-text"
+            v-html="isZh ? item.textZh : item.textEn"
+          />
         </div>
       </div>
     </div>

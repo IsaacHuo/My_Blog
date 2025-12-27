@@ -3,12 +3,21 @@
     <div class="blog-content">
       <h1>{{ isZh ? '文章' : 'Blog' }}</h1>
       <div class="blog-articles">
-        <article v-for="post in posts" :key="post.url" class="blog-article">
-          <div class="article-date">{{ formatDate(post.frontmatter.date) }}</div>
+        <article
+          v-for="post in posts"
+          :key="post.url"
+          class="blog-article"
+        >
+          <div class="article-date">
+            {{ formatDate(post.frontmatter.date) }}
+          </div>
           <h2 class="article-title">
             <a :href="withBase(post.url)">{{ post.frontmatter.title }}</a>
           </h2>
-          <div v-if="post.frontmatter.description" class="article-description">
+          <div
+            v-if="post.frontmatter.description"
+            class="article-description"
+          >
             {{ post.frontmatter.description }}
           </div>
         </article>

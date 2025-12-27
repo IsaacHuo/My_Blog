@@ -1,5 +1,8 @@
 <template>
-  <div class="comments-wrapper" ref="container">
+  <div
+    ref="container"
+    class="comments-wrapper"
+  >
     <noscript>请启用 JavaScript 以加载评论。</noscript>
   </div>
 </template>

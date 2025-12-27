@@ -1,5 +1,8 @@
 <template>
-  <div class="progress-tracker" ref="trackerRef">
+  <div
+    ref="trackerRef"
+    class="progress-tracker"
+  >
     <div 
       class="progress-item" 
       @mouseenter="showTooltip = true"
@@ -7,19 +10,33 @@
     >
       <div class="item-content">
         <span class="item-text">{{ itemText }}</span>
-        <span class="progress-icon" v-if="progressText">📝</span>
+        <span
+          v-if="progressText"
+          class="progress-icon"
+        >📝</span>
       </div>
       
       <!-- 悬停提示框 -->
-      <div v-if="showTooltip" class="progress-tooltip">
+      <div
+        v-if="showTooltip"
+        class="progress-tooltip"
+      >
         <div class="tooltip-content">
-          <div class="tooltip-header">{{ getTooltipHeader() }}</div>
-          <div class="tooltip-text" v-if="progressText">
+          <div class="tooltip-header">
+            {{ getTooltipHeader() }}
+          </div>
+          <div
+            v-if="progressText"
+            class="tooltip-text"
+          >
             {{ progressText }}
           </div>
-          <div class="tooltip-empty" v-else>
-             {{ getEmptyText() }}
-           </div>
+          <div
+            v-else
+            class="tooltip-empty"
+          >
+            {{ getEmptyText() }}
+          </div>
         </div>
       </div>
     </div>

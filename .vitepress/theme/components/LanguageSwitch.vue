@@ -2,8 +2,8 @@
   <div class="language-switch">
     <button 
       class="lang-button"
-      @click="toggleLanguage"
       :title="isZh ? 'Switch to English' : '切换到中文'"
+      @click="toggleLanguage"
     >
       <span class="lang-icon">🌐</span>
       <span class="lang-text">{{ isZh ? 'EN' : '中文' }}</span>

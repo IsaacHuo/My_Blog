@@ -4,6 +4,7 @@ import unusedImports from 'eslint-plugin-unused-imports'
 import vueParser from 'vue-eslint-parser'
 
 export default [
+  ...vue.configs["flat/recommended"],
   {
     ignores: [
       'node_modules/**',
@@ -23,11 +24,11 @@ export default [
       }
     },
     plugins: {
-      vue,
       import: importPlugin,
       "unused-imports": unusedImports
     },
     rules: {
+      "vue/multi-word-component-names": "off",
       "vue/no-unused-vars": "warn",
       "unused-imports/no-unused-imports": "error",
       "import/order": "warn"

@@ -3,11 +3,21 @@
     <button
       v-show="isVisible && shouldShow"
       class="back-to-top"
-      @click="scrollToTop"
       aria-label="回到顶部"
+      @click="scrollToTop"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 15l-6-6-6 6"/>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M18 15l-6-6-6 6" />
       </svg>
     </button>
   </Transition>

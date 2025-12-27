@@ -9,7 +9,10 @@
           @click="openPDF(thought.url)"
         >
           <div class="thought-image">
-            <img :src="thought.image || '/My_Blog/avatar.jpg'" :alt="thought.title" />
+            <img
+              :src="thought.image || '/My_Blog/avatar.jpg'"
+              :alt="thought.title"
+            >
           </div>
           <div class="thought-content">
             <span class="thought-title">
@@ -19,7 +22,10 @@
         </div>
       </div>
       
-      <div v-if="thoughts.length === 0" class="empty-state">
+      <div
+        v-if="thoughts.length === 0"
+        class="empty-state"
+      >
         <p>{{ isZh ? '暂无项目...' : 'No projects yet...' }}</p>
       </div>
     </div>

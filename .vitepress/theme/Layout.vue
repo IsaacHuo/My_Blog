@@ -1,10 +1,16 @@
 <template>
   <Layout>
-    <template #doc-before v-if="frontmatter.layout === 'List100Page'">
+    <template
+      v-if="frontmatter.layout === 'List100Page'"
+      #doc-before
+    >
       <List100Page />
     </template>
     <!-- 在文章内容后添加评论 -->
-    <template #doc-after v-if="isArticlePage">
+    <template
+      v-if="isArticlePage"
+      #doc-after
+    >
       <div class="article-comments-section">
         <Comments />
       </div>
@@ -16,13 +22,13 @@
     
     <!-- Navbar Title Extension -->
     <template #nav-bar-content-before>
-       <ViewCounter 
-         id="total-views" 
-         :showLabel="false" 
-         :readonly="true"
-         :isZh="isZh" 
-         class="nav-view-counter" 
-       />
+      <ViewCounter 
+        id="total-views" 
+        :show-label="false" 
+        :readonly="true"
+        :is-zh="isZh" 
+        class="nav-view-counter" 
+      />
     </template>
   </Layout>
 </template>
@@ -44,6 +50,10 @@ const router = useRouter()
 const isArticlePage = computed(() => {
   return page.value.relativePath.includes('/blog/') && 
          !page.value.relativePath.endsWith('index.md')
+})
+
+const isZh = computed(() => {
+  return lang.value === 'zh-CN'
 })
 
 // View Counter Injection Logic
@@ -83,11 +93,10 @@ const injectViewCounter = async () => {
       h1.parentNode.insertBefore(viewCounterEl, h1.nextSibling)
       
       // Reduce H1 margin to pull counter closer
-      h1.style.marginBottom = '0.25rem'
+      h1.style.marginBottom = '0.8rem'
 
       // Check language
-      const isZhValue = lang.value === 'zh-CN'
-      console.log('Injecting ViewCounter. Lang:', lang.value, 'isZh:', isZhValue)
+      console.log('Injecting ViewCounter. Lang:', lang.value, 'isZh:', isZh.value)
       
       // Create and mount app
       // Use clean ID: remove language prefix and .md extension
@@ -99,7 +108,7 @@ const injectViewCounter = async () => {
       viewCounterApp = createApp(ViewCounter, {
         id: page.value.relativePath.replace(/\.md$/, ''),
         showLabel: false,
-        isZh: isZhValue
+        isZh: isZh.value
       })
       viewCounterApp.mount(viewCounterEl)
     }
