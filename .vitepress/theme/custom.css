@@ -1,56 +1,8 @@
-/* 隐藏 VitePress 默认的目录标题 "Table of Contents" */
-.VPDocAsideOutline .VPDocAsideOutlineTitle,
-.vp-doc .aside-outline-title,
-.aside-outline .outline-title,
-.VPDocOutlineTitle,
-.outline-title {
-  display: none !important;
-}
+/* ==========================================================================
+   1. FONTS & TYPOGRAPHY
+   ========================================================================== */
 
-/* 隐藏移动端下拉菜单中的 "Return to top" 链接 */
-.VPDocAsideOutline a[href="#"],
-.outline-link[href="#"] {
-  display: none !important;
-}
-
-/* 目录导航栏样式调整 */
-/* 1. 目录文字改为黑色 */
-.VPDocAsideOutline .outline-link {
-  color: #000 !important;
-}
-
-.VPDocAsideOutline .outline-link:hover {
-  color: #0066cc !important;
-}
-
-.VPDocAsideOutline .outline-link.active {
-  color: #0066cc !important;
-  font-weight: 600;
-}
-
-/* 2. 缩小正文与右侧目录的距离 */
-.VPDoc .container {
-  max-width: 750px !important;
-}
-
-.VPDoc .content {
-  padding-right: 1rem !important;
-}
-
-.VPDoc .aside {
-  padding-left: 1rem !important;
-}
-
-/* 3. 正文距离页眉更近 */
-.VPDoc {
-  padding-top: 0.1rem !important;
-}
-
-.vp-doc {
-  padding-top: 0.1rem !important;
-}
-
-/* 自定义字体声明 */
+/* Font Declarations */
 @font-face {
   font-family: 'GoudyOldStyle';
   src: url('/GoudyOldStyleT-Regular.ttf') format('truetype');
@@ -66,132 +18,17 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-  /* 包含中文字符、中文标点符号和其他符号 */
+  /* Includes Chinese characters, punctuation, and other symbols */
   unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F, U+3000-303F, U+FF00-FFEF, U+2000-206F, U+2E80-2EFF, U+31C0-31EF, U+FE30-FE4F;
 }
 
-/* 全局字体设置 - 强制应用 */
-* {
-  font-family: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
-
-/* SVG 元素不应用字体样式 */
-svg, svg * {
-  font-family: inherit !important;
-}
-
-:root {
-  --vp-font-family-base: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  --vp-font-family-mono: 'GoudyOldStyle', 'DFKai', Menlo, Monaco, Consolas, monospace !important;
-}
-
-body {
-  font-family: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
-
-/* 所有链接强制使用自定义字体 */
-a, a:link, a:visited, a:hover, a:active {
-  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
-
-/* 确保中文链接使用 DFKai 字体 - 超强优先级 */
-:lang(zh) a, :lang(zh-CN) a, :lang(zh-TW) a,
-html[lang="zh"] a, html[lang="zh-CN"] a, html[lang="zh-TW"] a,
-[lang="zh"] a, [lang="zh-CN"] a, [lang="zh-TW"] a,
-html[lang="zh-CN"] * a, html[lang="zh"] * a,
-body[lang="zh-CN"] a, body[lang="zh"] a,
-.zh a, [data-lang="zh"] a, [data-lang="zh-CN"] a {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* 确保中文使用 DFKai 字体 */
-:lang(zh), :lang(zh-CN), :lang(zh-TW),
-html[lang="zh"] *, html[lang="zh-CN"] *,
-body[lang="zh"] *, body[lang="zh-CN"] *,
-.zh *, [data-lang="zh"] *, [data-lang="zh-CN"] * {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* 确保英文使用 GoudyOldStyle 字体 */
-:lang(en) {
-  font-family: 'GoudyOldStyle', 'DFKai', sans-serif !important;
-}
-
-/* Global Scale to 110% */
-html {
-  /* 取消全局缩放与 transform，避免影响布局居中 */
-  zoom: 100%;
-  transform: none;
-  transform-origin: initial;
-  width: 100%;
-}
-
-/* 确保在缩放后body仍然占满视口 */
-body {
-  width: 100%;
-  min-height: 100vh;
-}
-
-/* ArticleLayout页面样式覆盖 */
-.vp-doc[data-layout="ArticleLayout"] .VPDoc .container .content .content-container {
-  display: none;
-}
-
-.vp-doc[data-layout="ArticleLayout"] .VPDoc {
-  padding: 0;
-  max-width: none;
-}
-
-/* 中文楷体字体全局设置 - 使用自定义字体 */
-* {
-  font-family: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
-
-/* 所有文本元素应用自定义字体 */
-h1, h2, h3, h4, h5, h6, p, a, li, span, div, button, input, textarea {
-  font-family: inherit !important;
-}
-
-/* 中文内容使用 DFKai */
-*:lang(zh),
-*:lang(zh-CN),
-.zh *,
-[lang="zh"] *,
-[lang="zh-CN"] *,
-body[data-lang="zh"] *,
-body[data-lang="zh-CN"] * {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* 确保中文页面下所有元素都使用 DFKai */
-html[lang="zh-CN"] *,
-html[lang="zh"] *,
-.vp-doc[data-page-lang="zh"] *,
-.vp-doc[data-page-lang="zh-CN"] * {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* 中文路径下的所有内容使用 DFKai */
-body:has([href*="/zh/"]) *,
-[href*="/zh/"] *,
-.content:has([href*="/zh/"]) * {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* 特定中文内容区域 */
-.zh-content *,
-.chinese-text *,
-[data-chinese="true"] * {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* CSS Variables for Minimalist Design */
+/* CSS Variables */
 :root {
   /* Typography */
-  --vp-font-family-base: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif;
-  --vp-font-family-mono: 'GoudyOldStyle', 'DFKai', 'SF Mono', Monaco, monospace;
-  
-  /* Font Sizes - Larger for Better Readability */
+  --vp-font-family-base: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  --vp-font-family-mono: 'GoudyOldStyle', 'DFKai', Menlo, Monaco, Consolas, monospace !important;
+
+  /* Font Sizes */
   --vp-font-size-xs: 0.875rem;
   --vp-font-size-sm: 1rem;
   --vp-font-size-md: 1.125rem;
@@ -199,28 +36,25 @@ body:has([href*="/zh/"]) *,
   --vp-font-size-xl: 1.5rem;
   --vp-font-size-2xl: 2rem;
   --vp-font-size-3xl: 2.5rem;
-  
+
   /* Minimalist Color Palette - Light Mode */
   --vp-c-brand-1: #111111;
   --vp-c-brand-2: #111111;
   --vp-c-brand-3: #111111;
   --vp-c-brand-soft: #f8f9fa;
-  
-  /* Background Colors */
+
   --vp-c-bg: #ffffff;
   --vp-c-bg-soft: #fafbfc;
   --vp-c-bg-mute: #f6f8fa;
   --vp-c-bg-alt: #ffffff;
-  
-  /* Text Colors */
+
   --vp-c-text-1: #111111;
   --vp-c-text-2: #111111;
   --vp-c-text-3: #111111;
-  
-  /* Border Colors */
+
   --vp-c-border: #e1e4e8;
   --vp-c-divider: #e1e4e8;
-  
+
   /* Spacing System */
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
@@ -229,7 +63,7 @@ body:has([href*="/zh/"]) *,
   --space-xl: 2rem;
   --space-2xl: 3rem;
   --space-3xl: 4rem;
-  
+
   /* Layout */
   --vp-layout-max-width: 1200px;
   --content-max-width: 800px;
@@ -241,18 +75,98 @@ body:has([href*="/zh/"]) *,
   --vp-c-brand-2: #cccccc;
   --vp-c-brand-3: #999999;
   --vp-c-brand-soft: #2a2a2a;
-  
+
   --vp-c-bg: #0f0f0f;
   --vp-c-bg-soft: #1a1a1a;
   --vp-c-bg-mute: #242424;
   --vp-c-bg-alt: #0f0f0f;
-  
+
   --vp-c-text-1: #e8e8e8;
   --vp-c-text-2: #cccccc;
   --vp-c-text-3: #999999;
-  
+
   --vp-c-border: #333333;
   --vp-c-divider: #333333;
+}
+
+/* Global Font Enforcement */
+* {
+  font-family: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+svg,
+svg * {
+  font-family: inherit !important;
+}
+
+body {
+  font-family: var(--vp-font-family-base) !important;
+}
+
+/* Specific Font Rules for Chinese */
+:lang(zh),
+:lang(zh-CN),
+:lang(zh-TW),
+html[lang="zh"] *,
+html[lang="zh-CN"] *,
+body[lang="zh"] *,
+body[lang="zh-CN"] *,
+.zh *,
+[data-lang="zh"] *,
+[data-lang="zh-CN"] *,
+[href*="/zh/"] *,
+html[lang="zh-CN"] a,
+html[lang="zh"] a {
+  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+}
+
+/* Specific Font Rules for English */
+:lang(en) {
+  font-family: 'GoudyOldStyle', 'DFKai', sans-serif !important;
+}
+
+/* Giscus Font Overrides */
+.giscus,
+.giscus-frame,
+.giscus * {
+  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* ==========================================================================
+   2. GLOBAL RESETS & COMPATIBILITY
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable both-edges;
+  width: 100%;
+  zoom: 100%;
+  transform: none;
+  transform-origin: initial;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-size: var(--vp-font-size-md);
+  line-height: 1.7;
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+  /* Maintain scrollbar gap */
+}
+
+/* Hide Horizontal Rules */
+hr {
+  display: none !important;
 }
 
 /* Global Link Styles */
@@ -268,143 +182,194 @@ a:visited {
   color: #4D74EB !important;
 }
 
-/* Navigation and Sidebar Link Exceptions */
+/* Ensure inherit color for navigation and UI elements */
 .VPNav a,
-.vp-nav a,
 .VPNavBar a,
-.vp-nav-bar a,
-.VPNavBarTitle a,
-.VPNavBarMenu a,
-.VPNavBarTranslations a,
-.books-sidebar a,
-.home-sidebar a,
-.article-sidebar a,
 .sidebar-nav a,
-.toc-nav a,
-.mobile-sidebar-toggle a,
-.VPDocOutline a,
-.vp-doc-outline a,
-.outline a {
+.outline a,
+.blog-card a,
+.post-title a {
   color: inherit !important;
 }
 
-.VPNav a:hover,
-.vp-nav a:hover,
-.VPNavBar a:hover,
-.vp-nav-bar a:hover,
-.VPNavBarTitle a:hover,
-.VPNavBarMenu a:hover,
-.VPNavBarTranslations a:hover,
-.books-sidebar a:hover,
-.home-sidebar a:hover,
-.article-sidebar a:hover,
-.sidebar-nav a:hover,
-.toc-nav a:hover,
-.mobile-sidebar-toggle a:hover,
-.VPDocOutline a:hover,
-.vp-doc-outline a:hover,
-.outline a:hover {
-  color: inherit !important;
+/* ==========================================================================
+   3. LAYOUT & CONTAINER
+   ========================================================================== */
+
+/* Main Document Centering Logic */
+.vp-doc {
+  width: 100% !important;
+  animation: fadeIn 0.6s ease-out;
 }
 
-.VPNav a:visited,
-.vp-nav a:visited,
-.VPNavBar a:visited,
-.vp-nav-bar a:visited,
-.VPNavBarTitle a:visited,
-.VPNavBarMenu a:visited,
-.VPNavBarTranslations a:visited,
-.books-sidebar a:visited,
-.home-sidebar a:visited,
-.article-sidebar a:visited,
-.sidebar-nav a:visited,
-.toc-nav a:visited,
-.mobile-sidebar-toggle a:visited,
-.VPDocOutline a:visited,
-.vp-doc-outline a:visited,
-.outline a:visited {
-  color: inherit !important;
+/* Content Width & Alignment */
+.page-container,
+.vp-doc>div:not(.outline),
+.vp-doc .container .content,
+.VPDoc .container .content,
+.centered-content {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding-left: var(--space-lg);
+  padding-right: var(--space-lg);
 }
 
-/* Global Reset and Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Desktop Specific Layout */
+@media (min-width: 769px) {
+  .vp-doc {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    max-width: none !important;
+  }
+
+  .content,
+  div.content,
+  .vp-doc .content {
+    width: 700px !important;
+    max-width: 700px !important;
+    margin: 0 !important;
+    flex: none !important;
+    display: block !important;
+  }
+
+  /* Right Sidebar (TOC) positioning */
+  .vp-doc aside,
+  .vp-doc .aside {
+    position: fixed !important;
+    right: 2rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 200px !important;
+    z-index: 10 !important;
+    padding-left: 1rem !important;
+  }
+
+  /* Reset container display for proper flow */
+  .vp-doc .container {
+    display: contents !important;
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  scrollbar-gutter: stable both-edges; /* 保留滚动条空间，防止左右抖动 */
+/* Mobile Layout Overrides */
+@media (max-width: 768px) {
+
+  .vp-doc,
+  .vp-doc .content,
+  .centered-content {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .vp-doc .content {
+    padding: 0 var(--space-md) !important;
+  }
+
+  .page-container {
+    padding-left: var(--space-sm) !important;
+    padding-right: var(--space-sm) !important;
+  }
 }
 
-body {
-  font-family: var(--vp-font-family-base);
-  font-size: var(--vp-font-size-md);
-  line-height: 1.7;
-  color: var(--vp-c-text-1);
-  background: var(--vp-c-bg);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-y: scroll; /* 始终预留垂直滚动条空间 */
+/* Hide Default TOC Title */
+.VPDocAsideOutline .VPDocAsideOutlineTitle,
+.vp-doc .aside-outline-title,
+.outline-title {
+  display: none !important;
 }
 
-/* Remove VitePress Default Borders */
+/* TOC Link Styles */
+.VPDocAsideOutline .outline-link {
+  color: #000 !important;
+}
+
+.VPDocAsideOutline .outline-link:hover,
+.VPDocAsideOutline .outline-link.active {
+  color: #0066cc !important;
+  font-weight: 600;
+}
+
+/* Hide "Return to top" in outline */
+.VPDocAsideOutline a[href="#"] {
+  display: none !important;
+}
+
+
+/* ==========================================================================
+   4. NAVIGATION BAR
+   ========================================================================== */
+
 .VPNav,
-.vp-nav,
-.VPNavBar,
-.vp-nav-bar {
+.VPNavBar {
   border-bottom: none !important;
   backdrop-filter: blur(8px);
   background: rgba(255, 255, 255, 0.85) !important;
 }
 
-/* 导航栏菜单文字大小设置 */
-.VPNavBarMenu,
-.vp-nav-bar-menu,
-.VPNavBarMenu a,
-.vp-nav-bar-menu a,
-.VPNavBarMenuGroup,
-.vp-nav-bar-menu-group,
-.VPNavBarMenuLink,
-.vp-nav-bar-menu-link {
-  font-size: 20px !important;
+.dark .VPNav,
+.dark .VPNavBar {
+  background: rgba(15, 15, 15, 0.85) !important;
 }
 
-/* 导航栏菜单项 */
-.VPNavBar .VPNavBarMenu .VPNavBarMenuGroup .VPNavBarMenuLink,
-.vp-nav-bar .vp-nav-bar-menu .vp-nav-bar-menu-group .vp-nav-bar-menu-link,
-nav .nav-item,
+/* Nav Menu Items */
+.VPNavBarMenuLink,
 .nav-link {
   font-size: 20px !important;
 }
 
-.dark .VPNav,
-.dark .vp-nav,
-.dark .VPNavBar,
-.dark .vp-nav-bar {
-  background: rgba(15, 15, 15, 0.85) !important;
-}
-
-/* Hide Horizontal Rules */
-hr {
+/* Hide Unwanted Nav Elements */
+.VPNavBarTranslations,
+.VPNavBarAppearance,
+.VPNavBarSearch,
+.VPAlgoliaSearchBox,
+.VPLocalSearchBox,
+.DocSearch-Button,
+.VPNavBar .search {
   display: none !important;
 }
 
-/* Typography Improvements */
-.vp-doc h1,
-.vp-doc h2,
-.vp-doc h3,
-.vp-doc h4,
-.vp-doc h5,
-.vp-doc h6 {
-  font-family: var(--vp-font-family-base);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--vp-c-text-1);
-  margin: var(--space-xl) 0 var(--space-lg) 0;
+/* Custom Title Style */
+.VPNavBarTitle .title span {
+  display: none !important;
 }
 
+.VPNavBarTitle .title::after {
+  content: 'Isaac Huo';
+  font-size: 26px;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.01em;
+}
+
+/* Navbar View Counter */
+.nav-view-counter {
+  margin-right: 12px !important;
+  margin-left: 0 !important;
+  font-size: 0.9em !important;
+  vertical-align: middle;
+  opacity: 0.8;
+  background: var(--vp-c-bg-mute);
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--vp-c-border);
+}
+
+.nav-view-counter .view-count {
+  margin-top: 0 !important;
+}
+
+/* Mobile Nav Toggles */
+.VPNavBarHamburger {
+  z-index: 2001 !important;
+  pointer-events: auto !important;
+}
+
+/* ==========================================================================
+   5. COMPONENT STYLES
+   ========================================================================== */
+
+/* Typography Headers */
 .vp-doc h1 {
   font-size: var(--vp-font-size-3xl);
   line-height: 1.2;
@@ -421,54 +386,25 @@ hr {
 
 .vp-doc h3 {
   font-size: var(--vp-font-size-xl);
-  line-height: 1.4;
 }
 
+/* Paragraphs */
 .vp-doc p,
 .vp-doc li {
-  font-family: var(--vp-font-family-base);
   font-size: var(--vp-font-size-md);
   line-height: 1.6;
   color: var(--vp-c-text-2);
   margin-bottom: var(--space-md);
 }
 
-/* Hero Section Enhancements */
-.VPHero .name {
-  font-size: var(--vp-font-size-3xl) !important;
-  font-weight: 700 !important;
-  letter-spacing: -0.03em !important;
+/* English Content Compactness */
+html[lang="en"] .vp-doc p,
+html[lang="en"] .vp-doc li {
+  line-height: 1.4 !important;
+  margin-bottom: calc(var(--space-sm) * 0.8) !important;
 }
 
-.VPHero .text {
-  font-size: var(--vp-font-size-xl) !important;
-  font-weight: 400 !important;
-  color: var(--vp-c-text-2) !important;
-}
-
-.VPHero .tagline {
-  font-size: var(--vp-font-size-lg) !important;
-  font-weight: 400 !important;
-  line-height: 1.6 !important;
-  max-width: 600px !important;
-  margin: 0 auto !important;
-}
-
-/* Content Container */
-.centered-content {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding: var(--space-2xl) var(--space-lg);
-}
-
-/* Article Grid */
-.posts-grid {
-  display: grid;
-  gap: var(--space-xl);
-  margin: var(--space-2xl) 0;
-}
-
-/* Minimalist Blog Cards */
+/* --- Blog Cards --- */
 .blog-card {
   background: var(--vp-c-bg);
   border: 1px solid var(--vp-c-border);
@@ -477,6 +413,12 @@ hr {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border-color: var(--vp-c-brand-1);
 }
 
 .blog-card::before {
@@ -496,83 +438,27 @@ hr {
   transform: scaleX(1);
 }
 
-.blog-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  border-color: var(--vp-c-brand-1);
-}
-
-.blog-card h3 {
-  margin: 0 0 var(--space-md) 0;
-  font-size: var(--vp-font-size-xl);
+.blog-card h3,
+.blog-card .title,
+.post-title {
+  font-size: 24px !important;
   font-weight: 600;
-  line-height: 1.4;
-  color: var(--vp-c-text-1);
-}
-
-.blog-card h3 a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
-}
-
-.blog-card h3 a:hover {
-  color: var(--vp-c-brand-1);
-}
-
-/* 中文博客卡片链接使用 DFKai */
-.blog-card h3 a:lang(zh),
-.blog-card h3 a:lang(zh-CN),
-html[lang="zh-CN"] .blog-card h3 a,
-html[lang="zh"] .blog-card h3 a {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* 中文博客列表标题链接使用 DFKai */
-.simple-blog-list .blog-title a:lang(zh),
-.simple-blog-list .blog-title a:lang(zh-CN),
-html[lang="zh-CN"] .simple-blog-list .blog-title a,
-html[lang="zh"] .simple-blog-list .blog-title a,
-.simple-blog-list .blog-title a[href*="/zh/"],
-body:has([href*="/zh/"]) .simple-blog-list .blog-title a,
-[data-page-lang="zh"] .simple-blog-list .blog-title a,
-[data-page-lang="zh-CN"] .simple-blog-list .blog-title a,
-/* 更强的选择器确保中文博客标题为 DFKai */
-body[data-page-lang="zh"] .simple-blog-list .blog-title a,
-body[data-page-lang="zh-CN"] .simple-blog-list .blog-title a,
-.vp-doc[data-page-lang="zh"] .simple-blog-list .blog-title a,
-.vp-doc[data-page-lang="zh-CN"] .simple-blog-list .blog-title a,
-/* 针对中文博客页面的特定选择器 */
-[href*="/zh/blog/"] {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-  font-weight: normal !important;
-}
-
-/* 确保所有中文页面的链接都使用 DFKai */
-html[lang*="zh"] a,
-body[lang*="zh"] a,
-[lang*="zh"] a {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+  margin: 0 0 var(--space-md) 0;
 }
 
 .blog-card .meta {
   font-size: var(--vp-font-size-sm);
   color: var(--vp-c-text-3);
   margin-bottom: var(--space-md);
-  font-weight: 400;
-  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
 .blog-card .description {
   color: var(--vp-c-text-2);
   line-height: 1.7;
-  font-size: var(--vp-font-size-md);
   margin-bottom: var(--space-lg);
 }
 
-/* Tags */
 .blog-card .tag {
   display: inline-block;
   background: var(--vp-c-bg-mute);
@@ -580,135 +466,181 @@ body[lang*="zh"] a,
   padding: var(--space-xs) var(--space-sm);
   margin: 0 var(--space-xs) var(--space-xs) 0;
   font-size: var(--vp-font-size-xs);
-  font-weight: 500;
-  border-radius: 0;
   border: 1px solid var(--vp-c-border);
-  transition: all 0.2s ease;
 }
 
-.blog-card .tag:hover {
-  background: var(--vp-c-brand-1);
-  color: white;
-  border-color: var(--vp-c-brand-1);
+/* --- Home Layout --- */
+.home-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-2xl);
+  max-width: var(--vp-layout-max-width);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
 }
 
+.home-sidebar {
+  position: sticky;
+  top: 96px;
+  height: fit-content;
+}
 
+@media (max-width: 960px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+  }
 
-/* Stats Section */
-.stats-section {
+  .home-sidebar {
+    position: static;
+  }
+}
+
+/* --- Profile Page --- */
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-3xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--vp-c-border);
+}
+
+.avatar-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--vp-c-bg-soft) 0%, var(--vp-c-bg-mute) 100%);
+  border: 3px solid var(--vp-c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-name {
+  font-size: var(--vp-font-size-3xl);
+  font-weight: 700;
+}
+
+.profile-content h2 {
+  text-align: left;
+  /* Override global centering */
+  border-bottom: 2px solid var(--vp-c-brand-soft);
+  padding-bottom: var(--space-sm);
+}
+
+/* --- Books Page & Sidebar --- */
+.vp-doc .books-page-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--space-3xl) var(--space-lg);
+  padding-left: 260px;
+  /* Space for sidebar */
+}
+
+.books-sidebar {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  max-height: 70vh;
+  overflow-y: auto;
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-border);
+  padding: var(--space-md);
+  z-index: 10;
+}
+
+.books-content {
   text-align: center;
-  padding: var(--space-2xl) 0;
-  border-top: 1px solid var(--vp-c-border);
-  margin-top: var(--space-2xl);
 }
 
-.stats-section p {
-  font-size: var(--vp-font-size-md);
-  color: var(--vp-c-text-2);
-  margin-bottom: var(--space-sm);
+.books-content h1 {
+  font-size: 44px;
+  margin-top: var(--space-xl);
 }
 
-/* Geometric Decoration */
-.geometric-decoration {
-  display: none;
+.books-content h2 {
+  border-bottom: 2px solid var(--vp-c-border);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  :root {
-    --vp-font-size-3xl: 2rem;
-    --vp-font-size-2xl: 1.75rem;
-    --vp-font-size-xl: 1.375rem;
-    --vp-font-size-lg: 1.125rem;
+/* Mobile Sidebar logic */
+@media (max-width: 1024px) {
+  .vp-doc .books-page-container {
+    padding-left: var(--space-lg);
   }
-  
-  .centered-content {
-    padding: var(--space-xl) var(--space-md);
+
+  .books-sidebar {
+    left: -100%;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    transform: none;
+    z-index: 100;
   }
-  
-  .blog-card {
-    padding: var(--space-lg);
+
+  .books-sidebar.active {
+    left: 0;
   }
-  
-  .VPHero .name {
-    font-size: var(--vp-font-size-2xl) !important;
-  }
-  
-  .VPHero .text {
-    font-size: var(--vp-font-size-lg) !important;
-  }
-  
-  .VPHero .tagline {
-    font-size: var(--vp-font-size-md) !important;
-  }
-  
-  .vp-doc h1 {
-    text-align: center !important;
-  }
-  
-  .VPNavBarTitle .title {
-    justify-content: center !important;
-  }
-  
-  .VPNavBarTitle .title::after {
-    text-align: center !important;
+
+  .mobile-sidebar-toggle {
+    display: flex;
   }
 }
 
-/* Medium mobile devices (393px width like iPhone 14 Pro) */
-@media (max-width: 500px) {
-  .vp-doc h1 {
-    text-align: center !important;
-  }
-  
-  .VPNavBarTitle .title {
-    justify-content: center !important;
-    width: 100% !important;
-  }
-  
-  .VPNavBarTitle .title::after {
-    text-align: center !important;
-    display: block !important;
-    width: 100% !important;
-  }
+/* --- List 100 Page --- */
+.list100-page {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
+  text-align: center;
 }
 
-@media (max-width: 480px) {
-  .centered-content {
-    padding: var(--space-lg) var(--space-sm);
-  }
-  
-  .blog-card {
-    padding: var(--space-md);
-  }
-  
-  .vp-doc h1 {
-    text-align: center !important;
-  }
-  
-  .VPNavBarTitle .title {
-    justify-content: center !important;
-    width: 100% !important;
-  }
-  
-  .VPNavBarTitle .title::after {
-    text-align: center !important;
-    display: block !important;
-    width: 100% !important;
-  }
+.list100-page h1 {
+  font-size: 44px;
+  margin-bottom: var(--space-lg);
 }
 
-/* Avatar Styles */
-.avatar-image {
-  border-radius: 50% !important;
-  border: 3px solid var(--vp-c-border) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-  transition: all 0.3s ease !important;
+.list100-page ol {
+  text-align: left;
+  display: inline-block;
+  padding-left: 1.4em;
 }
 
-.avatar-image:hover {
-  transform: scale(1.05) !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+/* --- Misc Components --- */
+.article-comments-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+/* Desktop Floating Github Link */
+@media (min-width: 769px) {
+  .custom-github-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--vp-c-brand-1);
+    color: white !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+  }
+
+  .custom-github-link:hover {
+    transform: scale(1.05);
+  }
 }
 
 /* Animation */
@@ -717,2052 +649,106 @@ body[lang*="zh"] a,
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.vp-doc {
-  animation: fadeIn 0.6s ease-out;
-}
-
-/* Search Enhancement */
-.VPNavBarSearch {
-  margin-left: auto;
-}
-
-/* Features Section Enhancement */
-.VPFeatures {
-  padding: var(--space-3xl) 0;
-}
-
-.VPFeature {
-  padding: var(--space-xl);
-  text-align: center;
-}
-
-.VPFeature h2 {
-  font-size: var(--vp-font-size-xl) !important;
-  font-weight: 600 !important;
-  margin-bottom: var(--space-md) !important;
-}
-
-.VPFeature p {
-  font-size: var(--vp-font-size-md) !important;
-  line-height: 1.7 !important;
-  color: var(--vp-c-text-2) !important;
-}
-
-/* Footer Enhancement */
-.VPFooter {
-  border-top: 1px solid var(--vp-c-border);
-  margin-top: var(--space-3xl);
-  padding-top: var(--space-xl);
-}
-
-/* Focus States for Accessibility */
-.blog-card:focus-within {
-  outline: 2px solid var(--vp-c-brand-1);
-  outline-offset: 2px;
-}
-
-/* Mobile Navigation - Let VitePress handle the functionality naturally */
-
-/* Blog Article Title Font Size */
-.blog-card h3,
-.blog-card .title,
-.blog-card a,
-.vp-doc h1,
-.vp-doc h2.blog-title,
-.content h1,
-.blog-list a,
-.blog-list .blog-card a,
-.simple-blog-list .blog-title a,
-.blog-item .blog-title a {
-  font-size: 24px !important;
-  font-weight: normal !important;
-}
-
-/* Specific targeting for blog list page titles */
-.blog-list .blog-card h3,
-.blog-list .blog-card .title,
-.blog-list .blog-card a,
-.simple-blog-list .blog-title a {
-  font-size: 24px !important;
-  font-weight: normal !important;
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
-}
-
-/* Blog page article links */
-.blog-card-container a,
-.article-list a,
-.post-list a,
-.blog-item a {
-  font-size: 24px !important;
-  font-weight: normal !important;
-}
-
-/* Print Styles */
-@media print {
-  .VPNav,
-  .VPFooter {
-    display: none;
-  }
-  
-  .blog-card {
-    break-inside: avoid;
-    border: 1px solid #ccc;
-    margin-bottom: var(--space-lg);
-  }
-}
-
-/* Profile Page Styles */
-.profile-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: var(--space-2xl) var(--space-lg);
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xl);
-  margin-bottom: var(--space-3xl);
-  padding-bottom: var(--space-xl);
-  border-bottom: 1px solid var(--vp-c-border);
-}
-
-.avatar-placeholder {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--vp-c-bg-soft) 0%, var(--vp-c-bg-mute) 100%);
-  border: 3px solid var(--vp-c-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.avatar-placeholder::before {
-  content: '';
-  width: 60px;
-  height: 60px;
-  background: var(--vp-c-text-3);
-  border-radius: 50%;
-  opacity: 0.3;
-}
-
-.profile-info {
-  flex: 1;
-}
-
-.profile-name {
-  font-size: var(--vp-font-size-3xl);
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  margin: 0 0 var(--space-sm) 0;
-  line-height: 1.2;
-}
-
-.profile-title {
-  font-size: var(--vp-font-size-lg);
-  color: var(--vp-c-text-2);
-  margin: 0;
-  font-weight: 500;
-}
-
-.profile-content {
-  line-height: 1.7;
-}
-
-.profile-content section {
-  margin-bottom: var(--space-2xl);
-}
-
-.profile-content h2 {
-  font-size: var(--vp-font-size-xl);
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-  margin: 0 0 var(--space-lg) 0;
-  padding-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--vp-c-brand-soft);
-}
-
-.profile-content p {
-  font-size: var(--vp-font-size-md);
-  color: var(--vp-c-text-2);
-  margin-bottom: var(--space-md);
-}
-
-.profile-content ul {
-  margin: var(--space-md) 0;
-  padding-left: var(--space-lg);
-}
-
-.profile-content li {
-  font-size: var(--vp-font-size-md);
-  color: var(--vp-c-text-2);
-  margin-bottom: var(--space-sm);
-  line-height: 1.6;
-}
-
-.profile-content a {
-  color: var(--vp-c-brand-1);
-  text-decoration: none;
-  font-weight: 500;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
-}
-
-/* 中文profile链接使用楷体 */
-.profile-content a:lang(zh),
-.profile-content a:lang(zh-CN),
-html[lang="zh-CN"] .profile-content a,
-html[lang="zh"] .profile-content a {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-.profile-content a:hover {
-  border-bottom-color: var(--vp-c-brand-1);
-}
-
-/* Responsive Design for Profile */
-@media (max-width: 768px) {
-  .profile-header {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-lg);
-  }
-  
-  .avatar-placeholder {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .avatar-placeholder::before {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .profile-name {
-    font-size: var(--vp-font-size-2xl);
-  }
-  
-  .profile-container {
-    padding: var(--space-xl) var(--space-md);
-  }
-}
-
-/* Home layout inspired by minimal blog */
-.home-layout { display: grid; grid-template-columns: 1fr 300px; gap: var(--space-2xl); max-width: var(--vp-layout-max-width); margin: 0 auto; padding: var(--space-2xl) var(--space-lg); }
-.home-sidebar { position: sticky; top: 96px; height: fit-content; }
-
-.categories-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xl); }
-.tag-chip { border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); padding: 6px 12px; border-radius: 999px; font-size: 13px; cursor: pointer; color: var(--vp-c-text-2); }
-.tag-chip.active { background: var(--vp-c-brand-soft); color: var(--vp-c-text-1); border-color: var(--vp-c-brand-1); }
-.tag-chip.small { padding: 2px 10px; font-size: 12px; }
-
-.posts-list { display: grid; gap: var(--space-lg); }
-.post-item { padding-bottom: var(--space-md); border-bottom: 1px solid var(--vp-c-border); }
-.post-date { font-size: 12px; color: var(--vp-c-text-3); text-align: center; }
-.post-title { margin: 4px 0 6px; font-size: 22px; font-weight: 600; text-align: center; }
-.post-title a { 
-  color: var(--vp-c-text-1); 
-  text-decoration: none;
-  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
-}
-.post-title a:hover { text-decoration: underline; }
-
-/* 中文链接使用楷体 */
-.post-title a:lang(zh),
-.post-title a:lang(zh-CN),
-html[lang="zh-CN"] .post-title a,
-html[lang="zh"] .post-title a {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-.post-desc { color: var(--vp-c-text-2); }
-
-.about-card, .latest-card { border: 1px solid var(--vp-c-border); padding: var(--space-lg); background: var(--vp-c-bg); }
-.latest-list { list-style: none; padding: 0; margin: 0; }
-.latest-list li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--vp-c-border); }
-.latest-list li:last-child { border-bottom: none; }
-.latest-date { color: var(--vp-c-text-3); font-size: 12px; }
-
-@media (max-width: 960px) {
-  .home-layout { grid-template-columns: 1fr; }
-  .home-sidebar { position: static; }
-}
-
-/* List 100 page styles */
-.list100-page {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding: var(--space-2xl) var(--space-lg);
-  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
-  text-align: center;
-}
-
-.list100-page h1 {
-  font-size: 44px;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin: 0 0 var(--space-lg);
-  font-weight: 700;
-}
-
-.list100-page .intro {
-  color: var(--vp-c-text-2);
-  margin: 0 0 6px;
-}
-
-.list100-page .progress {
-  color: var(--vp-c-text-3);
-  margin: 0 0 var(--space-lg);
-}
-
-.list100-page ol {
-  margin: var(--space-md) 0 0;
-  padding-left: 1.4em;
-  text-align: left;
-  display: inline-block;
-}
-
-.list100-page li {
-  margin: 8px 0;
-  line-height: 1.75;
-}
-
-.list100-page a {
-  color: #1a73e8;
-  text-decoration: none;
-  font-family: 'GoudyOldStyle', 'DFKai', sans-serif;
-}
-
-.list100-page a:hover {
-  text-decoration: underline;
-}
-
-/* 中文页面链接使用楷体 */
-.list100-page a:lang(zh),
-.list100-page a:lang(zh-CN),
-html[lang="zh-CN"] .list100-page a,
-html[lang="zh"] .list100-page a {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-@media (max-width: 640px) {
-  .list100-page {
-    padding: var(--space-xl) var(--space-md);
-  }
-  
-  .list100-page h1 {
-    font-size: 32px;
-  }
-  
-  .list100-page li {
-    margin: 6px 0;
-  }
-}
-
-/* 中文博客页面特定样式 - 确保楷体显示 */
-body[data-page-lang="zh"] .simple-blog-list .blog-title a,
-.vp-doc[data-page-lang="zh"] .simple-blog-list .blog-title a,
-[href*="/zh/blog/"] .blog-title a,
-html[lang="zh-CN"] .simple-blog-list .blog-title a,
-html[lang="zh"] .simple-blog-list .blog-title a,
-.simple-blog-list .blog-title a:lang(zh),
-.simple-blog-list .blog-title a:lang(zh-CN),
-body:has([href*="/zh/"]) .simple-blog-list .blog-title a,
-[data-page-path*="/zh/blog/"] .simple-blog-list .blog-title a {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
-  font-size: 24px !important;
-}
-
-/* 中文页面下的所有BlogList组件链接 */
-.zh .simple-blog-list .blog-title a,
-[data-chinese="true"] .simple-blog-list .blog-title a {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
-}
-
-/* 确保中文博客页面路径下的所有链接都使用楷体 */
-[href*="/zh/blog/"] *,
-body:has([href*="/zh/blog/"]) .simple-blog-list *,
-/* 强制中文博客页面所有a标签使用楷体 */
-body:has([href*="/zh/blog/"]) a,
-[data-page-path*="/zh/blog/"] a,
-.vp-doc:has([href*="/zh/blog/"]) a,
-/* 最强优先级 - 确保中文博客标题使用楷体 */
-[href*="/zh/blog/"] .simple-blog-list .blog-title a,
-[href*="/zh/blog/"] .blog-title a,
-.zh .blog-title a,
-[lang="zh"] .blog-title a,
-[lang="zh-CN"] .blog-title a {
-  font-family: 'KaiTi', '楷体', 'STKaiti', serif !important;
-  font-weight: normal !important;
-}
-
-/* Shared page container for consistent alignment */
-.page-container, .vp-doc > div:not(.outline) {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
-}
-
-@media (max-width: 640px) {
-  .page-container, .vp-doc > div:not(.outline) {
-    padding-left: var(--space-md);
-    padding-right: var(--space-md);
-  }
-}
-
-/* 博客文章正文居中布局 - 直接修改布局容器 */
-.vp-doc {
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
-}
-
-.vp-doc .content {
-  max-width: 700px !important;
-  width: 700px !important;
-  margin: 0 !important;
-  padding: 0 var(--space-lg) !important;
-  flex: none !important;
-}
-
-/* 英文文章行宽紧凑设置 */
-.vp-doc p,
-.vp-doc li {
-  line-height: 1.5 !important;
-  margin-bottom: var(--space-sm) !important;
-}
-
-/* 英文页面特殊设置 */
-html[lang="en"] .vp-doc p,
-html[lang="en"] .vp-doc li,
-body[data-lang="en"] .vp-doc p,
-body[data-lang="en"] .vp-doc li,
-.vp-doc[data-page-lang="en"] p,
-.vp-doc[data-page-lang="en"] li {
-  line-height: 1.4 !important;
-  margin-bottom: calc(var(--space-sm) * 0.8) !important;
-}
-
-/* 确保所有文章内容都居中 - 使用通用选择器 */
-.content {
-  max-width: 700px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* 针对具体的内容容器 */
-div[class="content"] {
-  max-width: 700px !important;
-  margin: 0 auto !important;
-  width: 700px !important;
-}
-
-/* 特别针对文章页面的内容区域 */
-.vp-doc div[class="content"],
-.VPDoc div[class="content"] {
-  max-width: 700px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding-left: var(--space-lg) !important;
-  padding-right: var(--space-lg) !important;
-}
-
-/* 覆盖可能的全局样式 */
-.vp-doc > .container > .content,
-.VPDoc > .container > .content {
-  max-width: 700px !important;
-  margin: 0 auto !important;
-}
-
-/* 大屏幕上的特殊处理 - 直接设置宽度和居中 */
-@media (min-width: 769px) {
-  /* 强制整个文档容器居中布局 */
-  .vp-doc {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
-    width: 100% !important;
-    max-width: none !important;
-  }
-  
-  .content {
-    width: 700px !important;
-    max-width: 700px !important;
-    margin: 0 !important;
-    display: block !important;
-    flex: none !important;
-  }
-  
-  .vp-doc .content,
-  .VPDoc .content,
-  div.content,
-  div[class="content"] {
-    width: 700px !important;
-    max-width: 700px !important;
-    margin: 0 !important;
-    padding: 0 var(--space-lg) !important;
-    flex: none !important;
-  }
-  
-  /* 确保容器不干扰布局 */
-  .vp-doc .container {
-    display: contents !important;
-  }
-  
-  /* 确保侧边栏目录仍然可见 */
-  .vp-doc aside,
-  .vp-doc .aside {
-    position: fixed !important;
-    right: 2rem !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    width: 200px !important;
-    z-index: 10 !important;
-  }
-}
-
-/* 移动端适配 */
-@media (max-width: 768px) {
-  .vp-doc .content,
-  .VPDoc .content,
-  div.content,
-  .content,
-  div[class="content"],
-  .vp-doc div[class="content"],
-  .VPDoc div[class="content"],
-  .vp-doc > .container > .content,
-  .VPDoc > .container > .content {
-    max-width: 100% !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 var(--space-md) !important;
-  }
-  
-  /* 确保博客文章内容在小屏幕完全可见 */
-  .vp-doc {
-    display: block !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  
-  /* 修复小屏幕文字被遮住的问题 */
-  .vp-doc .content {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 0 var(--space-md) !important;
-    box-sizing: border-box !important;
-    flex: none !important;
-  }
-  
-  /* 确保页面容器在移动端正确显示 */
-  .page-container, .vp-doc > div:not(.outline) {
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding-left: var(--space-sm) !important;
-    padding-right: var(--space-sm) !important;
-  }
-}
-
-/* 全局强制居中 - 最后的尝试 */
-* .content {
-  max-width: 700px !important;
-  margin: 0 auto !important;
-}
-
-*[class="content"] {
-  max-width: 700px !important;
-  margin: 0 auto !important;
-  width: 700px !important;
-}
-
-/* Hide VitePress Default Language Switch Button */
-.VPNavBarTranslations,
-.vp-nav-bar-translations,
-.VPFlyout[data-flyout="translations"],
-.vp-flyout[data-flyout="translations"] {
-  display: none !important;
-}
-
-/* Language Switch Button Styles */
-.VPNavBarTranslations .VPFlyout .text,
-.VPNavBarTranslations .text,
-.VPFlyout .text,
-.vp-flyout .text,
-.vp-nav-bar-translations .text,
-.VPNavBarTranslations button .text,
-.VPFlyout button .text {
-  font-weight: normal !important;
-}
-
-/* Language dropdown items */
-.VPFlyout .items .item,
-.vp-flyout .items .item,
-.VPNavBarTranslations .items .item,
-.vp-nav-bar-translations .items .item {
-  font-weight: normal !important;
-}
-
-/* All language dropdown items should not be bold */
-.VPFlyout .items .item a,
-.vp-flyout .items .item a,
-.VPNavBarTranslations .items .item a,
-.vp-nav-bar-translations .items .item a,
-.VPFlyout .items .item,
-.vp-flyout .items .item,
-.VPNavBarTranslations .items .item,
-.vp-nav-bar-translations .items .item {
-  font-weight: normal !important;
-}
-
-/* Align navbar inner content width with page content width */
-.VPNav .container,
-.VPNavBar .container,
-.VPNav .content,
-.VPNavBar .content {
-  max-width: calc(var(--content-max-width) + 2 * var(--space-lg));
-  margin: 0 auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
-}
-
-.vp-doc {
-  animation: fadeIn 0.6s ease-out;
-}
-
-/* Search Enhancement */
-.VPNavBarSearch {
-  margin-left: auto;
-}
-
-/* Features Section Enhancement */
-.VPFeatures {
-  padding: var(--space-3xl) 0;
-}
-
-.VPFeature {
-  padding: var(--space-xl);
-  text-align: center;
-}
-
-.VPFeature h2 {
-  font-size: var(--vp-font-size-xl) !important;
-  font-weight: 600 !important;
-  margin-bottom: var(--space-md) !important;
-}
-
-.VPFeature p {
-  font-size: var(--vp-font-size-md) !important;
-  line-height: 1.7 !important;
-  color: var(--vp-c-text-2) !important;
-}
-
-/* Footer Enhancement */
-.VPFooter {
-  border-top: 1px solid var(--vp-c-border);
-  margin-top: var(--space-3xl);
-  padding-top: var(--space-xl);
-}
-
-/* Focus States for Accessibility */
-/* Print Styles */
-@media print {
-  .VPNav,
-  .VPFooter {
-    display: none;
-  }
-  
-  .blog-card {
-    break-inside: avoid;
-    border: 1px solid #ccc;
-    margin-bottom: var(--space-lg);
-  }
-}
-
-/* Profile Page Styles */
-.profile-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: var(--space-2xl) var(--space-lg);
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xl);
-  margin-bottom: var(--space-3xl);
-  padding-bottom: var(--space-xl);
-  border-bottom: 1px solid var(--vp-c-border);
-}
-
-.avatar-placeholder {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--vp-c-bg-soft) 0%, var(--vp-c-bg-mute) 100%);
-  border: 3px solid var(--vp-c-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.avatar-placeholder::before {
-  content: '';
-  width: 60px;
-  height: 60px;
-  background: var(--vp-c-text-3);
-  border-radius: 50%;
-  opacity: 0.3;
-}
-
-.profile-info {
-  flex: 1;
-}
-
-.profile-name {
-  font-size: var(--vp-font-size-3xl);
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  margin: 0 0 var(--space-sm) 0;
-  line-height: 1.2;
-}
-
-.profile-title {
-  font-size: var(--vp-font-size-lg);
-  color: var(--vp-c-text-2);
-  margin: 0;
-  font-weight: 500;
-}
-
-.profile-content {
-  line-height: 1.7;
-}
-
-.profile-content section {
-  margin-bottom: var(--space-2xl);
-}
-
-.profile-content h2 {
-  font-size: var(--vp-font-size-xl);
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-  margin: 0 0 var(--space-lg) 0;
-  padding-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--vp-c-brand-soft);
-}
-
-.profile-content p {
-  font-size: var(--vp-font-size-md);
-  color: var(--vp-c-text-2);
-  margin-bottom: var(--space-md);
-}
-
-.profile-content ul {
-  margin: var(--space-md) 0;
-  padding-left: var(--space-lg);
-}
-
-.profile-content li {
-  font-size: var(--vp-font-size-md);
-  color: var(--vp-c-text-2);
-  margin-bottom: var(--space-sm);
-  line-height: 1.6;
-}
-
-.profile-content a {
-  color: var(--vp-c-brand-1);
-  text-decoration: none;
-  font-weight: 500;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.profile-content a:hover {
-  border-bottom-color: var(--vp-c-brand-1);
-}
-
-/* Responsive Design for Profile */
-@media (max-width: 768px) {
-  .profile-header {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-lg);
-  }
-  
-  .avatar-placeholder {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .avatar-placeholder::before {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .profile-name {
-    font-size: var(--vp-font-size-2xl);
-  }
-  
-  .profile-container {
-    padding: var(--space-xl) var(--space-md);
-  }
-}
-
-/* Home layout inspired by minimal blog */
-.home-layout { display: grid; grid-template-columns: 1fr 300px; gap: var(--space-2xl); max-width: var(--vp-layout-max-width); margin: 0 auto; padding: var(--space-2xl) var(--space-lg); }
-.home-sidebar { position: sticky; top: 96px; height: fit-content; }
-
-.categories-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xl); }
-.tag-chip { border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); padding: 6px 12px; border-radius: 999px; font-size: 13px; cursor: pointer; color: var(--vp-c-text-2); }
-.tag-chip.active { background: var(--vp-c-brand-soft); color: var(--vp-c-text-1); border-color: var(--vp-c-brand-1); }
-.tag-chip.small { padding: 2px 10px; font-size: 12px; }
-
-.posts-list { display: grid; gap: var(--space-lg); }
-.post-item { padding-bottom: var(--space-md); border-bottom: 1px solid var(--vp-c-border); }
-.post-date { font-size: 12px; color: var(--vp-c-text-3); }
-.post-title { margin: 4px 0 6px; font-size: 22px; font-weight: 600; }
-.post-title a { color: var(--vp-c-text-1); text-decoration: none; }
-.post-title a:hover { text-decoration: underline; }
-.post-desc { color: var(--vp-c-text-2); }
-
-.about-card, .latest-card { border: 1px solid var(--vp-c-border); padding: var(--space-lg); background: var(--vp-c-bg); }
-.latest-list { list-style: none; padding: 0; margin: 0; }
-.latest-list li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--vp-c-border); }
-.latest-list li:last-child { border-bottom: none; }
-.latest-date { color: var(--vp-c-text-3); font-size: 12px; }
-
-@media (max-width: 960px) {
-  .home-layout { grid-template-columns: 1fr; }
-  .home-sidebar { position: static; }
-}
-
-
-
-/* Shared page container for consistent alignment */
-.page-container, .vp-doc > div:not(.outline) {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
-}
-
-@media (max-width: 640px) {
-  .page-container, .vp-doc > div:not(.outline) {
-    padding-left: var(--space-md);
-    padding-right: var(--space-md);
-  }
-}
-
-/* Remove search bar elements visually */
-.VPNavBarSearch,
-.VPAlgoliaSearchBox,
-.VPLocalSearchBox,
-.DocSearch-Button,
-.VPNavBar .search {
-  display: none !important;
-}
-
-/* Replace nav title span with plain text "Isaac Huo" */
-.VPNavBarTitle .title span {
-  display: none !important;
-}
-.VPNavBarTitle .title::after {
-  content: 'Isaac Huo';
-  font-size: 26px;
-  color: var(--vp-c-text-1);
-  letter-spacing: -0.01em;
-}
-
-/* Ensure clickable area remains and spacing looks natural */
-.VPNavBarTitle .title {
-  display: inline-flex;
-  align-items: center;
-}
-
-.vp-doc {
-  animation: fadeIn 0.6s ease-out;
-}
-
-/* Search Enhancement */
-.VPNavBarSearch {
-  margin-left: auto;
-}
-
-/* Features Section Enhancement */
-.VPFeatures {
-  padding: var(--space-3xl) 0;
-}
-
-.VPFeature {
-  padding: var(--space-xl);
-  text-align: center;
-}
-
-.VPFeature h2 {
-  font-size: var(--vp-font-size-xl) !important;
-  font-weight: 600 !important;
-  margin-bottom: var(--space-md) !important;
-}
-
-.VPFeature p {
-  font-size: var(--vp-font-size-md) !important;
-  line-height: 1.7 !important;
-  color: var(--vp-c-text-2) !important;
-}
-
-/* Footer Enhancement */
-.VPFooter {
-  border-top: 1px solid var(--vp-c-border);
-  margin-top: var(--space-3xl);
-  padding-top: var(--space-xl);
-}
-
-/* Focus States for Accessibility */
-.blog-card:focus-within {
-  outline: 2px solid var(--vp-c-brand-1);
-  outline-offset: 2px;
-}
-
-/* Print Styles */
-@media print {
-  .VPNav,
-  .VPFooter {
-    display: none;
-  }
-  
-  .blog-card {
-    break-inside: avoid;
-    border: 1px solid #ccc;
-    margin-bottom: var(--space-lg);
-  }
-}
-
-/* Profile Page Styles */
-.profile-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: var(--space-2xl) var(--space-lg);
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xl);
-  margin-bottom: var(--space-3xl);
-  padding-bottom: var(--space-xl);
-  border-bottom: 1px solid var(--vp-c-border);
-}
-
-.avatar-placeholder {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--vp-c-bg-soft) 0%, var(--vp-c-bg-mute) 100%);
-  border: 3px solid var(--vp-c-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.avatar-placeholder::before {
-  content: '';
-  width: 60px;
-  height: 60px;
-  background: var(--vp-c-text-3);
-  border-radius: 50%;
-  opacity: 0.3;
-}
-
-.profile-info {
-  flex: 1;
-}
-
-.profile-name {
-  font-size: var(--vp-font-size-3xl);
-  font-weight: 700;
-  color: var(--vp-c-text-1);
-  margin: 0 0 var(--space-sm) 0;
-  line-height: 1.2;
-}
-
-.profile-title {
-  font-size: var(--vp-font-size-lg);
-  color: var(--vp-c-text-2);
-  margin: 0;
-  font-weight: 500;
-}
-
-.profile-content {
-  line-height: 1.7;
-}
-
-.profile-content section {
-  margin-bottom: var(--space-2xl);
-}
-
-.profile-content h2 {
-  font-size: var(--vp-font-size-xl);
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-  margin: 0 0 var(--space-lg) 0;
-  padding-bottom: var(--space-sm);
-  border-bottom: 2px solid var(--vp-c-brand-soft);
-}
-
-.profile-content p {
-  font-size: var(--vp-font-size-md);
-  color: var(--vp-c-text-2);
-  margin-bottom: var(--space-md);
-}
-
-.profile-content ul {
-  margin: var(--space-md) 0;
-  padding-left: var(--space-lg);
-}
-
-.profile-content li {
-  font-size: var(--vp-font-size-md);
-  color: var(--vp-c-text-2);
-  margin-bottom: var(--space-sm);
-  line-height: 1.6;
-}
-
-.profile-content a {
-  color: var(--vp-c-brand-1);
-  text-decoration: none;
-  font-weight: 500;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.profile-content a:hover {
-  border-bottom-color: var(--vp-c-brand-1);
-}
-
-/* Responsive Design for Profile */
-@media (max-width: 768px) {
-  .profile-header {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-lg);
-  }
-  
-  .avatar-placeholder {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .avatar-placeholder::before {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .profile-name {
-    font-size: var(--vp-font-size-2xl);
-  }
-  
-  .profile-container {
-    padding: var(--space-xl) var(--space-md);
-  }
-}
-
-/* Home layout inspired by minimal blog */
-.home-layout { display: grid; grid-template-columns: 1fr 300px; gap: var(--space-2xl); max-width: var(--vp-layout-max-width); margin: 0 auto; padding: var(--space-2xl) var(--space-lg); }
-.home-sidebar { position: sticky; top: 96px; height: fit-content; }
-
-.categories-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-xl); }
-.tag-chip { border: 1px solid var(--vp-c-border); background: var(--vp-c-bg); padding: 6px 12px; border-radius: 999px; font-size: 13px; cursor: pointer; color: var(--vp-c-text-2); }
-.tag-chip.active { background: var(--vp-c-brand-soft); color: var(--vp-c-text-1); border-color: var(--vp-c-brand-1); }
-.tag-chip.small { padding: 2px 10px; font-size: 12px; }
-
-.posts-list { display: grid; gap: var(--space-lg); }
-.post-item { padding-bottom: var(--space-md); border-bottom: 1px solid var(--vp-c-border); }
-.post-date { font-size: 12px; color: var(--vp-c-text-3); }
-.post-title { margin: 4px 0 6px; font-size: 22px; font-weight: 600; }
-.post-title a { color: var(--vp-c-text-1); text-decoration: none; }
-.post-title a:hover { text-decoration: underline; }
-.post-desc { color: var(--vp-c-text-2); }
-
-.about-card, .latest-card { border: 1px solid var(--vp-c-border); padding: var(--space-lg); background: var(--vp-c-bg); }
-.latest-list { list-style: none; padding: 0; margin: 0; }
-.latest-list li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--vp-c-border); }
-.latest-list li:last-child { border-bottom: none; }
-.latest-date { color: var(--vp-c-text-3); font-size: 12px; }
-
-@media (max-width: 960px) {
-  .home-layout { grid-template-columns: 1fr; }
-  .home-sidebar { position: static; }
-}
-
-
-
-/* Books Page Styles */
-.vp-doc .books-page-container {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding: var(--space-3xl) var(--space-lg);
-  padding-left: 260px; /* 为固定侧边栏留出空间 */
-}
-
-/* Smooth scrolling for anchor links */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Scroll offset for fixed header */
-.books-content section {
-  scroll-margin-top: 120px;
-}
-
-.books-content div[id] {
-  scroll-margin-top: 120px;
-}
-
-/* Books Sidebar */
-.books-sidebar {
-  position: fixed;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 200px;
-  height: fit-content;
-  max-height: 70vh;
-  overflow-y: auto;
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-border);
-  border-radius: 6px;
-  padding: var(--space-md);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
-
-.sidebar-nav .sidebar-title {
-  font-size: 1rem;
-  font-weight: 600;
-  margin: 0 0 var(--space-md);
-  color: var(--vp-c-text-1);
-  border-bottom: 1px solid var(--vp-c-border);
-  padding-bottom: var(--space-sm);
-}
-
-.category-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.category-list > li {
-  margin-bottom: var(--space-xs);
-}
-
-.category-link {
-  display: block;
-  padding: var(--space-sm);
-  color: var(--vp-c-text-1);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  line-height: 1.4;
-}
-
-.category-link:hover {
-  background: var(--vp-c-bg-mute);
-  color: var(--vp-c-brand-1);
-}
-
-.subcategory-list {
-  list-style: none;
-  margin: var(--space-xs) 0 0 var(--space-sm);
-  padding: 0;
-}
-
-.subcategory-list li {
-  margin-bottom: var(--space-xs);
-}
-
-.subcategory-list a {
-  display: block;
-  padding: 2px var(--space-xs);
-  color: var(--vp-c-text-2);
-  text-decoration: none;
-  font-size: 0.8rem;
-  border-radius: 3px;
-  transition: all 0.2s ease;
-}
-
-.subcategory-list a:hover {
-  background: var(--vp-c-bg-mute);
-  color: var(--vp-c-brand-1);
-  transform: translateX(4px);
-}
-
-/* Active link styles */
-.category-link.active,
-.subcategory-list a.active {
-  background: var(--vp-c-brand-1);
-  color: white;
-}
-
-.category-link.active:hover,
-.subcategory-list a.active:hover {
-  background: var(--vp-c-brand-2);
-  color: white;
-}
-
-/* Focus styles for accessibility */
-.category-link:focus,
-.subcategory-list a:focus {
-  outline: 2px solid var(--vp-c-brand-1);
-  outline-offset: 2px;
-}
-
-/* Books Content */
-.books-content {
-  flex: 1;
-  min-width: 0;
-  max-width: calc(var(--content-max-width) - 200px - var(--space-xl));
-  margin: 0 auto;
-  text-align: center;
-}
-
-.books-content h1 {
-  font-size: 44px;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin: var(--space-xl) 0 var(--space-md);
-  font-weight: 700;
-  text-align: center;
-}
-
-.books-intro {
-  text-align: center;
-  font-size: 1.125rem;
-  color: var(--vp-c-text-2);
-  margin-bottom: var(--space-2xl);
-  line-height: 1.7;
-}
-
-.books-content section {
-  margin-bottom: var(--space-2xl);
-}
-
-.books-content h2 {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin: var(--space-2xl) 0 var(--space-lg);
-  color: var(--vp-c-text-1);
-  border-bottom: 2px solid var(--vp-c-border);
-  padding-bottom: var(--space-sm);
-  line-height: 1.4;
-}
-
-.books-content h3 {
-  font-size: 1.375rem;
-  font-weight: 500;
-  margin: var(--space-xl) 0 var(--space-md);
-  color: var(--vp-c-text-1);
-  line-height: 1.4;
-}
-
-.books-content ul {
-  margin: var(--space-md) auto;
-  padding-left: var(--space-lg);
-  text-align: left;
-  display: inline-block;
-}
-
-.books-content li {
-  margin-bottom: var(--space-sm);
-  line-height: 1.7;
-  font-size: var(--vp-font-size-md);
-}
-
-.books-content strong {
-  color: var(--vp-c-text-1);
-  font-weight: 600;
-}
-
-/* Mobile Sidebar Toggle Button */
-.mobile-sidebar-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 56px;
-  height: 56px;
-  background: var(--vp-c-brand-1);
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  z-index: 100;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: white;
-  font-size: 20px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
-.mobile-sidebar-toggle:hover {
-  background: var(--vp-c-brand-2);
-  transform: scale(1.05);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-}
-
-.mobile-sidebar-toggle:active {
-  transform: scale(0.95);
-}
-
-.mobile-sidebar-toggle.active {
-  background: var(--vp-c-text-1);
-  color: var(--vp-c-bg);
-}
-
-.mobile-sidebar-toggle.active:hover {
-  background: var(--vp-c-text-2);
-  color: var(--vp-c-bg);
-}
-
-/* Mobile Sidebar Overlay */
-.mobile-sidebar-overlay {
-  display: none !important;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: -1 !important;
-  opacity: 0 !important;
-  transition: opacity 0.3s ease;
-  pointer-events: none !important;
-}
-
-.mobile-sidebar-overlay.active {
-  opacity: 0 !important;
-  pointer-events: none !important;
-  z-index: -1 !important;
-}
-
-/* Responsive Design for Books Page */
-@media (max-width: 1024px) {
-  .vp-doc .books-page-container {
-    padding-left: var(--space-lg); /* 移动端恢复正常左边距 */
-  }
-  
-  .books-sidebar {
-    position: fixed;
-    left: -100%;
-    top: 0;
-    width: 280px;
-    height: 100vh;
-    background: var(--vp-c-bg);
-    border: none;
-    border-right: 1px solid var(--vp-c-border);
-    border-radius: 0;
-    padding: var(--space-xl) var(--space-lg);
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-    z-index: 100;
-    overflow-y: auto;
-    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: none;
-  }
-  
-  .books-sidebar.active {
-    left: 0;
-  }
-  
-  .mobile-sidebar-toggle {
-    display: flex;
-  }
-  
-  .mobile-sidebar-overlay {
-    display: block;
-  }
-  
-  .books-content {
-    max-width: 100%;
-  }
-  
-  .sidebar-nav .sidebar-title {
-    text-align: left;
-    font-size: 1.25rem;
-    margin-bottom: var(--space-lg);
-  }
-  
-  .category-list {
-    display: block;
-  }
-  
-  .category-list > li {
-    margin-bottom: var(--space-sm);
-  }
-  
-  .subcategory-list {
-    display: block;
-    margin-left: var(--space-md);
-  }
-}
-
-@media (max-width: 768px) {
-  .vp-doc .books-page-container {
-    padding: var(--space-xl) var(--space-md);
-    gap: var(--space-md);
-  }
-  
-  .books-content h1 {
-    font-size: 32px;
-  }
-  
-  .books-sidebar {
-    width: 260px;
-    padding: var(--space-lg) var(--space-md);
-  }
-  
-  .mobile-sidebar-toggle {
-    width: 52px;
-    height: 52px;
-    bottom: 16px;
-    right: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .books-content h1 {
-    font-size: 28px;
-  }
-  
-  .books-content h2 {
-    font-size: 1.5rem;
-  }
-  
-  .books-content h3 {
-    font-size: 1.25rem;
-  }
-  
-  .books-sidebar {
-    width: 240px;
-  }
-  
-  .mobile-sidebar-toggle {
-    width: 48px;
-    height: 48px;
-    font-size: 18px;
-  }
-}
-
-/* Dark mode styles for books page */
-.dark .books-sidebar {
-  background: var(--vp-c-bg-soft);
-  border-color: var(--vp-c-border);
-}
-
-.dark .sidebar-nav .sidebar-title {
-  color: var(--vp-c-text-1);
-  border-bottom-color: var(--vp-c-brand-1);
-}
-
-/* VitePress Mobile Navigation Fix */
-/* 确保 VitePress 默认的移动端导航菜单能够正常工作 */
-.VPNavBarHamburger,
-.vp-nav-bar-hamburger {
-  z-index: 2001 !important;
-}
-
-.VPNavScreen,
-.vp-nav-screen,
-.VPMenuGroup,
-.vp-menu-group {
-  z-index: 2000 !important;
+/* ==========================================================================
+   6. MOBILE NAVIGATION FIXES (CONSOLIDATED)
+   ========================================================================== */
+
+/* Mobile Nav Screen Defaults */
+.VPNavScreen {
   position: fixed !important;
   top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  pointer-events: auto !important;
-}
-
-/* 调整移动端导航菜单宽度和样式 */
-.VPNavScreen,
-.vp-nav-screen {
-  max-width: 280px !important;
-  width: 75vw !important;
   right: 0 !important;
   left: auto !important;
-  border-radius: 12px 0 0 12px !important;
+  width: 280px !important;
+  max-width: 75vw !important;
   margin-top: 80px !important;
   height: auto !important;
   max-height: none !important;
-  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15) !important;
   background: var(--vp-c-bg) !important;
   border: 1px solid var(--vp-c-border) !important;
+  border-radius: 12px 0 0 12px !important;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15) !important;
   overflow: visible !important;
-}
-
-/* 调整移动端导航菜单内容 */
-.VPNavScreen .container,
-.vp-nav-screen .container {
-  padding: 16px !important;
-  max-width: none !important;
-  height: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
-  border-radius: 12px !important;
-}
-
-/* 调整导航链接样式 - 小字体 */
-.VPNavScreenMenuLink,
-.vp-nav-screen-menu-link {
-  padding: 8px 12px !important;
-  margin-bottom: 4px !important;
-  border-radius: 6px !important;
-  transition: background-color 0.2s ease !important;
+  z-index: 2000 !important;
   display: block !important;
-  font-size: 14px !important;
-  line-height: 1.3 !important;
-}
-
-.VPNavScreenMenuLink:hover,
-.vp-nav-screen-menu-link:hover {
-  background-color: var(--vp-c-bg-mute) !important;
-}
-
-/* 桌面端在页面右下角添加 GitHub 悬浮按钮 */
-@media (min-width: 769px) {
-  /* 添加自定义 GitHub 悬浮按钮 */
-  .custom-github-link {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    background: var(--vp-c-brand-1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white !important;
-    text-decoration: none;
-    font-size: 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    z-index: 100;
-  }
-  
-  .custom-github-link:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    background: var(--vp-c-brand-2);
-    color: white !important;
-  }
-  
-  .custom-github-link:visited {
-    color: white !important;
-  }
-}
-
-/* 移动端隐藏 GitHub 悬浮按钮 */
-@media (max-width: 768px) {
-  .custom-github-link {
-    display: none !important;
-  }
-}
-
-/* 调整导航菜单组 */
-.VPNavScreenMenu,
-.vp-nav-screen-menu {
-  padding: 0 !important;
-}
-
-.VPNavScreenMenu .group,
-.vp-nav-screen-menu .group {
-  margin-bottom: 12px !important;
-}
-
-/* 修复页面抖动问题 - 防止滚动条导致的布局位移 */
-html {
-  scrollbar-gutter: stable both-edges !important;
-}
-
-body {
-  overflow-y: scroll !important;
-}
-
-/* 当导航菜单打开时防止页面滚动和抖动 */
-body.vp-nav-screen-open,
-html.vp-nav-screen-open {
-  overflow: hidden !important;
-  width: 100% !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-}
-
-/* 确保移动端导航菜单叠加层优先级正确 */
-.VPNavScreenBackdrop,
-.vp-nav-screen-backdrop {
-  z-index: 1999 !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  pointer-events: auto !important;
-}
-
-/* 强制显示移动端导航菜单 */
-.VPNavScreen.open,
-.vp-nav-screen.open,
-.VPNavScreen[data-open="true"],
-.vp-nav-screen[data-open="true"] {
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease !important;
   transform: none !important;
 }
 
-/* 修复可能的 pointer-events 问题 */
-.VPNavBarHamburger *,
-.vp-nav-bar-hamburger *,
-.VPNavScreen *,
-.vp-nav-screen *,
-.VPMenuGroup *,
-.vp-menu-group * {
-  pointer-events: auto !important;
+/* Open State */
+.VPNavScreen.open,
+.VPNavScreen[data-open="true"],
+.VPNavScreen[aria-hidden="false"] {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-/* 调整导航链接样式 */
-.VPNavScreenMenuLink,
-.vp-nav-screen-menu-link {
+/* Hide Unwanted Elements in Mobile Menu */
+.VPNavScreen .VPSocialLinks,
+.VPNavScreenTranslations,
+.VPNavScreenAppearance {
+  display: none !important;
+}
+
+/* Mobile Nav Menu Links */
+.VPNavScreenMenuLink {
   padding: 12px 16px !important;
   margin-bottom: 8px !important;
   border-radius: 8px !important;
-  transition: background-color 0.2s ease !important;
   display: block !important;
   font-size: 16px !important;
 }
 
-.VPNavScreenMenuLink:hover,
-.vp-nav-screen-menu-link:hover {
-  background-color: var(--vp-c-bg-mute) !important;
+/* Prevent Body Scroll when Menu is Open */
+body.vp-nav-screen-open {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
 }
 
-/* 调整翻译和外观切换区域 */
-.VPNavScreenTranslations,
-.vp-nav-screen-translations,
-.VPNavScreenAppearance,
-.vp-nav-screen-appearance {
-  padding: 16px 0 !important;
-  border-top: 1px solid var(--vp-c-border) !important;
-  margin-top: 16px !important;
-}
-
-/* 隐藏默认的语言切换按钮，因为我们已经在导航栏有自定义的语言切换 */
-.VPNavScreenTranslations,
-.vp-nav-screen-translations,
-.VPNavBarTranslations,
-.vp-nav-bar-translations {
-  display: none !important;
-}
-
-/* 隐藏外观切换按钮（深色/浅色模式切换） */
-.VPNavScreenAppearance,
-.vp-nav-screen-appearance,
-.VPNavBarAppearance,
-.vp-nav-bar-appearance {
-  display: none !important;
-}
-
-/* 隐藏移动端导航中的社交链接 */
-.VPNavScreen .VPSocialLinks,
-.vp-nav-screen .VPSocialLinks,
-.VPNavScreen .social-links,
-.vp-nav-screen .social-links,
-.VPNavScreenSocialLinks,
-.vp-nav-screen-social-links {
-  display: none !important;
-}
-
-/* 调整导航菜单组 */
-.VPNavScreenMenu,
-.vp-nav-screen-menu {
-  padding: 0 !important;
-}
-
-.VPNavScreenMenu .group,
-.vp-nav-screen-menu .group {
-  margin-bottom: 24px !important;
-}
-
-/* 确保汉堡菜单按钮可点击 */
-.VPNavBarHamburger,
-.vp-nav-bar-hamburger,
-.VPNavBarHamburger button,
-.vp-nav-bar-hamburger button {
-  pointer-events: auto !important;
-  position: relative !important;
-  z-index: 1002 !important;
-}
-
-/* 移动端导航调试样式 */
+/* Disable Custom Sidebars on Mobile */
 @media (max-width: 768px) {
-  /* 确保汉堡菜单始终可见且可交互 */
-  .VPNavBarHamburger,
-  .vp-nav-bar-hamburger {
-    opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
-    pointer-events: auto !important;
-    z-index: 2001 !important;
-    position: relative !important;
-  }
-  
-  /* 确保汉堡菜单内部按钮可交互 */
-  .VPNavBarHamburger button,
-  .vp-nav-bar-hamburger button,
-  .VPNavBarHamburger .button,
-  .vp-nav-bar-hamburger .button {
-    pointer-events: auto !important;
-    z-index: 2002 !important;
-    position: relative !important;
-    cursor: pointer !important;
-    user-select: none !important;
-  }
-  
-  /* 确保移动端导航中的社交链接隐藏 */
-  .VPNavScreen .VPSocialLinks,
-  .VPNavScreen [class*="SocialLinks"],
-  .VPNavScreenSocialLinks,
-  .VPNavScreen .VPSocialLink,
-  .vp-nav-screen .VPSocialLink,
-  .vp-nav-screen .VPSocialLinks {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-  }
 
-  /* 强制覆盖任何可能阻止导航菜单显示的样式 */
-  .VPNavScreen,
-  .vp-nav-screen {
-    position: fixed !important;
-    top: 0 !important;
-    right: 0 !important;
-    left: auto !important;
-    width: 280px !important;
-    max-width: 75vw !important;
-    height: auto !important;
-    max-height: none !important;
-    margin-top: 80px !important;
-    background: var(--vp-c-bg) !important;
-    background-color: var(--vp-c-bg) !important;
-    border: 1px solid var(--vp-c-border) !important;
-    z-index: 2000 !important;
-    pointer-events: auto !important;
-    transform: none !important;
-    transition: opacity 0.25s !important;
-    border-radius: 12px !important;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15) !important;
-    overflow: visible !important;
-    opacity: 1 !important;
-  }
-  
-  /* 强制设置导航菜单的背景色 - 针对所有可能的状态 */
-  .VPNavScreen *,
-  .vp-nav-screen * {
-    background-color: inherit !important;
-  }
-  
-  .VPNavScreen,
-  .vp-nav-screen,
-  .VPNavScreen.open,
-  .vp-nav-screen.open,
-  .VPNavScreen[aria-hidden="false"],
-  .vp-nav-screen[aria-hidden="false"],
-  .VPNavScreen[data-open="true"],
-  .vp-nav-screen[data-open="true"] {
-    background: var(--vp-c-bg) !important;
-    background-color: var(--vp-c-bg) !important;
-  }
-  
-  /* 备用背景色设置 - 如果CSS变量失效 */
-  .VPNavScreen,
-  .vp-nav-screen {
-    background: white !important;
-    background-color: white !important;
-  }
-  
-  .dark .VPNavScreen,
-  .dark .vp-nav-screen {
-    background: #1a1a1a !important;
-    background-color: #1a1a1a !important;
-  }
-  
-  /* 当菜单打开时确保显示 */
-  .VPNavScreen.open,
-  .vp-nav-screen.open,
-  .VPNavScreen[aria-hidden="false"],
-  .vp-nav-screen[aria-hidden="false"] {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  /* 移除任何可能影响的自定义样式 */
-  * {
-    pointer-events: auto;
-  }
-  
-  /* 确保没有元素阻挡点击事件 */
-  body * {
-    pointer-events: auto !important;
-  }
-}
-
-/* 确保移动端导航不被其他元素遮挡 */
-@media (max-width: 768px) {
-  .VPNav,
-  .vp-nav {
-    z-index: 2001 !important;
-  }
-  
-  .VPNavBar,
-  .vp-nav-bar {
-    z-index: 2001 !important;
-  }
-  
-  /* 重置可能影响导航的全局样式 */
-  html,
-  body {
-    touch-action: manipulation !important;
-  }
-  
-  /* 确保导航容器没有 transform 或其他可能影响的样式 */
-  .VPNav,
-  .vp-nav,
-  .VPNavBar,
-  .vp-nav-bar {
-    transform: none !important;
-    will-change: auto !important;
-  }
-  
-  /* 完全禁用自定义侧边栏功能在移动端 */
   .books-sidebar,
-  .mobile-sidebar-toggle,
-  .mobile-sidebar-overlay,
-  .home-sidebar {
+  .home-sidebar,
+  .custom-github-link {
     display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    opacity: 0 !important;
-    z-index: -1 !important;
-    position: absolute !important;
-    left: -9999px !important;
   }
-  
-  /* 强制移除可能阻挡点击的元素 */
-  #sidebarOverlay,
-  [id="sidebarOverlay"] {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    opacity: 0 !important;
-    z-index: -1 !important;
-    position: absolute !important;
-    left: -9999px !important;
-  }
-  
-  /* 重置任何可能阻止事件的全局样式 */
-  body,
-  html,
-  #app,
-  .Layout,
-  .VPApp {
-    pointer-events: auto !important;
-    position: relative !important;
-    overflow-x: hidden !important;
-  }
-  
-  /* 确保所有链接在移动端都可点击 */
-  a,
-  a:link,
-  a:visited,
-  a:hover,
-  a:active {
-    pointer-events: auto !important;
-    z-index: 999 !important;
-    position: relative !important;
-  }
-  
-  /* 确保文章内容区域的链接可点击 */
-  .content a,
-  .vp-doc a,
-  .VPDoc a {
-    pointer-events: auto !important;
-    z-index: 1000 !important;
-    position: relative !important;
-    display: inline !important;
+
+  /* Ensure Nav Z-Index is highest */
+  .VPNav,
+  .VPNavBar {
+    z-index: 2001 !important;
   }
 }
 
+/* ==========================================================================
+   7. PRINT & UTILITIES
+   ========================================================================== */
 
+@media print {
 
-/* Shared page container for consistent alignment */
-.page-container, .vp-doc > div:not(.outline) {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
-}
+  .VPNav,
+  .VPFooter {
+    display: none;
+  }
 
-@media (max-width: 640px) {
-  .page-container, .vp-doc > div:not(.outline) {
-    padding-left: var(--space-md);
-    padding-right: var(--space-md);
+  .blog-card {
+    break-inside: avoid;
+    border: 1px solid #ccc;
   }
 }
 
-/* 移动端导航菜单响应式调整 */
-@media (max-width: 480px) {
-  .VPNavScreen,
-  .vp-nav-screen {
-    max-width: 240px !important;
-    width: 85vw !important;
-    margin-top: 70px !important;
-    max-height: none !important;
-  }
-  
-  .VPNavScreen .container,
-  .vp-nav-screen .container {
-    padding: 12px !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-  
-  .VPNavScreenMenuLink,
-  .vp-nav-screen-menu-link {
-    padding: 6px 10px !important;
-    font-size: 13px !important;
-    line-height: 1.2 !important;
-  }
-  
-  .VPNavScreenMenu .group,
-  .vp-nav-screen-menu .group {
-    margin-bottom: 8px !important;
-  }
-}
-
-/* iPhone SE 和类似小屏幕设备 */
-@media (max-width: 375px) {
-  .VPNavScreen,
-  .vp-nav-screen {
-    max-width: 220px !important;
-    width: 90vw !important;
-    margin-top: 60px !important;
-    max-height: none !important;
-  }
-  
-  .VPNavScreen .container,
-  .vp-nav-screen .container {
-    padding: 10px !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-  
-  .VPNavScreenMenuLink,
-  .vp-nav-screen-menu-link {
-    padding: 5px 8px !important;
-    font-size: 12px !important;
-    line-height: 1.2 !important;
-  }
-}
-
-/* 终极字体规则 - 确保所有中文内容使用 DFKai */
-/* 中文页面所有元素 */
-html[lang="zh-CN"],
-html[lang="zh-CN"] *,
-html[lang="zh"],
-html[lang="zh"] * {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* 中文页面所有链接 */
-html[lang="zh-CN"] a,
-html[lang="zh-CN"] a *,
-html[lang="zh"] a,
-html[lang="zh"] a *,
-a[href*="/zh/"],
-a[href*="/zh/"] * {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* 所有包含中文字符的元素 */
-:not(:lang(en)):not(:lang(en-US)) {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* Giscus 评论组件字体样式 */
-.giscus,
-.giscus-frame {
-  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
-
-/* Giscus 内部所有文本 */
-.giscus * {
-  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
-
-/* Giscus 中文内容 */
-.giscus-content,
-.giscus-comment,
-.giscus-reply {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
-}
-
-/* Giscus 按钮和输入框 */
-.giscus button,
-.giscus input,
-.giscus textarea {
-  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
-
-
-/* Stats Card and Sidebar Spacing */
-.stats-card {
-  border: 1px solid var(--vp-c-border);
-  padding: var(--space-lg);
-  background: var(--vp-c-bg);
-}
-
-.stats-card h3 {
-  margin-top: 0;
-  margin-bottom: var(--space-md);
-  font-size: var(--vp-font-size-lg);
-  font-weight: 600;
-  color: var(--vp-c-text-1);
-}
-
-.home-sidebar section {
-  margin-bottom: var(--space-xl);
-}
-
-.home-sidebar section:last-child {
-  margin-bottom: 0;
+[data-frontmatter-layout="List100Page"] .VPDoc .container .content .content-container,
+[data-frontmatter-layout="BooksPage"] .VPDoc .container .content .content-container {
+  display: none;
 }
