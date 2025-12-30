@@ -31,8 +31,6 @@ import { withBase, useData } from 'vitepress'
 import { computed } from 'vue'
 import { data as blogPosts } from '../data/blogPosts.data.js'
 
-// 移除了Props接口和category相关的逻辑
-
 const { site, page } = useData()
 const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/'))
 
@@ -74,7 +72,7 @@ function formatDate(d?: string) {
   padding: var(--space-lg) var(--space-lg);
   text-align: center;
   background: var(--vp-c-bg);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--vp-font-family-base);
 }
 
 .blog-content h1 {

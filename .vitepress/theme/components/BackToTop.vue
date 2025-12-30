@@ -83,16 +83,14 @@ onUnmounted(() => {
   background: var(--vp-c-brand-2);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  outline: none; /* 悬停时也移除轮廓 */
 }
 
 .back-to-top:active {
   transform: translateY(-1px);
-  outline: none; /* 点击时也移除轮廓 */
 }
 
 .back-to-top:focus {
-  outline: none; /* 聚焦时移除轮廓 */
+  /* 保持默认焦点样式或自定义 */
 }
 
 .back-to-top svg {

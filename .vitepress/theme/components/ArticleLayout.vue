@@ -23,35 +23,11 @@
       </div>
     </aside>
 
-    <!-- 桌面端回到顶部按钮 -->
+    <!-- 回到顶部按钮 -->
     <Transition name="fade">
       <button 
         v-show="showBackToTop" 
-        class="desktop-back-to-top" 
-        aria-label="回到顶部" 
-        @click="scrollToTop"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M18 15l-6-6-6 6" />
-        </svg>
-      </button>
-    </Transition>
-
-    <!-- 移动端回到顶部按钮 -->
-    <Transition name="fade">
-      <button 
-        v-show="showBackToTop" 
-        class="mobile-back-to-top" 
+        class="back-to-top-btn" 
         aria-label="回到顶部" 
         @click="scrollToTop"
       >
@@ -87,10 +63,9 @@
               v-if="frontmatter.author"
               class="author"
             >• {{ frontmatter.author }}</span>
-            <span
-              v-if="viewCount"
-              class="view-count"
-            >• 阅读量：{{ viewCount }} 次</span>
+            <span class="view-count-wrapper">
+              • <ViewCounter :id="pageId" :showLabel="false" :isZh="isZh" />
+            </span>
           </div>
         </header>
 
@@ -107,15 +82,18 @@
 
 <script setup lang="ts">
 import { useData, useRoute } from 'vitepress'
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, computed } from 'vue'
 import Comments from './Comments.vue'
+import ViewCounter from './ViewCounter.vue'
 
-const { frontmatter } = useData()
+const { site, frontmatter } = useData()
 const route = useRoute()
-const viewCount = ref<number | string>('...')
 const headings = ref<Array<{ id: string; text: string; level: number }>>([])
 const activeHeading = ref('')
 const showBackToTop = ref(false)
+
+const isZh = computed(() => site.value.lang === 'zh-CN' || route.path.startsWith('/zh/'))
+const pageId = computed(() => route.path.replace(/^\/|\/$/g, ''))
 
 function scrollToTop() {
   window.scrollTo({
@@ -140,7 +118,7 @@ function formatDate(d?: string) {
 }
 
 function extractHeadings() {
-  setTimeout(() => {
+  nextTick(() => {
     const headingElements = document.querySelectorAll('.article-content h1, .article-content h2')
     headings.value = Array.from(headingElements).map((el, index) => {
       let id = el.id
@@ -160,7 +138,7 @@ function extractHeadings() {
       }
     })
     updateActiveHeading()
-  }, 200)
+  })
 }
 
 function scrollToHeading(id: string) {
@@ -197,35 +175,9 @@ function updateActiveHeading() {
   activeHeading.value = activeId
 }
 
-async function fetchViewCount() {
-  try {
-    const pageId = route.path.replace(/^\/|\/$/g, '');
-    // 如果是首页，可能不需要计数，或者根据需求调整
-    if (!pageId) return;
-
-    // TODO: 请将下面的 URL 替换为你实际的 Worker 地址
-    // 例如: https://blog-counter.isaachuo.workers.dev/?id=${pageId}
-    const workerUrl = `https://blog-counter.2210286979.workers.dev/?id=${pageId}`;
-
-    const res = await fetch(workerUrl);
-    const data = await res.json();
-    viewCount.value = data.count;
-  } catch (e) {
-    console.error('获取阅读量失败', e);
-    viewCount.value = 'N/A';
-  }
-}
-
-watch(() => route.path, () => {
-  viewCount.value = '...';
-  fetchViewCount();
-});
-
 onMounted(() => {
   extractHeadings()
   window.addEventListener('scroll', handleScroll)
-  fetchViewCount()
-  // 移除自动调用 updateActiveHeading，只在滚动时才更新
 })
 
 onUnmounted(() => {
@@ -643,8 +595,8 @@ onUnmounted(() => {
   font-style: italic;
 }
 
-/* 桌面端回到顶部按钮 */
-.desktop-back-to-top {
+/* 回到顶部按钮 */
+.back-to-top-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -664,25 +616,25 @@ onUnmounted(() => {
   outline: none;
 }
 
-.desktop-back-to-top:hover {
+.back-to-top-btn:hover {
   background: var(--vp-c-brand-2);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
-.desktop-back-to-top:active {
+.back-to-top-btn:active {
   transform: translateY(-1px);
 }
 
-.desktop-back-to-top svg {
+.back-to-top-btn svg {
   width: 24px;
   height: 24px;
   display: block;
 }
 
-/* 移动端回到顶部按钮 - 默认隐藏 */
-.mobile-back-to-top {
-  display: none;
+/* 移动端适配 */
+@media (max-width: 768px) {
+  /* 保持按钮显示，样式自适应 */
 }
 
 /* 过渡动画 */
@@ -731,46 +683,6 @@ onUnmounted(() => {
     font-size: 1.75rem;
   }
 
-  /* 隐藏桌面端回到顶部按钮 */
-  .desktop-back-to-top {
-    display: none;
-  }
-
-  /* 显示移动端回到顶部按钮 */
-  .mobile-back-to-top {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    width: 50px;
-    height: 50px;
-    background: var(--vp-c-brand-1);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    z-index: 999;
-    transition: all 0.3s ease;
-    outline: none;
-  }
-
-  .mobile-back-to-top:hover {
-    background: var(--vp-c-brand-2);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-  }
-
-  .mobile-back-to-top:active {
-    transform: translateY(-1px);
-  }
-
-  .mobile-back-to-top svg {
-    width: 24px;
-    height: 24px;
-    display: block;
-  }
+  /* 移动端保持回到顶部按钮显示 */
 }
 </style>

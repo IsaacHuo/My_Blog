@@ -198,11 +198,15 @@ const copyToClipboard = async (text: string, field: string) => {
   margin-bottom: var(--space-lg);
 }
 
-.about-intro {
+.about-intro,
+.about-description {
   font-size: var(--vp-font-size-lg);
   line-height: 1.7;
   color: var(--vp-c-text-1);
   margin-bottom: var(--space-lg);
+}
+
+.about-intro {
   font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
 }
 
@@ -218,13 +222,7 @@ const copyToClipboard = async (text: string, field: string) => {
   text-decoration: underline;
 }
 
-.about-description {
-  font-size: var(--vp-font-size-lg);
-  line-height: 1.7;
-  color: var(--vp-c-text-1);
-  margin-bottom: var(--space-lg);
-}
-
+.about-intro strong,
 .about-description strong {
   font-weight: normal;
   text-decoration: underline;
@@ -232,6 +230,7 @@ const copyToClipboard = async (text: string, field: string) => {
   text-underline-offset: 3px;
 }
 
+.about-intro :deep(strong),
 .about-description :deep(strong) {
   font-weight: normal !important;
   text-decoration: underline !important;
@@ -239,13 +238,11 @@ const copyToClipboard = async (text: string, field: string) => {
   text-underline-offset: 3px !important;
 }
 
-.about-skills,
 .about-contact {
   margin-bottom: var(--space-xl);
   clear: both; /* 后续区块不受浮动影响 */
 }
 
-.about-skills h3,
 .about-contact h3 {
   font-size: 20px;
   font-weight: 700;
@@ -257,14 +254,12 @@ const copyToClipboard = async (text: string, field: string) => {
   padding: 4px 10px;
 }
 
-.about-skills ul,
 .about-contact ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.about-skills li,
 .about-contact li {
   padding: 4px 0;
   color: var(--vp-c-text-2);
@@ -303,16 +298,6 @@ const copyToClipboard = async (text: string, field: string) => {
   transform: translateY(0);
 }
 
-.copy-icon {
-  font-size: 14px;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
-}
-
-.copyable:hover .copy-icon {
-  opacity: 1;
-}
-
 .copied-tip {
   display: inline-block;
   margin-left: 8px;
@@ -333,30 +318,6 @@ const copyToClipboard = async (text: string, field: string) => {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.github-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--vp-c-brand-1) !important;
-  text-decoration: none;
-}
-
-.github-link:hover {
-  color: var(--vp-c-brand-2) !important;
-  text-decoration: underline;
-}
-
-.github-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--vp-c-brand-1);
-  flex-shrink: 0;
-}
-
-.dark .github-icon {
-  color: var(--vp-c-brand-1);
 }
 
 @media (max-width: 768px) {

@@ -29,9 +29,6 @@ const isZh = computed(() => {
 const toggleLanguage = () => {
   const currentPath = window.location.pathname
   
-  console.log('Current path:', currentPath)
-  console.log('isZh.value:', isZh.value)
-  
   // 清理和规范化路径
   const cleanPath = (path) => {
     // 确保路径以 / 结尾（如果不是文件）
@@ -71,7 +68,6 @@ const toggleLanguage = () => {
   }
   
   const pathParts = extractPathParts(currentPath)
-  console.log('Path parts:', pathParts)
   
   // 确定目标语言
   let targetLang
@@ -97,8 +93,7 @@ const toggleLanguage = () => {
   }
   
   console.log('New path:', newPath)
-  window.location.href = newPath
-}
+  
 </script>
 
 <style scoped>

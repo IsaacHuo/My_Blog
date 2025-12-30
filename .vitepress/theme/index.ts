@@ -6,10 +6,10 @@ import AboutPage from './components/AboutPage.vue'
 import ProjectsPage from './components/ProjectsPage.vue'
 import List100Page from './components/List100Page.vue'
 import BlogList from './components/BlogList.vue'
-import LanguageSwitch from './components/LanguageSwitch.vue'
 import ProgressTracker from './components/ProgressTracker.vue'
 import List100Item from './components/List100Item.vue'
 import BackToTop from './components/BackToTop.vue'
+import ViewCounter from './components/ViewCounter.vue'
 
 export default {
   ...DefaultTheme,
@@ -27,5 +27,6 @@ export default {
     app.component('ProgressTracker', ProgressTracker)
     app.component('List100Item', List100Item)
     app.component('BackToTop', BackToTop)
+    app.component('ViewCounter', ViewCounter)
   }
 }

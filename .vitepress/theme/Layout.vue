@@ -43,7 +43,7 @@ import Comments from './components/Comments.vue'
 import ViewCounter from './components/ViewCounter.vue'
 
 const { Layout } = DefaultTheme
-const { frontmatter, page, site, lang } = useData()
+const { frontmatter, page, lang } = useData()
 const router = useRouter()
 
 // 判断是否是文章页面（在 zh/blog 或 en/blog 目录下）
@@ -95,16 +95,7 @@ const injectViewCounter = async () => {
       // Reduce H1 margin to pull counter closer
       h1.style.marginBottom = '0.8rem'
 
-      // Check language
-      console.log('Injecting ViewCounter. Lang:', lang.value, 'isZh:', isZh.value)
-      
       // Create and mount app
-      // Use clean ID: remove language prefix and .md extension
-      const id = page.value.relativePath
-        .replace(/^zh\/blog\//, '')
-        .replace(/^en\/blog\//, '')
-        .replace(/\.md$/, '')
-        
       viewCounterApp = createApp(ViewCounter, {
         id: page.value.relativePath.replace(/\.md$/, ''),
         showLabel: false,
