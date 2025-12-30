@@ -784,11 +784,11 @@ html[lang="en"] .vp-doc li {
 /* Mobile (Under 600px) */
 @media (max-width: 599px) {
   .VPNavBarTitle .title::after {
-    font-size: 24px !important;
+    font-size: 18px !important;
   }
 
   .VPNavBarMenuLink {
-    font-size: 20px !important;
+    font-size: 14px !important;
     padding: 0 4px !important;
   }
 }
@@ -796,11 +796,11 @@ html[lang="en"] .vp-doc li {
 /* Very Small Mobile (Under 380px) */
 @media (max-width: 379px) {
   .VPNavBarTitle .title::after {
-    font-size: 17px !important;
+    font-size: 12px !important;
   }
 
   .VPNavBarMenuLink {
-    font-size: 13px !important;
+    font-size: 10px !important;
     padding: 0 2px !important;
   }
 }
