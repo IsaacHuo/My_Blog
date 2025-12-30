@@ -23,8 +23,8 @@
       <p
         class="about-intro"
         v-html="isZh ? 
-          '我来自广西梧州，目前就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，本科主修电气工程，辅修计算机科学。起初我选择了风景园林专业，但后来我意识到自己更热爱技术与工程，于是转入电气工程，并开始深入探索人工智能的工程化落地。' :
-          'I grew up in a small city in southern China, and I\'m currently an undergraduate student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, majoring in Electrical Engineering and minoring in Computer Science. I originally studied Landscape Architecture but later discovered my passion for technology and intelligent systems, which led me to switch majors.'
+          '我来自广西梧州，目前就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，本科主修<strong>电气工程</strong>，辅修<strong>计算机科学</strong>。起初我选择了风景园林专业，但后来我意识到自己更热爱技术与工程，于是转入电气工程，并开始深入探索人工智能的工程化落地。' :
+          'I grew up in a small city in southern China, and I\'m currently an undergraduate student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, majoring in <strong>Electrical Engineering</strong> and minoring in <strong>Computer Science</strong>. I originally studied Landscape Architecture but later discovered my passion for technology and intelligent systems, which led me to switch majors.'
         "
       />
       <p
