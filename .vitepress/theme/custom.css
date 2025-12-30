@@ -752,3 +752,15 @@ body.vp-nav-screen-open {
 [data-frontmatter-layout="BooksPage"] .VPDoc .container .content .content-container {
   display: none;
 }
+
+/* ==========================================================================
+   NAVIGATION BAR ADJUSTMENTS
+   ========================================================================== */
+
+/* 限制导航栏最大宽度，使左右两侧内容（Logo和菜单）靠得更近 */
+@media (min-width: 960px) {
+  .VPNavBar .container {
+    max-width: 770px !important;
+    margin: 0 auto !important;
+  }
+}

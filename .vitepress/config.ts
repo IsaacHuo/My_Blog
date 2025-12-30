@@ -5,7 +5,7 @@ export default defineConfig({
   description: "Sharing thoughts on technology, life, and creativity",
   // Cloudflare Pages 使用根路径
   base: '/',
-  
+
   locales: {
     root: {
       label: 'English',
@@ -35,9 +35,10 @@ export default defineConfig({
       }
     }
   },
-  
+
   head: [
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=yes' }],
+    ['link', { rel: 'icon', href: '/huo.png' }],
     ['meta', { name: 'author', content: 'Isaac Huo' }],
     ['meta', { property: 'og:title', content: "Isaac Huo's Blog" }],
     ['meta', { property: 'og:description', content: 'Sharing thoughts on technology, life, and creativity' }],

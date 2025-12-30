@@ -59,7 +59,6 @@ My_Blog/
 │   ├── config.ts                    # Site configuration
 │   └── theme/
 │       ├── components/              # Vue components
-│       │   ├── ArticleLayout.vue    # Article layout with TOC
 │       │   ├── ProjectsPage.vue     # Projects page
 │       │   ├── Comments.vue         # Giscus comments
 │       │   ├── HomePage.vue         # Homepage
@@ -88,7 +87,6 @@ Create a new Markdown file in `en/blog/` or `zh/blog/` with frontmatter:
 
 ```markdown
 ---
-layout: ArticleLayout
 title: Article Title
 date: 2024-11-24
 tags: [tag1, tag2]

@@ -1,7 +1,7 @@
 <template>
   <Transition name="fade">
     <button
-      v-show="isVisible && shouldShow"
+      v-show="isVisible"
       class="back-to-top"
       aria-label="回到顶部"
       @click="scrollToTop"
@@ -29,11 +29,6 @@ import { useData } from 'vitepress'
 
 const { frontmatter } = useData()
 const isVisible = ref(false)
-
-// 在 ArticleLayout 页面隐藏按钮，因为文章页面有自己的回到顶部按钮
-const shouldShow = computed(() => {
-  return frontmatter.value.layout !== 'ArticleLayout'
-})
 
 function handleScroll() {
   // 滚动超过100px时显示按钮
