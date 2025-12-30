@@ -1,15 +1,10 @@
 <template>
   <div class="list100-item">
-    <ProgressTracker 
-      :item-id="itemId"
-      :item-text="itemText"
-    />
+    {{ itemText }}
   </div>
 </template>
 
 <script setup>
-import ProgressTracker from './ProgressTracker.vue'
-
 const props = defineProps({
   itemId: {
     type: [String, Number],
