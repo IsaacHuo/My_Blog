@@ -32,7 +32,7 @@ const giscusBaseConfig = {
   'data-emit-metadata': '0',
   'data-input-position': 'bottom',
   'data-theme': 'light',
-  'data-loading': 'lazy'
+  'data-loading': 'eager'
 }
 
 const initGiscus = () => {

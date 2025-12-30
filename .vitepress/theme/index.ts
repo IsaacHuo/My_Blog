@@ -23,7 +23,6 @@ export default {
     app.component('ProjectsPage', ProjectsPage)
     app.component('List100Page', List100Page)
     app.component('BlogList', BlogList)
-    app.component('LanguageSwitch', LanguageSwitch)
     app.component('ProgressTracker', ProgressTracker)
     app.component('List100Item', List100Item)
     app.component('BackToTop', BackToTop)
