@@ -744,19 +744,11 @@ html[lang="en"] .vp-doc li {
     padding-right: 8px !important;
   }
 
-  /* Compact Social Links */
+  /* Hide Social Links (GitHub) and Appearance Toggle on Mobile */
   .VPNavBarSocialLinks,
-  .VPSocialLinks {
-    margin-left: 4px !important;
-  }
-
-  .VPSocialLink {
-    padding: 4px !important;
-  }
-
-  .VPSocialLink svg {
-    width: 20px !important;
-    height: 20px !important;
+  .VPSocialLinks,
+  .VPNavBarAppearance {
+    display: none !important;
   }
 
   /* Hide View Counter to save space */
@@ -784,11 +776,11 @@ html[lang="en"] .vp-doc li {
 /* Mobile (Under 600px) */
 @media (max-width: 599px) {
   .VPNavBarTitle .title::after {
-    font-size: 24px !important;
+    font-size: 22px !important;
   }
 
   .VPNavBarMenuLink {
-    font-size: 20px !important;
+    font-size: 18px !important;
     padding: 0 4px !important;
   }
 }
@@ -796,7 +788,7 @@ html[lang="en"] .vp-doc li {
 /* Very Small Mobile (Under 380px) */
 @media (max-width: 379px) {
   .VPNavBarTitle .title::after {
-    font-size: 17px !important;
+    font-size: 16px !important;
   }
 
   .VPNavBarMenuLink {
