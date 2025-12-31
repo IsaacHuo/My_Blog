@@ -713,7 +713,7 @@ html[lang="en"] .vp-doc li {
 /* 限制导航栏最大宽度，使左右两侧内容靠得更近 (仅在宽屏生效) */
 @media (min-width: 1200px) {
   .VPNavBar .container {
-    max-width: 800px !important;
+    max-width: 796px !important;
     margin: 0 auto !important;
   }
 }
