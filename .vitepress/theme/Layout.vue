@@ -18,6 +18,7 @@
     <!-- 回到顶部按钮 - 添加到所有页面 -->
     <template #layout-bottom>
       <BackToTop />
+      <ArticleTOC v-if="isArticlePage" />
     </template>
     
     <!-- Navbar Title Extension -->
@@ -41,6 +42,7 @@ import List100Page from './components/List100Page.vue'
 import BackToTop from './components/BackToTop.vue'
 import Comments from './components/Comments.vue'
 import ViewCounter from './components/ViewCounter.vue'
+import ArticleTOC from './components/ArticleTOC.vue'
 
 const { Layout } = DefaultTheme
 const { frontmatter, page, lang } = useData()

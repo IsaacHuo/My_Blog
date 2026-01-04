@@ -31,7 +31,7 @@ export default defineConfig({
           message: '基于 MIT 许可证发布。',
           copyright: 'Copyright © 2024 Isaac Huo'
         },
-
+        outline: [2, 3],
       }
     }
   },
@@ -68,7 +68,7 @@ export default defineConfig({
       copyright: 'Copyright © 2024 Isaac Huo'
     },
 
-
+    outline: [2, 3],
   },
 
   markdown: {

@@ -9,6 +9,7 @@ import BlogList from './components/BlogList.vue'
 import List100Item from './components/List100Item.vue'
 import BackToTop from './components/BackToTop.vue'
 import ViewCounter from './components/ViewCounter.vue'
+import ArticleTOC from './components/ArticleTOC.vue'
 
 export default {
   ...DefaultTheme,
@@ -25,5 +26,6 @@ export default {
     app.component('List100Item', List100Item)
     app.component('BackToTop', BackToTop)
     app.component('ViewCounter', ViewCounter)
+    app.component('ArticleTOC', ArticleTOC)
   }
 }

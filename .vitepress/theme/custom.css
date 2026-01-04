@@ -280,6 +280,11 @@ a:visited {
   display: none !important;
 }
 
+/* Hide Default TOC Content completely to use custom one */
+.VPDocAsideOutline {
+  display: none !important;
+}
+
 /* TOC Link Styles */
 .VPDocAsideOutline .outline-link {
   color: #000 !important;
