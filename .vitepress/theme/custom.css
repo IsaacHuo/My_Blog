@@ -785,6 +785,21 @@ html[lang="en"] .vp-doc li {
   }
 }
 
+/* ==========================================================================
+   HIDE DEFAULT RETURN TO TOP
+   ========================================================================== */
+
+/* Hide "Return to top" in mobile local nav */
+.VPLocalNav .return-to-top {
+  display: none !important;
+}
+
+/* Hide the entire Local Nav bar if it doesn't contain a menu 
+   (This removes the empty bar on non-article pages where menu is absent) */
+.VPLocalNav:not(:has(.menu)) {
+  display: none !important;
+}
+
 /* Very Small Mobile (Under 380px) */
 @media (max-width: 379px) {
   .VPNavBarTitle .title::after {
