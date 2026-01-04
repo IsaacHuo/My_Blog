@@ -1,5 +1,6 @@
 <template>
-  <div class="custom-toc" v-if="headers && headers.length > 0">
+  <!-- Desktop TOC -->
+  <div class="custom-toc desktop-toc" v-if="headers && headers.length > 0">
     <div class="toc-header">目录</div>
     <nav class="toc-content">
       <ul>
@@ -22,6 +23,53 @@
       </ul>
     </nav>
   </div>
+
+  <!-- Mobile TOC Button & Overlay -->
+  <div class="mobile-toc-container" v-if="headers && headers.length > 0">
+    <button 
+      class="mobile-toc-btn" 
+      @click="toggleMobileToc" 
+      aria-label="Table of Contents"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="21" y1="10" x2="3" y2="10"></line>
+        <line x1="21" y1="6" x2="3" y2="6"></line>
+        <line x1="21" y1="14" x2="3" y2="14"></line>
+        <line x1="21" y1="18" x2="3" y2="18"></line>
+      </svg>
+    </button>
+
+    <Transition name="fade">
+      <div v-if="isMobileOpen" class="mobile-toc-overlay" @click="closeMobileToc">
+        <div class="mobile-toc-content" @click.stop>
+          <div class="mobile-toc-header">
+            <span>目录</span>
+            <button class="close-btn" @click="closeMobileToc">&times;</button>
+          </div>
+          <nav>
+            <ul>
+              <li 
+                v-for="header in headers" 
+                :key="header.slug"
+                :class="{ 
+                  'active': activeId === header.slug,
+                  'toc-h2': header.level === 2,
+                  'toc-h3': header.level === 3
+                }"
+              >
+                <a 
+                  :href="`#${header.slug}`" 
+                  @click.prevent="scrollToHeader(header.slug); closeMobileToc()"
+                >
+                  {{ header.title }}
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </Transition>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -31,12 +79,21 @@ import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 const { page } = useData()
 const headers = ref<any[]>([])
 const activeId = ref('')
+const isMobileOpen = ref(false)
+
+function toggleMobileToc() {
+  isMobileOpen.value = !isMobileOpen.value
+}
+
+function closeMobileToc() {
+  isMobileOpen.value = false
+}
 
 // 手动提取标题的函数（作为 fallback）
 function extractHeaders() {
   const elements = document.querySelectorAll('.vp-doc h2, .vp-doc h3')
   const extracted = Array.from(elements).map(el => ({
-    title: el.innerText,
+    title: (el as HTMLElement).innerText,
     slug: el.id,
     level: parseInt(el.tagName.substring(1))
   }))
@@ -73,7 +130,7 @@ function scrollToHeader(slug: string) {
     })
     activeId.value = slug
     // Update URL hash without jumping
-    history.pushState(null, null, `#${slug}`)
+    history.pushState(null, "", `#${slug}`)
   }
 }
 
@@ -130,7 +187,8 @@ watch(() => page.value.relativePath, () => {
 </script>
 
 <style scoped>
-.custom-toc {
+/* Desktop TOC Styles */
+.custom-toc.desktop-toc {
   position: fixed;
   left: 50%;
   margin-left: 250px; /* 700px/2 + 10px gap */
@@ -197,15 +255,175 @@ watch(() => page.value.relativePath, () => {
   font-size: 0.85em;
 }
 
-/* Hide on mobile/tablet */
+/* Mobile TOC Components */
+.mobile-toc-container {
+  display: none; /* Hidden by default on desktop */
+}
+
+.mobile-toc-btn {
+  position: fixed;
+  bottom: 100px; /* Above BackToTop (40px + 50px + 10px) */
+  right: 40px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  border: 1px solid var(--vp-c-border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.mobile-toc-btn:hover {
+  background: var(--vp-c-bg-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-toc-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(2px);
+}
+
+.mobile-toc-content {
+  background: var(--vp-c-bg);
+  width: 100%;
+  max-width: 320px;
+  max-height: 70vh;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-toc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.mobile-toc-content nav {
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.mobile-toc-content ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-toc-content li {
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-toc-content a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.95em;
+  transition: background 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.mobile-toc-content a:hover {
+  background: var(--vp-c-bg-soft);
+}
+
+.mobile-toc-content li.active > a {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  border-left-color: var(--vp-c-brand-1);
+  font-weight: 500;
+}
+
+.mobile-toc-content .toc-h3 a {
+  padding-left: 24px;
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--vp-c-text-2);
+  padding: 4px;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Responsive Logic */
 @media (max-width: 1200px) {
-  .custom-toc {
+  .custom-toc.desktop-toc {
     display: none;
+  }
+  
+  .mobile-toc-container {
+    display: block;
   }
 }
 
 /* Dark mode adjustments */
-:global(.dark) .custom-toc {
-  background: rgba(30, 30, 30, 0.8);
+:global(.dark) .custom-toc.desktop-toc,
+:global(.dark) .mobile-toc-content {
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-border);
+}
+
+/* Mobile specific positioning adjustments */
+@media (max-width: 768px) {
+  .mobile-toc-btn {
+    bottom: 80px; /* 20px (BackToTop bottom) + 45px (height) + 15px gap */
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
 }
 </style>
