@@ -717,12 +717,15 @@ html[lang="en"] .vp-doc li {
 
 
 /* 限制导航栏最大宽度，使左右两侧内容靠得更近 (仅在宽屏生效) */
+/* 限制导航栏最大宽度：已移除以修复 ViewCounter 被遮挡的问题 */
+/*
 @media (min-width: 1200px) {
   .VPNavBar .container {
     max-width: 796px !important;
     margin: 0 auto !important;
   }
 }
+*/
 
 /* ==========================================================================
    COMPACT NAVIGATION (NO HAMBURGER GLOBALLY)
@@ -757,10 +760,12 @@ html[lang="en"] .vp-doc li {
     display: none !important;
   }
 
-  /* Hide View Counter to save space */
+  /* Hide View Counter to save space - MOVED to mobile only */
+  /*
   .nav-view-counter {
     display: none !important;
   }
+  */
 
   /* Compact Menu Items Base Styles */
   .VPNavBarMenuLink {
@@ -788,6 +793,11 @@ html[lang="en"] .vp-doc li {
   .VPNavBarMenuLink {
     font-size: 18px !important;
     padding: 0 4px !important;
+  }
+
+  /* Hide View Counter on Mobile Phones only */
+  .nav-view-counter {
+    display: none !important;
   }
 }
 
