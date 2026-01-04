@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout :class="{ 'is-article-page': isArticlePage }">
     <template
       v-if="frontmatter.layout === 'List100Page'"
       #doc-before

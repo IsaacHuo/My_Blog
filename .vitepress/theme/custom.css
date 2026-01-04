@@ -789,14 +789,21 @@ html[lang="en"] .vp-doc li {
    HIDE DEFAULT RETURN TO TOP
    ========================================================================== */
 
-/* Hide "Return to top" in mobile local nav */
+/* Hide "Return to top" in mobile local nav by default */
 .VPLocalNav .return-to-top {
   display: none !important;
 }
 
+/* Show "Return to top" on article pages */
+.is-article-page .VPLocalNav .return-to-top {
+  display: block !important;
+}
+
 /* Hide the entire Local Nav bar if it doesn't contain a menu 
-   (This removes the empty bar on non-article pages where menu is absent) */
-.VPLocalNav:not(:has(.menu)) {
+   (This removes the empty bar on non-article pages where menu is absent)
+   We exclude article pages from this rule to ensure the bar stays visible for the return-to-top link
+*/
+:not(.is-article-page) .VPLocalNav:not(:has(.menu)) {
   display: none !important;
 }
 
