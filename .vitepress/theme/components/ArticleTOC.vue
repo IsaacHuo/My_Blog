@@ -91,6 +91,7 @@ function closeMobileToc() {
 
 // 手动提取标题的函数（作为 fallback）
 function extractHeaders() {
+  if (typeof document === 'undefined') return []
   const elements = document.querySelectorAll('.vp-doc h2, .vp-doc h3')
   const extracted = Array.from(elements).map(el => ({
     title: (el as HTMLElement).innerText,
