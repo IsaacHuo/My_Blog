@@ -262,8 +262,8 @@ watch(() => page.value.relativePath, () => {
 
 .mobile-toc-btn {
   position: fixed;
-  bottom: 100px; /* Above BackToTop (40px + 50px + 10px) */
-  right: 40px;
+  bottom: calc(100px + env(safe-area-inset-bottom)); /* Above BackToTop + Safe Area */
+  right: 20px;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -275,7 +275,7 @@ watch(() => page.value.relativePath, () => {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
+  z-index: 2005; /* Increased z-index */
   transition: all 0.3s ease;
 }
 
