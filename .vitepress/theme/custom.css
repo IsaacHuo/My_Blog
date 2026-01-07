@@ -256,6 +256,7 @@ a:visited {
 
   .vp-doc,
   .vp-doc .content,
+  .VPDoc .container .content,
   .centered-content {
     display: block !important;
     width: 100% !important;
@@ -263,14 +264,15 @@ a:visited {
     margin: 0 !important;
   }
 
-  .vp-doc .content {
-    padding: 0 12px !important;
-    /* Reduced padding for wider content */
+  .vp-doc .content,
+  .VPDoc .container .content {
+    padding: 0 6px !important;
+    /* Reduced padding to maximize mobile reading width */
   }
 
   .page-container {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
   }
 }
 
