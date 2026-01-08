@@ -1,7 +1,7 @@
 ---
 title: The DB Permission Outage on Cloudflare
 date: 2025-11-18
-author: Isaac Huo
+author: Huo Weifang
 description: Cloudflare Global Outage Analysis - Complete Review of Permission Change to System Collapse
 ---
 

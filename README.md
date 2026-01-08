@@ -1,4 +1,4 @@
-# Isaac Huo's Blog
+# Huo Weifang's Blog
 
 A bilingual personal blog built with VitePress, featuring dual language support (Chinese/English), responsive design, and integrated project documentation.
 

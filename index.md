@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Isaac Huo
+title: Huo Weifang
 ---
 
 <AboutPage />

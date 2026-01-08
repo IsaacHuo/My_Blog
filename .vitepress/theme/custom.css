@@ -344,7 +344,7 @@ a:visited {
 }
 
 .VPNavBarTitle .title::after {
-  content: 'Isaac Huo';
+  content: 'Huo Weifang';
   font-size: 26px;
   color: var(--vp-c-text-1);
   letter-spacing: -0.01em;

@@ -9,7 +9,7 @@
         >
           <img
             src="/avatar.jpg"
-            :alt="isZh ? '霍玮放' : 'Isaac Huo'"
+            :alt="isZh ? '霍玮放' : 'Huo Weifang'"
             class="avatar-image"
           >
         </a>
@@ -17,7 +17,7 @@
       <p class="welcome-message">
         {{ isZh ?
           '你好👋，我是霍玮放，欢迎来到我的博客！' :
-          'Hi there👋, I\'m Isaac Huo — welcome to my blog!'
+          'Hi there👋, I\'m Huo Weifang — welcome to my blog!'
         }}
       </p>
       <p

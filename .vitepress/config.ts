@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: "Isaac Huo's Blog",
+  title: "Huo Weifang's Blog",
   description: "Sharing thoughts on technology, life, and creativity",
   // Cloudflare Pages 使用根路径
   base: '/',
@@ -14,10 +14,10 @@ export default defineConfig({
     zh: {
       label: '中文',
       lang: 'zh-CN',
-      title: "Isaac Huo 的博客",
+      title: "Huo Weifang 的博客",
       description: "分享技术、生活和创意的思考",
       themeConfig: {
-        siteTitle: 'Isaac Huo',
+        siteTitle: 'Huo Weifang',
         nav: [
           { text: '文章', link: '/zh/blog/' },
           { text: '项目', link: '/zh/projects/' },
@@ -29,7 +29,7 @@ export default defineConfig({
         ],
         footer: {
           message: '基于 MIT 许可证发布。',
-          copyright: 'Copyright © 2024 Isaac Huo'
+          copyright: 'Copyright © 2024 Huo Weifang'
         },
         outline: [2, 3],
       }
@@ -39,8 +39,8 @@ export default defineConfig({
   head: [
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=yes' }],
     ['link', { rel: 'icon', href: '/huo.png' }],
-    ['meta', { name: 'author', content: 'Isaac Huo' }],
-    ['meta', { property: 'og:title', content: "Isaac Huo's Blog" }],
+    ['meta', { name: 'author', content: 'Huo Weifang' }],
+    ['meta', { property: 'og:title', content: "Huo Weifang's Blog" }],
     ['meta', { property: 'og:description', content: 'Sharing thoughts on technology, life, and creativity' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
@@ -49,7 +49,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    siteTitle: 'Isaac Huo',
+    siteTitle: 'Huo Weifang',
     nav: [
       { text: 'Blog', link: '/en/blog/' },
       { text: 'Projects', link: '/en/projects/' },
@@ -64,8 +64,8 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2024 Isaac Huo'
+      // message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2024 Huo Weifang'
     },
 
     outline: [2, 3],
