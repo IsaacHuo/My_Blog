@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: ProjectsPage
 title: 项目
 thoughts:
@@ -6,5 +6,5 @@ thoughts:
 and Future Research Directions"
     url: /projects-pdf/2503.23278v3.pdf
     image: /project-images/a.jpeg
----
+--- -->
 
