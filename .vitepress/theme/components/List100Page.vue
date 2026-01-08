@@ -14,6 +14,7 @@
           v-for="(item, index) in list100Items"
           :key="index"
           class="list100-item"
+          @click="openModal(item)"
         >
           <span class="item-number">{{ index + 1 }}.</span>
           <span class="item-status">{{ item.status }}</span>
@@ -24,18 +25,62 @@
         </div>
       </div>
     </div>
+    
+    <List100Modal 
+      :is-open="isModalOpen"
+      :item="selectedItem"
+      :is-zh="isZh"
+      @close="closeModal"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useData } from 'vitepress'
+import { ref } from 'vue'
+import List100Modal from './List100Modal.vue'
 
 const { site, page } = useData()
 const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')
 
+// Modal State
+const isModalOpen = ref(false)
+const selectedItem = ref({})
+
+const openModal = (item: any) => {
+  selectedItem.value = item
+  isModalOpen.value = true
+  document.body.style.overflow = 'hidden' // Prevent background scrolling
+}
+
+const closeModal = () => {
+  isModalOpen.value = false
+  document.body.style.overflow = ''
+}
+
 // List 100 数据
-const list100Items = [
-  { status: '✗', textEn: 'Independently design a complete production-grade project in the AI/ML systems field.', textZh: '在 AI/ML 系统领域独立设计一个完整的生产级项目。' },
+interface List100Item {
+  status: string
+  textEn: string
+  textZh: string
+  records?: {
+    date: string
+    status: string
+    contentZh: string
+    contentEn: string
+  }[]
+}
+
+const list100Items: List100Item[] = [
+  { 
+    status: '✗', 
+    textEn: 'Independently design a complete production-grade project in the AI/ML systems field.', 
+    textZh: '在 AI/ML 系统领域独立设计一个完整的生产级项目。',
+    records: [
+      { date: '2023-10-15', status: 'In Progress', contentZh: '开始构思系统架构，选型 Kubernetes + RayServe。', contentEn: 'Started conceptualizing architecture, selected Kubernetes + RayServe.' },
+      { date: '2023-10-15', status: 'In Progress', contentZh: '开始构思系统架构，选型 Kubernetes + RayServe。', contentEn: 'Started conceptualizing architecture, selected Kubernetes + RayServe.' },
+    ]
+  },
   { status: '✗', textEn: 'Publish an open-source library or tool used by developers worldwide.', textZh: '发布自己的开源库或工具，让全球开发者使用。' },
   { status: '✗', textEn: 'Publish a paper or present at a top AI/ML conference (NeurIPS, ICML, CVPR).', textZh: '在顶级 AI/ML 会议（NeurIPS、ICML、CVPR）发表论文或报告。' },
   { status: '✗', textEn: 'Participate in or lead the design and deployment of a low-latency GPU inference system.', textZh: '参与或主导一个低延迟 GPU 推理系统的设计与部署。' },
@@ -109,9 +154,17 @@ const list100Items = [
   display: flex;
   align-items: flex-start;
   gap: var(--space-sm);
-  padding: 2px 0;
+  padding: 4px 8px;
   font-size: var(--vp-font-size-md);
   line-height: 1.6;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin: 0 -8px; /* Negative margin to offset padding so text aligns */
+}
+
+.list100-item:hover {
+  background-color: var(--vp-c-bg-soft);
 }
 
 .item-number {
@@ -132,15 +185,11 @@ const list100Items = [
   flex: 1;
 }
 
-.item-text a {
+/* Remove old link styles since whole item is clickable now */
+:deep(.item-text a) {
   color: var(--vp-c-brand-1);
   text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.item-text a:hover {
-  color: var(--vp-c-brand-2);
-  text-decoration: underline;
+  pointer-events: none; /* Let the parent click handler take over */
 }
 
 @media (max-width: 768px) {

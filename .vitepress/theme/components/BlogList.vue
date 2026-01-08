@@ -1,15 +1,38 @@
 <template>
   <div class="modern-blog-list">
     <div class="blog-content">
-      <h1>{{ isZh ? '文章' : 'Blog' }}</h1>
+      <div class="blog-header">
+        <h1>{{ isZh ? '文章' : 'Blog' }}</h1>
+        <div class="sort-controls">
+          <button 
+            class="sort-btn" 
+            :class="{ active: sortBy === 'date' }"
+            @click="sortBy = 'date'"
+          >
+            {{ isZh ? '最新发布' : 'Date' }}
+          </button>
+          <span class="divider">/</span>
+          <button 
+            class="sort-btn" 
+            :class="{ active: sortBy === 'views' }"
+            @click="sortBy = 'views'"
+          >
+            {{ isZh ? '最多阅读' : 'Views' }}
+          </button>
+        </div>
+      </div>
+      
       <div class="blog-articles">
         <article
-          v-for="post in posts"
+          v-for="post in sortedPosts"
           :key="post.url"
           class="blog-article"
         >
           <div class="article-date">
             {{ formatDate(post.frontmatter.date) }}
+            <span v-if="sortBy === 'views' && viewCounts[post.url]" class="view-count-badge">
+              · {{ viewCounts[post.url] }} {{ isZh ? '阅读' : 'views' }}
+            </span>
           </div>
           <h2 class="article-title">
             <a :href="withBase(post.url)">{{ post.frontmatter.title }}</a>
@@ -28,14 +51,48 @@
 
 <script setup lang="ts">
 import { withBase, useData } from 'vitepress'
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { data as blogPosts } from '../data/blogPosts.data.js'
 
 const { site, page } = useData()
 const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/'))
 
-// 根据语言过滤文章
-const posts = computed(() => {
+const sortBy = ref<'date' | 'views'>('date')
+const viewCounts = ref<Record<string, number>>({})
+
+const WORKER_URL = 'https://blog-counter.2210286979.workers.dev/'
+
+// Fetch view counts for all posts
+onMounted(async () => {
+  const postsToFetch = blogPosts.filter(p => !p.url.includes('/index'))
+  
+  // Create a map of promises to fetch concurrently
+  // We limit concurrency slightly just to be safe, though browsers handle it
+  // Given it's a blog list, we just fire them.
+  postsToFetch.forEach(async (post) => {
+    try {
+      // usage in Layout.vue: page.value.relativePath.replace(/\.md$/, '')
+      // post.url is like /en/blog/foo or /en/blog/foo.html
+      // We want en/blog/foo
+      
+      const id = post.url.replace(/^\//, '').replace(/\.html$/, '')
+      
+      const url = new URL(WORKER_URL)
+      url.searchParams.set('id', id)
+      url.searchParams.set('readonly', 'true') // We are just listing, not incrementing
+      
+      const res = await fetch(url.toString())
+      if (res.ok) {
+        const data = await res.json()
+        viewCounts.value[post.url] = data.count || 0
+      }
+    } catch (e) {
+      console.warn('Failed to fetch view count for', post.url)
+    }
+  })
+})
+
+const filteredPosts = computed(() => {
   if (!blogPosts || !Array.isArray(blogPosts)) return []
   
   return blogPosts
@@ -47,13 +104,32 @@ const posts = computed(() => {
       }
     })
     .filter(post => post.frontmatter.title)
-    .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
+})
+
+const sortedPosts = computed(() => {
+  const posts = [...filteredPosts.value]
+  
+  if (sortBy.value === 'date') {
+    return posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
+  } else {
+    // Sort by views
+    return posts.sort((a, b) => {
+      const viewA = viewCounts.value[a.url] || 0
+      const viewB = viewCounts.value[b.url] || 0
+      // If views are equal (or both 0/loading), fallback to date
+      if (viewB === viewA) {
+        return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+      }
+      return viewB - viewA
+    })
+  }
 })
 
 function formatDate(d?: string) {
   if (!d) return ''
   try {
-    return new Intl.DateTimeFormat('en-US', { 
+    const locale = isZh.value ? 'zh-CN' : 'en-US'
+    return new Intl.DateTimeFormat(locale, { 
       year: 'numeric', 
       month: 'short', 
       day: 'numeric' 
@@ -75,13 +151,55 @@ function formatDate(d?: string) {
   font-family: var(--vp-font-family-base);
 }
 
+.blog-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 6.5px;
+}
+
 .blog-content h1 {
   font-size: var(--vp-font-size-2xl);
   font-weight: 700;
-  margin-bottom: 30px;
-  margin-top: 6.5px;
+  margin: 0 0 1rem 0;
   color: var(--vp-c-text-1);
   text-align: center;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+}
+
+.sort-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  color: var(--vp-c-text-2);
+  font-weight: 400;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  opacity: 0.7;
+}
+
+.sort-btn:hover {
+  opacity: 1;
+  color: var(--vp-c-text-1);
+}
+
+.sort-btn.active {
+  color: var(--vp-brand-1);
+  font-weight: 600;
+  opacity: 1;
+}
+
+.divider {
+  opacity: 0.3;
 }
 
 .blog-articles {
@@ -105,6 +223,13 @@ function formatDate(d?: string) {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-align: center;
+}
+
+.view-count-badge {
+  color: var(--vp-c-text-3);
+  font-size: 0.9em;
+  opacity: 0.8;
+  text-transform: none;
 }
 
 .article-title {
