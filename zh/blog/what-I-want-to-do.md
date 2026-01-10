@@ -38,4 +38,5 @@
 考完要做的事
 - 买Vultr服务器
 - 给家里几台烂电脑装 linux 系统，先把U盘录好系统
-- 
+- 看X的bookmark
+- 根据deepseek论文训练R1
