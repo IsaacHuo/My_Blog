@@ -171,7 +171,7 @@ function formatDate(d?: string) {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 16px;
   color: var(--vp-c-text-2);
 }
 

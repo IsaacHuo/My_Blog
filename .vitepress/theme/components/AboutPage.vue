@@ -192,7 +192,7 @@ const copyToClipboard = async (text: string, field: string) => {
 }
 
 .welcome-message {
-  font-size: var(--vp-font-size-lg);
+  font-size: var(--vp-font-size-2xl);
   line-height: 1.7;
   color: var(--vp-c-text-1);
   margin-bottom: var(--space-lg);
@@ -200,7 +200,7 @@ const copyToClipboard = async (text: string, field: string) => {
 
 .about-intro,
 .about-description {
-  font-size: var(--vp-font-size-lg);
+  font-size: var(--vp-font-size-xl);
   line-height: 1.7;
   color: var(--vp-c-text-1);
   margin-bottom: var(--space-lg);
@@ -244,14 +244,14 @@ const copyToClipboard = async (text: string, field: string) => {
 }
 
 .about-contact h3 {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 700;
   margin-bottom: var(--space-md);
   color: var(--vp-c-text-1);
   display: inline-block;
   border: 2px solid var(--vp-c-text-1);
   border-radius: 40px; /* 胶囊形状的大圆角 */
-  padding: 4px 10px;
+  padding: 4px 12px;
 }
 
 .about-contact ul {
@@ -263,7 +263,7 @@ const copyToClipboard = async (text: string, field: string) => {
 .about-contact li {
   padding: 4px 0;
   color: var(--vp-c-text-2);
-  font-size: var(--vp-font-size-md);
+  font-size: var(--vp-font-size-xl);
 }
 
 .about-contact a {
