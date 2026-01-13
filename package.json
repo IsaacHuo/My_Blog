@@ -21,6 +21,8 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-unused-imports": "^4.3.0",
     "eslint-plugin-vue": "^10.6.0",
+    "fast-glob": "^3.3.3",
+    "fontmin": "^1.1.1",
     "vitepress": "^1.6.3",
     "vue-eslint-parser": "^10.2.0"
   }
