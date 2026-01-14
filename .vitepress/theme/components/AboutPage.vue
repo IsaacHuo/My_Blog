@@ -51,7 +51,7 @@
       </p>
 
       <div class="about-contact">
-        <h3>{{ isZh ? '联系我(求职ing)' : 'Contact me (I need a job, seriously)' }}</h3>
+        <h3>{{ isZh ? '联系我' : 'Contact me' }}</h3>
         <ul>
           <li>
             {{ isZh ? '简历：' : 'Resume: ' }}
@@ -246,14 +246,14 @@ const copyToClipboard = async (text: string, field: string) => {
 }
 
 .about-contact h3 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: var(--space-md);
   color: var(--vp-c-text-1);
   display: inline-block;
   border: 2px solid var(--vp-c-text-1);
-  border-radius: 40px; /* 胶囊形状的大圆角 */
-  padding: 4px 12px;
+  border-radius: 35px; /* 胶囊形状的大圆角 */
+  padding: 2px 10px;
 }
 
 .about-contact ul {
