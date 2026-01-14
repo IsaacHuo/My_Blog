@@ -14,37 +14,39 @@
           >
         </a>
       </div>
-      <p class="welcome-message">
-        {{ isZh ?
-          '你好👋，我是霍玮放，欢迎来到我的博客！' :
-          'Hi there👋, I\'m Huo Weifang — welcome to my blog!'
-        }}
-      </p>
+      <template v-if="isZh">
+        <p class="welcome-message">你好👋</p>
+        <p class="welcome-message">欢迎来到我的博客！</p>
+      </template>
+      <template v-else>
+        <p class="welcome-message">Hi there👋</p>
+        <p class="welcome-message">Welcome to my blog!</p>
+      </template>
       <p
         class="about-intro"
         v-html="isZh ? 
-          '我来自广西梧州，目前就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，本科主修<strong>电气工程</strong>，辅修<strong>计算机科学</strong>。起初我选择了风景园林专业，但后来我意识到自己更热爱技术与工程，于是转入电气工程，并开始深入探索人工智能的工程化落地。' :
-          'I grew up in a small city in southern China, and I\'m currently an undergraduate student at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, majoring in <strong>Electrical Engineering</strong> and minoring in <strong>Computer Science</strong>. I originally studied Landscape Architecture but later discovered my passion for technology and intelligent systems, which led me to switch majors.'
+          '我来自广西梧州，就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，主修<strong>电气工程</strong>，在学习过程中我建立了系统性解决问题的视角。' :
+          'I grew up in a small city in southern China, and currently studying at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, majoring in <strong>Electrical Engineering</strong>. My studies have helped me build a systematic perspective on problem-solving.'
         "
       />
       <p
         class="about-description"
         v-html="isZh ?
-          '目前，我在<strong>大众汽车</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> 部门作为 Platform System & Integration <strong>实习生</strong>，专注于智能驾驶与车载系统的集成与验证。' :
-          'I\'m now an <strong>intern</strong> at <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD of Volkswagen Group China</a>, working in Platform System & Integration, where I focus on intelligent driving systems and vehicle software integration. This experience has taught me how large-scale engineering balances innovation, safety, and precision.'
+          '目前，我在<strong>大众中国</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> 部门作为<strong>测试平台实习生</strong>，专注于车载数据与AI模型的集成验证。' :
+          'Currently, I am an <strong>intern</strong> at <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> (Volkswagen Group China), focusing on the integration and verification of in-vehicle data and AI models.'
         "
       />
       <p
         class="about-description"
         v-html="isZh ?
-          '我的<strong>兴趣</strong>涵盖网络运维和AI，还对古典诗词与历史情有独钟。' :
-          'My <strong>interests</strong> span programming, DevOps, and AI, with a special love for classical poetry and history.'
+          '我的<strong>关注</strong>涵盖网络运维和AI。' :
+          'My <strong>interests</strong> mainly focus on DevOps and AI.'
         "
       />
       <p class="about-description">
         {{ isZh ?
-          '未来，我希望能在 AI 与工程的交汇处继续探索，推动AI技术在工业场景中的规模化应用，实现更快、更安全、更智能的工程解决方案。' :
-          'I\'m passionate about exploring the intersection of AI and engineering systems, and I\'m always looking for ways to turn cutting-edge ideas into reality.'
+          '未来，我希望能在 AI 与工程的交汇处继续探索，推动AI技术在工业场景中的规模化应用，实现更快、更智能、更安全的工程解决方案。' :
+          'In the future, I hope to continue exploring the intersection of AI and engineering, driving the large-scale application of AI technology in industrial scenarios to achieve faster, smarter, and safer engineering solutions.'
         }}
       </p>
 
