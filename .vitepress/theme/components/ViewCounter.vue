@@ -44,7 +44,7 @@ let timeoutId: any = null
 
 // ⚠️ 请替换为您的真实 Worker 地址
 // ⚠️ Please replace with your actual Worker URL
-const WORKER_URL = 'https://blog-counter.2210286979.workers.dev/'
+const WORKER_URL = 'https://count.huoweifang.cn/'
 
 const formattedCount = computed(() => {
   if (count.value === null) return '0'
