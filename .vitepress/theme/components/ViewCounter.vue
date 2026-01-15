@@ -12,7 +12,8 @@
       class="count-error"
       :title="error"
     >
-      {{ isZh ? '(配置错误)' : '(Config Error)' }}
+      <!-- 出错时显示 -- 或隐藏，避免显示吓人的错误信息 -->
+      --
     </span>
     <template v-else>
       <span v-if="showLabel">{{ isZh ? '总阅读量: ' : 'Total Views: ' }}</span>
@@ -26,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, onBeforeUnmount, watch } from 'vue'
 
 const props = defineProps<{
   id: string
@@ -38,6 +39,7 @@ const props = defineProps<{
 const count = ref<number | null>(null)
 const loading = ref(true)
 const error = ref<string | null>(null)
+let abortController: AbortController | null = null
 
 // ⚠️ 请替换为您的真实 Worker 地址
 // ⚠️ Please replace with your actual Worker URL
@@ -48,36 +50,61 @@ const formattedCount = computed(() => {
   return count.value.toLocaleString()
 })
 
-onMounted(async () => {
-  try {
+const fetchCount = async () => {
+    if (!props.id) return
+    
+    // 如果之前的请求还在进行，取消它
+    if (abortController) {
+      abortController.abort()
+    }
+    abortController = new AbortController()
+
     loading.value = true
     error.value = null
     
-    // Construct URL
-    const url = new URL(WORKER_URL)
-    url.searchParams.set('id', props.id)
-    if (props.readonly) {
-      url.searchParams.set('readonly', 'true')
-    }
+    try {
+        const url = new URL(WORKER_URL)
+        url.searchParams.set('id', props.id)
+        if (props.readonly) {
+            url.searchParams.set('readonly', 'true')
+        }
+        // 增加时间戳防止缓存
+        url.searchParams.set('t', Date.now().toString())
 
-    const res = await fetch(url.toString())
-    if (!res.ok) {
-        // If 404/500 etc
-        const text = await res.text()
-        throw new Error(`Fetch error: ${res.status} - ${text}`)
+        const res = await fetch(url.toString(), {
+            signal: abortController.signal
+        })
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`)
+        }
+        
+        const data = await res.json()
+        if (data.error) throw new Error(data.error)
+        
+        count.value = data.count
+    } catch (e: any) {
+        if (e.name === 'AbortError') return
+        console.error('ViewCounter Error:', e)
+        error.value = e.message
+    } finally {
+        loading.value = false
     }
-    
-    const data = await res.json()
-    if (data.error) throw new Error(data.error)
-    
-    count.value = data.count
-  } catch (e: any) {
-    console.error('ViewCounter Error:', e)
-    error.value = e.message
-    // If it's a network error (likely invalid URL), we want to show it
-  } finally {
-    loading.value = false
-  }
+}
+
+onMounted(() => {
+  fetchCount()
+})
+
+// 监听 ID 变化，如果在同一个页面组件没销毁但 ID 变了的情况（虽然这里主要是 inject 方式）
+watch(() => props.id, () => {
+  fetchCount()
+})
+
+onBeforeUnmount(() => {
+    if (abortController) {
+        abortController.abort()
+    }
 })
 </script>
 
