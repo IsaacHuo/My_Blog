@@ -95,6 +95,15 @@ const fetchCount = async () => {
         if (data.error) throw new Error(data.error)
         
         count.value = data.count
+
+        // 如果不是只读模式且不是 total-views ID，则额外增加总阅读量
+        if (!props.readonly && props.id !== 'total-views') {
+          const totalUrl = new URL(WORKER_URL)
+          totalUrl.searchParams.set('id', 'total-views')
+          totalUrl.searchParams.set('t', Date.now().toString())
+          // 发送请求但不等待结果，避免阻塞界面
+          fetch(totalUrl.toString()).catch(() => {})
+        }
     } catch (e: any) {
         if (e.name === 'AbortError') {
             // 超时或取消时不显示错误，静默失败

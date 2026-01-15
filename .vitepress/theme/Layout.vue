@@ -25,6 +25,7 @@
     <template #nav-bar-content-before>
       <ViewCounter 
         id="total-views" 
+        :key="page.relativePath"
         :show-label="false" 
         :readonly="true"
         :is-zh="isZh" 
