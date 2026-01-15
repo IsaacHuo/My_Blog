@@ -60,7 +60,7 @@ const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePa
 const sortBy = ref<'date' | 'views'>('date')
 const viewCounts = ref<Record<string, number>>({})
 
-const WORKER_URL = 'https://blog-counter.2210286979.workers.dev/'
+const WORKER_URL = 'https://count.huoweifang.cn/'
 
 // Fetch view counts for all posts
 onMounted(async () => {
