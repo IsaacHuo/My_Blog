@@ -40,6 +40,7 @@ const count = ref<number | null>(null)
 const loading = ref(true)
 const error = ref<string | null>(null)
 let abortController: AbortController | null = null
+let timeoutId: any = null
 
 // ⚠️ 请替换为您的真实 Worker 地址
 // ⚠️ Please replace with your actual Worker URL
@@ -57,7 +58,16 @@ const fetchCount = async () => {
     if (abortController) {
       abortController.abort()
     }
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
+
     abortController = new AbortController()
+    
+    // 设定 5 秒超时，防止网络卡住时无限 Loading
+    timeoutId = setTimeout(() => {
+        if (abortController) abortController.abort()
+    }, 5000)
 
     loading.value = true
     error.value = null
@@ -74,6 +84,8 @@ const fetchCount = async () => {
         const res = await fetch(url.toString(), {
             signal: abortController.signal
         })
+        
+        clearTimeout(timeoutId) // 成功响应，清除超时
 
         if (!res.ok) {
             throw new Error(`HTTP error! status: ${res.status}`)
@@ -84,11 +96,15 @@ const fetchCount = async () => {
         
         count.value = data.count
     } catch (e: any) {
-        if (e.name === 'AbortError') return
+        if (e.name === 'AbortError') {
+            // 超时或取消时不显示错误，静默失败
+            return
+        }
         console.error('ViewCounter Error:', e)
         error.value = e.message
     } finally {
         loading.value = false
+        if (timeoutId) clearTimeout(timeoutId)
     }
 }
 
@@ -104,6 +120,9 @@ watch(() => props.id, () => {
 onBeforeUnmount(() => {
     if (abortController) {
         abortController.abort()
+    }
+    if (timeoutId) {
+        clearTimeout(timeoutId)
     }
 })
 </script>
