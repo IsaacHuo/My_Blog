@@ -1,163 +1,51 @@
 # Huo Weifang's Blog
 
-A bilingual personal blog built with VitePress, featuring dual language support (Chinese/English), responsive design, and integrated project documentation.
+A bilingual personal blog and project portfolio built with **VitePress**, optimized for performance and seamless multilingual reading.
 
-## Quick Start
+[![VitePress](https://img.shields.io/badge/Framework-VitePress%201.6-blue)](https://vitepress.dev/)
+[![TypeScript](https://img.shields.io/badge/Language-TypeScript-blue)](https://www.typescriptlang.org/)
+[![Giscus](https://img.shields.io/badge/Comments-Giscus-green)](https://giscus.app/)
+[![Deployment](https://img.shields.io/badge/Deploy-Cloudflare-orange)](https://pages.cloudflare.com/)
 
-### Requirements
-- Node.js 16 or higher
-- npm or yarn
+---
 
-### Installation and Development
+## ✨ Key Features
+
+- **🌐 Double the Reach**: Seamless switching between Chinese and English versions.
+- **📚 Portfolio & Insights**: Integration of technical blog posts and project showcases.
+- **🎯 List 100**: Tracking 100 life goals and career milestones.
+- **💬 Community-Driven**: Full comment support via GitHub Discussions (Giscus).
+- **⚡ Performance First**: 
+    - **Font Slicing**: Optimized large Chinese fonts from **10MB TTF to small WOFF2 slices** (average 30KB each) using `cn-font-split`. Only character-specific chunks are loaded.
+    - **Static Generation**: Lightning-fast initial load with minimal runtime.
+
+## 🚀 Quick Start
+
+### Development
 ```bash
-# Clone repository
-git clone https://github.com/IsaacHuo/My_Blog.git
-cd My_Blog
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
+```
 
-# Build for production
+### Production Build
+```bash
 npm run build
-
-# Preview production build
 npm run preview
 ```
 
-## Features
+## 📂 Project Overview
 
-### Bilingual Support
-- Seamless Chinese/English language switching
-- Separate content for each language
-- Language-aware routing and navigation
+| Path | Description |
+| :--- | :--- |
+| `.vitepress/` | Site configurations and custom Vue components |
+| `zh/`, `en/` | Chinese and English content source (Markdown) |
+| `public/`   | Static assets (images, PDFs, and optimized fonts) |
 
-### Content Sections
-- **Blog**: Technical articles and personal insights
-- **Projects**: Project portfolio with PDF documentation
-- **List 100**: Personal goals and achievements tracking
+## 📝 Content Management
 
-### Technical Features
-- Static site generation with VitePress
-- Responsive design for desktop and mobile
-- Integrated Giscus comments system (GitHub Discussions)
-- Table of contents for articles
-- ESLint integration for code quality
+- **Blog**: Add `.md` files to `en/blog/` or `zh/blog/`.
+- **Projects**: Define in the frontmatter of `en/projects/index.md` or `zh/projects/index.md`.
 
-### Deployment
-- Optimized for Cloudflare Pages deployment
-- Automatic building and deployment on git push
-- Zero-configuration deployment
-
-## Project Structure
-
-```
-My_Blog/
-├── .vitepress/
-│   ├── config.ts                    # Site configuration
-│   └── theme/
-│       ├── components/              # Vue components
-│       │   ├── ProjectsPage.vue     # Projects page
-│       │   ├── Comments.vue         # Giscus comments
-│       │   ├── HomePage.vue         # Homepage
-│       │   └── [other components]
-│       ├── custom.css               # Custom styles
-│       └── index.ts                 # Theme entry point
-├── en/                              # English content
-│   ├── blog/                        # English blog articles
-│   ├── list100/                     # English goals list
-│   └── projects/                    # English projects page
-├── zh/                              # Chinese content
-│   ├── blog/                        # Chinese blog articles
-│   ├── list100/                     # Chinese goals list
-│   └── projects/                    # Chinese projects page
-├── public/
-│   ├── projects_pdf/                # Project PDF files
-│   └── project-images/              # Project preview images
-└── projects_pdf/                    # PDF resources (Giscus support)
-```
-
-## Content Management
-
-### Adding Blog Articles
-
-Create a new Markdown file in `en/blog/` or `zh/blog/` with frontmatter:
-
-```markdown
----
-title: Article Title
-date: 2024-11-24
-tags: [tag1, tag2]
----
-
-Article content...
-```
-
-### Adding Projects
-
-Update the project configuration in `en/projects/index.md` or `zh/projects/index.md`:
-
-```yaml
----
-layout: ProjectsPage
-title: Projects
-thoughts:
-  - title: Project Name
-    url: /projects_pdf/filename.pdf
-    image: /project-images/preview.jpeg
----
-```
-
-## Comments System
-
-This blog uses Giscus for commenting, which stores comments as GitHub Discussions.
-
-## Technology Stack
-
-- **Framework**: VitePress 1.6.3
-- **Language**: TypeScript, Vue 3
-- **Styling**: CSS 3
-- **Linting**: ESLint with Vue/TypeScript support
-- **Comments**: Giscus (GitHub Discussions)
-- **Deployment**: Cloudflare Pages
-
-## Configuration
-
-### Language Settings
-- Default language: English
-- Available languages: Chinese (zh-CN), English (en)
-- Language switching in site navigation
-
-### Build Configuration
-- Base path: `/` (for Cloudflare Pages)
-- Output directory: `.vitepress/dist`
-- Public directory: `public/`
-
-## Development
-
-### Code Style
-ESLint configuration enforces consistent code style. Run linting:
-
-```bash
-npx eslint .
-```
-
-### Customization
-- Modify `.vitepress/theme/custom.css` for styling
-- Add new components in `.vitepress/theme/components/`
-- Update navigation and site config in `.vitepress/config.ts`
-
-## License
-
-MIT License
-
-## Contact
-
-- GitHub: [@IsaacHuo](https://github.com/IsaacHuo)
-- Blog: [huoweifang.cn](https://huoweifang.cn)
 
 ---
-
-Built with VitePress | Deployed on Cloudflare Pages
+*Deployed on Cloudflare Pages.*
