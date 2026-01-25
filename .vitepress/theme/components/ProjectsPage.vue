@@ -6,7 +6,7 @@
           v-for="thought in thoughts" 
           :key="thought.url" 
           class="thought-item"
-          @click="openPDF(thought.url)"
+          @click="openProject(thought.url)"
         >
           <div class="thought-image">
             <img
@@ -44,22 +44,18 @@ const thoughts = computed(() => {
   return frontmatter.value.thoughts || []
 })
 
-// 打开PDF文件的函数
-const openPDF = (url: string) => {
-  // 确保 URL 是绝对路径或者能被浏览器正确解析
-  let pdfUrl = url
+// Open project link
+const openProject = (url: string) => {
+  if (!url) return
   
-  // 如果 URL 不以 / 开头且不是完整 http/https URL，则添加 /
-  if (!pdfUrl.startsWith('/') && !pdfUrl.startsWith('http')) {
-    pdfUrl = '/' + pdfUrl
+  // If it's an external link, open in new tab
+  if (url.startsWith('http')) {
+    window.open(url, '_blank')
+    return
   }
-  
-  // 如果没有 .pdf 扩展名，添加
-  if (!pdfUrl.endsWith('.pdf')) {
-    pdfUrl = pdfUrl + '.pdf'
-  }
-  
-  window.open(pdfUrl, '_blank')
+
+  // Internal link handling
+  window.location.href = url
 }
 </script>
 

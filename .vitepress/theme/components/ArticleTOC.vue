@@ -193,9 +193,9 @@ watch(() => page.value.relativePath, () => {
   position: fixed;
   left: 50%;
   margin-left: 250px; /* 700px/2 + 10px gap */
-  top: 100px;
-  width: 220px;
-  max-height: calc(100vh - 120px);
+  top: 150px;
+  width: 240px;
+  max-height: calc(100vh - 170px);
   overflow-y: auto;
   padding: 1rem;
   background: var(--vp-c-bg);

@@ -1,10 +1,9 @@
-<!-- ---
+---
 layout: ProjectsPage
 title: 项目
 thoughts:
-  - title: "Model Context Protocol (MCP): Landscape, Security Threats,
-and Future Research Directions"
-    url: /projects-pdf/2503.23278v3.pdf
-    image: /project-images/a.jpeg
---- -->
+  - title: "城市地图海报生成器"
+    url: /zh/projects/maptoposter
+    image: /project-images/maptoposter.png
+---
 

@@ -50,9 +50,11 @@ const { frontmatter, page, lang } = useData()
 const router = useRouter()
 
 // 判断是否是文章页面（在 zh/blog 或 en/blog 目录下）
+// 判断是否是文章页面（在 zh/blog, en/blog, zh/projects, en/projects 目录下）
 const isArticlePage = computed(() => {
-  return page.value.relativePath.includes('/blog/') && 
-         !page.value.relativePath.endsWith('index.md')
+  const path = page.value.relativePath || ''
+  return (path.indexOf('blog/') !== -1 || path.indexOf('projects/') !== -1) && 
+         path.indexOf('index.md') === -1
 })
 
 const isZh = computed(() => {
