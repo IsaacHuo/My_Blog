@@ -1,11 +1,11 @@
+
 ---
 title: 语义化版本 SemVer 解释
 date: 2026-01-29
-tags:
-  - npm
-  - engineering
-  - standard
+author: 霍玮放
+description: semver, npm, engineering, standard
 ---
+
 
 # 语义化版本 SemVer 解释
 

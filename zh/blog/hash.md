@@ -1,10 +1,8 @@
 ---
 title: 什么是哈希 (Hash)？
-date: 2026-01-29
-tags:
-  - computer-science
-  - security
-  - algorithm
+date: 2026-01-13
+author: 霍玮放
+description: computer-science, security, algorithm
 ---
 
 哈希（Hash），也常被称为“散列”或“摘要”，是计算机科学中最基础也最重要的概念之一。简单来说，哈希算法是一种数学函数，它能把**任意长度**的数据，转换成**固定长度**的字符串（通常是十六进制）。

@@ -1,10 +1,8 @@
 ---
-title: "Yarn: 曾经的速度之王与创新者"
+title: Yarn: 曾经的速度之王与创新者
 date: 2026-01-29
-tags:
-  - yarn
-  - npm
-  - package-manager
+author: 霍玮放
+description: yarn, npm, package-manager
 ---
 
 在 2016 年之前，npm (v2/v3) 占据着绝对的统治地位，但它的性能问题和非确定性安装让开发者苦不堪言。这时，Facebook（现 Meta）联合 Google、Exponent 和 Tilde 推出了 **Yarn**，彻底改变了前端包管理的格局。

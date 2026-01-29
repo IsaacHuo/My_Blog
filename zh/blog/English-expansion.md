@@ -1,10 +1,8 @@
 ---
 title: 计算机术语缩写全称收集
-date: 2026-01-29
-tags:
-  - comp-sci
-  - vocabulary
-  - learning
+date: 2026-01-25
+author: 霍玮放
+description: 
 ---
 
 > 我一直认为英文全称是真正理解一个术语的起点，看到一个术语的缩写，要马上查询这个缩写的全称。

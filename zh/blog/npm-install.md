@@ -1,11 +1,10 @@
 ---
 title: npm install：历史、原理与选择缘由
 date: 2026-01-29
-tags:
-  - npm
-  - nodejs
-  - engineering
+author: 霍玮放
+description: npm, nodejs, engineering
 ---
+
 
 # npm install：历史、原理与选择缘由
 

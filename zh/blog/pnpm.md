@@ -1,10 +1,8 @@
 ---
-title: "pnpm: 高效、节省磁盘空间的包管理器"
+title: pnpm: 高效、节省磁盘空间的包管理器
 date: 2026-01-29
-tags:
-  - pnpm
-  - npm
-  - efficiency
+author: 霍玮放
+description: pnpm, nodejs, efficiency
 ---
 
 如果说 Yarn 是为了解决 npm 的慢和不确定性，那么 **pnpm (Performant npm)** 的诞生则是为了解决 `node_modules` 这一“黑洞”对磁盘空间的吞噬，以及依赖管理的正确性问题。

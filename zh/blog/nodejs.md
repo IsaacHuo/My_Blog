@@ -1,11 +1,10 @@
 ---
 title: 什么是 Node.js？从原理到应用
 date: 2026-01-29
-tags:
-  - nodejs
-  - javascript
-  - backend
+author: 霍玮放
+description: nodejs, runtime, performance
 ---
+
 
 # 什么是 Node.js？从原理到应用
 

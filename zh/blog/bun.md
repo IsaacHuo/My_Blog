@@ -1,10 +1,8 @@
 ---
 title: "Bun: 下一代全能 JavaScript 包管理器"
 date: 2026-01-29
-tags:
-  - bun
-  - runtime
-  - performance
+author: 霍玮放
+description: bun, runtime, performance
 ---
 
 # Bun: 下一代全能 JavaScript 包管理器
