@@ -264,7 +264,7 @@ watch(() => page.value.relativePath, () => {
 .mobile-toc-btn {
   position: fixed;
   bottom: calc(100px + env(safe-area-inset-bottom)); /* Above BackToTop + Safe Area */
-  right: 20px;
+  right: 40px;
   width: 50px;
   height: 50px;
   border-radius: 50%;

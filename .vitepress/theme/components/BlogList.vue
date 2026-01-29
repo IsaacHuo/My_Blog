@@ -3,6 +3,25 @@
     <div class="blog-content">
       <div class="blog-header">
         <h1>{{ isZh ? '文章' : 'Blog' }}</h1>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+          <div class="search-box">
+            <span class="search-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </span>
+            <input 
+              v-model="searchQuery" 
+              type="text" 
+              :placeholder="isZh ? '搜索标题或内容...' : 'Search title or content...'"
+              class="search-input"
+            />
+            <button v-if="searchQuery" class="clear-btn" @click="searchQuery = ''">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+        </div>
+
         <div class="sort-controls">
           <button 
             class="sort-btn" 
@@ -24,7 +43,7 @@
       
       <div class="blog-articles">
         <article
-          v-for="post in sortedPosts"
+          v-for="post in displayPosts"
           :key="post.url"
           class="blog-article"
         >
@@ -35,15 +54,29 @@
             </span>
           </div>
           <h2 class="article-title">
-            <a :href="withBase(post.url)">{{ post.frontmatter.title }}</a>
+            <!-- Use v-html for highlighted title -->
+            <a :href="withBase(post.url)" v-html="post.displayTitle || post.frontmatter.title"></a>
           </h2>
+          
+          <!-- Show description if no search is active or no snippet found -->
           <div
-            v-if="post.frontmatter.description"
+            v-if="!searchQuery || !post.matchSnippet"
             class="article-description"
           >
             {{ post.frontmatter.description }}
           </div>
+          
+          <!-- Show match snippet if search is active -->
+          <div 
+            v-else
+            class="article-snippet"
+            v-html="post.matchSnippet"
+          ></div>
         </article>
+        
+        <div v-if="displayPosts.length === 0" class="no-results">
+          {{ isZh ? '没有找到相关文章' : 'No posts found' }}
+        </div>
       </div>
     </div>
   </div>
@@ -59,6 +92,7 @@ const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePa
 
 const sortBy = ref<'date' | 'views'>('date')
 const viewCounts = ref<Record<string, number>>({})
+const searchQuery = ref('') // Search query state
 
 const WORKER_URL = 'https://count.huoweifang.cn/'
 
@@ -66,20 +100,12 @@ const WORKER_URL = 'https://count.huoweifang.cn/'
 onMounted(async () => {
   const postsToFetch = blogPosts.filter(p => !p.url.includes('/index'))
   
-  // Create a map of promises to fetch concurrently
-  // We limit concurrency slightly just to be safe, though browsers handle it
-  // Given it's a blog list, we just fire them.
   postsToFetch.forEach(async (post) => {
     try {
-      // usage in Layout.vue: page.value.relativePath.replace(/\.md$/, '')
-      // post.url is like /en/blog/foo or /en/blog/foo.html
-      // We want en/blog/foo
-      
       const id = post.url.replace(/^\//, '').replace(/\.html$/, '')
-      
       const url = new URL(WORKER_URL)
       url.searchParams.set('id', id)
-      url.searchParams.set('readonly', 'true') // We are just listing, not incrementing
+      url.searchParams.set('readonly', 'true')
       
       const res = await fetch(url.toString())
       if (res.ok) {
@@ -106,23 +132,99 @@ const filteredPosts = computed(() => {
     .filter(post => post.frontmatter.title)
 })
 
-const sortedPosts = computed(() => {
-  const posts = [...filteredPosts.value]
+// Helper to highlight text
+function highlightText(text: string, query: string) {
+  if (!query) return text
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  // Use <mark> for highlighting
+  return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>')
+}
+
+// Helper to get snippet
+function getSnippet(content: string, query: string) {
+  const lowerContent = content.toLowerCase()
+  const lowerQuery = query.toLowerCase()
+  const index = lowerContent.indexOf(lowerQuery)
   
-  if (sortBy.value === 'date') {
-    return posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
-  } else {
-    // Sort by views
-    return posts.sort((a, b) => {
-      const viewA = viewCounts.value[a.url] || 0
-      const viewB = viewCounts.value[b.url] || 0
-      // If views are equal (or both 0/loading), fallback to date
-      if (viewB === viewA) {
-        return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
-      }
-      return viewB - viewA
-    })
+  if (index === -1) return ''
+  
+  // Grab a window of text
+  const start = Math.max(0, index - 40)
+  const end = Math.min(content.length, index + query.length + 60)
+  
+  let snippet = content.substring(start, end)
+  
+  // Highlight within the snippet
+  snippet = highlightText(snippet, query)
+  
+  return '...' + snippet + '...'
+}
+
+const displayPosts = computed(() => {
+  const posts = [...filteredPosts.value]
+  const query = searchQuery.value.trim()
+  
+  // Default mode (no search)
+  if (!query) {
+    // Sort logic
+    if (sortBy.value === 'date') {
+      return posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
+    } else {
+      return posts.sort((a, b) => {
+        const viewA = viewCounts.value[a.url] || 0
+        const viewB = viewCounts.value[b.url] || 0
+        if (viewB === viewA) {
+          return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+        }
+        return viewB - viewA
+      })
+    }
   }
+
+  // Search mode
+  const lowerQuery = query.toLowerCase()
+  const results = []
+
+  for (const post of posts) {
+    const title = post.frontmatter.title || ''
+    const content = post.src || '' // Using raw markdown source
+    const lowerTitle = title.toLowerCase()
+    
+    let score = 0
+    let displayTitle = title
+    let matchSnippet = ''
+
+    // 1. Title match (High priority)
+    if (lowerTitle.includes(lowerQuery)) {
+      score += 100
+      displayTitle = highlightText(title, query)
+    }
+
+    // 2. Content match
+    // Only verify content match if we need a snippet or if title didn't match
+    const lowerContent = content.toLowerCase()
+    if (lowerContent.includes(lowerQuery)) {
+      score += 10
+      matchSnippet = getSnippet(content, query)
+    }
+
+    if (score > 0) {
+      results.push({
+        ...post,
+        score,
+        displayTitle,
+        matchSnippet
+      })
+    }
+  }
+
+  // Sort by score (desc), then date (desc)
+  return results.sort((a, b) => {
+    if (b.score !== a.score) {
+      return b.score - a.score
+    }
+    return new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
+  })
 })
 
 function formatDate(d?: string) {
@@ -141,6 +243,95 @@ function formatDate(d?: string) {
 </script>
 
 <style scoped>
+/* Search Styles */
+.search-container {
+  margin: 0.5rem 0 1.5rem 0;
+  width: 100%;
+  max-width: 400px;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.6rem 2.5rem 0.6rem 2.2rem;
+  border-radius: 24px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-alt);
+  color: var(--vp-c-text-1);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #4285f4;
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.1);
+  background: var(--vp-c-bg);
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--vp-c-text-3);
+  display: flex;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--vp-c-text-3);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.clear-btn:hover {
+  background: var(--vp-c-bg-mute);
+  color: var(--vp-c-text-1);
+}
+
+.no-results {
+  color: var(--vp-c-text-2);
+  margin-top: 2rem;
+  font-style: italic;
+}
+
+.article-snippet {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+  font-family: monospace, var(--vp-font-family-base); /* Monospace helps showing code snippets if present */
+  background: var(--vp-c-bg-alt);
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+/* Highlight style */
+:deep(mark) {
+  background-color: rgba(255, 215, 0, 0.4);
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.dark :deep(mark) {
+  background-color: rgba(255, 215, 0, 0.25);
+  color: #fff;
+}
+
+/* Original Styles */
 .modern-blog-list {
   display: block;
   max-width: var(--content-max-width);
