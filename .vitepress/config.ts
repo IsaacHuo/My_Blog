@@ -29,7 +29,6 @@ export default defineConfig({
           { icon: 'github', link: 'https://github.com/IsaacHuo' }
         ],
         footer: {
-          message: '基于 MIT 许可证发布。',
           copyright: 'Copyright © 2024 Huo Weifang'
         },
         outline: [2, 3],
@@ -65,7 +64,6 @@ export default defineConfig({
     ],
 
     footer: {
-      // message: 'Released under the MIT License.',
       copyright: 'Copyright © 2024 Huo Weifang'
     },
 
