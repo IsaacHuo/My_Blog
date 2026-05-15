@@ -56,7 +56,7 @@
           <li>
             {{ isZh ? '简历：' : 'Resume: ' }}
             <a 
-              :href="isZh ? '/my-cv/resume_cn.pdf' : '/my-cv/resume_en.pdf'" 
+              :href="isZh ? '/my-cv/resume_cn_20260515.pdf' : '/my-cv/resume_en_20260515.pdf'" 
               target="_blank" 
               class="copyable"
               :title="isZh ? '点击查看简历' : 'Click to view resume'"
