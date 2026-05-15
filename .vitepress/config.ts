@@ -9,7 +9,8 @@ export default defineConfig({
   locales: {
     root: {
       label: 'English',
-      lang: 'en'
+      lang: 'en',
+      link: '/en/'
     },
     zh: {
       label: '中文',
@@ -22,7 +23,7 @@ export default defineConfig({
           { text: '文章', link: '/zh/blog/' },
           { text: '项目', link: '/zh/projects/' },
           { text: '清单100', link: '/zh/list100/' },
-          { text: 'EN', link: '/' }
+          { text: 'EN', link: '/en/' }
         ],
         socialLinks: [
           { icon: 'github', link: 'https://github.com/IsaacHuo' }
