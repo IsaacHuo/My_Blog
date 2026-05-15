@@ -25,28 +25,28 @@
       <p
         class="about-intro"
         v-html="isZh ? 
-          '我来自广西梧州，就读于<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a>，主修<strong>电气工程</strong>，在学习过程中我建立了系统性解决问题的视角。' :
-          'I grew up in a small city in southern China, and currently studying at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, majoring in <strong>Electrical Engineering</strong>. My studies have helped me build a systematic perspective on problem-solving.'
+          '我来自广西梧州，目前是<a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>北京林业大学</a><strong>电气工程及其自动化</strong>专业大二学生，同时持续学习计算机、AI 与工程系统。' :
+          'I grew up in a small city in southern China and am now a sophomore at <a href=&quot;https://www.bjfu.edu.cn/&quot; target=&quot;_blank&quot;>Beijing Forestry University</a>, majoring in <strong>Electrical Engineering and Automation</strong> while continuing to work across computer science, AI, and engineering systems.'
         "
       />
       <p
         class="about-description"
         v-html="isZh ?
-          '目前，我在<strong>大众中国</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> 部门作为<strong>测试平台实习生</strong>，专注于车载数据与AI模型的集成验证。' :
-          'Currently, I am an <strong>intern</strong> at <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> (Volkswagen Group China), focusing on the integration and verification of in-vehicle data and AI models.'
+          '我曾在<strong>大众中国</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> 参与测试平台与数据工作流相关实习，现在主要回到学校推进自己的校园产品和 AI 安全项目。' :
+          'I previously interned at <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> (Volkswagen Group China), working on testing platforms and data workflows. I am now back on campus, building student-facing products and AI safety tooling.'
         "
       />
       <p
         class="about-description"
         v-html="isZh ?
-          '我的<strong>关注</strong>涵盖网络运维和AI。' :
-          'My <strong>interests</strong> mainly focus on DevOps and AI.'
+          '近期我主要在做<strong>Leafy</strong> 校园 iOS 客户端和 <strong>Agent-Firewall</strong> 这类 AI Agent 安全基础设施，也持续关注后端、运维、移动端体验和模型落地。' :
+          'Recently I have been building <strong>Leafy</strong>, a campus iOS client, and <strong>Agent-Firewall</strong>, an AI Agent safety layer. I also keep working on backend systems, operations, mobile UX, and practical model deployment.'
         "
       />
       <p class="about-description">
         {{ isZh ?
-          '未来，我希望能在 AI 与工程的交汇处继续探索，推动AI技术在工业场景中的规模化应用，实现更快、更智能、更安全的工程解决方案。' :
-          'In the future, I hope to continue exploring the intersection of AI and engineering, driving the large-scale application of AI technology in industrial scenarios to achieve faster, smarter, and safer engineering solutions.'
+          '我希望把这些项目继续做成可靠、可维护、真正有人使用的系统，在学校场景和 AI 工程之间找到更扎实的连接。' :
+          'I want to keep turning these projects into reliable, maintainable systems that people actually use, and to build a stronger bridge between campus scenarios and AI engineering.'
         }}
       </p>
 
