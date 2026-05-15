@@ -2,7 +2,7 @@
 layout: ProjectsPage
 title: 项目
 thoughts:
-  - title: "Leafy：北林强智教务 iOS 客户端"
+  - title: "Leafy in BJFU：北林强智教务 iOS 客户端"
     url: /zh/projects/leafy
     image: /project-images/leafy.png
   - title: "Agent-Firewall：OpenClaw Agent 安全壳"

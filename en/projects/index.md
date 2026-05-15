@@ -2,7 +2,7 @@
 layout: ProjectsPage
 title: Projects
 thoughts:
-  - title: "Leafy: Native iOS Client for BJFU Academic Services"
+  - title: "Leafy in BJFU: Native iOS Client for BJFU Academic Services"
     url: /en/projects/leafy
     image: /project-images/leafy.png
   - title: "Agent-Firewall: Safety Shell for OpenClaw Agents"

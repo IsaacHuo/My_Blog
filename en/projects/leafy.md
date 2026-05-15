@@ -1,5 +1,5 @@
 ---
-title: "Leafy: Native iOS Client for BJFU Academic Services"
+title: "Leafy in BJFU: Native iOS Client for BJFU Academic Services"
 date: 2026-05-15
 author: Isaac Huo
 description: "A native iOS campus client for Beijing Forestry University's Zhengfang academic system, centered on timetables, academic data, community features, and student tools."
@@ -7,15 +7,15 @@ editLink: true
 outline: [2, 3]
 ---
 
-# Leafy: Native iOS Client for BJFU Academic Services
+# Leafy in BJFU: Native iOS Client for BJFU Academic Services
 
-Leafy is a native iOS campus client I built for students at Beijing Forestry University. Instead of mirroring the web academic system, it reorganizes the most frequently used campus workflows for mobile: the timetable is the first screen, while grades, exams, classroom availability, calendars, community features, and course evaluation live one or two taps away.
+Leafy in BJFU is a native iOS campus client I built for students at Beijing Forestry University. Instead of mirroring the web academic system, it reorganizes the most frequently used campus workflows for mobile: the timetable is the first screen, while grades, exams, classroom availability, calendars, community features, and course evaluation live one or two taps away.
 
-![Leafy app icon](/project-images/leafy.png)
+![Leafy in BJFU app icon](/project-images/leafy.png)
 
 ## Product Scope
 
-The goal of Leafy is to make campus information faster and more stable to access. School login, timetables, grades, exam schedules, teaching plans, graduation requirements, and empty classroom queries connect directly to the university's Zhengfang academic system. Community profiles, posts, comments, likes, notifications, announcements, feedback, evaluations, and shared timetable snapshots are handled by Supabase.
+The goal of Leafy in BJFU is to make campus information faster and more stable to access. School login, timetables, grades, exam schedules, teaching plans, graduation requirements, and empty classroom queries connect directly to the university's Zhengfang academic system. Community profiles, posts, comments, likes, notifications, announcements, feedback, evaluations, and shared timetable snapshots are handled by Supabase.
 
 That boundary keeps the identity model clear: the student ID remains the primary identity, while Supabase handles non-academic services and user-generated data.
 
@@ -33,15 +33,14 @@ The community side is built on Supabase, with anonymous sessions bound to studen
 
 ## Technical Implementation
 
-Leafy is built with SwiftUI and targets iOS 17. Local persistence uses SwiftData. School network requests use URLSession and HTTPCookieStorage, while HTML parsing is handled by SwiftSoup. Non-academic services are backed by Supabase Auth, Database, Storage, and Edge Functions.
+Leafy in BJFU is built with SwiftUI and targets iOS 17. Local persistence uses SwiftData. School network requests use URLSession and HTTPCookieStorage, while HTML parsing is handled by SwiftSoup. Non-academic services are backed by Supabase Auth, Database, Storage, and Edge Functions.
 
 The project also includes a React + Vite + TypeScript admin console for community metrics, posts, comments, users, feedback, announcements, teachers, and rating management. High-privilege operations go through Supabase Edge Functions instead of exposing management privileges directly to the frontend.
 
 ## What I Learned
 
-Leafy forced me to handle the messy parts of real campus systems: captcha login, cookie sessions, changing HTML structures, mobile caching, readable parse-failure states, community data permissions, and admin boundaries. It also moved me from implementing isolated features toward owning a fuller product path: data source, client experience, backend permissions, operations console, and TestFlight readiness.
+Leafy in BJFU forced me to handle the messy parts of real campus systems: captcha login, cookie sessions, changing HTML structures, mobile caching, readable parse-failure states, community data permissions, and admin boundaries. It also moved me from implementing isolated features toward owning a fuller product path: data source, client experience, backend permissions, operations console, and TestFlight readiness.
 
 ## Links
 
 - **GitHub Repository**: [IsaacHuo/leafy](https://github.com/IsaacHuo/leafy)
-
