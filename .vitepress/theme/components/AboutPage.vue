@@ -53,17 +53,6 @@
       <div class="about-contact">
         <h3>{{ isZh ? '联系我' : 'Contact me' }}</h3>
         <ul>
-          <li>
-            {{ isZh ? '简历：' : 'Resume: ' }}
-            <a 
-              :href="isZh ? '/my-cv/resume_cn_20260515.pdf' : '/my-cv/resume_en_20260515.pdf'" 
-              target="_blank" 
-              class="copyable"
-              :title="isZh ? '点击查看简历' : 'Click to view resume'"
-            >
-              {{ isZh ? '点击查看' : 'view pdf' }}
-            </a>
-          </li>
           <li v-if="!isZh">
             LinkedIn: 
             <a 
