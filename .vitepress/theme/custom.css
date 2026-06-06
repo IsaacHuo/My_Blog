@@ -4,12 +4,36 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
 
+@font-face {
+  font-family: "BlogMacKaiti";
+  src:
+    local("Kaiti SC Regular"),
+    local("STKaitiSC-Regular"),
+    local("楷体-简 常规体"),
+    local("STKaiti"),
+    local("华文楷体");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BlogMacKaiti";
+  src:
+    local("Kaiti SC Bold"),
+    local("STKaitiSC-Bold"),
+    local("楷体-简 粗体");
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+}
+
 /* CSS Variables */
 :root {
   /* Typography */
-  --font-latin: "Lora", Georgia, "Times New Roman", serif;
-  --font-zh: "Kaiti SC", "STKaiti", "KaiTi", "楷体", serif;
-  --vp-font-family-base: var(--font-latin), var(--font-zh) !important;
+  --font-latin: "Lora", Georgia, "Times New Roman";
+  --font-zh: "BlogMacKaiti", "Kaiti SC", "STKaitiSC-Regular", "STKaiti", "楷体-简", "华文楷体", "KaiTi", "楷体";
+  --vp-font-family-base: var(--font-latin), var(--font-zh), serif !important;
   --vp-font-family-mono: Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
 
   /* Font Sizes */
@@ -56,6 +80,10 @@
   --nav-content-width: 1180px;
 }
 
+html.mac[lang="zh-CN"] {
+  --font-zh: "BlogMacKaiti", "Kaiti SC", "STKaitiSC-Regular", "STKaiti", "楷体-简", "华文楷体", "KaiTi", "楷体";
+}
+
 /* Dark Mode Variables */
 .dark {
   --vp-c-brand-1: #e8e8e8;
@@ -87,12 +115,19 @@ select {
 
 html[lang="zh-CN"],
 html[lang="zh-CN"] body {
-  font-family: var(--font-zh) !important;
+  font-family: var(--font-zh), serif !important;
+}
+
+html[lang="zh-CN"] .VPDoc,
+html[lang="zh-CN"] .vp-doc,
+html[lang="zh-CN"] .about-layout,
+html[lang="zh-CN"] .about-layout :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-zh), serif !important;
 }
 
 html[lang="en"],
 html[lang="en"] body {
-  font-family: var(--font-latin) !important;
+  font-family: var(--font-latin), serif !important;
 }
 
 .giscus,
@@ -118,6 +153,7 @@ html {
   zoom: 100%;
   transform: none;
   transform-origin: initial;
+  font-synthesis: none;
 }
 
 body {
@@ -308,7 +344,7 @@ a:visited {
   justify-content: center !important;
   width: 100%;
   font-size: 17px !important;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   letter-spacing: 0 !important;
 }
 
@@ -316,14 +352,19 @@ html[lang="en"] .VPNavBarMenuLink,
 html[lang="en"] .nav-link {
   font-family: var(--font-latin) !important;
   font-size: 17px !important;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
 }
 
 html[lang="zh-CN"] .VPNavBarMenuLink,
 html[lang="zh-CN"] .nav-link {
   font-family: var(--font-zh) !important;
-  font-size: 19px !important;
-  font-weight: 500 !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+}
+
+.VPNav a[href$="/list100/"] {
+  font-family: var(--font-latin), serif !important;
+  font-weight: 400 !important;
 }
 
 /* Hide Unwanted Nav Elements */
@@ -361,7 +402,7 @@ html[lang="zh-CN"] .nav-link {
   justify-content: center;
   width: 44px;
   font-size: 17px !important;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   margin-left: 28px;
   white-space: nowrap;
 }
@@ -372,8 +413,8 @@ html[lang="zh-CN"] .nav-link {
 
 .language-link-zh {
   font-family: var(--font-zh) !important;
-  font-size: 19px !important;
-  font-weight: 500 !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
 }
 
 .VPNavBarSocialLinks {
@@ -835,7 +876,7 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
   }
 
   html[lang="zh-CN"] .VPNavBarMenuLink {
-    font-size: 21px !important;
+    font-size: 20px !important;
   }
 }
 
@@ -851,7 +892,7 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
   }
 
   html[lang="zh-CN"] .VPNavBarMenuLink {
-    font-size: 17px !important;
+    font-size: 16px !important;
   }
 
   .custom-language-link {
@@ -861,7 +902,7 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
   }
 
   .language-link-zh {
-    font-size: 17px !important;
+    font-size: 16px !important;
   }
 
   /* Hide View Counter on Mobile Phones only */
@@ -918,5 +959,53 @@ html[lang="zh-CN"] .about-intro strong,
 html[lang="zh-CN"] .about-description strong,
 html[lang="zh-CN"] .thought-title,
 html[lang="zh-CN"] .list100-content h1 {
-  font-weight: 700 !important;
+  font-weight: 400 !important;
+}
+
+.VPNav .VPNavBarMenuLink,
+.VPNav .nav-link,
+.VPNav .custom-language-link,
+.VPNav a[href$="/list100/"] {
+  font-weight: 400 !important;
+}
+
+html[lang="zh-CN"] .VPNavBarMenuLink,
+html[lang="zh-CN"] .nav-link,
+html[lang="zh-CN"] .custom-language-link,
+html[lang="zh-CN"] .language-link-zh {
+  font-weight: 400 !important;
+}
+
+.VPNav .VPNavBarMenuLink,
+.VPNav .VPNavBarMenuLink.active,
+.VPNav .custom-language-link {
+  font-synthesis: none !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke-width: 0 !important;
+}
+
+.VPNav .VPNavBarMenuLink[href$="/list100/"],
+.VPNav .VPNavBarMenuLink.active[href$="/list100/"],
+.VPNav .language-link-en {
+  font-family: var(--font-latin), serif !important;
+}
+
+.VPNav .language-link-zh {
+  font-family: var(--font-zh), serif !important;
+}
+
+html[lang="zh-CN"] .list100-content,
+html[lang="zh-CN"] .list100-content :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-zh), serif !important;
+  font-synthesis: none !important;
+  font-weight: 400 !important;
+}
+
+html[lang="en"] .list100-content,
+html[lang="en"] .list100-content :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-latin), serif !important;
+  font-synthesis: none !important;
+  font-weight: 400 !important;
 }

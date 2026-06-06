@@ -26,9 +26,10 @@
 
 <script setup lang="ts">
 import { useData } from 'vitepress'
+import { computed } from 'vue'
 
 const { site, page } = useData()
-const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')
+const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/'))
 
 interface List100Item {
   status: string

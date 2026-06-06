@@ -24,6 +24,7 @@
       <a
         :class="['custom-language-link', languageLink.className]"
         :href="languageLink.href"
+        @click="handleLanguageClick"
       >
         {{ languageLink.text }}
       </a>
@@ -32,6 +33,7 @@
       <a
         :class="['custom-language-link', 'nav-screen-language-link', languageLink.className]"
         :href="languageLink.href"
+        @click="handleLanguageClick"
       >
         {{ languageLink.text }}
       </a>
@@ -68,11 +70,26 @@ const isZh = computed(() => {
   return lang.value === 'zh-CN'
 })
 
+const switchLocalePath = (relativePath, targetLocale) => {
+  const path = relativePath || ''
+  const withoutLocale = path.replace(/^(zh|en)\//, '').replace(/\.md$/, '')
+  const targetPath = withoutLocale === 'index' ? targetLocale : `${targetLocale}/${withoutLocale}`
+
+  return `/${targetPath.replace(/\/index$/, '')}${targetPath.endsWith('/index') || withoutLocale === 'index' ? '/' : ''}`
+}
+
 const languageLink = computed(() => {
   return isZh.value
-    ? { text: 'EN', href: '/en/', className: 'language-link-en' }
-    : { text: '中文', href: '/zh/', className: 'language-link-zh' }
+    ? { text: 'EN', href: switchLocalePath(page.value.relativePath, 'en'), className: 'language-link-en' }
+    : { text: '中文', href: switchLocalePath(page.value.relativePath, 'zh'), className: 'language-link-zh' }
 })
+
+const handleLanguageClick = (event) => {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
+
+  event.preventDefault()
+  window.location.assign(languageLink.value.href)
+}
 
 const articleMetaText = computed(() => {
   if (!isArticlePage.value) return ''

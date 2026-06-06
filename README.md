@@ -15,9 +15,7 @@ A bilingual personal blog and project portfolio built with **VitePress**, optimi
 - **📚 Portfolio & Insights**: Integration of technical blog posts and project showcases.
 - **🎯 List 100**: Tracking 100 life goals and career milestones.
 - **💬 Community-Driven**: Full comment support via GitHub Discussions (Giscus).
-- **⚡ Performance First**: 
-    - **Font Slicing**: Optimized large Chinese fonts from **10MB TTF to small WOFF2 slices** (average 30KB each) using `cn-font-split`. Only character-specific chunks are loaded.
-    - **Static Generation**: Lightning-fast initial load with minimal runtime.
+- **⚡ Performance First**: Static generation for fast initial load with minimal runtime.
 
 ## 🚀 Quick Start
 
@@ -39,7 +37,7 @@ npm run preview
 | :--- | :--- |
 | `.vitepress/` | Site configurations and custom Vue components |
 | `zh/`, `en/` | Chinese and English content source (Markdown) |
-| `public/`   | Static assets (images, PDFs, and optimized fonts) |
+| `public/`   | Static assets (images and PDFs) |
 
 ## 📝 Content Management
 

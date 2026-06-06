@@ -416,7 +416,13 @@ const copyEmail = async () => {
   font-size: var(--vp-font-size-md);
   line-height: 1.4;
   outline: none;
+  overflow-y: auto;
   resize: vertical;
+  scrollbar-width: none;
+}
+
+.mail-compose textarea::-webkit-scrollbar {
+  display: none;
 }
 
 .mail-compose textarea::placeholder {
