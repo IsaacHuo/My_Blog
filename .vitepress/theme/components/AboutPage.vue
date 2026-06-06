@@ -54,24 +54,32 @@
         <h3>{{ isZh ? '联系我' : 'Contact me' }}</h3>
         <div class="contact-body">
           <div class="contact-links">
-            <button
-              type="button"
-              class="contact-icon-link contact-icon-button"
-              :aria-label="isZh ? `复制邮箱 ${emailAddress}` : `Copy email ${emailAddress}`"
-              :title="emailCopyTitle"
-              @click="copyEmail"
-            >
-              <svg
-                class="contact-icon"
-                viewBox="0 0 256 256"
-                aria-hidden="true"
+            <span class="mail-copy-control">
+              <button
+                type="button"
+                class="contact-icon-link contact-icon-button"
+                :aria-label="isZh ? `复制邮箱 ${emailAddress}` : `Copy email ${emailAddress}`"
+                @click="copyEmail"
               >
-                <path
-                  fill="currentColor"
-                  d="m228.44 89.34l-96-64a8 8 0 0 0-8.88 0l-96 64A8 8 0 0 0 24 96v104a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V96a8 8 0 0 0-3.56-6.66M128 41.61l81.91 54.61l-67 47.78h-29.8l-67-47.78ZM40 200v-88.47l65.9 47a8 8 0 0 0 4.65 1.49h34.9a8 8 0 0 0 4.65-1.49l65.9-47V200Z"
-                />
-              </svg>
-            </button>
+                <svg
+                  class="contact-icon"
+                  viewBox="0 0 256 256"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="currentColor"
+                    d="m228.44 89.34l-96-64a8 8 0 0 0-8.88 0l-96 64A8 8 0 0 0 24 96v104a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V96a8 8 0 0 0-3.56-6.66M128 41.61l81.91 54.61l-67 47.78h-29.8l-67-47.78ZM40 200v-88.47l65.9 47a8 8 0 0 0 4.65 1.49h34.9a8 8 0 0 0 4.65-1.49l65.9-47V200Z"
+                  />
+                </svg>
+              </button>
+              <span
+                class="copy-status"
+                :class="{ visible: emailCopyState === 'copied' }"
+                aria-live="polite"
+              >
+                {{ emailCopyStatusText }}
+              </span>
+            </span>
 
             <a
               class="contact-icon-link"
@@ -117,11 +125,11 @@
             class="mail-compose"
             @submit.prevent="sendEmail"
           >
-            <input
+            <textarea
               v-model="mailBody"
-              type="text"
+              rows="1"
               :placeholder="isZh ? '写下邮件正文...' : 'Write your message...'"
-            >
+            />
             <button type="submit">
               {{ isZh ? '发送邮件' : 'Send email' }}
             </button>
@@ -129,7 +137,7 @@
 
           <p class="contact-note">
             {{ isZh
-              ? '我正在找寻实习，如果您需要，可以给您一份简历。'
+              ? '我正在找寻实习，如您需要，可以给您发送我的简历。'
               : 'I am currently looking for an internship and can share my resume if needed.'
             }}
           </p>
@@ -149,13 +157,9 @@ const emailAddress = 'huoweifang@foxmail.com'
 const xiaohongshuUrl = 'https://www.xiaohongshu.com/user/profile/6767de890000000018017ac0'
 const githubUrl = 'https://github.com/IsaacHuo'
 const mailBody = ref('')
-const emailCopyState = ref<'idle' | 'copied' | 'failed'>('idle')
+const emailCopyState = ref<'idle' | 'copied'>('idle')
 
-const emailCopyTitle = computed(() => {
-  if (emailCopyState.value === 'copied') return isZh ? '已复制' : 'Copied'
-  if (emailCopyState.value === 'failed') return isZh ? '复制失败' : 'Copy failed'
-  return isZh ? '复制邮箱' : 'Copy email'
-})
+const emailCopyStatusText = computed(() => isZh ? '已复制' : 'Copied')
 
 const sendEmail = () => {
   const subject = encodeURIComponent(isZh ? '来自博客首页的邮件' : 'Message from blog homepage')
@@ -164,11 +168,8 @@ const sendEmail = () => {
 }
 
 const copyEmail = async () => {
-  let copied = false
-
   try {
     await navigator.clipboard.writeText(emailAddress)
-    copied = true
   } catch {
     const textarea = document.createElement('textarea')
     textarea.value = emailAddress
@@ -177,11 +178,11 @@ const copyEmail = async () => {
     textarea.style.opacity = '0'
     document.body.appendChild(textarea)
     textarea.select()
-    copied = document.execCommand('copy')
+    document.execCommand('copy')
     document.body.removeChild(textarea)
   }
 
-  emailCopyState.value = copied ? 'copied' : 'failed'
+  emailCopyState.value = 'copied'
   window.setTimeout(() => {
     emailCopyState.value = 'idle'
   }, 1500)
@@ -324,7 +325,13 @@ const copyEmail = async () => {
 .contact-links {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 12px;
+}
+
+.mail-copy-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
 }
 
 .contact-icon-link {
@@ -359,32 +366,60 @@ const copyEmail = async () => {
   text-decoration: none;
 }
 
+.copy-status {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  transform: translateX(-50%) translateY(-2px);
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: var(--vp-c-bg-soft);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  color: #4d74eb;
+  font-size: var(--vp-font-size-sm);
+  font-weight: 400 !important;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 2;
+}
+
+.copy-status.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .mail-compose {
   display: flex;
   width: 33.333%;
   min-width: 240px;
   max-width: calc(var(--content-max-width) / 3);
-  height: 44px;
+  min-height: 38px;
   border: 1px solid #4d74eb;
-  border-radius: 8px;
+  border-radius: 14px;
   overflow: hidden;
   background: var(--vp-c-bg-soft);
   box-shadow: 0 0 0 1px rgba(77, 116, 235, 0.08);
 }
 
-.mail-compose input {
+.mail-compose textarea {
   flex: 1;
   min-width: 0;
+  height: 38px;
+  min-height: 38px;
   border: 0;
-  padding: 0 12px;
+  padding: 8px 12px;
   background: var(--vp-c-bg-soft);
   color: var(--vp-c-text-1);
   font-size: var(--vp-font-size-md);
-  line-height: 44px;
+  line-height: 1.4;
   outline: none;
+  resize: vertical;
 }
 
-.mail-compose input::placeholder {
+.mail-compose textarea::placeholder {
   color: var(--vp-c-text-3);
 }
 

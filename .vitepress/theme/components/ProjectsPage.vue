@@ -1,141 +1,114 @@
 <template>
-  <div class="thoughts-layout">
-    <div class="thoughts-content">
-      <div class="thoughts-list">
-        <div
-          v-for="thought in thoughts" 
-          :key="thought.url" 
-          class="thought-item"
-          @click="openProject(thought.url)"
-        >
-          <div class="thought-image">
-            <img
-              :src="thought.image || '/My_Blog/avatar.jpg'"
-              :alt="thought.title"
-            >
-          </div>
-          <div class="thought-content">
-            <span class="thought-title">
-              {{ thought.title }}
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <div
-        v-if="thoughts.length === 0"
-        class="empty-state"
+  <div class="projects-list-page">
+    <ul
+      v-if="projects.length > 0"
+      class="project-list"
+    >
+      <li
+        v-for="project in projects"
+        :key="project.url"
+        class="project-list-item"
       >
-        <p>{{ isZh ? '暂无项目...' : 'No projects yet...' }}</p>
-      </div>
+        <span
+          v-if="project.date"
+          class="project-meta"
+        >
+          {{ formatDate(project.date) }}
+        </span>
+        <a
+          class="project-link"
+          :href="resolveProjectUrl(project.url)"
+          :target="project.url.startsWith('http') ? '_blank' : undefined"
+          :rel="project.url.startsWith('http') ? 'noopener noreferrer' : undefined"
+        >
+          {{ project.title }}
+        </a>
+      </li>
+    </ul>
+
+    <div
+      v-else
+      class="empty-state"
+    >
+      <p>{{ isZh ? '暂无项目...' : 'No projects yet...' }}</p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { computed } from 'vue'
 
 const { site, page, frontmatter } = useData()
 const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/'))
 
-// 从 frontmatter 获取项目列表
-const thoughts = computed(() => {
+const projects = computed(() => {
   return frontmatter.value.thoughts || []
 })
 
-// Open project link
-const openProject = (url: string) => {
-  if (!url) return
-  
-  // If it's an external link, open in new tab
-  if (url.startsWith('http')) {
-    window.open(url, '_blank')
-    return
-  }
+function resolveProjectUrl(url: string) {
+  if (url.startsWith('http')) return url
+  return withBase(url)
+}
 
-  // Internal link handling
-  window.location.href = url
+function formatDate(value?: string) {
+  if (!value) return ''
+
+  try {
+    return new Intl.DateTimeFormat(isZh.value ? 'zh-CN' : 'en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    }).format(new Date(value))
+  } catch {
+    return value
+  }
 }
 </script>
 
 <style scoped>
-.thoughts-layout,
-.thoughts-layout *,
-.thoughts-layout a,
-.thoughts-layout a * {
+.projects-list-page,
+.projects-list-page *,
+.projects-list-page a,
+.projects-list-page a * {
   font-family: inherit !important;
 }
 
-.thoughts-layout {
-  display: block;
-  max-width: 900px;
+.projects-list-page {
+  max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: var(--space-3xl) var(--space-lg);
+  padding: 30px 15px;
 }
 
-.thoughts-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xl);
+.project-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.thought-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-lg);
-  padding: var(--space-lg);
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  background: var(--vp-c-bg-soft);
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
+.project-list-item {
+  margin-bottom: 30px;
 }
 
-.thought-item:hover {
-  border-color: var(--vp-c-brand-1);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
-
-.thought-image {
-  flex-shrink: 0;
-  width: 120px;
-  height: 120px;
-  overflow: hidden;
-  border-radius: 6px;
-  background: var(--vp-c-bg);
-}
-
-.thought-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.thought-item:hover .thought-image img {
-  transform: scale(1.05);
-}
-
-.thought-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.thought-title {
+.project-meta {
   display: block;
-  font-size: var(--vp-font-size-lg);
-  color: var(--vp-c-text-1);
-  font-weight: 500;
-  line-height: 1.6;
-  transition: color 0.3s ease;
+  margin-bottom: 2px;
+  color: var(--vp-c-text-3);
+  font-size: 14px;
+  line-height: 1.5;
 }
 
-.thought-item:hover .thought-title {
-  color: var(--vp-c-brand-1);
+.project-link {
+  display: block;
+  color: #4d74eb !important;
+  font-size: 24px;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  color: var(--vp-c-text-1) !important;
+  text-decoration: underline;
 }
 
 .empty-state {
@@ -145,27 +118,10 @@ const openProject = (url: string) => {
   font-size: var(--vp-font-size-lg);
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .thoughts-layout {
-    padding: var(--space-xl) var(--space-md);
-  }
-
-  .thought-item {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--space-md);
-  }
-
-  .thought-image {
-    width: 100%;
-    max-width: 200px;
-    height: 200px;
-    margin: 0 auto;
-  }
-
-  .thought-title {
-    font-size: var(--vp-font-size-md);
+@media (max-width: 800px) {
+  .projects-list-page {
+    padding-right: 7.5px;
+    padding-left: 7.5px;
   }
 }
 </style>
