@@ -22,7 +22,7 @@ export default defineConfig({
         nav: [
           { text: '文章', link: '/zh/blog/' },
           { text: '项目', link: '/zh/projects/' },
-          { text: 'List 100', link: '/zh/list100/' }
+          { text: '清单100', link: '/zh/list100/' }
         ],
         socialLinks: [
           { icon: 'github', link: 'https://github.com/IsaacHuo/My_Blog' }

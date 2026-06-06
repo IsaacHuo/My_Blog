@@ -128,7 +128,7 @@
             <textarea
               v-model="mailBody"
               rows="1"
-              :placeholder="isZh ? '写下...' : 'Write your message...'"
+              :placeholder="isZh ? '写下......' : 'Write your message...'"
             />
             <button type="submit">
               {{ isZh ? '发送邮件' : 'Send email' }}
