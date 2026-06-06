@@ -22,11 +22,10 @@ export default defineConfig({
         nav: [
           { text: '文章', link: '/zh/blog/' },
           { text: '项目', link: '/zh/projects/' },
-          { text: '清单100', link: '/zh/list100/' },
-          { text: 'EN', link: '/en/' }
+          { text: 'List 100', link: '/zh/list100/' }
         ],
         socialLinks: [
-          { icon: 'github', link: 'https://github.com/IsaacHuo' }
+          { icon: 'github', link: 'https://github.com/IsaacHuo/My_Blog' }
         ],
         footer: {
           copyright: 'Copyright © 2024 Huo Weifang'
@@ -52,15 +51,14 @@ export default defineConfig({
     siteTitle: 'Huo Weifang',
     nav: [
       { text: 'Blog', link: '/en/blog/' },
-      { text: 'Projects', link: '/en/projects/' },
-      { text: 'List 100', link: '/en/list100/' },
-      { text: '中文', link: '/zh/' }
+      { text: 'Project', link: '/en/projects/' },
+      { text: 'List 100', link: '/en/list100/' }
     ],
 
 
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/IsaacHuo' }
+      { icon: 'github', link: 'https://github.com/IsaacHuo/My_Blog' }
     ],
 
     footer: {

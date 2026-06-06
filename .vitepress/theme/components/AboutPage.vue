@@ -52,58 +52,50 @@
 
       <div class="about-contact">
         <h3>{{ isZh ? '联系我' : 'Contact me' }}</h3>
-        <ul>
-          <li>
-            {{ isZh ? '简历：' : 'Resume: ' }}
-            <a 
-              :href="isZh ? '/my-cv/resume_cn_20260515.pdf' : '/my-cv/resume_en_20260515.pdf'" 
-              target="_blank" 
-              class="copyable"
-              :title="isZh ? '点击查看简历' : 'Click to view resume'"
-            >
-              {{ isZh ? '点击查看' : 'view pdf' }}
-            </a>
-          </li>
-          <li v-if="!isZh">
-            LinkedIn: 
-            <a 
-              href="https://www.linkedin.com/in/weifang-huo-293237386/" 
-              target="_blank" 
-              class="copyable"
-              title="Click to view LinkedIn profile"
-            >
-              view my profile
-            </a>
-          </li>
-          <li>
-            {{ isZh ? '邮箱：' : 'Email: ' }}
-            <span
-              class="copyable"
-              :title="isZh ? '点击复制' : 'Click to copy'"
-              @click="copyToClipboard('huoweifang@foxmail.com', 'email')"
-            >
-              huoweifang@foxmail.com
-            </span>
-            <span
-              v-if="copiedField === 'email'"
-              class="copied-tip"
-            >{{ isZh ? '已复制！' : 'Copied!' }}</span>
-          </li>
-          <li>
-            {{ isZh ? '微信：' : 'WeChat: ' }}
-            <span
-              class="copyable"
-              :title="isZh ? '点击复制' : 'Click to copy'"
-              @click="copyToClipboard('hwfgxwzxysw', 'wechat')"
-            >
-              hwfgxwzxysw
-            </span>
-            <span
-              v-if="copiedField === 'wechat'"
-              class="copied-tip"
-            >{{ isZh ? '已复制！' : 'Copied!' }}</span>
-          </li>
-        </ul>
+        <div class="contact-body">
+          <ul class="social-list">
+            <li>
+              <span class="social-mark">Mail</span>
+              <a :href="`mailto:${emailAddress}`">
+                {{ emailAddress }}
+              </a>
+            </li>
+            <li>
+              <span class="social-mark">{{ isZh ? '红书' : 'RED' }}</span>
+              <a
+                :href="xiaohongshuUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ isZh ? '小红书' : 'Xiaohongshu' }}
+              </a>
+            </li>
+            <li>
+              <span class="social-mark">Git</span>
+              <a
+                :href="githubUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                IsaacHuo
+              </a>
+            </li>
+          </ul>
+
+          <form
+            class="mail-compose"
+            @submit.prevent="sendEmail"
+          >
+            <textarea
+              v-model="mailBody"
+              :placeholder="isZh ? '写下邮件正文...' : 'Write your message...'"
+              rows="4"
+            />
+            <button type="submit">
+              {{ isZh ? '发送邮件' : 'Send email' }}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -115,28 +107,24 @@ import { ref } from 'vue'
 
 const { site, page } = useData()
 const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')
-const copiedField = ref<string | null>(null)
+const emailAddress = 'huoweifang@foxmail.com'
+const xiaohongshuUrl = 'https://www.xiaohongshu.com/user/profile/6767de890000000018017ac0'
+const githubUrl = 'https://github.com/IsaacHuo'
+const mailBody = ref('')
 
-const copyToClipboard = async (text: string, field: string) => {
-  try {
-    await navigator.clipboard.writeText(text)
-    copiedField.value = field
-    setTimeout(() => {
-      copiedField.value = null
-    }, 2000)
-  } catch (err) {
-    console.error('Failed to copy:', err)
-  }
+const sendEmail = () => {
+  const subject = encodeURIComponent(isZh ? '来自博客首页的邮件' : 'Message from blog homepage')
+  const body = encodeURIComponent(mailBody.value.trim())
+  window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`
 }
 </script>
 
 <style scoped>
-/* 强制整个页面使用 DFKai 字体 */
 .about-layout,
 .about-layout *,
 .about-layout a,
 .about-layout a * {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+  font-family: inherit !important;
 }
 
 .about-layout {
@@ -209,14 +197,14 @@ const copyToClipboard = async (text: string, field: string) => {
 }
 
 .about-intro {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+  font-family: inherit !important;
 }
 
 .about-intro a {
   color: var(--vp-c-brand-1);
   text-decoration: none;
   transition: color 0.3s ease;
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+  font-family: inherit !important;
 }
 
 .about-intro a:hover {
@@ -241,6 +229,7 @@ const copyToClipboard = async (text: string, field: string) => {
 }
 
 .about-contact {
+  margin-top: var(--space-2xl);
   margin-bottom: var(--space-xl);
   clear: both; /* 后续区块不受浮动影响 */
 }
@@ -256,70 +245,87 @@ const copyToClipboard = async (text: string, field: string) => {
   padding: 2px 10px;
 }
 
-.about-contact ul {
+.contact-body {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+.social-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.about-contact li {
+.social-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   padding: 4px 0;
-  color: var(--vp-c-text-2);
   font-size: var(--vp-font-size-xl);
+  line-height: 1.4;
 }
 
-.about-contact a {
-  color: var(--vp-c-brand-1);
+.social-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  color: var(--vp-c-text-3);
+  font-size: 14px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.social-list a {
+  color: #4d74eb !important;
   text-decoration: none;
 }
 
-.about-contact a:hover {
+.social-list a:hover {
   text-decoration: underline;
 }
 
-.copyable {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.mail-compose {
+  display: flex;
+  min-width: 0;
+  border: 1px solid #80c4ff;
+  border-radius: 8px;
+  overflow: hidden;
   background: var(--vp-c-bg-soft);
-  color: var(--vp-c-brand-1);
-  font-family: 'DFKai', 'GoudyOldStyle', monospace, sans-serif !important;
+  box-shadow: 0 0 0 1px rgba(77, 116, 235, 0.08);
 }
 
-.copyable:hover {
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
-  transform: translateY(-1px);
+.mail-compose textarea {
+  flex: 1;
+  min-width: 0;
+  resize: vertical;
+  border: 0;
+  padding: 14px 16px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-size: var(--vp-font-size-lg);
+  line-height: 1.5;
+  outline: none;
 }
 
-.copyable:active {
-  transform: translateY(0);
+.mail-compose textarea::placeholder {
+  color: var(--vp-c-text-3);
 }
 
-.copied-tip {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 2px 8px;
-  background: var(--vp-c-green-soft);
-  color: var(--vp-c-green-1);
-  border-radius: 4px;
-  font-size: 12px;
-  animation: fadeIn 0.3s ease;
+.mail-compose button {
+  flex: 0 0 auto;
+  border: 0;
+  padding: 0 22px;
+  background: #87c5f5;
+  color: #ffffff;
+  font-size: var(--vp-font-size-lg);
+  cursor: pointer;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.mail-compose button:hover {
+  background: #6fb5ec;
 }
 
 @media (max-width: 768px) {
@@ -329,6 +335,23 @@ const copyToClipboard = async (text: string, field: string) => {
     height: 160px;
     margin: 0 auto var(--space-lg) auto;
     shape-outside: none;
+  }
+
+  .about-contact {
+    margin-top: var(--space-xl);
+  }
+
+  .contact-body {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .mail-compose {
+    flex-direction: column;
+  }
+
+  .mail-compose button {
+    padding: 12px 16px;
   }
 }
 </style>

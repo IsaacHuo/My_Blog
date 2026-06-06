@@ -20,34 +20,36 @@
       <BackToTop />
       <ArticleTOC v-if="isArticlePage" />
     </template>
-    
-    <!-- Navbar Title Extension -->
-    <template #nav-bar-content-before>
-      <ViewCounter 
-        id="total-views" 
-        :key="page.relativePath"
-        :show-label="false" 
-        :readonly="true"
-        :is-zh="isZh" 
-        class="nav-view-counter" 
-      />
+    <template #nav-bar-content-after>
+      <a
+        :class="['custom-language-link', languageLink.className]"
+        :href="languageLink.href"
+      >
+        {{ languageLink.text }}
+      </a>
+    </template>
+    <template #nav-screen-content-after>
+      <a
+        :class="['custom-language-link', 'nav-screen-language-link', languageLink.className]"
+        :href="languageLink.href"
+      >
+        {{ languageLink.text }}
+      </a>
     </template>
   </Layout>
 </template>
 
 <script setup>
 import DefaultTheme from 'vitepress/theme'
-import { useData, useRouter } from 'vitepress'
-import { computed, onMounted, onBeforeUnmount, watch, nextTick, createApp } from 'vue'
+import { useData } from 'vitepress'
+import { computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
 import List100Page from './components/List100Page.vue'
 import BackToTop from './components/BackToTop.vue'
 import Comments from './components/Comments.vue'
-import ViewCounter from './components/ViewCounter.vue'
 import ArticleTOC from './components/ArticleTOC.vue'
 
 const { Layout } = DefaultTheme
 const { frontmatter, page, lang } = useData()
-const router = useRouter()
 
 // 判断是否是文章页面（在 zh/blog 或 en/blog 目录下）
 // 判断是否是文章页面（在 zh/blog, en/blog, zh/projects, en/projects 目录下）
@@ -61,23 +63,52 @@ const isZh = computed(() => {
   return lang.value === 'zh-CN'
 })
 
-// View Counter Injection Logic
-let viewCounterApp = null
-let viewCounterEl = null
+const languageLink = computed(() => {
+  return isZh.value
+    ? { text: 'EN', href: '/en/', className: 'language-link-en' }
+    : { text: '中文', href: '/zh/', className: 'language-link-zh' }
+})
 
-const cleanupViewCounter = () => {
-  if (viewCounterApp) {
-    viewCounterApp.unmount()
-    viewCounterApp = null
+const articleMetaText = computed(() => {
+  if (!isArticlePage.value) return ''
+
+  const parts = []
+  if (frontmatter.value.date) {
+    parts.push(formatArticleDate(frontmatter.value.date))
   }
-  if (viewCounterEl && viewCounterEl.parentNode) {
-    viewCounterEl.parentNode.removeChild(viewCounterEl)
-    viewCounterEl = null
+  if (frontmatter.value.author) {
+    parts.push(frontmatter.value.author)
+  }
+
+  return parts.join(' • ')
+})
+
+const formatArticleDate = (value) => {
+  try {
+    const date = new Date(value)
+    if (Number.isNaN(date.getTime())) return value
+
+    return new Intl.DateTimeFormat(isZh.value ? 'zh-CN' : 'en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    }).format(date)
+  } catch {
+    return value
   }
 }
 
-const injectViewCounter = async () => {
-  cleanupViewCounter()
+let articleMetaEl = null
+
+const cleanupArticleMeta = () => {
+  if (articleMetaEl && articleMetaEl.parentNode) {
+    articleMetaEl.parentNode.removeChild(articleMetaEl)
+    articleMetaEl = null
+  }
+}
+
+const injectArticleMeta = async () => {
+  cleanupArticleMeta()
   
   if (!isArticlePage.value) return
 
@@ -86,41 +117,24 @@ const injectViewCounter = async () => {
   setTimeout(() => {
     const h1 = document.querySelector('.vp-doc h1')
     if (h1 && h1.parentNode) {
-      // Create container
-      viewCounterEl = document.createElement('div')
-      viewCounterEl.className = 'article-view-count-container'
-      viewCounterEl.style.textAlign = 'center'
-      viewCounterEl.style.marginBottom = '0.5rem'
-      viewCounterEl.style.marginTop = '0'
-      viewCounterEl.style.lineHeight = '1'
-      
-      // Insert after H1
-      h1.parentNode.insertBefore(viewCounterEl, h1.nextSibling)
-      
-      // Reduce H1 margin to pull counter closer
-      h1.style.marginBottom = '0.8rem'
-
-      // Create and mount app
-      viewCounterApp = createApp(ViewCounter, {
-        id: page.value.relativePath.replace(/\.md$/, ''),
-        showLabel: false,
-        isZh: isZh.value
-      })
-      viewCounterApp.mount(viewCounterEl)
+      articleMetaEl = document.createElement('div')
+      articleMetaEl.className = 'article-meta-container'
+      articleMetaEl.textContent = articleMetaText.value
+      h1.parentNode.insertBefore(articleMetaEl, h1.nextSibling)
     }
   }, 100)
 }
 
 onMounted(() => {
-  injectViewCounter()
+  injectArticleMeta()
 })
 
 watch(() => page.value.relativePath, () => {
-  injectViewCounter()
+  injectArticleMeta()
 })
 
 onBeforeUnmount(() => {
-  cleanupViewCounter()
+  cleanupArticleMeta()
 })
 </script>
 
@@ -151,21 +165,4 @@ onBeforeUnmount(() => {
   padding-top: 2rem;
 }
 
-/* Navbar View Counter */
-.nav-view-counter {
-  margin-right: 12px !important; /* spacing before menu */
-  margin-left: 0 !important;
-  margin-top: 0 !important;
-  font-size: 0.9em !important;
-  vertical-align: middle;
-  opacity: 0.8;
-  background: var(--vp-c-bg-mute);
-  padding: 2px 8px;
-  border-radius: 12px;
-  border: 1px solid var(--vp-c-border);
-}
-
-.nav-view-counter .view-count {
-  margin-top: 0 !important;
-}
 </style>
