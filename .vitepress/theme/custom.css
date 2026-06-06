@@ -348,6 +348,7 @@ html[lang="zh-CN"] .nav-link {
 
 .VPNavBarTitle .title::after {
   content: 'Huo Weifang';
+  font-family: var(--font-latin) !important;
   font-size: 32px;
   font-weight: 600;
   color: var(--vp-c-text-1);
@@ -422,6 +423,38 @@ html[lang="en"] .vp-doc p,
 html[lang="en"] .vp-doc li {
   line-height: 1.4 !important;
   margin-bottom: calc(var(--space-sm) * 0.8) !important;
+}
+
+.is-article-page .vp-doc h1 {
+  font-size: 2.35rem;
+}
+
+.is-article-page .vp-doc p,
+.is-article-page .vp-doc li {
+  line-height: 1.5 !important;
+}
+
+html[lang="en"] .is-article-page .vp-doc p,
+html[lang="en"] .is-article-page .vp-doc li {
+  line-height: 1.35 !important;
+}
+
+.is-project-page .vp-doc h1 {
+  font-size: 1.95rem;
+}
+
+html[lang="zh-CN"] .is-project-page .vp-doc,
+html[lang="zh-CN"] .is-project-page .vp-doc :where(:not(pre, code, kbd, samp, svg, svg *)),
+html[lang="zh-CN"] .thoughts-layout,
+html[lang="zh-CN"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-zh) !important;
+}
+
+html[lang="en"] .is-project-page .vp-doc,
+html[lang="en"] .is-project-page .vp-doc :where(:not(pre, code, kbd, samp, svg, svg *)),
+html[lang="en"] .thoughts-layout,
+html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-latin) !important;
 }
 
 /* --- Blog Cards --- */
@@ -869,4 +902,21 @@ html[lang="en"] .vp-doc li {
     font-size: 16px !important;
     padding: 0 3px !important;
   }
+}
+
+/* ==========================================================================
+   CHINESE FONT WEIGHT
+   ========================================================================== */
+
+html[lang="zh-CN"] body,
+html[lang="zh-CN"] body :where(:not(pre, code, kbd, samp, svg, svg *)),
+html[lang="zh-CN"] .VPNavBarMenuLink,
+html[lang="zh-CN"] .nav-link,
+html[lang="zh-CN"] .custom-language-link,
+html[lang="zh-CN"] .language-link-zh,
+html[lang="zh-CN"] .about-intro strong,
+html[lang="zh-CN"] .about-description strong,
+html[lang="zh-CN"] .thought-title,
+html[lang="zh-CN"] .list100-content h1 {
+  font-weight: 700 !important;
 }

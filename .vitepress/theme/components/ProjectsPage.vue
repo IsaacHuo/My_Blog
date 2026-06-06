@@ -60,12 +60,11 @@ const openProject = (url: string) => {
 </script>
 
 <style scoped>
-/* 强制整个页面使用 DFKai 字体 */
 .thoughts-layout,
 .thoughts-layout *,
 .thoughts-layout a,
 .thoughts-layout a * {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+  font-family: inherit !important;
 }
 
 .thoughts-layout {

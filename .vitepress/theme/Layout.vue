@@ -1,5 +1,5 @@
 <template>
-  <Layout :class="{ 'is-article-page': isArticlePage }">
+  <Layout :class="{ 'is-article-page': isArticlePage, 'is-project-page': isProjectPage }">
     <template
       v-if="frontmatter.layout === 'List100Page'"
       #doc-before
@@ -57,6 +57,11 @@ const isArticlePage = computed(() => {
   const path = page.value.relativePath || ''
   return (path.indexOf('blog/') !== -1 || path.indexOf('projects/') !== -1) && 
          path.indexOf('index.md') === -1
+})
+
+const isProjectPage = computed(() => {
+  const path = page.value.relativePath || ''
+  return path.indexOf('projects/') !== -1 && path.indexOf('index.md') === -1
 })
 
 const isZh = computed(() => {
