@@ -407,11 +407,13 @@ html[lang="zh-CN"] .nav-link {
   white-space: nowrap;
 }
 
-.language-link-en {
+.custom-language-link.language-link-en,
+.nav-screen-language-link.language-link-en {
   font-family: var(--font-latin) !important;
 }
 
-.language-link-zh {
+.custom-language-link.language-link-zh,
+.nav-screen-language-link.language-link-zh {
   font-family: var(--font-zh) !important;
   font-size: 17px !important;
   font-weight: 400 !important;
