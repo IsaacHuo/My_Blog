@@ -1,35 +1,49 @@
-@import url("/fonts/HYWenRunSongYunU/result.css");
 /* ==========================================================================
    1. FONTS & TYPOGRAPHY
    ========================================================================== */
 
-/* Font Declarations */
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
+
 @font-face {
-  font-family: 'GoudyOldStyle';
-  src: url('../../front/GoudyOldStyleT-Regular.ttf') format('truetype');
-  font-weight: normal;
+  font-family: "BlogMacKaiti";
+  src:
+    local("Kaiti SC Regular"),
+    local("STKaitiSC-Regular"),
+    local("楷体-简 常规体"),
+    local("STKaiti"),
+    local("华文楷体");
   font-style: normal;
+  font-weight: 400;
   font-display: swap;
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-
-
+@font-face {
+  font-family: "BlogMacKaiti";
+  src:
+    local("Kaiti SC Bold"),
+    local("STKaitiSC-Bold"),
+    local("楷体-简 粗体");
+  font-style: normal;
+  font-weight: 600 700;
+  font-display: swap;
+}
 
 /* CSS Variables */
 :root {
   /* Typography */
-  --vp-font-family-base: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
-  --vp-font-family-mono: 'GoudyOldStyle', 'DFKai', Menlo, Monaco, Consolas, monospace !important;
+  --font-latin: "Lora", Georgia, "Times New Roman";
+  --font-zh: "Kaiti SC", "STKaiti", "BlogMacKaiti", "STKaitiSC-Regular", "楷体-简", "华文楷体", "KaiTi", "楷体";
+  --vp-font-family-base: var(--font-latin), var(--font-zh), serif !important;
+  --vp-font-family-mono: Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
 
   /* Font Sizes */
-  --vp-font-size-xs: 0.875rem;
-  --vp-font-size-sm: 1rem;
-  --vp-font-size-md: 1.125rem;
-  --vp-font-size-lg: 1.25rem;
-  --vp-font-size-xl: 1.3rem;
-  --vp-font-size-2xl: 1.5rem;
-  --vp-font-size-3xl: 2.0rem;
+  --vp-font-size-xs: 0.75rem;
+  --vp-font-size-sm: 0.9rem;
+  --vp-font-size-md: 1rem;
+  --vp-font-size-lg: 1.125rem;
+  --vp-font-size-xl: 1.35rem;
+  --vp-font-size-2xl: 1.85rem;
+  --vp-font-size-3xl: 2.75rem;
 
   /* Minimalist Color Palette - Light Mode */
   --vp-c-brand-1: #111111;
@@ -61,6 +75,13 @@
   /* Layout */
   --vp-layout-max-width: 1200px;
   --content-max-width: 800px;
+  --article-content-width: 760px;
+  --article-toc-width: 300px;
+  --nav-content-width: 1180px;
+}
+
+html.mac[lang="zh-CN"] {
+  --font-zh: "Kaiti SC", "STKaiti", "BlogMacKaiti", "STKaitiSC-Regular", "楷体-简", "华文楷体", "KaiTi", "楷体";
 }
 
 /* Dark Mode Variables */
@@ -83,47 +104,36 @@
   --vp-c-divider: #333333;
 }
 
-/* Global Font Enforcement */
-* {
-  font-family: 'GoudyOldStyle', 'DFKai', -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
-
-svg,
-svg * {
-  font-family: inherit !important;
-}
-
-body {
+html,
+body,
+button,
+input,
+textarea,
+select {
   font-family: var(--vp-font-family-base) !important;
 }
 
-/* Specific Font Rules for Chinese */
-:lang(zh),
-:lang(zh-CN),
-:lang(zh-TW),
-html[lang="zh"] *,
-html[lang="zh-CN"] *,
-body[lang="zh"] *,
-body[lang="zh-CN"] *,
-.zh *,
-[data-lang="zh"] *,
-[data-lang="zh-CN"] *,
-[href*="/zh/"] *,
-html[lang="zh-CN"] a,
-html[lang="zh"] a {
-  font-family: 'DFKai', 'GoudyOldStyle', sans-serif !important;
+html[lang="zh-CN"],
+html[lang="zh-CN"] body {
+  font-family: var(--font-zh), serif !important;
 }
 
-/* Specific Font Rules for English */
-:lang(en) {
-  font-family: 'GoudyOldStyle', 'DFKai', sans-serif !important;
+html[lang="zh-CN"] .VPDoc,
+html[lang="zh-CN"] .vp-doc,
+html[lang="zh-CN"] .about-layout,
+html[lang="zh-CN"] .about-layout :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-zh), serif !important;
 }
 
-/* Giscus Font Overrides */
+html[lang="en"],
+html[lang="en"] body {
+  font-family: var(--font-latin), serif !important;
+}
+
 .giscus,
 .giscus-frame,
 .giscus * {
-  font-family: 'DFKai', 'GoudyOldStyle', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-family: var(--vp-font-family-base) !important;
 }
 
 /* ==========================================================================
@@ -140,9 +150,10 @@ html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable both-edges;
   width: 100%;
-  zoom: 110%;
+  zoom: 100%;
   transform: none;
   transform-origin: initial;
+  font-synthesis: none;
 }
 
 body {
@@ -305,20 +316,55 @@ a:visited {
 
 .VPNav,
 .VPNavBar {
-  border-bottom: none !important;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid var(--vp-c-divider) !important;
+  backdrop-filter: none;
+  background: #ffffff !important;
 }
 
 .dark .VPNav,
 .dark .VPNavBar {
-  background: rgba(15, 15, 15, 0.85) !important;
+  background: var(--vp-c-bg) !important;
+}
+
+.VPNavBar .container {
+  max-width: var(--nav-content-width) !important;
+  margin: 0 auto !important;
 }
 
 /* Nav Menu Items */
+.VPNavBarMenu {
+  display: grid !important;
+  grid-template-columns: 76px 88px 92px;
+  justify-content: end;
+  align-items: center;
+}
+
 .VPNavBarMenuLink,
 .nav-link {
-  font-size: 20px !important;
+  justify-content: center !important;
+  width: 100%;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+}
+
+html[lang="en"] .VPNavBarMenuLink,
+html[lang="en"] .nav-link {
+  font-family: var(--font-latin) !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+}
+
+html[lang="zh-CN"] .VPNavBarMenuLink,
+html[lang="zh-CN"] .nav-link {
+  font-family: var(--font-zh) !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+}
+
+html[lang="en"] .VPNav .VPNavBarMenuLink[href$="/list100/"] {
+  font-family: var(--font-latin), serif !important;
+  font-weight: 400 !important;
 }
 
 /* Hide Unwanted Nav Elements */
@@ -332,6 +378,10 @@ a:visited {
   display: none !important;
 }
 
+.VPNavBarAppearance {
+  display: none !important;
+}
+
 /* Custom Title Style */
 .VPNavBarTitle .title span {
   display: none !important;
@@ -339,26 +389,38 @@ a:visited {
 
 .VPNavBarTitle .title::after {
   content: 'Huo Weifang';
-  font-size: 26px;
+  font-family: var(--font-latin) !important;
+  font-size: 32px;
+  font-weight: 600;
   color: var(--vp-c-text-1);
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
-/* Navbar View Counter */
-.nav-view-counter {
-  margin-right: 12px !important;
-  margin-left: 0 !important;
-  font-size: 0.9em !important;
-  vertical-align: middle;
-  opacity: 0.8;
-  background: var(--vp-c-bg-mute);
-  padding: 2px 8px;
-  border-radius: 12px;
-  border: 1px solid var(--vp-c-border);
+.custom-language-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+  margin-left: 28px;
+  white-space: nowrap;
 }
 
-.nav-view-counter .view-count {
-  margin-top: 0 !important;
+.custom-language-link.language-link-en,
+.nav-screen-language-link.language-link-en {
+  font-family: var(--font-latin) !important;
+}
+
+.custom-language-link.language-link-zh,
+.nav-screen-language-link.language-link-zh {
+  font-family: var(--font-zh) !important;
+  font-size: 17px !important;
+  font-weight: 600 !important;
+}
+
+.VPNavBarSocialLinks {
+  margin-left: 14px !important;
 }
 
 /* Mobile Nav Toggles */
@@ -404,6 +466,38 @@ html[lang="en"] .vp-doc p,
 html[lang="en"] .vp-doc li {
   line-height: 1.4 !important;
   margin-bottom: calc(var(--space-sm) * 0.8) !important;
+}
+
+.is-article-page .vp-doc h1 {
+  font-size: 2.35rem;
+}
+
+.is-article-page .vp-doc p,
+.is-article-page .vp-doc li {
+  line-height: 1.5 !important;
+}
+
+html[lang="en"] .is-article-page .vp-doc p,
+html[lang="en"] .is-article-page .vp-doc li {
+  line-height: 1.35 !important;
+}
+
+.is-project-page .vp-doc h1 {
+  font-size: 1.95rem;
+}
+
+html[lang="zh-CN"] .is-project-page .vp-doc,
+html[lang="zh-CN"] .is-project-page .vp-doc :where(:not(pre, code, kbd, samp, svg, svg *)),
+html[lang="zh-CN"] .thoughts-layout,
+html[lang="zh-CN"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-zh) !important;
+}
+
+html[lang="en"] .is-project-page .vp-doc,
+html[lang="en"] .is-project-page .vp-doc :where(:not(pre, code, kbd, samp, svg, svg *)),
+html[lang="en"] .thoughts-layout,
+html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-latin) !important;
 }
 
 /* --- Blog Cards --- */
@@ -764,6 +858,10 @@ html[lang="en"] .vp-doc li {
   */
 
   /* Compact Menu Items Base Styles */
+  .VPNavBarMenu {
+    grid-template-columns: 64px 76px 82px;
+  }
+
   .VPNavBarMenuLink {
     padding: 0 6px !important;
   }
@@ -778,17 +876,35 @@ html[lang="en"] .vp-doc li {
   .VPNavBarMenuLink {
     font-size: 20px !important;
   }
+
+  html[lang="zh-CN"] .VPNavBarMenuLink {
+    font-size: 20px !important;
+  }
 }
 
 /* Mobile (Under 600px) */
 @media (max-width: 599px) {
   .VPNavBarTitle .title::after {
-    font-size: 22px !important;
+    font-size: 18px !important;
   }
 
   .VPNavBarMenuLink {
-    font-size: 20px !important;
-    padding: 0 4px !important;
+    font-size: 16px !important;
+    padding: 0 3px !important;
+  }
+
+  html[lang="zh-CN"] .VPNavBarMenuLink {
+    font-size: 16px !important;
+  }
+
+  .custom-language-link {
+    width: 30px;
+    font-size: 16px !important;
+    padding-left: 3px !important;
+  }
+
+  .language-link-zh {
+    font-size: 16px !important;
   }
 
   /* Hide View Counter on Mobile Phones only */
@@ -829,4 +945,92 @@ html[lang="en"] .vp-doc li {
     font-size: 16px !important;
     padding: 0 3px !important;
   }
+}
+
+/* ==========================================================================
+   CHINESE FONT WEIGHT
+   ========================================================================== */
+
+html[lang="zh-CN"] body,
+html[lang="zh-CN"] body :where(:not(pre, code, kbd, samp, svg, svg *)),
+html[lang="zh-CN"] .VPNavBarMenuLink,
+html[lang="zh-CN"] .nav-link,
+html[lang="zh-CN"] .custom-language-link,
+html[lang="zh-CN"] .language-link-zh,
+html[lang="zh-CN"] .about-intro strong,
+html[lang="zh-CN"] .about-description strong,
+html[lang="zh-CN"] .thought-title,
+html[lang="zh-CN"] .list100-content h1 {
+  font-weight: 600 !important;
+}
+
+.VPNav .VPNavBarMenuLink,
+.VPNav .nav-link,
+.VPNav .custom-language-link {
+  font-weight: 400 !important;
+}
+
+html[lang="zh-CN"] .VPNavBarMenuLink,
+html[lang="zh-CN"] .nav-link,
+html[lang="zh-CN"] .custom-language-link,
+html[lang="zh-CN"] .language-link-zh {
+  font-weight: 600 !important;
+}
+
+.VPNav .VPNavBarMenuLink,
+.VPNav .VPNavBarMenuLink.active,
+.VPNav .custom-language-link {
+  font-synthesis: none !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  text-shadow: none !important;
+  -webkit-text-stroke-width: 0 !important;
+}
+
+.VPNav .language-link-en {
+  font-family: var(--font-latin), serif !important;
+}
+
+.VPNav .language-link-zh {
+  font-family: var(--font-zh), serif !important;
+}
+
+.VPNav a.custom-language-link.language-link-zh,
+.VPNavScreen a.nav-screen-language-link.language-link-zh {
+  font-family: var(--font-zh), serif !important;
+  font-weight: 600 !important;
+}
+
+html[lang="zh-CN"] .VPNav .VPNavBarMenuLink,
+html[lang="zh-CN"] .VPNav .VPNavBarMenuLink.active,
+html[lang="zh-CN"] .VPNav .nav-link,
+html[lang="zh-CN"] .VPNav .custom-language-link {
+  font-weight: 600 !important;
+}
+
+html[lang="zh-CN"] .VPNav .language-link-en {
+  font-family: var(--font-latin), serif !important;
+  font-weight: 400 !important;
+}
+
+html[lang="zh-CN"] body .about-intro strong,
+html[lang="zh-CN"] body .about-description strong,
+html[lang="zh-CN"] body .about-contact h3,
+html[lang="zh-CN"] body .copy-status,
+html[lang="zh-CN"] body .contact-note {
+  font-weight: 600 !important;
+}
+
+html[lang="zh-CN"] .list100-content,
+html[lang="zh-CN"] .list100-content :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-zh), serif !important;
+  font-synthesis: none !important;
+  font-weight: 600 !important;
+}
+
+html[lang="en"] .list100-content,
+html[lang="en"] .list100-content :where(:not(pre, code, kbd, samp, svg, svg *)) {
+  font-family: var(--font-latin), serif !important;
+  font-synthesis: none !important;
+  font-weight: 400 !important;
 }

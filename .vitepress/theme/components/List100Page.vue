@@ -2,85 +2,43 @@
   <div class="list100-layout">
     <div class="list100-content">
       <h1>{{ isZh ? '清单 100' : 'List 100' }}</h1>
-      <p class="list100-intro">
-        {{ isZh ? 
-          '死前想做的事情。进度截至2023年12月31日。' :
-          'Things I want to do before I die. Progress as of Dec 31, 2023.'
+      <p>
+        {{ isZh
+          ? '死前想做的事情。进度截至2023年12月31日。'
+          : 'Things I want to do before I die. Progress as of Dec 31, 2023.'
         }}
       </p>
-      
-      <div class="list100-items">
-        <div
-          v-for="(item, index) in list100Items"
-          :key="index"
-          class="list100-item"
-          @click="openModal(item)"
+
+      <ol>
+        <li
+          v-for="item in list100Items"
+          :key="item.textEn"
         >
-          <span class="item-number">{{ index + 1 }}.</span>
-          <span class="item-status">{{ item.status }}</span>
+          <span>{{ item.status }}</span>
           <span
-            class="item-text"
             v-html="isZh ? item.textZh : item.textEn"
           />
-        </div>
-      </div>
+        </li>
+      </ol>
     </div>
-    
-    <List100Modal 
-      :is-open="isModalOpen"
-      :item="selectedItem"
-      :is-zh="isZh"
-      @close="closeModal"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useData } from 'vitepress'
-import { ref } from 'vue'
-import List100Modal from './List100Modal.vue'
+import { computed } from 'vue'
 
 const { site, page } = useData()
-const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')
+const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/'))
 
-// Modal State
-const isModalOpen = ref(false)
-const selectedItem = ref({})
-
-const openModal = (item: any) => {
-  selectedItem.value = item
-  isModalOpen.value = true
-  document.body.style.overflow = 'hidden' // Prevent background scrolling
-}
-
-const closeModal = () => {
-  isModalOpen.value = false
-  document.body.style.overflow = ''
-}
-
-// List 100 数据
 interface List100Item {
   status: string
   textEn: string
   textZh: string
-  records?: {
-    date: string
-    status: string
-    contentZh: string
-    contentEn: string
-  }[]
 }
 
 const list100Items: List100Item[] = [
-  { 
-    status: '✗', 
-    textEn: 'Independently design a complete production-grade project in the AI/ML systems field.', 
-    textZh: '在 AI/ML 系统领域独立设计一个完整的生产级项目。',
-    records: [
-      { date: '2023-10-15', status: 'In Progress', contentZh: '开始构思系统架构，选型 Kubernetes + RayServe。', contentEn: 'Started conceptualizing architecture, selected Kubernetes + RayServe.' },
-      { date: '2023-10-15', status: 'In Progress', contentZh: '开始构思系统架构，选型 Kubernetes + RayServe。', contentEn: 'Started conceptualizing architecture, selected Kubernetes + RayServe.' },
-    ]
-  },
+  { status: '✗', textEn: 'Independently design a complete production-grade project in the AI/ML systems field.', textZh: '在 AI/ML 系统领域独立设计一个完整的生产级项目。' },
   { status: '✗', textEn: 'Publish an open-source library or tool used by developers worldwide.', textZh: '发布自己的开源库或工具，让全球开发者使用。' },
   { status: '✗', textEn: 'Publish a paper or present at a top AI/ML conference (NeurIPS, ICML, CVPR).', textZh: '在顶级 AI/ML 会议（NeurIPS、ICML、CVPR）发表论文或报告。' },
   { status: '✗', textEn: 'Participate in or lead the design and deployment of a low-latency GPU inference system.', textZh: '参与或主导一个低延迟 GPU 推理系统的设计与部署。' },
@@ -117,97 +75,61 @@ const list100Items: List100Item[] = [
 
 <style scoped>
 .list100-layout {
-  display: block;
   max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: var(--space-lg) var(--space-lg);
-  text-align: center;
+  padding: 30px 15px;
 }
 
 .list100-content h1 {
-  font-size: var(--vp-font-size-2xl);
-  font-weight: 700;
-  margin-bottom: 35px;
-  margin-top: 6.5px;
+  margin: 0 0 15px;
   color: var(--vp-c-text-1);
-  text-align: center;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1;
 }
 
-.list100-intro {
-  font-size: var(--vp-font-size-md);
-  line-height: 1.7;
+.list100-content p {
+  margin: 0 0 15px;
   color: var(--vp-c-text-1);
-  margin-bottom: var(--space-xl);
-  text-align: center;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-.list100-items {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  text-align: left;
-  max-width: 450px;
-  margin: 0 auto;
+.list100-content ol {
+  margin: 0 0 15px 36px;
+  padding: 0;
 }
 
-.list100-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  padding: 4px 8px;
-  font-size: var(--vp-font-size-md);
-  line-height: 1.6;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  margin: 0 -8px; /* Negative margin to offset padding so text aligns */
-}
-
-.list100-item:hover {
-  background-color: var(--vp-c-bg-soft);
-}
-
-.item-number {
+.list100-content li {
+  margin: 0;
+  padding: 0;
   color: var(--vp-c-text-1);
-  font-weight: 500;
-  min-width: 24px;
-  text-align: right;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
-.item-status {
-  color: var(--vp-c-text-1);
-  font-weight: 500;
-  min-width: 16px;
+.list100-content li span:first-child {
+  margin-right: 0.25em;
 }
 
-.item-text {
-  color: var(--vp-c-text-1);
-  flex: 1;
-}
-
-/* Remove old link styles since whole item is clickable now */
-:deep(.item-text a) {
-  color: var(--vp-c-brand-1);
+.list100-content :deep(a) {
+  color: #4d74eb !important;
   text-decoration: none;
-  pointer-events: none; /* Let the parent click handler take over */
 }
 
-@media (max-width: 768px) {
+.list100-content :deep(a:hover) {
+  color: var(--vp-c-text-1) !important;
+  text-decoration: underline;
+}
+
+@media (max-width: 800px) {
   .list100-layout {
-    padding: var(--space-md) var(--space-md);
+    padding-right: 7.5px;
+    padding-left: 7.5px;
   }
-  
+
   .list100-content h1 {
-    font-size: var(--vp-font-size-lg);
-    margin-bottom: var(--space-md);
-  }
-  
-  .list100-item {
-    font-size: var(--vp-font-size-sm);
-  }
-  
-  .item-number {
-    min-width: 20px;
+    font-size: 36px;
   }
 }
 </style>
