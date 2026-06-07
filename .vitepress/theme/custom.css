@@ -333,19 +333,21 @@ a:visited {
 
 /* Nav Menu Items */
 .VPNavBarMenu {
-  display: grid !important;
-  grid-template-columns: 76px 88px 92px;
-  justify-content: end;
+  display: flex !important;
+  justify-content: flex-end;
   align-items: center;
+  gap: 20px;
+  min-width: 0;
 }
 
 .VPNavBarMenuLink,
 .nav-link {
   justify-content: center !important;
-  width: 100%;
+  width: auto;
   font-size: 17px !important;
   font-weight: 400 !important;
   letter-spacing: 0 !important;
+  white-space: nowrap;
 }
 
 html[lang="en"] .VPNavBarMenuLink,
@@ -421,6 +423,15 @@ html[lang="en"] .VPNav .VPNavBarMenuLink[href$="/list100/"] {
 
 .VPNavBarSocialLinks {
   margin-left: 14px !important;
+  order: 1;
+}
+
+.VPNavBarMenu {
+  order: 0;
+}
+
+.custom-language-link {
+  order: 2;
 }
 
 /* Mobile Nav Toggles */
@@ -838,16 +849,50 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
 @media (max-width: 959px) {
 
   /* Adjust container padding */
+  .VPNavBar .container {
+    padding: 0 12px !important;
+  }
+
   .VPNavBar .content {
+    min-width: 0 !important;
     padding-left: 8px !important;
     padding-right: 8px !important;
   }
 
-  /* Hide Social Links (GitHub) and Appearance Toggle on Mobile */
-  .VPNavBarSocialLinks,
-  .VPSocialLinks,
+  .VPNavBar .content-body {
+    min-width: 0 !important;
+    justify-content: flex-end !important;
+  }
+
+  /* Hide Appearance Toggle on Mobile */
   .VPNavBarAppearance {
     display: none !important;
+  }
+
+  .VPNavBarSocialLinks,
+  .VPSocialLinks {
+    display: flex !important;
+    flex: 0 0 auto;
+  }
+
+  .VPNavBarSocialLinks {
+    margin-left: clamp(4px, 1.2vw, 8px) !important;
+    margin-right: 0 !important;
+  }
+
+  .VPSocialLinks {
+    gap: 0 !important;
+  }
+
+  .VPNavBarSocialLinks::before,
+  .VPSocialLinks::before {
+    content: none !important;
+    display: none !important;
+  }
+
+  .VPNavBarSocialLinks .VPSocialLink {
+    width: 28px;
+    height: 28px;
   }
 
   /* Hide View Counter to save space - MOVED to mobile only */
@@ -859,11 +904,11 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
 
   /* Compact Menu Items Base Styles */
   .VPNavBarMenu {
-    grid-template-columns: 64px 76px 82px;
+    gap: clamp(8px, 2vw, 18px);
   }
 
   .VPNavBarMenuLink {
-    padding: 0 6px !important;
+    padding: 0 !important;
   }
 }
 
@@ -888,9 +933,13 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
     font-size: 18px !important;
   }
 
+  .VPNavBarMenu {
+    gap: clamp(6px, 1.6vw, 10px);
+  }
+
   .VPNavBarMenuLink {
     font-size: 16px !important;
-    padding: 0 3px !important;
+    padding: 0 !important;
   }
 
   html[lang="zh-CN"] .VPNavBarMenuLink {
@@ -900,7 +949,17 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
   .custom-language-link {
     width: 30px;
     font-size: 16px !important;
-    padding-left: 3px !important;
+    margin-left: clamp(6px, 1.6vw, 10px);
+    padding-left: 0 !important;
+  }
+
+  .VPNavBarSocialLinks {
+    margin-left: clamp(3px, 1vw, 6px) !important;
+  }
+
+  .VPNavBarSocialLinks .VPSocialLink {
+    width: 24px;
+    height: 24px;
   }
 
   .language-link-zh {
@@ -938,12 +997,44 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
 /* Very Small Mobile (Under 380px) */
 @media (max-width: 379px) {
   .VPNavBarTitle .title::after {
-    font-size: 18px !important;
+    font-size: 17px !important;
+  }
+
+  .VPNavBar .container {
+    padding: 0 10px !important;
+  }
+
+  .VPNavBar .content {
+    padding-left: 6px !important;
+    padding-right: 4px !important;
+  }
+
+  .VPNavBarMenu {
+    gap: 4px;
   }
 
   .VPNavBarMenuLink {
-    font-size: 16px !important;
-    padding: 0 3px !important;
+    font-size: 15px !important;
+    padding: 0 !important;
+  }
+
+  html[lang="zh-CN"] .VPNavBarMenuLink {
+    font-size: 15px !important;
+  }
+
+  .custom-language-link {
+    width: 26px;
+    font-size: 15px !important;
+    margin-left: 4px;
+  }
+
+  .VPNavBarSocialLinks {
+    margin-left: 3px !important;
+  }
+
+  .VPNavBarSocialLinks .VPSocialLink {
+    width: 22px;
+    height: 22px;
   }
 }
 

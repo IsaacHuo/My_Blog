@@ -39,8 +39,8 @@
       <p
         class="about-description"
         v-html="isZh ?
-          '近期我主要在做<strong>Leafy in BJFU</strong> 校园 iOS 客户端和 <strong>Agent-Firewall</strong> 这类 AI Agent 安全基础设施，也持续关注后端、运维、移动端体验和模型落地。' :
-          'Recently I have been building <strong>Leafy in BJFU</strong>, a campus iOS client, and <strong>Agent-Firewall</strong>, an AI Agent safety layer. I also keep working on backend systems, operations, mobile UX, and practical model deployment.'
+          '近期我主要在做<a href=&quot;/zh/projects/leafy&quot;><strong>Leafy in BJFU</strong></a> 校园 iOS 客户端和 <a href=&quot;/zh/projects/agent-firewall&quot;><strong>Agent-Firewall</strong></a> 这类 AI Agent 安全基础设施，也持续关注后端、运维、移动端体验和模型落地。' :
+          'Recently I have been building <a href=&quot;/en/projects/leafy&quot;><strong>Leafy in BJFU</strong></a>, a campus iOS client, and <a href=&quot;/en/projects/agent-firewall&quot;><strong>Agent-Firewall</strong></a>, an AI Agent safety layer. I also keep working on backend systems, operations, mobile UX, and practical model deployment.'
         "
       />
       <p class="about-description">
@@ -123,6 +123,7 @@
 
           <form
             class="mail-compose"
+            :class="isZh ? 'mail-compose-zh' : 'mail-compose-en'"
             @submit.prevent="sendEmail"
           >
             <textarea
@@ -270,14 +271,18 @@ const copyEmail = async () => {
   font-family: inherit !important;
 }
 
-.about-intro a {
+.about-intro a,
+.about-intro :deep(a),
+.about-description :deep(a) {
   color: var(--vp-c-brand-1);
   text-decoration: none;
   transition: color 0.3s ease;
   font-family: inherit !important;
 }
 
-.about-intro a:hover {
+.about-intro a:hover,
+.about-intro :deep(a:hover),
+.about-description :deep(a:hover) {
   color: var(--vp-c-brand-2);
   text-decoration: underline;
 }
@@ -393,15 +398,23 @@ const copyEmail = async () => {
 
 .mail-compose {
   display: flex;
-  width: 33.333%;
+  width: var(--mail-compose-width);
   min-width: 240px;
-  max-width: calc(var(--content-max-width) / 3);
+  max-width: 100%;
   min-height: 38px;
   border: 1px solid #4d74eb;
   border-radius: 14px;
   overflow: hidden;
   background: var(--vp-c-bg-soft);
   box-shadow: 0 0 0 1px rgba(77, 116, 235, 0.08);
+}
+
+.mail-compose-en {
+  --mail-compose-width: 510px;
+}
+
+.mail-compose-zh {
+  --mail-compose-width: 330px;
 }
 
 .mail-compose textarea {
