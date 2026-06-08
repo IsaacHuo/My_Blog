@@ -42,7 +42,7 @@ export default defineConfig({
     ['meta', { property: 'og:title', content: "Huo Weifang's Blog" }],
     ['meta', { property: 'og:description', content: 'Sharing thoughts on technology, life, and creativity' }],
     ['meta', { property: 'og:type', content: 'website' }],
-    ['link', { rel: 'preload', href: '/fonts/edukai/edukai-site.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
+    ['link', { rel: 'preload', href: '/fonts/kaiti-gb2312/kaiti-gb2312-site.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['link', { href: 'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap', rel: 'stylesheet' }]
