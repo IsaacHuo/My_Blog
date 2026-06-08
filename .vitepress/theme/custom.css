@@ -3,21 +3,13 @@
    ========================================================================== */
 
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
-
-@font-face {
-  font-family: "BlogEduKai";
-  src:
-    url("/fonts/edukai-4.0.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400 700;
-  font-display: swap;
-}
+@import "./edukai-fonts.css";
 
 /* CSS Variables */
 :root {
   /* Typography */
   --font-latin: "Lora", Georgia, "Times New Roman";
-  --font-zh: var(--font-latin), "BlogEduKai", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
+  --font-zh: var(--font-latin), "BlogEduKaiSite", "BlogEduKaiChunked", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
   --vp-font-family-base: var(--font-zh) !important;
   --vp-font-family-mono: Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
 
@@ -66,7 +58,7 @@
 }
 
 html.mac[lang="zh-CN"] {
-  --font-zh: var(--font-latin), "BlogEduKai", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
+  --font-zh: var(--font-latin), "BlogEduKaiSite", "BlogEduKaiChunked", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
 }
 
 /* Dark Mode Variables */

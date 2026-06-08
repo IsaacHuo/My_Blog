@@ -7,6 +7,7 @@
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview",
+    "fonts:edukai": "test -e .fontdeps/brotli.py || python3 -m pip install --quiet --target .fontdeps brotli; PYTHONPATH=.fontdeps python3 scripts/build-edukai-subsets.py",
     "lint": "eslint . --fix"
   },
   "repository": {
