@@ -5,26 +5,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
 
 @font-face {
-  font-family: "BlogMacKaiti";
+  font-family: "BlogEduKai";
   src:
-    local("Kaiti SC Regular"),
-    local("STKaitiSC-Regular"),
-    local("楷体-简 常规体"),
-    local("STKaiti"),
-    local("华文楷体");
+    url("/fonts/edukai-4.0.ttf") format("truetype");
   font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "BlogMacKaiti";
-  src:
-    local("Kaiti SC Bold"),
-    local("STKaitiSC-Bold"),
-    local("楷体-简 粗体");
-  font-style: normal;
-  font-weight: 600 700;
+  font-weight: 400 700;
   font-display: swap;
 }
 
@@ -32,7 +17,7 @@
 :root {
   /* Typography */
   --font-latin: "Lora", Georgia, "Times New Roman";
-  --font-zh: "Kaiti SC", "STKaiti", "BlogMacKaiti", "STKaitiSC-Regular", "楷体-简", "华文楷体", "KaiTi", "楷体";
+  --font-zh: "BlogEduKai", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
   --vp-font-family-base: var(--font-latin), var(--font-zh), serif !important;
   --vp-font-family-mono: Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
 
@@ -81,7 +66,7 @@
 }
 
 html.mac[lang="zh-CN"] {
-  --font-zh: "Kaiti SC", "STKaiti", "BlogMacKaiti", "STKaitiSC-Regular", "楷体-简", "华文楷体", "KaiTi", "楷体";
+  --font-zh: "BlogEduKai", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
 }
 
 /* Dark Mode Variables */
@@ -361,7 +346,7 @@ html[lang="zh-CN"] .VPNavBarMenuLink,
 html[lang="zh-CN"] .nav-link {
   font-family: var(--font-zh) !important;
   font-size: 17px !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 html[lang="en"] .VPNav .VPNavBarMenuLink[href$="/list100/"] {
@@ -418,7 +403,7 @@ html[lang="en"] .VPNav .VPNavBarMenuLink[href$="/list100/"] {
 .nav-screen-language-link.language-link-zh {
   font-family: var(--font-zh) !important;
   font-size: 17px !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 .VPNavBarSocialLinks {
@@ -1060,7 +1045,7 @@ html[lang="zh-CN"] .about-intro strong,
 html[lang="zh-CN"] .about-description strong,
 html[lang="zh-CN"] .thought-title,
 html[lang="zh-CN"] .list100-content h1 {
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 .VPNav .VPNavBarMenuLink,
@@ -1073,7 +1058,7 @@ html[lang="zh-CN"] .VPNavBarMenuLink,
 html[lang="zh-CN"] .nav-link,
 html[lang="zh-CN"] .custom-language-link,
 html[lang="zh-CN"] .language-link-zh {
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 .VPNav .VPNavBarMenuLink,
@@ -1097,14 +1082,14 @@ html[lang="zh-CN"] .language-link-zh {
 .VPNav a.custom-language-link.language-link-zh,
 .VPNavScreen a.nav-screen-language-link.language-link-zh {
   font-family: var(--font-zh), serif !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 html[lang="zh-CN"] .VPNav .VPNavBarMenuLink,
 html[lang="zh-CN"] .VPNav .VPNavBarMenuLink.active,
 html[lang="zh-CN"] .VPNav .nav-link,
 html[lang="zh-CN"] .VPNav .custom-language-link {
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 html[lang="zh-CN"] .VPNav .language-link-en {
@@ -1117,14 +1102,14 @@ html[lang="zh-CN"] body .about-description strong,
 html[lang="zh-CN"] body .about-contact h3,
 html[lang="zh-CN"] body .copy-status,
 html[lang="zh-CN"] body .contact-note {
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 html[lang="zh-CN"] .list100-content,
 html[lang="zh-CN"] .list100-content :where(:not(pre, code, kbd, samp, svg, svg *)) {
   font-family: var(--font-zh), serif !important;
   font-synthesis: none !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 html[lang="en"] .list100-content,
