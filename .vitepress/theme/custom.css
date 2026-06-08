@@ -17,8 +17,8 @@
 :root {
   /* Typography */
   --font-latin: "Lora", Georgia, "Times New Roman";
-  --font-zh: "BlogEduKai", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
-  --vp-font-family-base: var(--font-latin), var(--font-zh), serif !important;
+  --font-zh: var(--font-latin), "BlogEduKai", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
+  --vp-font-family-base: var(--font-zh) !important;
   --vp-font-family-mono: Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
 
   /* Font Sizes */
@@ -66,7 +66,7 @@
 }
 
 html.mac[lang="zh-CN"] {
-  --font-zh: "BlogEduKai", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
+  --font-zh: var(--font-latin), "BlogEduKai", "华文楷体", "STKaiti", "Kaiti SC", "KaiTi", "楷体", serif;
 }
 
 /* Dark Mode Variables */
