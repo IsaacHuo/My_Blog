@@ -6,7 +6,12 @@ const loader = createContentLoader(['zh/blog/*.md', 'en/blog/*.md'], {
   excerpt: false,
   transform(rawData) {
     return rawData
-      .filter(({ url }) => !url.endsWith('/index') && !url.endsWith('/blog/') && !url.endsWith('/zh/blog/'))
+      .filter(({ url, frontmatter }) => {
+        if (!frontmatter.title) return false
+        if (url.endsWith('/index') || url.endsWith('/blog/') || url.endsWith('/zh/blog/')) return false
+        if (url.endsWith('/template')) return false
+        return true
+      })
       .map(({ url, frontmatter, src }) => ({
         url,
         frontmatter,

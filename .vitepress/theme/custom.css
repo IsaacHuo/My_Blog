@@ -906,15 +906,12 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
 
 /* Mobile (Under 600px) */
 @media (max-width: 599px) {
-  .VPNavBar .title {
-    display: none !important;
-  }
-
   .VPNavBar .content {
     padding-left: 0 !important;
   }
 
   .VPNavBarTitle .title::after {
+    content: 'Huo' !important;
     font-size: 18px !important;
   }
 
@@ -982,6 +979,7 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
 /* Very Small Mobile (Under 380px) */
 @media (max-width: 379px) {
   .VPNavBarTitle .title::after {
+    content: 'Huo' !important;
     font-size: 17px !important;
   }
 
