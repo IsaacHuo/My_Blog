@@ -140,7 +140,7 @@
                             v-model="mailBody"
                             rows="1"
                             :placeholder="
-                                isZh ? '联系我...' : 'Write your message...'
+                                isZh ? '写下...' : 'Write your message...'
                             "
                         />
                         <button type="submit">
