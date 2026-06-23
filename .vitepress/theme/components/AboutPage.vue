@@ -42,7 +42,7 @@
                 class="about-description"
                 v-html="
                     isZh
-                        ? '近期我主要在做<a href=&quot;/zh/projects/leafy&quot;><strong>Leafy in BJFU</strong></a> 校园 iOS 客户端和 <a href=&quot;/zh/projects/agent-firewall&quot;><strong>Agent-Firewall</strong></a> 这类 AI Agent 安全基础设施，也持续关注后端、运维、移动端体验和模型落地。'
+                        ? '近期我主要在做<a href=&quot;/zh/projects/leafy&quot;><strong> Leafy in BJFU</strong></a> 校园 iOS 客户端和 <a href=&quot;/zh/projects/agent-firewall&quot;><strong>Agent-Firewall</strong></a> 这类 AI Agent 安全基础设施，也持续关注后端、运维、移动端体验和模型落地。'
                         : 'Recently I have been building <a href=&quot;/en/projects/leafy&quot;><strong>Leafy in BJFU</strong></a>, a campus iOS client, and <a href=&quot;/en/projects/agent-firewall&quot;><strong>Agent-Firewall</strong></a>, an AI Agent safety layer. I also keep working on backend systems, operations, mobile UX, and practical model deployment.'
                 "
             />
