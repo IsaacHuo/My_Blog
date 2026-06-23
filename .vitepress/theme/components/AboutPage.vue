@@ -34,7 +34,7 @@
                 class="about-description"
                 v-html="
                     isZh
-                        ? '我曾在<strong>大众中国</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> 参与测试平台与数据工作流相关实习，现在回到学校推进自己的校园 APP 和 AI 安全项目。'
+                        ? '我曾在<strong>大众中国</strong>旗下的 <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> 作为系统集成实习生参与测试平台与数据工作流相关实习，现在回到学校推进自己的校园 APP 和 AI 安全项目。'
                         : 'I previously interned at <a href=&quot;https://cariad.technology&quot; target=&quot;_blank&quot;>CARIAD</a> (Volkswagen Group China), working on testing platforms and data workflows. I am now back on campus, building student-facing products and AI safety tooling.'
                 "
             />
