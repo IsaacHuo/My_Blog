@@ -14,8 +14,8 @@
       <div class="article-meta-container">
         <span>{{ articleMetaText }}</span>
         <ViewCounter
-          :key="pageViewId"
           :id="pageViewId"
+          :key="pageViewId"
           :legacy-ids="legacyPageViewIds"
           :is-zh="isZh"
         />
