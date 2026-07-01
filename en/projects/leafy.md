@@ -1,23 +1,31 @@
 ---
-title: "Leafy in BJFU: Native iOS Client for BJFU Academic Services"
-date: 2026-05-15
+title: "MyLeafy: General-Purpose Campus iOS App"
+date: 2026-07-01
 author: Isaac Huo
-description: "A native iOS campus client for Beijing Forestry University's Zhengfang academic system, centered on timetables, academic data, community features, and student tools."
+description: "A general-purpose campus iOS app whose first supported campus is Beijing Forestry University, centered on timetables, academic data, community features, course evaluation, and student tools."
 editLink: true
 outline: [2, 3]
 ---
 
-# Leafy in BJFU: Native iOS Client for BJFU Academic Services
+# MyLeafy: General-Purpose Campus iOS App
 
-Leafy in BJFU is a native iOS campus client I built for students at Beijing Forestry University. Instead of mirroring the web academic system, it reorganizes the most frequently used campus workflows for mobile: the timetable is the first screen, while grades, exams, classroom availability, calendars, community features, and course evaluation live one or two taps away.
+MyLeafy is a general-purpose campus iOS app I built for student-facing academic and campus workflows. The internal code name, target, and some type names still use `Leafy`, but the public product name has been updated to MyLeafy. The first supported campus is Beijing Forestry University, where the academic connector talks directly to the university's Zhengfang academic system.
 
-![Leafy in BJFU app icon](/project-images/leafy.png)
+<div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: flex-start;">
+  <img src="/project-images/myleafy/calendar.jpg" alt="MyLeafy timetable showcase" width="220" loading="lazy" style="max-width: 100%; border-radius: 16px;">
+  <img src="/project-images/myleafy/grade.jpg" alt="MyLeafy grades showcase" width="220" loading="lazy" style="max-width: 100%; border-radius: 16px;">
+  <img src="/project-images/myleafy/xuefen.jpg" alt="MyLeafy credit tracking showcase" width="220" loading="lazy" style="max-width: 100%; border-radius: 16px;">
+  <img src="/project-images/myleafy/zongsu.jpg" alt="MyLeafy comprehensive evaluation showcase" width="220" loading="lazy" style="max-width: 100%; border-radius: 16px;">
+  <img src="/project-images/myleafy/sharecal.jpg" alt="MyLeafy shared timetable showcase" width="220" loading="lazy" style="max-width: 100%; border-radius: 16px;">
+  <img src="/project-images/myleafy/community.jpg" alt="MyLeafy community showcase" width="220" loading="lazy" style="max-width: 100%; border-radius: 16px;">
+  <img src="/project-images/myleafy/color.jpg" alt="MyLeafy theme color showcase" width="220" loading="lazy" style="max-width: 100%; border-radius: 16px;">
+</div>
 
 ## Product Scope
 
-The goal of Leafy in BJFU is to make campus information faster and more stable to access. School login, timetables, grades, exam schedules, teaching plans, graduation requirements, and empty classroom queries connect directly to the university's Zhengfang academic system. Community profiles, posts, comments, likes, notifications, announcements, feedback, evaluations, and shared timetable snapshots are handled by Supabase.
+The goal of MyLeafy is to reorganize high-frequency campus information into a better mobile experience. The timetable is the main entry point, with grades, exams, teaching plans, empty classrooms, calendars, community features, notifications, feedback, and course evaluation available from there.
 
-That boundary keeps the identity model clear: the student ID remains the primary identity, while Supabase handles non-academic services and user-generated data.
+The system boundary is intentionally clear: the student ID and the school's academic system remain the source of academic identity and academic data, while Supabase handles non-academic services such as profiles, posts, comments, likes, notifications, announcements, feedback, teacher ratings, and shared timetable snapshots.
 
 ## Implemented Features
 
@@ -27,19 +35,19 @@ The app is organized around three root tabs:
 - **Discover**: grades, exams, teaching plans, empty classrooms, calendar, community, notifications, and course evaluation.
 - **Profile**: community profile, personal content, favorites, shared timetables, theme settings, feedback, and logout.
 
-The academic-service side supports student ID/password/captcha login, explicit cookie session management, timetable/grade/exam/teaching-plan scraping and parsing, and SwiftData caching. The timetable flow also keeps a WKWebView fallback to handle Zhengfang redirects and page-structure changes.
+The academic-service side supports student ID/password/captcha login, explicit cookie session management, timetable/grade/exam/teaching-plan scraping and parsing, and SwiftData caching. The timetable flow also keeps a WKWebView fallback to handle academic-system redirects and page-structure changes.
 
 The community side is built on Supabase, with anonymous sessions bound to student IDs, profile persistence, text/image posts, comments, likes, notifications, announcements, feedback, teacher lists, star ratings, and one-way shared timetable authorization.
 
 ## Technical Implementation
 
-Leafy in BJFU is built with SwiftUI and targets iOS 17. Local persistence uses SwiftData. School network requests use URLSession and HTTPCookieStorage, while HTML parsing is handled by SwiftSoup. Non-academic services are backed by Supabase Auth, Database, Storage, and Edge Functions.
+MyLeafy is built with SwiftUI and targets iOS 17. Local persistence uses SwiftData. School network requests use URLSession and HTTPCookieStorage, while HTML parsing is handled by SwiftSoup. Non-academic services are backed by Supabase Auth, Database, Storage, and Edge Functions.
 
 The project also includes a React + Vite + TypeScript admin console for community metrics, posts, comments, users, feedback, announcements, teachers, and rating management. High-privilege operations go through Supabase Edge Functions instead of exposing management privileges directly to the frontend.
 
 ## What I Learned
 
-Leafy in BJFU forced me to handle the messy parts of real campus systems: captcha login, cookie sessions, changing HTML structures, mobile caching, readable parse-failure states, community data permissions, and admin boundaries. It also moved me from implementing isolated features toward owning a fuller product path: data source, client experience, backend permissions, operations console, and TestFlight readiness.
+MyLeafy forced me to handle the messy parts of real campus systems: captcha login, cookie sessions, changing HTML structures, mobile caching, readable parse-failure states, community data permissions, and admin boundaries. It also moved me from implementing isolated features toward owning a fuller product path: data source, client experience, backend permissions, operations console, and TestFlight readiness.
 
 ## Links
 
