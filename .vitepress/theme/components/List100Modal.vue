@@ -1,30 +1,73 @@
 <template>
   <Teleport to="body">
     <Transition name="modal-fade">
-      <div v-if="isOpen" class="modal-backdrop" @click="$emit('close')">
-        <div class="modal-container" @click.stop>
+      <div
+        v-if="isOpen"
+        class="modal-backdrop"
+        @click="$emit('close')"
+      >
+        <div
+          class="modal-container"
+          @click.stop
+        >
           <div class="modal-header">
             <h3>{{ isZh ? item.textZh : item.textEn }}</h3>
-            <button class="close-btn" @click="$emit('close')">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
+            <button
+              class="close-btn"
+              @click="$emit('close')"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line
+                  x1="18"
+                  y1="6"
+                  x2="6"
+                  y2="18"
+                />
+                <line
+                  x1="6"
+                  y1="6"
+                  x2="18"
+                  y2="18"
+                />
               </svg>
             </button>
           </div>
           
           <div class="modal-body">
-            <div v-if="!item.records || item.records.length === 0" class="empty-state">
+            <div
+              v-if="!item.records || item.records.length === 0"
+              class="empty-state"
+            >
               {{ isZh ? '暂无记录' : 'No records yet.' }}
             </div>
             
-            <div v-else class="timeline">
-              <div v-for="(record, idx) in item.records" :key="idx" class="timeline-item">
-                <div class="timeline-dot"></div>
+            <div
+              v-else
+              class="timeline"
+            >
+              <div
+                v-for="(record, idx) in item.records"
+                :key="idx"
+                class="timeline-item"
+              >
+                <div class="timeline-dot" />
                 <div class="timeline-content">
                   <div class="record-meta">
                     <span class="record-date">{{ record.date }}</span>
-                    <span class="record-status" :class="getStatusClass(record.status)">
+                    <span
+                      class="record-status"
+                      :class="getStatusClass(record.status)"
+                    >
                       {{ record.status }}
                     </span>
                   </div>

@@ -16,10 +16,16 @@
       </div>
       <p class="about-intro">
         <template v-if="isZh">
-          我是<strong>霍玮放</strong>，<a href="https://www.bjfu.edu.cn/" target="_blank">北京林业大学</a>电气工程及其自动化专业学生，同时辅修计算机科学与技术。
+          我是<strong>霍玮放</strong>，<a
+            href="https://www.bjfu.edu.cn/"
+            target="_blank"
+          >北京林业大学</a>电气工程及其自动化专业学生，同时辅修计算机科学与技术。
         </template>
         <template v-else>
-          I'm <strong>Huo Weifang</strong>, studying Electrical Engineering &amp; Automation at <a href="https://www.bjfu.edu.cn/" target="_blank">Beijing Forestry University</a>, with a minor in Computer Science &amp; Technology.
+          I'm <strong>Huo Weifang</strong>, studying Electrical Engineering &amp; Automation at <a
+            href="https://www.bjfu.edu.cn/"
+            target="_blank"
+          >Beijing Forestry University</a>, with a minor in Computer Science &amp; Technology.
         </template>
       </p>
       <p class="about-description">

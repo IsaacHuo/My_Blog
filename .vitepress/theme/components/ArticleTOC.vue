@@ -1,7 +1,12 @@
 <template>
   <!-- Desktop TOC -->
-  <div class="custom-toc desktop-toc" v-if="headers && headers.length > 0">
-    <div class="toc-header">目录</div>
+  <div
+    v-if="headers && headers.length > 0"
+    class="custom-toc desktop-toc"
+  >
+    <div class="toc-header">
+      目录
+    </div>
     <nav class="toc-content">
       <ul>
         <li 
@@ -25,26 +30,71 @@
   </div>
 
   <!-- Mobile TOC Button & Overlay -->
-  <div class="mobile-toc-container" v-if="headers && headers.length > 0">
+  <div
+    v-if="headers && headers.length > 0"
+    class="mobile-toc-container"
+  >
     <button 
       class="mobile-toc-btn" 
-      @click="toggleMobileToc" 
-      aria-label="Table of Contents"
+      aria-label="Table of Contents" 
+      @click="toggleMobileToc"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="21" y1="10" x2="3" y2="10"></line>
-        <line x1="21" y1="6" x2="3" y2="6"></line>
-        <line x1="21" y1="14" x2="3" y2="14"></line>
-        <line x1="21" y1="18" x2="3" y2="18"></line>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line
+          x1="21"
+          y1="10"
+          x2="3"
+          y2="10"
+        />
+        <line
+          x1="21"
+          y1="6"
+          x2="3"
+          y2="6"
+        />
+        <line
+          x1="21"
+          y1="14"
+          x2="3"
+          y2="14"
+        />
+        <line
+          x1="21"
+          y1="18"
+          x2="3"
+          y2="18"
+        />
       </svg>
     </button>
 
     <Transition name="fade">
-      <div v-if="isMobileOpen" class="mobile-toc-overlay" @click="closeMobileToc">
-        <div class="mobile-toc-content" @click.stop>
+      <div
+        v-if="isMobileOpen"
+        class="mobile-toc-overlay"
+        @click="closeMobileToc"
+      >
+        <div
+          class="mobile-toc-content"
+          @click.stop
+        >
           <div class="mobile-toc-header">
             <span>目录</span>
-            <button class="close-btn" @click="closeMobileToc">&times;</button>
+            <button
+              class="close-btn"
+              @click="closeMobileToc"
+            >
+              &times;
+            </button>
           </div>
           <nav>
             <ul>

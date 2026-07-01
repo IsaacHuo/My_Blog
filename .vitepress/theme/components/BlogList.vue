@@ -2,7 +2,9 @@
   <div class="blog-list-page">
     <!-- 技术文章 -->
     <section class="post-section">
-      <h2 class="section-title">技术</h2>
+      <h2 class="section-title">
+        技术
+      </h2>
       <ul class="post-list">
         <li
           v-for="post in techPosts"
@@ -22,7 +24,9 @@
 
     <!-- 生活文章 -->
     <section class="post-section">
-      <h2 class="section-title">生活</h2>
+      <h2 class="section-title">
+        生活
+      </h2>
       <ul class="post-list">
         <li
           v-for="post in lifePosts"
