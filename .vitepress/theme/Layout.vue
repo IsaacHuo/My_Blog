@@ -14,6 +14,7 @@
       <div class="article-meta-container">
         <span>{{ articleMetaText }}</span>
         <ViewCounter
+          :key="pageRelativePath"
           :id="pageRelativePath"
           :is-zh="isZh"
         />
