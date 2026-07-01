@@ -1,57 +1,74 @@
 <template>
   <div class="blog-list-page">
-    <!-- 技术文章 -->
-    <section class="post-section">
-      <h2 class="section-title">
+    <!-- 居中 Tab 切换 -->
+    <nav class="blog-tabs">
+      <button
+        class="tab-btn"
+        :class="{ active: activeTab === 'tech' }"
+        @click="activeTab = 'tech'"
+      >
         技术
-      </h2>
-      <ul class="post-list">
-        <li
-          v-for="post in techPosts"
-          :key="post.url"
-          class="post-list-item"
+      </button>
+      <span class="tab-divider">|</span>
+      <button
+        class="tab-btn"
+        :class="{ active: activeTab === 'life' }"
+        @click="activeTab = 'life'"
+      >
+        生活
+      </button>
+    </nav>
+
+    <!-- 技术文章 -->
+    <ul
+      v-show="activeTab === 'tech'"
+      class="post-list"
+    >
+      <li
+        v-for="post in techPosts"
+        :key="post.url"
+        class="post-list-item"
+      >
+        <span class="post-meta">{{ formatDate(post.frontmatter.date) }}</span>
+        <a
+          class="post-link"
+          :href="withBase(post.url)"
         >
-          <span class="post-meta">{{ formatDate(post.frontmatter.date) }}</span>
-          <a
-            class="post-link"
-            :href="withBase(post.url)"
-          >
-            {{ post.frontmatter.title }}
-          </a>
-        </li>
-      </ul>
-    </section>
+          {{ post.frontmatter.title }}
+        </a>
+      </li>
+    </ul>
 
     <!-- 生活文章 -->
-    <section class="post-section">
-      <h2 class="section-title">
-        生活
-      </h2>
-      <ul class="post-list">
-        <li
-          v-for="post in lifePosts"
-          :key="post.url"
-          class="post-list-item"
+    <ul
+      v-show="activeTab === 'life'"
+      class="post-list"
+    >
+      <li
+        v-for="post in lifePosts"
+        :key="post.url"
+        class="post-list-item"
+      >
+        <span class="post-meta">{{ formatDate(post.frontmatter.date) }}</span>
+        <a
+          class="post-link"
+          :href="withBase(post.url)"
         >
-          <span class="post-meta">{{ formatDate(post.frontmatter.date) }}</span>
-          <a
-            class="post-link"
-            :href="withBase(post.url)"
-          >
-            {{ post.frontmatter.title }}
-          </a>
-        </li>
-      </ul>
-    </section>
+          {{ post.frontmatter.title }}
+        </a>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useData, withBase } from 'vitepress'
 import { data as blogPosts } from '../data/blogPosts.data.js'
 
 const { page, site } = useData()
+
+const activeTab = ref<'tech' | 'life'>('tech')
 
 const isZh = computed(() => {
   return site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')
@@ -100,27 +117,48 @@ function formatDate(value?: string) {
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 30px 15px;
+  text-align: center;
 }
 
-.post-section {
-  margin-bottom: 50px;
+.blog-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 40px;
 }
 
-.section-title {
-  font-size: 20px;
+.tab-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-family: inherit;
+  color: var(--vp-c-text-3);
+  cursor: pointer;
+  padding: 6px 16px;
+  transition: color 0.2s;
+}
+
+.tab-btn:hover {
+  color: var(--vp-c-text-1);
+}
+
+.tab-btn.active {
+  color: var(--vp-c-text-1);
   font-weight: 600;
-  color: var(--vp-c-text-2);
-  margin: 0 0 24px 0;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--vp-c-border);
-  text-align: left;
-  letter-spacing: 0.05em;
+}
+
+.tab-divider {
+  color: var(--vp-c-border);
+  font-size: 18px;
+  user-select: none;
 }
 
 .post-list {
   list-style: none;
   margin: 0;
   padding: 0;
+  text-align: left;
 }
 
 .post-list-item {
@@ -152,10 +190,6 @@ function formatDate(value?: string) {
   .blog-list-page {
     padding-right: 7.5px;
     padding-left: 7.5px;
-  }
-
-  .post-section {
-    margin-bottom: 36px;
   }
 }
 </style>

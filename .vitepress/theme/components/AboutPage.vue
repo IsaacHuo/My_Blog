@@ -16,48 +16,26 @@
       </div>
       <p class="about-intro">
         <template v-if="isZh">
-          我是<strong>霍玮放</strong>，<a
-            href="https://www.bjfu.edu.cn/"
-            target="_blank"
-          >北京林业大学</a>电气工程及其自动化专业学生，同时辅修计算机科学与技术。
+          霍玮放。电气工程学生，产品型开发者。
         </template>
         <template v-else>
-          I'm <strong>Huo Weifang</strong>, studying Electrical Engineering &amp; Automation at <a
-            href="https://www.bjfu.edu.cn/"
-            target="_blank"
-          >Beijing Forestry University</a>, with a minor in Computer Science &amp; Technology.
+          Huo Weifang. I study Engineering, but I build products.
         </template>
       </p>
       <p class="about-description">
         <template v-if="isZh">
-          大二暑假，我在<strong>大众中国集团 CARIAD</strong> 完成了第一段外企实习——在系统集成团队参与测试平台后端开发，用 FastAPI 和 PostgreSQL 搭服务，做 AI 模型接入，第一次看到工程化代码如何跑在真实业务里。
+          我的兴趣是把想法变成被人需要的产品。曾在 <strong>Volkswagen CARIAD</strong> 参与系统集成，也独立从零开发了 <a href="/zh/projects/leafy"><strong>MyLeafy</strong></a>（5000+ 用户）。目前在探索 AI 应用层：LLM Agent、iOS 工程化。
         </template>
         <template v-else>
-          During my sophomore summer, I interned at <strong>Volkswagen Group China's CARIAD</strong> — building test platform backends with FastAPI and PostgreSQL, integrating AI models, and seeing real engineering systems in production for the first time.
+          What drives me is turning ideas into things people actually use. I've worked on system integration at <strong>Volkswagen CARIAD</strong>, and independently built <a href="/en/projects/leafy"><strong>MyLeafy</strong></a> — now serving 5,000+ students. Currently exploring AI applications: LLM agents, iOS engineering.
         </template>
       </p>
       <p class="about-description">
         <template v-if="isZh">
-          与此同时，我独立设计、开发、上线了校园 iOS App <a href="/zh/projects/leafy"><strong>MyLeafy</strong></a>，覆盖课表、成绩、社区等场景，累计服务 <strong>5000+</strong> 真实用户。从图标到后端，从 SwiftUI 到 Supabase，我享受把一个想法做成能被人每天用的产品。
+          对技术真诚，对产品挑剔。
         </template>
         <template v-else>
-          In parallel, I independently designed, built, and launched <a href="/en/projects/leafy"><strong>MyLeafy</strong></a>, a campus iOS app covering timetables, grades, and community features — now serving <strong>5,000+</strong> real users. I enjoy taking an idea from design to a product people actually use every day.
-        </template>
-      </p>
-      <p class="about-description">
-        <template v-if="isZh">
-          目前我在做的事：持续迭代 MyLeafy，探索 AI 应用层开发（比如自己写的 <a href="/zh/projects/poemery"><strong>Poemery</strong></a> 诗词 App 和 <a href="/zh/projects/polymarket-predictor"><strong>PolyBot</strong></a> 预测交易系统），并准备 2027 年在北京拿下一段更漂亮的实习。
-        </template>
-        <template v-else>
-          What I'm working on now: iterating on MyLeafy, exploring AI application development (like my poetry app <a href="/en/projects/poemery"><strong>Poemery</strong></a> and trading research system <a href="/en/projects/polymarket-predictor"><strong>PolyBot</strong></a>), and aiming for a stronger internship in Beijing for 2027.
-        </template>
-      </p>
-      <p class="about-description">
-        <template v-if="isZh">
-          我相信：技术不是目的，做出有用户、有审美、能交付的产品才是。我不是在「转码」——我是在用工程背景、外企经验、移动端能力和 AI 工具，把想法变成真实上线的产品。
-        </template>
-        <template v-else>
-          I believe technology is a means, not an end. What matters is shipping products that are well-crafted, useful, and real. I'm not "pivoting to CS" — I'm using engineering discipline, enterprise experience, mobile development, and AI tools to build things that ship.
+          I care about craft. I care about delivery.
         </template>
       </p>
 
