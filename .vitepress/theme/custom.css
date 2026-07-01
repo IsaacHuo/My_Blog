@@ -14,13 +14,13 @@
   --vp-font-family-mono: Menlo, Monaco, Consolas, "Liberation Mono", monospace !important;
 
   /* Font Sizes */
-  --vp-font-size-xs: 0.75rem;
-  --vp-font-size-sm: 0.9rem;
-  --vp-font-size-md: 1rem;
-  --vp-font-size-lg: 1.125rem;
-  --vp-font-size-xl: 1.35rem;
-  --vp-font-size-2xl: 1.85rem;
-  --vp-font-size-3xl: 2.75rem;
+  --vp-font-size-xs: 0.82rem;
+  --vp-font-size-sm: 0.95rem;
+  --vp-font-size-md: 1.08rem;
+  --vp-font-size-lg: 1.22rem;
+  --vp-font-size-xl: 1.5rem;
+  --vp-font-size-2xl: 2rem;
+  --vp-font-size-3xl: 2.9rem;
 
   /* Minimalist Color Palette - Light Mode */
   --vp-c-brand-1: #111111;

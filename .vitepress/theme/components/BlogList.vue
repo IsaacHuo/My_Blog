@@ -15,7 +15,7 @@
         :class="{ active: activeTab === 'life' }"
         @click="activeTab = 'life'"
       >
-        生活
+        随笔
       </button>
     </nav>
 

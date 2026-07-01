@@ -16,26 +16,18 @@
       </div>
       <p class="about-intro">
         <template v-if="isZh">
-          霍玮放。电气工程学生，产品型开发者。
+          做产品，写代码，观察技术。
         </template>
         <template v-else>
-          Huo Weifang. I study Engineering, but I build products.
+          Building products, writing code, watching technology.
         </template>
       </p>
       <p class="about-description">
         <template v-if="isZh">
-          我的兴趣是把想法变成被人需要的产品。曾在 <strong>Volkswagen CARIAD</strong> 参与系统集成，也独立从零开发了 <a href="/zh/projects/leafy"><strong>MyLeafy</strong></a>（5000+ 用户）。目前在探索 AI 应用层：LLM Agent、iOS 工程化。
+          这里存放了一些项目、一些笔记，以及一些正在形成的判断。
         </template>
         <template v-else>
-          What drives me is turning ideas into things people actually use. I've worked on system integration at <strong>Volkswagen CARIAD</strong>, and independently built <a href="/en/projects/leafy"><strong>MyLeafy</strong></a> — now serving 5,000+ students. Currently exploring AI applications: LLM agents, iOS engineering.
-        </template>
-      </p>
-      <p class="about-description">
-        <template v-if="isZh">
-          对技术真诚，对产品挑剔。
-        </template>
-        <template v-else>
-          I care about craft. I care about delivery.
+          Here are some projects, some notes, and some judgments in the making.
         </template>
       </p>
 
