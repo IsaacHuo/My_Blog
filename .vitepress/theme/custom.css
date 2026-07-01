@@ -784,7 +784,7 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
   }
 }
 
-[data-frontmatter-layout="List100Page"] .VPDoc .container .content .content-container,
+[data-frontmatter-layout="List50Page"] .VPDoc .container .content .content-container,
 [data-frontmatter-layout="BooksPage"] .VPDoc .container .content .content-container {
   display: none;
 }

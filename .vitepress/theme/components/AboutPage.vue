@@ -16,7 +16,7 @@
       </div>
       <p class="about-intro">
         <template v-if="isZh">
-          做产品，写代码，观察技术。
+          写代码，做产品，观察技术。
         </template>
         <template v-else>
           Building products, writing code, watching technology.
@@ -24,15 +24,15 @@
       </p>
       <p class="about-description">
         <template v-if="isZh">
-          这里存放了一些项目、一些笔记，<br />以及一些正在形成的判断。
+          这里存放了一些项目、一些笔记，<br>以及一些正在形成的判断。
         </template>
         <template v-else>
-          Here are some projects, some notes,<br />and some judgments in the making.
+          Here are some projects, some notes,<br>and some judgments in the making.
         </template>
       </p>
       <p class="about-description">
         <template v-if="isZh">
-          借由 AI，抵达更远的创造。
+          希望借由 AI，抵达更远的创造。
         </template>
         <template v-else>
           Exploring what AI makes possible.

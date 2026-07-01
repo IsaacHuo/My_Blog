@@ -1,10 +1,10 @@
 <template>
   <Layout :class="{ 'is-article-page': isArticlePage, 'is-project-page': isProjectPage }">
     <template
-      v-if="frontmatter.layout === 'List100Page'"
+      v-if="frontmatter.layout === 'List50Page'"
       #doc-before
     >
-      <List100Page />
+      <List50Page />
     </template>
     <!-- 在文章内容后添加评论 -->
     <template
@@ -45,7 +45,7 @@
 import DefaultTheme from 'vitepress/theme'
 import { useData } from 'vitepress'
 import { computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
-import List100Page from './components/List100Page.vue'
+import List50Page from './components/List50Page.vue'
 import BackToTop from './components/BackToTop.vue'
 import Comments from './components/Comments.vue'
 import ArticleTOC from './components/ArticleTOC.vue'
@@ -171,13 +171,13 @@ onBeforeUnmount(() => {
   padding: 0;
 }
 
-/* 对于List100Page页面，隐藏默认的文档内容 */
-[data-frontmatter-layout="List100Page"] .VPDoc .container .content .content-container {
+/* 对于List50Page页面，隐藏默认的文档内容 */
+[data-frontmatter-layout="List50Page"] .VPDoc .container .content .content-container {
   display: none;
 }
 
-/* 确保List100Page有正确的样式 */
-[data-frontmatter-layout="List100Page"] .VPDoc {
+/* 确保List50Page有正确的样式 */
+[data-frontmatter-layout="List50Page"] .VPDoc {
   padding: 0;
 }
 

@@ -1,4 +1,4 @@
 ---
-layout: List100Page
+layout: List50Page
 title: List 50
 ---
