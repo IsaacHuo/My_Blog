@@ -34,6 +34,7 @@
           <ViewCounter
             :id="postRelativePath(post.url)"
             :is-zh="isZh"
+            readonly
             class="inline-vc"
           />
         </span>
@@ -61,6 +62,7 @@
           <ViewCounter
             :id="postRelativePath(post.url)"
             :is-zh="isZh"
+            readonly
             class="inline-vc"
           />
         </span>
