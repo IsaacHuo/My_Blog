@@ -156,7 +156,7 @@ const injectArticleMeta = async () => {
     if (h1 && h1.parentNode) {
       articleMetaEl = document.createElement('div')
       articleMetaEl.className = 'article-meta-container'
-      articleMetaEl.innerHTML = `${articleMetaText.value} <span id="vc-article-anchor"></span>`
+      articleMetaEl.innerHTML = `${articleMetaText.value} · <span id="vc-article-anchor"></span>`
       h1.parentNode.insertBefore(articleMetaEl, h1.nextSibling)
       vcAnchorReady.value = true
     }
@@ -201,6 +201,21 @@ onBeforeUnmount(() => {
 .article-comments-section {
   margin-top: 2rem;
   padding-top: 2rem;
+}
+
+.article-meta-container {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+  color: var(--vp-c-text-3);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.article-meta-container :deep(.view-count) {
+  font-size: 0.95rem;
+  margin-top: 0;
 }
 
 </style>
