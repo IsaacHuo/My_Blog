@@ -29,7 +29,14 @@
         :key="post.url"
         class="post-list-item"
       >
-        <span class="post-meta">{{ formatDate(post.frontmatter.date) }}</span>
+        <span class="post-meta">
+          {{ formatDate(post.frontmatter.date) }}
+          <ViewCounter
+            :id="postRelativePath(post.url)"
+            :is-zh="isZh"
+            class="inline-vc"
+          />
+        </span>
         <a
           class="post-link"
           :href="withBase(post.url)"
@@ -39,7 +46,7 @@
       </li>
     </ul>
 
-    <!-- 生活文章 -->
+    <!-- 随笔文章 -->
     <ul
       v-show="activeTab === 'life'"
       class="post-list"
@@ -49,7 +56,14 @@
         :key="post.url"
         class="post-list-item"
       >
-        <span class="post-meta">{{ formatDate(post.frontmatter.date) }}</span>
+        <span class="post-meta">
+          {{ formatDate(post.frontmatter.date) }}
+          <ViewCounter
+            :id="postRelativePath(post.url)"
+            :is-zh="isZh"
+            class="inline-vc"
+          />
+        </span>
         <a
           class="post-link"
           :href="withBase(post.url)"
@@ -96,6 +110,11 @@ const lifePosts = computed(() => {
     (p: { frontmatter: Record<string, any> }) => p.frontmatter.category === '生活'
   )
 })
+
+function postRelativePath(url: string): string {
+  // /zh/blog/slug 或 /en/blog/slug → zh/blog/slug.md
+  return url.replace(/^\//, '') + '.md'
+}
 
 function formatDate(value?: string) {
   if (!value) return ''
@@ -166,11 +185,17 @@ function formatDate(value?: string) {
 }
 
 .post-meta {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 2px;
   color: var(--vp-c-text-3);
   font-size: 14px;
   line-height: 1.5;
+}
+
+.post-meta :deep(.view-count) {
+  font-size: 14px;
 }
 
 .post-link {

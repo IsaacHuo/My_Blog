@@ -3,21 +3,21 @@ layout: ProjectsPage
 title: Projects
 thoughts:
   - title: "MyLeafy"
-    description: "Campus iOS app covering timetables, grades & community — 5,000+ real users"
+    description: "A general-purpose campus iOS app, first launched at Beijing Forestry University. Integrates timetables, grades, community, and campus tools — independently built from design to backend, now serving 5,000+ users."
     url: /en/projects/leafy
     date: 2026-07-01
     image: /project-images/leafy.png
   - title: "Poemery"
-    description: "Offline poetry reading app built with SwiftUI, with favorites & search"
+    description: "An offline poetry reading iOS app built with SwiftUI and a local poetry database. Uses an Apple Music-style architecture for browsing — works fully offline with favorites and search."
     url: /en/projects/poemery
     date: 2026-06-28
   - title: "MapToPoster"
-    description: "City map poster generator — enter an address, get a printable poster"
+    description: "A city map poster generator. Enter any address and get a printable, minimalist city map poster — powered by OpenStreetMap data and Python."
     url: /en/projects/maptoposter
     date: 2026-06-09
     image: /project-images/maptoposter.png
   - title: "PolyBot"
-    description: "Local prediction market system — news collection → AI forecasting → risk control → automated trading"
+    description: "A local prediction market research system. News collection → DeepSeek forecasting → risk control → automated order placement, built around Polymarket 15-minute BTC/ETH markets with paper trading and live modes."
     url: /en/projects/polymarket-predictor
     date: 2026-06-30
 ---

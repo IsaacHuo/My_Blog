@@ -11,16 +11,20 @@
       v-if="isArticlePage"
       #doc-after
     >
-      <div class="article-meta-footer">
-        <ViewCounter
-          :id="pageRelativePath"
-          :is-zh="isZh"
-        />
-      </div>
       <div class="article-comments-section">
         <Comments />
       </div>
     </template>
+    <!-- 阅读量 Teleport 到 h1 下方 -->
+    <Teleport
+      v-if="isArticlePage"
+      to="#vc-article-anchor"
+    >
+      <ViewCounter
+        :id="pageRelativePath"
+        :is-zh="isZh"
+      />
+    </Teleport>
     <!-- 回到顶部按钮 - 添加到所有页面 -->
     <template #layout-bottom>
       <BackToTop />
@@ -149,7 +153,7 @@ const injectArticleMeta = async () => {
     if (h1 && h1.parentNode) {
       articleMetaEl = document.createElement('div')
       articleMetaEl.className = 'article-meta-container'
-      articleMetaEl.textContent = articleMetaText.value
+      articleMetaEl.innerHTML = `${articleMetaText.value} <span id="vc-article-anchor"></span>`
       h1.parentNode.insertBefore(articleMetaEl, h1.nextSibling)
     }
   }, 100)
@@ -193,12 +197,6 @@ onBeforeUnmount(() => {
 .article-comments-section {
   margin-top: 2rem;
   padding-top: 2rem;
-}
-
-.article-meta-footer {
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--vp-c-divider);
 }
 
 </style>
