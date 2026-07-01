@@ -11,6 +11,12 @@
       v-if="isArticlePage"
       #doc-after
     >
+      <div class="article-meta-footer">
+        <ViewCounter
+          :id="pageRelativePath"
+          :is-zh="isZh"
+        />
+      </div>
       <div class="article-comments-section">
         <Comments />
       </div>
@@ -69,6 +75,8 @@ const isProjectPage = computed(() => {
 const isZh = computed(() => {
   return lang.value === 'zh-CN'
 })
+
+const pageRelativePath = computed(() => page.value.relativePath || '')
 
 const switchLocalePath = (relativePath, targetLocale) => {
   const path = relativePath || ''
@@ -185,6 +193,12 @@ onBeforeUnmount(() => {
 .article-comments-section {
   margin-top: 2rem;
   padding-top: 2rem;
+}
+
+.article-meta-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--vp-c-divider);
 }
 
 </style>
