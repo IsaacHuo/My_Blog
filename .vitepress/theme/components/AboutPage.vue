@@ -30,6 +30,14 @@
           Here are some projects, some notes, and some judgments in the making.
         </template>
       </p>
+      <p class="about-description">
+        <template v-if="isZh">
+          借由 AI，抵达更远的创造。
+        </template>
+        <template v-else>
+          Exploring what AI makes possible.
+        </template>
+      </p>
 
       <div class="about-contact">
         <h3>{{ isZh ? '联系我' : 'Contact me' }}</h3>
