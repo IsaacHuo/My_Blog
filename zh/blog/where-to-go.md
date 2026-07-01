@@ -1,6 +1,7 @@
 ---
 title: AI 时代，何去何从
 date: 2026-06-12
+category: 生活
 tags:
   - AI
   - career

@@ -1,6 +1,7 @@
 ---
 title: "Yarn: 曾经的速度之王与创新者"
 date: 2026-01-29
+category: 技术
 author: 霍玮放
 description: yarn, npm, package-manager
 ---

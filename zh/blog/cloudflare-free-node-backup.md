@@ -1,6 +1,7 @@
 ---
 title: Cloudflare 免费节点搭建方案备份
 date: 2026-05-15
+category: 技术
 description: 对零度博客 Cloudflare 免费节点搭建文章的备份摘要，保留来源、关键思路和后续查阅入口。
 tags:
   - Cloudflare

@@ -1,6 +1,7 @@
 ---
 title: 机场选择使用简要指南
 date: 2026-01-08
+category: 技术
 description: 
 ---
 

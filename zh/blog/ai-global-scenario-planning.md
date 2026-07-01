@@ -1,6 +1,7 @@
 ---
 title: OpenAI 报告：AI 全球情景规划
 date: 2025-12-04
+category: 技术
 author: OpenAI Intelligence & Investigations Team
 tags:
   - AI

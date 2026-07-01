@@ -1,6 +1,7 @@
 ---
 title: "AI 全球情景规划：中国视角"
 date: 2025-12-04
+category: 技术
 author: "OpenAI 情报与调查团队（中国视角评论）"
 tags:
   - AI

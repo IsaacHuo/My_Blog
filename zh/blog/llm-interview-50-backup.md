@@ -1,6 +1,7 @@
 ---
 title: 50 个大型语言模型（LLM）面试问题备份
 date: 2026-05-15
+category: 技术
 description: 对 Hao Hoang 的 Top 50 LLM Interview Questions 资料做中文备份索引，保留来源、题纲和复习路线。
 tags:
   - LLM

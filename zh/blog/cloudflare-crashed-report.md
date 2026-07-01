@@ -1,6 +1,7 @@
 ---
 title: 一个数据库权限的简单更改，让大半个互联网心脏骤停
 date: 2025-11-18
+category: 技术
 author: 霍玮放
 description: Cloudflare 全球宕机事故分析 - 从权限变更到系统崩溃的完整复盘
 ---

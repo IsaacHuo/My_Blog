@@ -23,6 +23,12 @@
         >
           {{ project.title }}
         </a>
+        <p
+          v-if="project.description"
+          class="project-description"
+        >
+          {{ project.description }}
+        </p>
       </li>
     </ul>
 
@@ -109,6 +115,13 @@ function formatDate(value?: string) {
 .project-link:hover {
   color: var(--vp-c-text-1) !important;
   text-decoration: underline;
+}
+
+.project-description {
+  color: var(--vp-c-text-2);
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 4px;
 }
 
 .empty-state {

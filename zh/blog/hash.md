@@ -1,6 +1,7 @@
 ---
 title: 什么是哈希 (Hash)？
 date: 2026-01-13
+category: 技术
 author: 霍玮放
 description: computer-science, security, algorithm
 ---

@@ -1,20 +1,44 @@
 <template>
   <div class="blog-list-page">
-    <ul class="post-list">
-      <li
-        v-for="post in posts"
-        :key="post.url"
-        class="post-list-item"
-      >
-        <span class="post-meta">{{ formatDate(post.frontmatter.date) }}</span>
-        <a
-          class="post-link"
-          :href="withBase(post.url)"
+    <!-- 技术文章 -->
+    <section class="post-section">
+      <h2 class="section-title">技术</h2>
+      <ul class="post-list">
+        <li
+          v-for="post in techPosts"
+          :key="post.url"
+          class="post-list-item"
         >
-          {{ post.frontmatter.title }}
-        </a>
-      </li>
-    </ul>
+          <span class="post-meta">{{ formatDate(post.frontmatter.date) }}</span>
+          <a
+            class="post-link"
+            :href="withBase(post.url)"
+          >
+            {{ post.frontmatter.title }}
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 生活文章 -->
+    <section class="post-section">
+      <h2 class="section-title">生活</h2>
+      <ul class="post-list">
+        <li
+          v-for="post in lifePosts"
+          :key="post.url"
+          class="post-list-item"
+        >
+          <span class="post-meta">{{ formatDate(post.frontmatter.date) }}</span>
+          <a
+            class="post-link"
+            :href="withBase(post.url)"
+          >
+            {{ post.frontmatter.title }}
+          </a>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
 
@@ -29,7 +53,7 @@ const isZh = computed(() => {
   return site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')
 })
 
-const posts = computed(() => {
+const filteredPosts = computed(() => {
   if (!Array.isArray(blogPosts)) return []
 
   return blogPosts.filter((post: { url: string; frontmatter: Record<string, any> }) => {
@@ -38,6 +62,18 @@ const posts = computed(() => {
       ? post.url.startsWith('/zh/blog/')
       : post.url.startsWith('/en/blog/')
   })
+})
+
+const techPosts = computed(() => {
+  return filteredPosts.value.filter(
+    (p: { frontmatter: Record<string, any> }) => p.frontmatter.category === '技术'
+  )
+})
+
+const lifePosts = computed(() => {
+  return filteredPosts.value.filter(
+    (p: { frontmatter: Record<string, any> }) => p.frontmatter.category === '生活'
+  )
 })
 
 function formatDate(value?: string) {
@@ -60,6 +96,21 @@ function formatDate(value?: string) {
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 30px 15px;
+}
+
+.post-section {
+  margin-bottom: 50px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  margin: 0 0 24px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--vp-c-border);
+  text-align: left;
+  letter-spacing: 0.05em;
 }
 
 .post-list {
@@ -97,6 +148,10 @@ function formatDate(value?: string) {
   .blog-list-page {
     padding-right: 7.5px;
     padding-left: 7.5px;
+  }
+
+  .post-section {
+    margin-bottom: 36px;
   }
 }
 </style>

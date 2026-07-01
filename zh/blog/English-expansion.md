@@ -1,6 +1,7 @@
 ---
 title: 计算机术语缩写全称收集
 date: 2026-01-25
+category: 技术
 author: 霍玮放
 description: 
 ---

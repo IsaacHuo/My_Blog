@@ -1,6 +1,7 @@
 ---
 title: AI 编程的碎碎念
 date: 2026-02-19
+category: 技术
 tags:
   - AI
   - Coding

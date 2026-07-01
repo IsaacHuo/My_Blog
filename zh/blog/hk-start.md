@@ -1,6 +1,7 @@
 ---
 title: 1万元本金赴港：大二学生如何从零搭建离岸量化架构
 date: 2026-1-7
+category: 生活
 author: 霍玮放
 description: 
 ---

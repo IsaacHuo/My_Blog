@@ -1,6 +1,7 @@
 ---
 title: 证书备考清单
 date: 2026-01-31
+category: 技术
 author: 霍玮放
 description: IT 认证, 职业规划, 云计算, DevOps, 网络, AI
 ---
