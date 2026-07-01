@@ -17,7 +17,7 @@
     </template>
     <!-- 阅读量 Teleport 到 h1 下方 -->
     <Teleport
-      v-if="isArticlePage"
+      v-if="vcAnchorReady"
       to="#vc-article-anchor"
     >
       <ViewCounter
@@ -54,7 +54,7 @@
 <script setup>
 import DefaultTheme from 'vitepress/theme'
 import { useData } from 'vitepress'
-import { computed, onMounted, onBeforeUnmount, watch, nextTick } from 'vue'
+import { computed, onMounted, onBeforeUnmount, watch, nextTick, ref } from 'vue'
 import List50Page from './components/List50Page.vue'
 import BackToTop from './components/BackToTop.vue'
 import Comments from './components/Comments.vue'
@@ -62,6 +62,8 @@ import ArticleTOC from './components/ArticleTOC.vue'
 
 const { Layout } = DefaultTheme
 const { frontmatter, page, lang } = useData()
+
+const vcAnchorReady = ref(false)
 
 // 判断是否是文章页面（在 zh/blog 或 en/blog 目录下）
 // 判断是否是文章页面（在 zh/blog, en/blog, zh/projects, en/projects 目录下）
@@ -143,6 +145,7 @@ const cleanupArticleMeta = () => {
 
 const injectArticleMeta = async () => {
   cleanupArticleMeta()
+  vcAnchorReady.value = false
   
   if (!isArticlePage.value) return
 
@@ -155,6 +158,7 @@ const injectArticleMeta = async () => {
       articleMetaEl.className = 'article-meta-container'
       articleMetaEl.innerHTML = `${articleMetaText.value} <span id="vc-article-anchor"></span>`
       h1.parentNode.insertBefore(articleMetaEl, h1.nextSibling)
+      vcAnchorReady.value = true
     }
   }, 100)
 }

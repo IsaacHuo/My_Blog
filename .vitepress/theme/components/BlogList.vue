@@ -186,7 +186,7 @@ function formatDate(value?: string) {
 
 .post-meta {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
   margin-bottom: 2px;
   color: var(--vp-c-text-3);
@@ -196,6 +196,7 @@ function formatDate(value?: string) {
 
 .post-meta :deep(.view-count) {
   font-size: 14px;
+  margin-top: 0;
 }
 
 .post-link {
