@@ -7,7 +7,7 @@
         :class="{ active: activeTab === 'tech' }"
         @click="activeTab = 'tech'"
       >
-        技术
+        {{ isZh ? '技术' : 'Tech' }}
       </button>
       <span class="tab-divider">|</span>
       <button
@@ -15,7 +15,7 @@
         :class="{ active: activeTab === 'life' }"
         @click="activeTab = 'life'"
       >
-        随笔
+        {{ isZh ? '随笔' : 'Essays' }}
       </button>
     </nav>
 
@@ -32,9 +32,11 @@
         <span class="post-meta">
           {{ formatDate(post.frontmatter.date) }}
           <ViewCounter
-            :id="postRelativePath(post.url)"
+            :id="postViewId(post.url)"
+            :legacy-ids="legacyPostViewIds(post.url)"
             :is-zh="isZh"
             readonly
+            refresh-on-focus
             class="inline-vc"
           />
         </span>
@@ -60,9 +62,11 @@
         <span class="post-meta">
           {{ formatDate(post.frontmatter.date) }}
           <ViewCounter
-            :id="postRelativePath(post.url)"
+            :id="postViewId(post.url)"
+            :legacy-ids="legacyPostViewIds(post.url)"
             :is-zh="isZh"
             readonly
+            refresh-on-focus
             class="inline-vc"
           />
         </span>
@@ -83,6 +87,7 @@ import { useData, withBase } from 'vitepress'
 import { data as blogPosts } from '../data/blogPosts.data.js'
 
 const { page, site } = useData()
+type BlogPost = { url: string; frontmatter: Record<string, any> }
 
 const activeTab = ref<'tech' | 'life'>('tech')
 
@@ -93,7 +98,7 @@ const isZh = computed(() => {
 const filteredPosts = computed(() => {
   if (!Array.isArray(blogPosts)) return []
 
-  return blogPosts.filter((post: { url: string; frontmatter: Record<string, any> }) => {
+  return blogPosts.filter((post: BlogPost) => {
     if (!post.frontmatter.title) return false
     return isZh.value
       ? post.url.startsWith('/zh/blog/')
@@ -103,19 +108,31 @@ const filteredPosts = computed(() => {
 
 const techPosts = computed(() => {
   return filteredPosts.value.filter(
-    (p: { frontmatter: Record<string, any> }) => p.frontmatter.category === '技术'
+    (post: BlogPost) => normalizeCategory(post) === 'tech'
   )
 })
 
 const lifePosts = computed(() => {
   return filteredPosts.value.filter(
-    (p: { frontmatter: Record<string, any> }) => p.frontmatter.category === '生活'
+    (post: BlogPost) => normalizeCategory(post) === 'life'
   )
 })
 
-function postRelativePath(url: string): string {
-  // /zh/blog/slug 或 /en/blog/slug → zh/blog/slug.md
-  return url.replace(/^\//, '') + '.md'
+function postViewId(url: string): string {
+  // /zh/blog/slug 或 /en/blog/slug → zh/blog/slug
+  return url.replace(/^\//, '').replace(/\/$/, '')
+}
+
+function legacyPostViewIds(url: string): string[] {
+  return [`${postViewId(url)}.md`]
+}
+
+function normalizeCategory(post: BlogPost): 'tech' | 'life' | 'unknown' {
+  const category = String(post.frontmatter.category || '').trim().toLowerCase()
+  if (['生活', '随笔', 'life', 'essay', 'essays'].includes(category)) return 'life'
+  if (['技术', 'tech', 'technology'].includes(category)) return 'tech'
+  if (!category && post.url.startsWith('/en/blog/')) return 'tech'
+  return 'unknown'
 }
 
 function formatDate(value?: string) {

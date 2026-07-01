@@ -14,8 +14,9 @@
       <div class="article-meta-container">
         <span>{{ articleMetaText }}</span>
         <ViewCounter
-          :key="pageRelativePath"
-          :id="pageRelativePath"
+          :key="pageViewId"
+          :id="pageViewId"
+          :legacy-ids="legacyPageViewIds"
           :is-zh="isZh"
         />
       </div>
@@ -75,6 +76,16 @@ const isProjectPage = computed(() => {
 const isZh = computed(() => lang.value === 'zh-CN')
 
 const pageRelativePath = computed(() => page.value.relativePath || '')
+const pageViewId = computed(() => toCanonicalViewId(pageRelativePath.value))
+const legacyPageViewIds = computed(() => {
+  const path = pageRelativePath.value
+  if (!path || path === pageViewId.value) return []
+  return [path]
+})
+
+const toCanonicalViewId = (path) => {
+  return (path || '').replace(/^\//, '').replace(/\.md$/, '').replace(/\/$/, '')
+}
 
 const switchLocalePath = (relativePath, targetLocale) => {
   const path = relativePath || ''

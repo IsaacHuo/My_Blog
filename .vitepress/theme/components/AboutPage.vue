@@ -32,7 +32,7 @@
       </p>
       <p class="about-description">
         <template v-if="isZh">
-          希望借由 AI，抵达更远的创造。
+          希望能借由 AI，抵达更远的创造。
         </template>
         <template v-else>
           Exploring what AI makes possible.

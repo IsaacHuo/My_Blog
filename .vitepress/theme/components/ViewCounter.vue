@@ -31,9 +31,11 @@ import { ref, onMounted, computed, onBeforeUnmount, watch } from 'vue'
 
 const props = defineProps<{
   id: string
+  legacyIds?: string[]
   showLabel?: boolean
   readonly?: boolean
   isZh?: boolean
+  refreshOnFocus?: boolean
 }>()
 
 const count = ref<number | null>(null)
@@ -50,6 +52,27 @@ const formattedCount = computed(() => {
   if (count.value === null) return '0'
   return count.value.toLocaleString()
 })
+
+const fetchCounterValue = async (id: string, readonly: boolean, signal: AbortSignal) => {
+    const url = new URL(WORKER_URL)
+    url.searchParams.set('id', id)
+    if (readonly) {
+        url.searchParams.set('readonly', 'true')
+    }
+    // 增加时间戳防止缓存
+    url.searchParams.set('t', Date.now().toString())
+
+    const res = await fetch(url.toString(), { signal })
+
+    if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`)
+    }
+
+    const data = await res.json()
+    if (data.error) throw new Error(data.error)
+
+    return Number(data.count) || 0
+}
 
 const fetchCount = async () => {
     if (!props.id) return
@@ -69,32 +92,19 @@ const fetchCount = async () => {
         if (abortController) abortController.abort()
     }, 5000)
 
-    loading.value = true
+    loading.value = count.value === null
     error.value = null
     
     try {
-        const url = new URL(WORKER_URL)
-        url.searchParams.set('id', props.id)
-        if (props.readonly) {
-            url.searchParams.set('readonly', 'true')
-        }
-        // 增加时间戳防止缓存
-        url.searchParams.set('t', Date.now().toString())
-
-        const res = await fetch(url.toString(), {
-            signal: abortController.signal
-        })
+        const legacyIds = Array.from(new Set(props.legacyIds || []))
+            .filter((id) => id && id !== props.id)
+        const values = await Promise.all([
+            fetchCounterValue(props.id, Boolean(props.readonly), abortController.signal),
+            ...legacyIds.map((id) => fetchCounterValue(id, true, abortController!.signal))
+        ])
         
         clearTimeout(timeoutId) // 成功响应，清除超时
-
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`)
-        }
-        
-        const data = await res.json()
-        if (data.error) throw new Error(data.error)
-        
-        count.value = data.count
+        count.value = values.reduce((sum, value) => sum + value, 0)
 
         // 如果不是只读模式且不是 total-views ID，则额外增加总阅读量
         if (!props.readonly && props.id !== 'total-views') {
@@ -119,12 +129,21 @@ const fetchCount = async () => {
 
 onMounted(() => {
   fetchCount()
+  if (props.refreshOnFocus || props.readonly) {
+    window.addEventListener('focus', handleVisibilityRefresh)
+    document.addEventListener('visibilitychange', handleVisibilityRefresh)
+  }
 })
 
 // 监听 ID 变化，如果在同一个页面组件没销毁但 ID 变了的情况（虽然这里主要是 inject 方式）
-watch(() => props.id, () => {
+watch(() => [props.id, props.readonly, (props.legacyIds || []).join('|')], () => {
   fetchCount()
 })
+
+const handleVisibilityRefresh = () => {
+    if (document.visibilityState === 'hidden') return
+    fetchCount()
+}
 
 onBeforeUnmount(() => {
     if (abortController) {
@@ -133,6 +152,8 @@ onBeforeUnmount(() => {
     if (timeoutId) {
         clearTimeout(timeoutId)
     }
+    window.removeEventListener('focus', handleVisibilityRefresh)
+    document.removeEventListener('visibilitychange', handleVisibilityRefresh)
 })
 </script>
 

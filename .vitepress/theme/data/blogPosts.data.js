@@ -7,9 +7,10 @@ const loader = createContentLoader(['zh/blog/*.md', 'en/blog/*.md'], {
   transform(rawData) {
     return rawData
       .filter(({ url, frontmatter }) => {
+        const normalizedUrl = url.replace(/\.html$/, '')
         if (!frontmatter.title) return false
-        if (url.endsWith('/index') || url.endsWith('/blog/') || url.endsWith('/zh/blog/')) return false
-        if (url.endsWith('/template')) return false
+        if (normalizedUrl.endsWith('/index') || normalizedUrl.endsWith('/blog/') || normalizedUrl.endsWith('/zh/blog/')) return false
+        if (normalizedUrl.endsWith('/template')) return false
         return true
       })
       .map(({ url, frontmatter, src }) => ({
