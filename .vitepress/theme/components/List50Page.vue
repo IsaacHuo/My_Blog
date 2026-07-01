@@ -166,7 +166,7 @@ const items = computed(() => isZh.value ? itemsZh : itemsEn)
 .list50-content ol {
   margin: 0 0 15px var(--list50-item-offset);
   padding: 0;
-  list-style: none;
+  list-style: decimal;
 }
 
 .list50-content li {
