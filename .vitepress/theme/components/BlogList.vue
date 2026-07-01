@@ -120,11 +120,19 @@ const lifePosts = computed(() => {
 
 function postViewId(url: string): string {
   // /zh/blog/slug 或 /en/blog/slug → zh/blog/slug
-  return url.replace(/^\//, '').replace(/\/$/, '')
+  return normalizePostPath(url)
 }
 
 function legacyPostViewIds(url: string): string[] {
   return [`${postViewId(url)}.md`]
+}
+
+function normalizePostPath(url: string): string {
+  return url
+    .replace(/^\//, '')
+    .replace(/\.html$/, '')
+    .replace(/\.md$/, '')
+    .replace(/\/$/, '')
 }
 
 function normalizeCategory(post: BlogPost): 'tech' | 'life' | 'unknown' {
