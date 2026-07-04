@@ -27,7 +27,7 @@
     <!-- 回到顶部按钮 -->
     <template #layout-bottom>
       <BackToTop />
-      <ArticleTOC v-if="isArticlePage" />
+      <ArticleTOC v-if="isArticlePage || isProjectPage" />
     </template>
     <template #nav-bar-content-after>
       <a
