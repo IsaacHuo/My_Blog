@@ -224,7 +224,7 @@ a:visited {
     transform: translateY(-50%) !important;
     width: 200px !important;
     z-index: 10 !important;
-    padding-left: 1rem !important;
+    padding-left: 2.5rem !important;
   }
 
   /* Reset container display for proper flow */
