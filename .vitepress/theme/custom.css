@@ -227,6 +227,13 @@ a:visited {
     padding-left: 1rem !important;
   }
 
+  /* Prevent tables from overflowing content */
+  .vp-doc table {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+  }
+
   /* Reset container display for proper flow */
   .vp-doc .container {
     display: contents !important;
