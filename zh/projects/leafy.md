@@ -11,9 +11,17 @@ outline: [2, 3]
 
 MyLeafy 是我独立开发的通用型校园 iOS 应用。内部代码名、target 和类型命名沿用 `Leafy`，产品展示名已更新为 MyLeafy。首个上线校园是北京林业大学，教务连接器直连北林强智系统。
 
-**GitHub 仓库**：[IsaacHuo/leafy](https://github.com/IsaacHuo/leafy)
-
-完整技术文档：[docs/](https://github.com/IsaacHuo/leafy/tree/main/docs)，包括[项目总览](https://github.com/IsaacHuo/leafy/blob/main/docs/overview.md)、[架构说明](https://github.com/IsaacHuo/leafy/blob/main/docs/architecture.md)、[App 设计](https://github.com/IsaacHuo/leafy/blob/main/docs/app-design.md)、[UI 风格指南](https://github.com/IsaacHuo/leafy/blob/main/docs/ui-style-guide.md)、[Supabase 接入](https://github.com/IsaacHuo/leafy/blob/main/docs/supabase.md)、[运营后台](https://github.com/IsaacHuo/leafy/blob/main/docs/admin-console.md)、[路线图](https://github.com/IsaacHuo/leafy/blob/main/docs/roadmap.md)。
+| 入口 | 链接 |
+|---|---|
+| GitHub 仓库 | [IsaacHuo/leafy](https://github.com/IsaacHuo/leafy) |
+| 完整技术文档 | [docs/](https://github.com/IsaacHuo/leafy/tree/main/docs) |
+| 项目总览 | [overview.md](https://github.com/IsaacHuo/leafy/blob/main/docs/overview.md) |
+| 架构说明 | [architecture.md](https://github.com/IsaacHuo/leafy/blob/main/docs/architecture.md) |
+| App 设计 | [app-design.md](https://github.com/IsaacHuo/leafy/blob/main/docs/app-design.md) |
+| UI 风格指南 | [ui-style-guide.md](https://github.com/IsaacHuo/leafy/blob/main/docs/ui-style-guide.md) |
+| Supabase 接入 | [supabase.md](https://github.com/IsaacHuo/leafy/blob/main/docs/supabase.md) |
+| 运营后台 | [admin-console.md](https://github.com/IsaacHuo/leafy/blob/main/docs/admin-console.md) |
+| 路线图 | [roadmap.md](https://github.com/IsaacHuo/leafy/blob/main/docs/roadmap.md) |
 
 <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: flex-start;">
   <img src="/project-images/myleafy/calendar.jpg" alt="MyLeafy 课表展示" width="220" loading="lazy" style="max-width: 100%; border-radius: 16px;">
