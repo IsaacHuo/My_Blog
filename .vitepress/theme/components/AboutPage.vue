@@ -39,6 +39,60 @@
         </template>
       </p>
 
+      <div class="home-showcase">
+        <section class="showcase-section">
+          <div class="showcase-heading">
+            <h2>{{ isZh ? '项目' : 'Projects' }}</h2>
+            <a :href="withBase(isZh ? '/zh/projects/' : '/en/projects/')">
+              {{ isZh ? '全部项目' : 'View all' }}
+            </a>
+          </div>
+          <div class="showcase-list">
+            <a
+              v-for="project in featuredProjects"
+              :key="project.url"
+              class="showcase-item"
+              :href="withBase(project.url)"
+            >
+              <span>
+                <strong>{{ project.title }}</strong>
+                <small>{{ project.description }}</small>
+              </span>
+              <span
+                class="showcase-arrow"
+                aria-hidden="true"
+              >↗</span>
+            </a>
+          </div>
+        </section>
+
+        <section class="showcase-section">
+          <div class="showcase-heading">
+            <h2>{{ isZh ? '最新笔记' : 'Latest notes' }}</h2>
+            <a :href="withBase(isZh ? '/zh/blog/' : '/en/blog/')">
+              {{ isZh ? '全部文章' : 'View all' }}
+            </a>
+          </div>
+          <div class="showcase-list">
+            <a
+              v-for="note in latestNotes"
+              :key="note.url"
+              class="showcase-item"
+              :href="withBase(note.url)"
+            >
+              <span>
+                <strong>{{ note.frontmatter.title }}</strong>
+                <small>{{ formatDate(note.frontmatter.date) }}</small>
+              </span>
+              <span
+                class="showcase-arrow"
+                aria-hidden="true"
+              >↗</span>
+            </a>
+          </div>
+        </section>
+      </div>
+
       <div class="about-contact">
         <h3>{{ isZh ? '联系我' : 'Contact me' }}</h3>
         <div class="contact-body">
@@ -138,8 +192,14 @@
 </template>
 
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { computed, ref } from 'vue'
+import { data as blogPosts } from '../data/blogPosts.data.js'
+
+type BlogPost = {
+  url: string
+  frontmatter: Record<string, any>
+}
 
 const { site, page } = useData()
 const isZh = site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/')
@@ -150,6 +210,52 @@ const mailBody = ref('')
 const emailCopyState = ref<'idle' | 'copied'>('idle')
 
 const emailCopyStatusText = computed(() => isZh ? '已复制' : 'Copied')
+
+const featuredProjects = computed(() => isZh
+  ? [
+      {
+        title: 'MyLeafy',
+        description: '通用型校园 iOS 应用',
+        url: '/zh/projects/leafy'
+      },
+      {
+        title: 'MapToPoster',
+        description: '城市地图海报生成器',
+        url: '/zh/projects/maptoposter'
+      }
+    ]
+  : [
+      {
+        title: 'MyLeafy',
+        description: 'A general-purpose campus iOS app',
+        url: '/en/projects/leafy'
+      },
+      {
+        title: 'MapToPoster',
+        description: 'A city map poster generator',
+        url: '/en/projects/maptoposter'
+      }
+    ])
+
+const latestNotes = computed(() => {
+  const localePrefix = isZh ? '/zh/blog/' : '/en/blog/'
+  return (blogPosts as BlogPost[])
+    .filter((post) => post.url.startsWith(localePrefix))
+    .slice(0, 2)
+})
+
+const formatDate = (value?: string) => {
+  if (!value) return ''
+
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return value
+
+  return new Intl.DateTimeFormat(isZh ? 'zh-CN' : 'en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  }).format(date)
+}
 
 const sendEmail = () => {
   const subject = encodeURIComponent(isZh ? '来自博客首页的邮件' : 'Message from blog homepage')
@@ -290,6 +396,96 @@ const copyEmail = async () => {
   text-decoration: underline !important;
   text-decoration-thickness:0.5px !important;
   text-underline-offset: 3px !important;
+}
+
+.home-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xl);
+  clear: both;
+  padding-top: var(--space-xl);
+}
+
+.showcase-section {
+  min-width: 0;
+}
+
+.showcase-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.showcase-heading h2 {
+  margin: 0;
+  color: var(--vp-c-text-1);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.showcase-heading a {
+  flex: 0 0 auto;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.showcase-list {
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.showcase-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 13px 0;
+  border-bottom: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-1) !important;
+  text-decoration: none;
+}
+
+.showcase-item > span:first-child {
+  min-width: 0;
+}
+
+.showcase-item strong,
+.showcase-item small {
+  display: block;
+}
+
+.showcase-item strong {
+  color: var(--vp-c-text-1);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.showcase-item small {
+  margin-top: 2px;
+  color: var(--vp-c-text-3);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.showcase-arrow {
+  flex: 0 0 auto;
+  color: var(--vp-c-text-3);
+  transition: transform 0.2s ease;
+}
+
+.showcase-item:hover {
+  color: #4d74eb !important;
+}
+
+.showcase-item:hover strong {
+  color: #4d74eb;
+}
+
+.showcase-item:hover .showcase-arrow {
+  transform: translate(2px, -2px);
 }
 
 .about-contact {
@@ -469,6 +665,12 @@ const copyEmail = async () => {
 
   .about-contact {
     margin-top: var(--space-xl);
+  }
+
+  .home-showcase {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    padding-top: var(--space-md);
   }
 
   .mail-compose {

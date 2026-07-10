@@ -1,6 +1,6 @@
 <template>
   <div class="blog-list-page">
-    <!-- 居中 Tab 切换 -->
+    <!-- 移动端使用 Tab 切换，桌面端直接显示两栏 -->
     <nav class="blog-tabs">
       <button
         class="tab-btn"
@@ -19,65 +19,75 @@
       </button>
     </nav>
 
-    <!-- 技术文章 -->
-    <ul
-      v-show="activeTab === 'tech'"
-      class="post-list"
-    >
-      <li
-        v-for="post in techPosts"
-        :key="post.url"
-        class="post-list-item"
+    <div class="blog-columns">
+      <section
+        class="blog-column"
+        :class="{ 'mobile-hidden': activeTab !== 'tech' }"
       >
-        <span class="post-meta">
-          {{ formatDate(post.frontmatter.date) }}
-          <ViewCounter
-            :id="postViewId(post.url)"
-            :legacy-ids="legacyPostViewIds(post.url)"
-            :is-zh="isZh"
-            readonly
-            refresh-on-focus
-            class="inline-vc"
-          />
-        </span>
-        <a
-          class="post-link"
-          :href="withBase(post.url)"
-        >
-          {{ post.frontmatter.title }}
-        </a>
-      </li>
-    </ul>
+        <h2 class="column-title">
+          {{ isZh ? '技术' : 'Tech' }}
+        </h2>
+        <ul class="post-list">
+          <li
+            v-for="post in techPosts"
+            :key="post.url"
+            class="post-list-item"
+          >
+            <span class="post-meta">
+              {{ formatDate(post.frontmatter.date) }}
+              <ViewCounter
+                :id="postViewId(post.url)"
+                :legacy-ids="legacyPostViewIds(post.url)"
+                :is-zh="isZh"
+                readonly
+                refresh-on-focus
+                class="inline-vc"
+              />
+            </span>
+            <a
+              class="post-link"
+              :href="withBase(post.url)"
+            >
+              {{ post.frontmatter.title }}
+            </a>
+          </li>
+        </ul>
+      </section>
 
-    <!-- 随笔文章 -->
-    <ul
-      v-show="activeTab === 'life'"
-      class="post-list"
-    >
-      <li
-        v-for="post in lifePosts"
-        :key="post.url"
-        class="post-list-item"
+      <section
+        class="blog-column"
+        :class="{ 'mobile-hidden': activeTab !== 'life' }"
       >
-        <span class="post-meta">
-          {{ formatDate(post.frontmatter.date) }}
-          <ViewCounter
-            :id="postViewId(post.url)"
-            :legacy-ids="legacyPostViewIds(post.url)"
-            :is-zh="isZh"
-            readonly
-            refresh-on-focus
-            class="inline-vc"
-          />
-        </span>
-        <a
-          class="post-link"
-          :href="withBase(post.url)"
-        >
-          {{ post.frontmatter.title }}
-        </a>
-      </li>
-    </ul>
+        <h2 class="column-title">
+          {{ isZh ? '随笔' : 'Essays' }}
+        </h2>
+        <ul class="post-list">
+          <li
+            v-for="post in lifePosts"
+            :key="post.url"
+            class="post-list-item"
+          >
+            <span class="post-meta">
+              {{ formatDate(post.frontmatter.date) }}
+              <ViewCounter
+                :id="postViewId(post.url)"
+                :legacy-ids="legacyPostViewIds(post.url)"
+                :is-zh="isZh"
+                readonly
+                refresh-on-focus
+                class="inline-vc"
+              />
+            </span>
+            <a
+              class="post-link"
+              :href="withBase(post.url)"
+            >
+              {{ post.frontmatter.title }}
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -163,15 +173,35 @@ function formatDate(value?: string) {
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 30px 15px;
-  text-align: center;
+  text-align: left;
 }
 
 .blog-tabs {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 0;
   margin-bottom: 40px;
+}
+
+.blog-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+}
+
+.blog-column {
+  min-width: 0;
+}
+
+.column-title {
+  margin: 0 0 28px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-1);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.4;
 }
 
 .tab-btn {
@@ -208,7 +238,7 @@ function formatDate(value?: string) {
 }
 
 .post-list-item {
-  margin-bottom: 30px;
+  margin-bottom: 28px;
 }
 
 .post-meta {
@@ -229,7 +259,7 @@ function formatDate(value?: string) {
 .post-link {
   display: block;
   color: #4d74eb !important;
-  font-size: 24px;
+  font-size: 21px;
   line-height: 1.35;
   text-decoration: none;
 }
@@ -243,6 +273,26 @@ function formatDate(value?: string) {
   .blog-list-page {
     padding-right: 7.5px;
     padding-left: 7.5px;
+  }
+
+  .blog-tabs {
+    display: flex;
+  }
+
+  .blog-columns {
+    display: block;
+  }
+
+  .blog-column.mobile-hidden {
+    display: none;
+  }
+
+  .column-title {
+    display: none;
+  }
+
+  .post-link {
+    font-size: 24px;
   }
 }
 </style>

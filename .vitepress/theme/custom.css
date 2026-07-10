@@ -230,14 +230,50 @@ a:visited {
   /* Prevent tables from overflowing content */
   .vp-doc table {
     display: block !important;
+    width: 100% !important;
     max-width: 100% !important;
     overflow-x: auto !important;
+  }
+
+  /* Project pages stay readable even when a table contains long links or code. */
+  .is-project-page .VPDoc .container .content,
+  .is-project-page .vp-doc .content {
+    width: 640px !important;
+    max-width: 640px !important;
+    min-width: 0 !important;
   }
 
   /* Reset container display for proper flow */
   .vp-doc .container {
     display: contents !important;
   }
+}
+
+.is-project-page .VPDoc .container,
+.is-project-page .VPDoc .content,
+.is-project-page .VPDoc .content-container,
+.is-project-page .vp-doc {
+  min-width: 0 !important;
+}
+
+.is-project-page .vp-doc table {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+.is-project-page .vp-doc th,
+.is-project-page .vp-doc td {
+  min-width: 0 !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.is-project-page .vp-doc td :where(a, code) {
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* Mobile Layout Overrides */
