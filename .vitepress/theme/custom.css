@@ -384,11 +384,6 @@ html[lang="zh-CN"] .nav-link {
   font-weight: 400 !important;
 }
 
-html[lang="en"] .VPNav .VPNavBarMenuLink[href$="/list100/"] {
-  font-family: var(--font-latin), serif !important;
-  font-weight: 400 !important;
-}
-
 /* Hide Unwanted Nav Elements */
 .VPNavBarTranslations,
 .VPNavBarSearch,
@@ -721,25 +716,6 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
   }
 }
 
-/* --- List 100 Page --- */
-.list100-page {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  padding: var(--space-2xl) var(--space-lg);
-  text-align: center;
-}
-
-.list100-page h1 {
-  font-size: 44px;
-  margin-bottom: var(--space-lg);
-}
-
-.list100-page ol {
-  text-align: left;
-  display: inline-block;
-  padding-left: 1.4em;
-}
-
 /* --- Misc Components --- */
 .article-comments-section {
   margin-top: 2rem;
@@ -827,7 +803,6 @@ html[lang="en"] .thoughts-layout :where(:not(pre, code, kbd, samp, svg, svg *)) 
   }
 }
 
-[data-frontmatter-layout="List50Page"] .VPDoc .container .content .content-container,
 [data-frontmatter-layout="BooksPage"] .VPDoc .container .content .content-container {
   display: none;
 }
@@ -1076,8 +1051,7 @@ html[lang="zh-CN"] .custom-language-link,
 html[lang="zh-CN"] .language-link-zh,
 html[lang="zh-CN"] .about-intro strong,
 html[lang="zh-CN"] .about-description strong,
-html[lang="zh-CN"] .thought-title,
-html[lang="zh-CN"] .list100-content h1 {
+html[lang="zh-CN"] .thought-title {
   font-weight: 400 !important;
 }
 
@@ -1135,19 +1109,5 @@ html[lang="zh-CN"] body .about-description strong,
 html[lang="zh-CN"] body .about-contact h3,
 html[lang="zh-CN"] body .copy-status,
 html[lang="zh-CN"] body .contact-note {
-  font-weight: 400 !important;
-}
-
-html[lang="zh-CN"] .list100-content,
-html[lang="zh-CN"] .list100-content :where(:not(pre, code, kbd, samp, svg, svg *)) {
-  font-family: var(--font-zh), serif !important;
-  font-synthesis: none !important;
-  font-weight: 400 !important;
-}
-
-html[lang="en"] .list100-content,
-html[lang="en"] .list100-content :where(:not(pre, code, kbd, samp, svg, svg *)) {
-  font-family: var(--font-latin), serif !important;
-  font-synthesis: none !important;
   font-weight: 400 !important;
 }

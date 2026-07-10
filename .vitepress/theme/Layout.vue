@@ -1,11 +1,5 @@
 <template>
   <Layout :class="{ 'is-article-page': isArticlePage, 'is-project-page': isProjectPage }">
-    <template
-      v-if="frontmatter.layout === 'List50Page'"
-      #doc-before
-    >
-      <List50Page />
-    </template>
     <!-- 文章页脚：元信息 + 阅读量 + 评论 -->
     <template
       v-if="isArticlePage"
@@ -54,7 +48,6 @@
 import DefaultTheme from 'vitepress/theme'
 import { useData } from 'vitepress'
 import { computed } from 'vue'
-import List50Page from './components/List50Page.vue'
 import BackToTop from './components/BackToTop.vue'
 import Comments from './components/Comments.vue'
 import ArticleTOC from './components/ArticleTOC.vue'
@@ -139,14 +132,6 @@ const formatArticleDate = (value) => {
 }
 
 [data-frontmatter-layout="BooksPage"] .VPDoc {
-  padding: 0;
-}
-
-[data-frontmatter-layout="List50Page"] .VPDoc .container .content .content-container {
-  display: none;
-}
-
-[data-frontmatter-layout="List50Page"] .VPDoc {
   padding: 0;
 }
 

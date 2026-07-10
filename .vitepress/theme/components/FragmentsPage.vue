@@ -18,10 +18,27 @@
         v-for="(fragment, index) in fragments"
         :key="fragment.id || `${fragment.date}-${fragment.title || fragment.text}-${index}`"
         class="fragment-item"
+        :class="[`tone-${fragment.tone || 'plain'}`, { 'has-image': fragment.image }]"
       >
         <div class="fragment-meta">
-          <time v-if="fragment.date">{{ formatDate(fragment.date) }}</time>
-          <span v-if="fragment.type">{{ fragment.type }}</span>
+          <span>
+            <time v-if="fragment.date">{{ formatDate(fragment.date) }}</time>
+            <span v-if="fragment.type"> · {{ fragment.type }}</span>
+          </span>
+          <span
+            v-if="fragment.placeholder"
+            class="placeholder-badge"
+          >
+            {{ isZh ? '占位示例' : 'Placeholder' }}
+          </span>
+        </div>
+        <div
+          v-if="fragment.visualEmoji"
+          class="fragment-visual"
+          aria-hidden="true"
+        >
+          <span>{{ fragment.visualEmoji }}</span>
+          <small v-if="fragment.visualText">{{ fragment.visualText }}</small>
         </div>
         <img
           v-if="fragment.image"
@@ -35,6 +52,21 @@
         <p v-if="fragment.text">
           {{ fragment.text }}
         </p>
+        <p
+          v-if="fragment.status"
+          class="fragment-status"
+        >
+          <span aria-hidden="true" />{{ fragment.status }}
+        </p>
+        <div
+          v-if="fragment.tags?.length"
+          class="fragment-tags"
+        >
+          <span
+            v-for="tag in fragment.tags"
+            :key="tag"
+          >{{ tag }}</span>
+        </div>
         <a
           v-if="fragment.link"
           :href="fragment.link"
@@ -76,6 +108,12 @@ type FragmentItem = {
   image?: string
   link?: string
   linkText?: string
+  placeholder?: boolean
+  tone?: 'plain' | 'blue' | 'warm' | 'green' | 'lilac'
+  visualEmoji?: string
+  visualText?: string
+  status?: string
+  tags?: string[]
 }
 
 const { frontmatter, page, site } = useData()
@@ -154,6 +192,23 @@ function formatDate(value: string) {
   border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   background: var(--vp-c-bg);
+  overflow: hidden;
+}
+
+.fragment-item.tone-blue {
+  background: color-mix(in srgb, #4d74eb 6%, var(--vp-c-bg));
+}
+
+.fragment-item.tone-warm {
+  background: color-mix(in srgb, #e59b52 8%, var(--vp-c-bg));
+}
+
+.fragment-item.tone-green {
+  background: color-mix(in srgb, #4e9b72 7%, var(--vp-c-bg));
+}
+
+.fragment-item.tone-lilac {
+  background: color-mix(in srgb, #8b6fbe 7%, var(--vp-c-bg));
 }
 
 .fragment-item img {
@@ -171,6 +226,39 @@ function formatDate(value: string) {
   font-size: 13px;
 }
 
+.placeholder-badge {
+  flex: 0 0 auto;
+  padding: 1px 7px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg);
+  font-size: 11px;
+}
+
+.fragment-visual {
+  display: flex;
+  min-height: 150px;
+  margin: 14px 0 16px;
+  padding: 18px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.9), transparent 35%),
+    linear-gradient(135deg, rgba(77, 116, 235, 0.2), rgba(229, 155, 82, 0.16));
+}
+
+.fragment-visual span {
+  font-size: 42px;
+}
+
+.fragment-visual small {
+  margin-top: 10px;
+  color: var(--vp-c-text-3);
+  font-size: 12px;
+}
+
 .fragment-item h2 {
   margin: 12px 0 8px;
   color: var(--vp-c-text-1);
@@ -185,6 +273,37 @@ function formatDate(value: string) {
   color: var(--vp-c-text-2);
   font-size: 16px;
   line-height: 1.65;
+}
+
+.fragment-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--vp-c-text-3) !important;
+  font-size: 13px !important;
+}
+
+.fragment-status span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4e9b72;
+  box-shadow: 0 0 0 3px rgba(78, 155, 114, 0.14);
+}
+
+.fragment-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+}
+
+.fragment-tags span {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--vp-c-text-1) 6%, transparent);
+  color: var(--vp-c-text-3);
+  font-size: 12px;
 }
 
 .fragment-item a {

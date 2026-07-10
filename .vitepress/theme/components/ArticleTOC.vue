@@ -257,10 +257,6 @@ watch(() => page.value.relativePath, () => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-:global(.is-project-page) .custom-toc.desktop-toc {
-  margin-left: 370px; /* 600px project content / 2 + 70px gap */
-}
-
 .toc-header {
   font-weight: 600;
   margin-bottom: 0.8rem;
