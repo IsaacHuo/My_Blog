@@ -238,8 +238,8 @@ a:visited {
   /* Project pages stay readable even when a table contains long links or code. */
   .is-project-page .VPDoc .container .content,
   .is-project-page .vp-doc .content {
-    width: 640px !important;
-    max-width: 640px !important;
+    width: 600px !important;
+    max-width: 600px !important;
     min-width: 0 !important;
   }
 

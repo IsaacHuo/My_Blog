@@ -24,10 +24,10 @@
       </p>
       <p class="about-description">
         <template v-if="isZh">
-          这里存放了一些项目、一些笔记，<br>以及一些正在形成的判断。
+          这里存放了一些文章、一些项目，<br>也收集一些不成篇的片段。
         </template>
         <template v-else>
-          Here are some projects, some notes,<br>and some judgments in the making.
+          Here are essays and projects,<br>alongside fragments that do not need to become either.
         </template>
       </p>
       <p class="about-description">
@@ -298,7 +298,7 @@ const copyEmail = async () => {
   display: block;
   max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: var(--space-3xl) var(--space-lg);
+  padding: calc(var(--space-3xl) + var(--space-lg)) var(--space-lg) var(--space-3xl);
 }
 
 
@@ -655,6 +655,10 @@ const copyEmail = async () => {
 }
 
 @media (max-width: 768px) {
+  .about-layout {
+    padding-top: var(--space-3xl);
+  }
+
   .about-avatar {
     float: none;
     width: 160px;

@@ -242,7 +242,7 @@ watch(() => page.value.relativePath, () => {
 .custom-toc.desktop-toc {
   position: fixed;
   left: 50%;
-  margin-left: 250px; /* 700px/2 + 10px gap */
+  margin-left: 390px; /* 700px content / 2 + 40px gap */
   top: 150px;
   width: 240px;
   max-height: calc(100vh - 170px);
@@ -255,6 +255,10 @@ watch(() => page.value.relativePath, () => {
   z-index: 2000;
   transition: opacity 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+:global(.is-project-page) .custom-toc.desktop-toc {
+  margin-left: 370px; /* 600px project content / 2 + 70px gap */
 }
 
 .toc-header {
@@ -451,7 +455,7 @@ watch(() => page.value.relativePath, () => {
 }
 
 /* Responsive Logic */
-@media (max-width: 1200px) {
+@media (max-width: 1280px) {
   .custom-toc.desktop-toc {
     display: none;
   }

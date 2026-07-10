@@ -21,7 +21,8 @@ export default defineConfig({
         siteTitle: 'Huo Weifang',
         nav: [
           { text: '文章', link: '/zh/blog/' },
-          { text: '项目', link: '/zh/projects/' }
+          { text: '项目', link: '/zh/projects/' },
+          { text: '片段', link: '/zh/fragments/' }
         ],
         socialLinks: [
           { icon: 'github', link: 'https://github.com/IsaacHuo/My_Blog' }
@@ -51,7 +52,8 @@ export default defineConfig({
     siteTitle: 'Huo Weifang',
     nav: [
       { text: 'Blog', link: '/en/blog/' },
-      { text: 'Project', link: '/en/projects/' }
+      { text: 'Project', link: '/en/projects/' },
+      { text: 'Fragments', link: '/en/fragments/' }
     ],
 
 
