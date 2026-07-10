@@ -1,5 +1,8 @@
 <template>
-  <div class="list50-layout">
+  <div
+    v-if="isList50Visible"
+    class="list50-layout"
+  >
     <div class="list50-content">
       <h1>{{ isZh ? '清单 50' : 'List 50' }}</h1>
       <p class="list50-subtitle">
@@ -27,6 +30,7 @@ import { computed } from 'vue'
 
 const { site, page } = useData()
 const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/'))
+const isList50Visible = false
 
 const itemsZh = [
   '进入一家气质契合的企业，在国际化环境里工作。',
