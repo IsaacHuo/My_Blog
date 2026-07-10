@@ -1,75 +1,48 @@
 ---
-title: "城市地图海报：将地理数据转化为艺术"
+title: "MapToPoster：城市地图海报生成器"
 date: 2025-01-20
 author: 霍玮放
-description: "利用 OpenStreetMap 数据与 Python，为你的墙面创作极简主义地图艺术。"
+description: "基于 OpenStreetMap 数据生成可定制、可打印的城市地图海报。"
 editLink: true
 outline: [2, 3]
 ---
 
-# 城市地图海报：将地理数据转化为艺术
+# MapToPoster：城市地图海报生成器
 
-## 数据与审美的交汇
+MapToPoster 是一个开源地图可视化工具。用户输入城市或地址后，系统获取 OpenStreetMap 路网数据，并生成可定制的城市地图海报。
 
-城市的肌理总有一种令人着迷的魅力。无论是欧洲古城混乱而充满历史感的街道网络，还是北美大都市严谨的棋盘式布局，抑或是亚洲巨型城市有机蔓延的脉络，每一个路网结构都在讲述着关于历史、文化和地理的故事。
+项目聚焦地图的视觉表达：保留道路、水系与绿地等结构，移除常规导航地图中的标签和交互信息，输出适合展示、打印和二次编辑的静态作品。
 
-近年来，极简风格的城市地图海报成为了现代室内装饰的热门选择。它们以一种抽象而理性的方式定格了一个地点的灵魂——也许是你的家乡，是你最爱的旅行目的地，或是你梦想定居的城市。然而，设计精品店出售的此类海报往往价格不菲，且难以进行个性化定制。
+![MapToPoster 生成效果](/project-images/maptoposter.png)
 
-这正是 **MapToPoster** 诞生的契机。
+## 核心能力
 
-![City Map Poster Generator](/project-images/maptoposter.png)
+- 支持城市关键词搜索及国家、省份、城市级联选择。
+- 提供 17 种以上的配色预设。
+- 支持 4–30 km 地图半径、常用画幅比例和图层显隐调整。
+- 导出高分辨率 PNG 或可编辑 SVG。
+- 使用本地行政区划数据补充中国城市检索。
 
-## 开源设计的哲学
+## 技术实现
 
-**MapToPoster** 是一个开源项目，它的初衷很简单：*既然我们拥有海量的开放地理数据，为什么不能自己生成专业级的地图艺术？*
+项目使用 Python 构建：`OSMnx` 获取并处理 OpenStreetMap 路网数据，Nominatim 与本地数据完成位置检索，`Matplotlib` 负责图层绘制、样式控制和文件导出。
 
-依托于伟大的 [OpenStreetMap](https://www.openstreetmap.org/) (OSM) 数据库，这个工具让每个人都能成为地图设计师。它剥离了常规地图中嘈杂的标签、地标和交通信息，只保留城市最纯粹的几何形态：道路是城市的血管，高速公路是动脉，水系和公园则是城市的留白。
+处理流程为：位置解析 → 地理数据获取 → 道路分级与图层整理 → 主题渲染 → PNG / SVG 导出。
 
-## 工作原理
-
-在技术层面，本项目利用了 Python 强大的数据生态系统。它主要依赖 `OSMnx` 从 OSM 获取矢量数据，构建出城市的骨架；随后，通常用于科学绘图的 `Matplotlib` 在这里被重新定义为一个精确的艺术渲染引擎。
-
-我们特别针对中国用户的使用体验进行了深度优化。针对国内城市查找困难、坐标偏移等痛点，我们集成了本地离线数据库，实现了精准的行政区划检索。
-
-整个创作过程既自动化又高度可控：
-
-1.  **搜索**: 输入任何城市名称（如"杭州"、"伦敦"、"纽约"）。系统会通过 Nominatim 或本地数据库进行精准定位。
-2.  **风格**: 内置 17+ 种精心调制的配色方案，从经典的"极简黑白"到炫酷的"赛博朋克"，再到复古的"羊皮纸"质感。
-3.  **微调**: 你可以自由调整地图半径（关注市中心或涵盖整个都市圈），并控制图层显隐（高速、主干道、水域、绿地）。
-4.  **导出**: 生成用于打印的高清 PNG，或用于进一步设计的 SVG 矢量图。
-
-## 核心特性
-
-*   **🎨 丰富主题**: 专为不同室内风格设计的 17+ 种预设。
-*   **🔍 智能检索**: 支持级联选择（国家 → 省份 → 城市）或直接关键词搜索。
-*   **⚙️ 精细控制**: 支持从 4km 街道级到 30km 都市圈的半径调整，以及各种标准画幅比例。
-*   **🇨🇳 本地优化**: 解决了 OpenStreetMap 在中国地区常见的“数据缺失”或“定位不准”问题。
-
-## 亲自尝试
-
-这是一个完全开源的项目，你可以选择在本地运行以获得最佳性能，也可以直接访问我们的在线演示。
-
-*   **GitHub 仓库**: [IsaacHuo/maptoposter](https://github.com/IsaacHuo/maptoposter) (欢迎 Star ⭐️)
-*   **在线演示**: [Hugging Face Space](https://huggingface.co/spaces/isaachwf/MapToPoster) *(注: 免费版空间渲染速度可能较慢)*
-
-## 安装与运行
-
-为了获得更流畅的渲染体验，推荐使用 `uv` 在本地运行：
+## 本地运行
 
 ```bash
-# 克隆仓库
 git clone https://github.com/IsaacHuo/maptoposter.git
 cd maptoposter
-
-# 同步依赖环境
 uv sync
-
-# 启动 Web UI
 uv run python app.py
 ```
 
-启动后，在浏览器访问 `http://localhost:7860` 即可开始创作你的城市海报。
+启动后访问 `http://localhost:7860`。
 
----
+## 项目链接
 
-*本项目基于 [originalankur/maptoposter](https://github.com/originalankur/maptoposter) 开发，致敬开源地图社区。*
+- [GitHub 仓库](https://github.com/IsaacHuo/maptoposter)
+- [在线演示](https://huggingface.co/spaces/isaachwf/MapToPoster)
+
+项目基于 [originalankur/maptoposter](https://github.com/originalankur/maptoposter) 继续开发。

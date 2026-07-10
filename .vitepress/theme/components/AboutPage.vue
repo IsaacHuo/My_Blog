@@ -58,10 +58,6 @@
                 <strong>{{ project.title }}</strong>
                 <small>{{ project.description }}</small>
               </span>
-              <span
-                class="showcase-arrow"
-                aria-hidden="true"
-              >↗</span>
             </a>
           </div>
         </section>
@@ -84,10 +80,6 @@
                 <strong>{{ note.frontmatter.title }}</strong>
                 <small>{{ formatDate(note.frontmatter.date) }}</small>
               </span>
-              <span
-                class="showcase-arrow"
-                aria-hidden="true"
-              >↗</span>
             </a>
           </div>
         </section>
@@ -470,22 +462,12 @@ const copyEmail = async () => {
   line-height: 1.45;
 }
 
-.showcase-arrow {
-  flex: 0 0 auto;
-  color: var(--vp-c-text-3);
-  transition: transform 0.2s ease;
-}
-
 .showcase-item:hover {
   color: #4d74eb !important;
 }
 
 .showcase-item:hover strong {
   color: #4d74eb;
-}
-
-.showcase-item:hover .showcase-arrow {
-  transform: translate(2px, -2px);
 }
 
 .about-contact {

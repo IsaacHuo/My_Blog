@@ -10,7 +10,6 @@ fragments:
     text: Defining clearer places for complete thoughts, shipped work, and the smaller things that show everyday interests.
     status: Ongoing
     tags: [Blog, Design]
-    tone: blue
     placeholder: true
   - id: campus-sunset
     date: 2026-07-09
@@ -19,7 +18,6 @@ fragments:
     text: A color noticed after class. A photo does not always need a full story; one sentence can be enough.
     visualEmoji: 🌇
     visualText: Photo placeholder · replace with a real image later
-    tone: warm
     placeholder: true
   - id: recently
     date: 2026-07-08
@@ -27,14 +25,12 @@ fragments:
     title: Reading, listening, watching
     text: The Design of Everyday Things, a podcast about on-device AI, and a documentary about city life.
     tags: [Books, Podcast, Film]
-    tone: green
     placeholder: true
   - id: short-thought
     date: 2026-07-07
     type: Short thought
     title: Efficiency is not the only measure
     text: Good tools should reduce meaningless effort, but they should not decide what is worth doing. Saved time should return to life and creation.
-    tone: lilac
     placeholder: true
   - id: saved-hig
     date: 2026-07-06
@@ -61,7 +57,6 @@ fragments:
     text: A page that looks stretched by a table may actually have a parent container shifted by a bad selector. Inspect generated CSS before changing widths.
     visualEmoji: 🧩
     visualText: A debugging note worth finding again
-    tone: blue
     placeholder: true
   - id: museum-note
     date: 2026-07-03
@@ -69,7 +64,6 @@ fragments:
     title: A day at the National Museum
     text: Instead of photographing every exhibit, remember the few objects that made you stop—and why they did.
     tags: [Beijing, Museum, Life]
-    tone: warm
     placeholder: true
 ---
 

@@ -10,7 +10,6 @@ fragments:
     text: 正在整理文章、项目和片段之间的边界，让完整思考、实际产出与日常兴趣各有自己的位置。
     status: 进行中
     tags: [博客, 设计]
-    tone: blue
     placeholder: true
   - id: campus-sunset
     date: 2026-07-09
@@ -19,7 +18,6 @@ fragments:
     text: 下课后抬头看到的颜色。照片不一定要讲完整故事，一句说明就够了。
     visualEmoji: 🌇
     visualText: 照片占位 · 以后替换为真实照片
-    tone: warm
     placeholder: true
   - id: recently
     date: 2026-07-08
@@ -27,14 +25,12 @@ fragments:
     title: 最近在读、在听、在看
     text: 《设计心理学》、一期关于端侧 AI 的播客，以及一部记录城市生活的纪录片。
     tags: [书, 播客, 纪录片]
-    tone: green
     placeholder: true
   - id: short-thought
     date: 2026-07-07
     type: 简短想法
     title: 效率不是唯一尺度
     text: 好工具应该减少无意义的消耗，但不应该替人决定什么值得做。省下来的时间，最终还是要交还给生活和创造。
-    tone: lilac
     placeholder: true
   - id: saved-hig
     date: 2026-07-06
@@ -61,7 +57,6 @@ fragments:
     text: 页面看起来像是表格撑宽，真正的问题也可能来自父级容器被错误位移。先检查最终生成的 CSS，再修改宽度。
     visualEmoji: 🧩
     visualText: 一条以后还能搜到的调试记录
-    tone: blue
     placeholder: true
   - id: museum-note
     date: 2026-07-03
@@ -69,7 +64,6 @@ fragments:
     title: 国家博物馆的一天
     text: 比起匆忙拍完所有展品，更想记住少数真正停下来看的东西，以及它们为什么让我停下。
     tags: [北京, 博物馆, 生活]
-    tone: warm
     placeholder: true
 ---
 

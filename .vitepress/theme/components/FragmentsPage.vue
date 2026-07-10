@@ -4,8 +4,8 @@
       <h1>{{ isZh ? '片段' : 'Fragments' }}</h1>
       <p>
         {{ isZh
-          ? '一份个人数字剪贴簿，收下那些不必写成长文章、也不属于完整项目的东西。'
-          : 'A personal digital scrapbook for things that do not need to become full essays or complete projects.'
+          ? '一份个人数字剪贴簿。'
+          : 'A personal digital scrapbook.'
         }}
       </p>
     </header>
@@ -18,7 +18,6 @@
         v-for="(fragment, index) in fragments"
         :key="fragment.id || `${fragment.date}-${fragment.title || fragment.text}-${index}`"
         class="fragment-item"
-        :class="[`tone-${fragment.tone || 'plain'}`, { 'has-image': fragment.image }]"
       >
         <div class="fragment-meta">
           <span>
@@ -109,7 +108,6 @@ type FragmentItem = {
   link?: string
   linkText?: string
   placeholder?: boolean
-  tone?: 'plain' | 'blue' | 'warm' | 'green' | 'lilac'
   visualEmoji?: string
   visualText?: string
   status?: string
@@ -181,34 +179,22 @@ function formatDate(value: string) {
 }
 
 .fragment-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  column-count: 2;
+  column-gap: 20px;
 }
 
 .fragment-item {
+  display: inline-block;
+  width: 100%;
   min-width: 0;
+  margin: 0 0 20px;
   padding: 18px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 14px;
   background: var(--vp-c-bg);
   overflow: hidden;
-}
-
-.fragment-item.tone-blue {
-  background: color-mix(in srgb, #4d74eb 6%, var(--vp-c-bg));
-}
-
-.fragment-item.tone-warm {
-  background: color-mix(in srgb, #e59b52 8%, var(--vp-c-bg));
-}
-
-.fragment-item.tone-green {
-  background: color-mix(in srgb, #4e9b72 7%, var(--vp-c-bg));
-}
-
-.fragment-item.tone-lilac {
-  background: color-mix(in srgb, #8b6fbe 7%, var(--vp-c-bg));
+  break-inside: avoid;
+  vertical-align: top;
 }
 
 .fragment-item img {
@@ -216,6 +202,7 @@ function formatDate(value: string) {
   width: 100%;
   margin: 12px 0 16px;
   border-radius: 10px;
+  filter: grayscale(1);
 }
 
 .fragment-meta {
@@ -231,7 +218,7 @@ function formatDate(value: string) {
   padding: 1px 7px;
   border: 1px solid var(--vp-c-divider);
   border-radius: 999px;
-  background: var(--vp-c-bg);
+  background: transparent;
   font-size: 11px;
 }
 
@@ -244,13 +231,12 @@ function formatDate(value: string) {
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background:
-    radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.9), transparent 35%),
-    linear-gradient(135deg, rgba(77, 116, 235, 0.2), rgba(229, 155, 82, 0.16));
+  background: linear-gradient(135deg, var(--vp-c-bg-soft), var(--vp-c-bg-mute));
 }
 
 .fragment-visual span {
   font-size: 42px;
+  filter: grayscale(1);
 }
 
 .fragment-visual small {
@@ -287,8 +273,8 @@ function formatDate(value: string) {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #4e9b72;
-  box-shadow: 0 0 0 3px rgba(78, 155, 114, 0.14);
+  background: var(--vp-c-text-2);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--vp-c-text-1) 10%, transparent);
 }
 
 .fragment-tags {
@@ -309,8 +295,14 @@ function formatDate(value: string) {
 .fragment-item a {
   display: inline-block;
   margin-top: 14px;
+  color: var(--vp-c-text-1) !important;
   font-size: 14px;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.fragment-item a:hover {
+  color: var(--vp-c-text-2) !important;
 }
 
 .fragments-empty {
@@ -357,7 +349,10 @@ function formatDate(value: string) {
     font-size: 36px;
   }
 
-  .fragment-list,
+  .fragment-list {
+    column-count: 1;
+  }
+
   .fragments-empty ul {
     grid-template-columns: 1fr;
   }
