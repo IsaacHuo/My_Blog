@@ -202,7 +202,6 @@ function formatDate(value: string) {
   width: 100%;
   margin: 12px 0 16px;
   border-radius: 10px;
-  filter: grayscale(1);
 }
 
 .fragment-meta {
