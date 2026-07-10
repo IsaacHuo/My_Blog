@@ -16,8 +16,7 @@ fragments:
     type: 照片
     title: 校园里的一场晚霞
     text: 下课后抬头看到的颜色。照片不一定要讲完整故事，一句说明就够了。
-    visualEmoji: 🌇
-    visualText: 照片占位 · 以后替换为真实照片
+    image: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dramatic%20sunset%20landscape.jpg?width=1200"
     placeholder: true
   - id: recently
     date: 2026-07-08
@@ -46,7 +45,7 @@ fragments:
     type: 小实验
     title: 把城市道路画成一张海报
     text: 尝试只保留道路、水系与留白，让地图从导航工具变成一张可以打印的图像。
-    image: /project-images/maptoposter.png
+    image: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mountain%20lake.jpg?width=1200"
     status: 还在调整配色与构图
     tags: [地图, Python, 可视化]
     placeholder: true

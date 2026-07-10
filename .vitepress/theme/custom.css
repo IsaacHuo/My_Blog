@@ -364,10 +364,18 @@ a:visited {
 .nav-link {
   justify-content: center !important;
   width: auto;
+  margin: 0 !important;
+  padding: 0 !important;
   font-size: 17px !important;
   font-weight: 400 !important;
   letter-spacing: 0 !important;
   white-space: nowrap;
+}
+
+/* 让导航项之间只由父容器的 gap 控制，避免叠加 VitePress 默认间距。 */
+.VPNavBarMenu > * {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 html[lang="en"] .VPNavBarMenuLink,

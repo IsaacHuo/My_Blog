@@ -16,8 +16,7 @@ fragments:
     type: Photo
     title: An evening sky on campus
     text: A color noticed after class. A photo does not always need a full story; one sentence can be enough.
-    visualEmoji: 🌇
-    visualText: Photo placeholder · replace with a real image later
+    image: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Dramatic%20sunset%20landscape.jpg?width=1200"
     placeholder: true
   - id: recently
     date: 2026-07-08
@@ -46,7 +45,7 @@ fragments:
     type: Small experiment
     title: Turning city streets into a poster
     text: Keeping only roads, water, and negative space to turn a navigation map into a printable image.
-    image: /project-images/maptoposter.png
+    image: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Mountain%20lake.jpg?width=1200"
     status: Still tuning color and composition
     tags: [Maps, Python, Visualization]
     placeholder: true
