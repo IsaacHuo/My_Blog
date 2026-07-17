@@ -249,6 +249,18 @@ a:visited {
   }
 }
 
+/*
+ * VitePress reserves a 256px aside column on pages with an outline. Our
+ * visible TOC is positioned independently, so that invisible reservation
+ * shifts the article body 128px left of the viewport center. Correct only the
+ * blog article body while the desktop TOC is visible; the TOC stays fixed.
+ */
+@media (min-width: 1281px) {
+  .is-article-page:not(.is-project-page) .VPDoc.has-aside .content-container {
+    transform: translateX(128px);
+  }
+}
+
 .is-project-page .VPDoc .container,
 .is-project-page .VPDoc .content,
 .is-project-page .VPDoc .content-container,
