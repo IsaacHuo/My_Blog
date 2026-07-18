@@ -24,12 +24,6 @@
             <time v-if="fragment.date">{{ formatDate(fragment.date) }}</time>
             <span v-if="fragment.type"> · {{ fragment.type }}</span>
           </span>
-          <span
-            v-if="fragment.placeholder"
-            class="placeholder-badge"
-          >
-            {{ isZh ? '占位示例' : 'Placeholder' }}
-          </span>
         </div>
         <div
           v-if="fragment.visualEmoji"
@@ -107,7 +101,6 @@ type FragmentItem = {
   image?: string
   link?: string
   linkText?: string
-  placeholder?: boolean
   visualEmoji?: string
   visualText?: string
   status?: string
@@ -210,15 +203,6 @@ function formatDate(value: string) {
   gap: 12px;
   color: var(--vp-c-text-3);
   font-size: 13px;
-}
-
-.placeholder-badge {
-  flex: 0 0 auto;
-  padding: 1px 7px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 999px;
-  background: transparent;
-  font-size: 11px;
 }
 
 .fragment-visual {
