@@ -3,6 +3,8 @@ title: "炒股挣钱？"
 date: 2026-07-18
 category: 随笔
 author: 霍玮放
+hidden: true
+search: false
 description: 从五月把五千元投进半导体板块，到如今只剩三千元，一次关于亏损、认知和交易习惯的个人复盘。
 tags:
   - 股票
