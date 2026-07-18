@@ -9,6 +9,7 @@ const loader = createContentLoader(['zh/blog/*.md', 'en/blog/*.md'], {
       .filter(({ url, frontmatter }) => {
         const normalizedUrl = url.replace(/\.html$/, '')
         if (!frontmatter.title) return false
+        if (frontmatter.hidden === true || frontmatter.draft === true) return false
         if (normalizedUrl.endsWith('/index') || normalizedUrl.endsWith('/blog/') || normalizedUrl.endsWith('/zh/blog/')) return false
         if (normalizedUrl.endsWith('/template')) return false
         return true
