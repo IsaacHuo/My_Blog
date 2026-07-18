@@ -3,6 +3,12 @@ layout: page
 title: 片段
 description: 个人数字剪贴簿，记录照片、近况、短想法、收藏和未成熟的实验。
 fragments:
+  - id: why-rag
+    date: 2026-07-18
+    type: 简短想法
+    title: 为什么要用 RAG？
+    text: 传统关键词检索依赖字符是否相同，换一种说法就可能找不到。RAG 借助向量检索，在语义空间里寻找含义相近的内容，再把结果交给模型。它要解决的问题，就是把字符匹配转换成语义匹配。
+    tags: [AI, RAG, 检索]
   - id: blog-redesign
     date: 2026-07-10
     type: 正在做
