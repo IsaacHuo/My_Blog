@@ -18,7 +18,6 @@
         v-for="(fragment, index) in fragments"
         :key="fragment.id || `${fragment.date}-${fragment.title || fragment.text}-${index}`"
         class="fragment-item"
-        :class="{ 'fragment-item--wide': fragment.wide }"
       >
         <div class="fragment-meta">
           <span>
@@ -46,28 +45,6 @@
         <p v-if="fragment.text">
           {{ fragment.text }}
         </p>
-        <div
-          v-if="fragment.prompts?.length"
-          class="fragment-prompts"
-        >
-          <section
-            v-for="(prompt, promptIndex) in fragment.prompts"
-            :key="`${fragment.id || index}-${promptIndex}`"
-            class="fragment-prompt"
-          >
-            <div class="fragment-prompt-header">
-              <h3>{{ prompt.title }}</h3>
-              <button
-                type="button"
-                :aria-label="`${isZh ? '复制' : 'Copy'} ${prompt.title}`"
-                @click="copyPrompt(prompt.text, `${fragment.id || index}-${promptIndex}`)"
-              >
-                {{ copiedPromptKey === `${fragment.id || index}-${promptIndex}` ? (isZh ? '已复制' : 'Copied') : (isZh ? '复制' : 'Copy') }}
-              </button>
-            </div>
-            <pre><code>{{ prompt.text }}</code></pre>
-          </section>
-        </div>
         <p
           v-if="fragment.status"
           class="fragment-status"
@@ -112,7 +89,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { useData } from 'vitepress'
 
 type FragmentItem = {
@@ -128,17 +105,11 @@ type FragmentItem = {
   visualText?: string
   status?: string
   tags?: string[]
-  wide?: boolean
-  prompts?: Array<{
-    title: string
-    text: string
-  }>
 }
 
 const { frontmatter, page, site } = useData()
 const isZh = computed(() => site.value.lang === 'zh-CN' || page.value.relativePath.startsWith('zh/'))
 const fragments = computed<FragmentItem[]>(() => frontmatter.value.fragments || [])
-const copiedPromptKey = ref('')
 
 const fragmentKinds = computed(() => isZh.value
   ? [
@@ -159,14 +130,6 @@ const fragmentKinds = computed(() => isZh.value
       'Small unfinished experiments',
       'Travel and campus life'
     ])
-
-async function copyPrompt(text: string, key: string) {
-  await navigator.clipboard.writeText(text)
-  copiedPromptKey.value = key
-  window.setTimeout(() => {
-    if (copiedPromptKey.value === key) copiedPromptKey.value = ''
-  }, 1600)
-}
 
 function formatDate(value: string) {
   const date = new Date(value)
@@ -227,11 +190,6 @@ function formatDate(value: string) {
   vertical-align: top;
 }
 
-.fragment-item--wide {
-  display: block;
-  column-span: all;
-}
-
 .fragment-item img {
   display: block;
   width: 100%;
@@ -284,70 +242,6 @@ function formatDate(value: string) {
   color: var(--vp-c-text-2);
   font-size: 16px;
   line-height: 1.65;
-}
-
-.fragment-prompts {
-  display: grid;
-  gap: 14px;
-  margin-top: 16px;
-}
-
-.fragment-prompt {
-  min-width: 0;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 10px;
-  background: var(--vp-c-bg-soft);
-  overflow: hidden;
-}
-
-.fragment-prompt-header {
-  display: flex;
-  min-height: 42px;
-  padding: 8px 10px 8px 14px;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  border-bottom: 1px solid var(--vp-c-divider);
-}
-
-.fragment-prompt-header h3 {
-  margin: 0;
-  color: var(--vp-c-text-1);
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-.fragment-prompt-header button {
-  flex: 0 0 auto;
-  padding: 4px 9px;
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 7px;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-2);
-  font: inherit;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-.fragment-prompt-header button:hover {
-  color: var(--vp-c-text-1);
-  border-color: var(--vp-c-text-3);
-}
-
-.fragment-prompt pre {
-  margin: 0;
-  padding: 14px;
-  background: transparent;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-.fragment-prompt code {
-  color: var(--vp-c-text-2);
-  font-family: var(--vp-font-family-mono);
-  font-size: 13px;
-  line-height: 1.7;
 }
 
 .fragment-status {
